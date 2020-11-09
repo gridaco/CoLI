@@ -1,5 +1,6 @@
 {
     "name": "coli",
+    "version": "0.0.1",
     "license": "MIT",
     "private": false,
     "main": "dist/index.js",
@@ -7,6 +8,5 @@
         "README.md",
         "dist",
         "LICENSE"
-    ],
-    "version": "0.0.1"
+    ]
 }

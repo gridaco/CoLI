@@ -38,3 +38,41 @@ file.add(Variable.const("someVariable", "hi there!", CoLITypes.String))
 >>> final String someVariable = "hi there!";
 ```
 > to check work around for generating flutter code - checkout [flutter-builder](https://github.com/bridgedxyz/flutter-builder)
+
+
+## Function
+> build function with coli syntax
+
+```typescript
+
+// 1.
+
+function thisIsNativeFunction(){
+
+}
+
+const coliFunc = coli.function(thisIsNativeFunction)
+
+coliFunc.toDart()
+// > void thisIsNativeFunction(){}
+coliFunc.toPython({followConvention: true})
+// > def this_is_native_function(): ...
+coliFunc.toJavascript()
+// > function thisIsNativeFunction(){}
+
+// 2. 
+const coliFunc = new coli.Function({
+    returns: coli.Types.void,
+    name: 'thisIsGeneratedFunction',
+    params: {
+        first: {
+            required: false,
+            type: coli.Types.any
+        }
+    },
+    executable: coli.Executable.fromStatic("console.log('hi there.');")
+})
+coliFunc.toJavascript()
+// > function thisIsGeneratedFunction(first){ console.log('hi there.'); }
+
+```
