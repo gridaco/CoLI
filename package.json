@@ -1,0 +1,12 @@
+{
+    "name": "coli",
+    "license": "MIT",
+    "private": false,
+    "main": "dist/index.js",
+    "files": [
+        "README.md",
+        "dist",
+        "LICENSE"
+    ],
+    "version": "0.0.1"
+}
