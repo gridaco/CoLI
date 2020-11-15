@@ -1,6 +1,6 @@
 
 
-export interface Parameter<T> {
+export interface Parameter<T = any> {
     name: string
     type: string
     default?: T
