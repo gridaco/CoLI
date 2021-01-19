@@ -1,12 +1,13 @@
 {
-    "name": "coli",
+    "name": "coli-workspace",
     "version": "0.0.1",
     "license": "MIT",
-    "private": false,
-    "main": "dist/index.js",
-    "files": [
-        "README.md",
-        "dist",
-        "LICENSE"
-    ]
+    "private": true,
+    "workspaces": [
+        "coli",
+        "editor"
+    ],
+    "scripts": {
+        "editor": "yarn workspace editor run dev"
+    }
 }

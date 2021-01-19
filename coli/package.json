@@ -1,0 +1,12 @@
+{
+    "name": "coli",
+    "version": "0.0.2",
+    "license": "MIT",
+    "private": false,
+    "main": "lib",
+    "files": [
+        "README.md",
+        "dist",
+        "LICENSE"
+    ]
+}
