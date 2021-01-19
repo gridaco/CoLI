@@ -4,6 +4,9 @@
     "license": "MIT",
     "private": false,
     "main": "lib",
+    "scripts": {
+        "prepublish": "tsc"
+    },
     "files": [
         "README.md",
         "dist",

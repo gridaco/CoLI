@@ -2,6 +2,11 @@
 Computer Language Interface (node, dart, css, html, python)
 
 
+## Installation
+```sh
+yarn add coli
+```
+
 ## Supported platforms
 - NodeJS
 
@@ -75,4 +80,13 @@ const coliFunc = new coli.Function({
 coliFunc.toJavascript()
 // > function thisIsGeneratedFunction(first){ console.log('hi there.'); }
 
+```
+
+
+## Development
+```sh
+# packs the workspace
+yarn
+# runs the editor webapp
+yarn editor
 ```
