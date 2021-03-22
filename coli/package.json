@@ -11,5 +11,8 @@
         "README.md",
         "dist",
         "LICENSE"
-    ]
+    ],
+    "dependencies": {
+        "@abraham/reflection": "^0.7.0"
+    }
 }
