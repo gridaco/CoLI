@@ -5,7 +5,8 @@
     "private": true,
     "workspaces": [
         "coli",
-        "editor"
+        "editor",
+        "example"
     ],
     "scripts": {
         "editor": "yarn workspace editor run dev"

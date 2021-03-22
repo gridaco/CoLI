@@ -1,0 +1,8 @@
+{
+    "name": "example",
+    "version": "0.0.0",
+    "description": "example usage of coli via code api",
+    "dependencies": {
+        "coli": "0.0.2"
+    }
+}
