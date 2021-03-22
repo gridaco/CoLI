@@ -97,3 +97,5 @@ yarn editor
 - https://github.com/acornjs/acorn
 - ts-ast-viewer.com
 - https://github.com/benjamn/ast-types
+- https://en.wikipedia.org/wiki/Abstract-Type_and_Scheme-Definition_Language
+- https://docs.python.org/3/library/ast.html
