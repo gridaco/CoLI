@@ -12,6 +12,10 @@ yarn add coli
 
 - NodeJS
 
+## Builders
+
+Read [BUILDERS.md](./docs/BUILDERS.md)
+
 ## Supported gen target languages
 
 - JSX / TSX
