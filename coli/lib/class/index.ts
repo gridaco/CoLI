@@ -1,3 +1,3 @@
-export class Class {
+import { AstToken } from "../ast";
 
-}
+export class Class extends AstToken {}

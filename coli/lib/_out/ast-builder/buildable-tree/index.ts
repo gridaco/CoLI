@@ -1,16 +1,16 @@
-import { Buildable } from "../buildable";
+import { Buildable } from "../../buildable";
 import {
   ignore,
   paramMetadataKey,
   ignoreMetadataKey,
 } from "../../../utils/decorations/params";
-import { BuildingTree } from "../building-tree";
+import { AstBuildingTree } from "../building-tree";
 import { Reflection as Reflect } from "@abraham/reflection";
 
-export class BuildableTree implements Buildable {
+export class AstBuildableTree implements Buildable {
   constructor(private readonly _name?: string) {}
 
-  build(depth?: number): BuildingTree {
+  build(depth?: number): AstBuildingTree {
     // if no depth is provided, make it as 0, which is root treee
     depth = depth ?? 0;
     const target = this.targetObject ?? this;
@@ -32,7 +32,7 @@ export class BuildableTree implements Buildable {
 
     // =========================
     // create a building tree
-    const tree = new BuildingTree({
+    const tree = new AstBuildingTree({
       name: this.name,
       depth: depth,
       extensions: this.extensions,
@@ -123,7 +123,7 @@ export class BuildableTree implements Buildable {
      * @param key
      * @param field
      */
-    function trySingleFieldBuild(key: string, field: BuildableTree) {
+    function trySingleFieldBuild(key: string, field: AstBuildableTree) {
       try {
         registerOnParam(key, field.build(depth + 1).lookup());
       } catch (e) {
@@ -158,14 +158,14 @@ export class BuildableTree implements Buildable {
 
   // region extensions
   @ignore()
-  private extensions: Array<BuildableTree> = [];
+  private extensions: Array<AstBuildableTree> = [];
   extendWithExtensionFunction<T>(name: string, args: {}): this | T {
-    const extension = new BuildableTree(name).overrideArguments<this>(args);
+    const extension = new AstBuildableTree(name).overrideArguments<this>(args);
     this.extensions.push(extension);
     return this;
   }
 
-  extendWithAccessor<T extends BuildableTree>(accessor: string): T {
+  extendWithAccessor<T extends AstBuildableTree>(accessor: string): T {
     const extension = Snippet.fromStatic<T>(accessor);
     this.extensions.push(extension);
     return extension as T;
@@ -174,8 +174,8 @@ export class BuildableTree implements Buildable {
   // endregion extensions
 
   @ignore()
-  private targetObject: BuildableTree;
-  overrideTarget(target: BuildableTree): this {
+  private targetObject: AstBuildableTree;
+  overrideTarget(target: AstBuildableTree): this {
     this.targetObject = target;
     return this;
   }
@@ -189,7 +189,7 @@ export class BuildableTree implements Buildable {
   }
 
   overrideArguments<T>(args: {}): this | T {
-    const target = <BuildableTree>{
+    const target = <AstBuildableTree>{
       ...args,
     };
     return this.overrideTarget(target);
@@ -215,19 +215,19 @@ export class BuildableTree implements Buildable {
   }
 }
 
-export class Snippet extends BuildableTree {
+export class Snippet extends AstBuildableTree {
   _defaultSnippet: string;
   constructor(defaultSnippet?: string) {
     super();
     this._defaultSnippet = defaultSnippet;
   }
 
-  static fromStatic<T extends BuildableTree>(snippet: string): Snippet | T {
+  static fromStatic<T extends AstBuildableTree>(snippet: string): Snippet | T {
     // dangerously cast type
     return (new Snippet(snippet) as any) as T;
   }
 
-  build(depth?: number): BuildingTree {
+  build(depth?: number): AstBuildingTree {
     return new SnippetBuildingTree(this._defaultSnippet);
   }
 
@@ -244,7 +244,7 @@ export class EnumClass extends Snippet {}
 
 export class EnumField extends Snippet {}
 
-export class SnippetBuildingTree extends BuildingTree {
+export class SnippetBuildingTree extends AstBuildingTree {
   snippet: string;
   constructor(snippet: string) {
     super();

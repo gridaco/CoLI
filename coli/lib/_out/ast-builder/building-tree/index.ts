@@ -1,15 +1,14 @@
-// import { formatCode } from "dart-style"
-import { BuildableTree } from "../buildable-tree";
-import { endsWithSemicolon, exportDuplicatedCommas } from "../../utils";
-import { Buildable } from "../buildable";
+import { AstBuildableTree } from "../buildable-tree";
+import { endsWithSemicolon, normalizeDuplicatedCommas } from "../../utils";
+import { AstBuildable } from "../buildable";
 import { Snippet } from "../buildable-tree";
 
-export class BuildingTree implements Buildable {
+export class AstBuildingTree implements AstBuildable {
   readonly defaultArguments: Array<string> = Array<string>();
   readonly namedArguments: Map<string, string> = new Map();
   readonly name: string;
   readonly depth: number;
-  readonly extensions: Array<BuildableTree>;
+  readonly extensions: Array<AstBuildableTree>;
   readonly overrideSnippet?: Snippet;
   readonly comments: Array<string>;
 
@@ -46,7 +45,7 @@ export class BuildingTree implements Buildable {
     name?: string;
     depth?: number;
     overrideSnippet?: Snippet;
-    extensions?: Array<BuildableTree>;
+    extensions?: Array<AstBuildableTree>;
     comments: Array<string>;
   }) {
     this.name = props?.name;
@@ -70,7 +69,7 @@ export class BuildingTree implements Buildable {
 
   code: string;
 
-  build(): BuildingTree {
+  build(): AstBuildingTree {
     if (this.isSnippetOverriden) {
       const comment = buildComments(this.overrideSnippet.comments, {
         forceSingleLine: true,
@@ -117,7 +116,7 @@ export class BuildingTree implements Buildable {
     }
 
     // safe logic
-    this.code = `${exportDuplicatedCommas(this.code)}`;
+    this.code = `${normalizeDuplicatedCommas(this.code)}`;
 
     return this;
   }

@@ -13,6 +13,10 @@
         "LICENSE"
     ],
     "dependencies": {
-        "@abraham/reflection": "^0.7.0"
+        "@abraham/reflection": "^0.7.0",
+        "global": "^4.4.0"
+    },
+    "devDependencies": {
+        "ts-node": "^9.1.1"
     }
 }

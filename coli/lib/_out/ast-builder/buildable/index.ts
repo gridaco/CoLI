@@ -1,5 +1,6 @@
-import { BuildingTree } from "../building-tree";
+import { Buildable } from "../../buildable";
+import { AstBuildingTree } from "../building-tree";
 
-export interface Buildable {
-  build(): BuildingTree;
+export interface AstBuildable extends Buildable {
+  build(): AstBuildingTree;
 }

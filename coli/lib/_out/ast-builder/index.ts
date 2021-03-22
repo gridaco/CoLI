@@ -1,4 +1,4 @@
-import { BuildableTree } from "./buildable-tree";
-import { BuildingTree } from "./building-tree";
+import { AstBuildableTree } from "./buildable-tree";
+import { AstBuildingTree } from "./building-tree";
 
-export { BuildableTree, BuildingTree };
+export { AstBuildableTree as BuildableTree, AstBuildingTree as BuildingTree };

@@ -1,0 +1,3 @@
+class Formatter {
+  indents: number;
+}
