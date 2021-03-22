@@ -1,3 +1,4 @@
+import { Snippet } from "../snippet";
 import { Type, Types } from "../type";
 
 export class Function {
@@ -5,7 +6,7 @@ export class Function {
   private functionArguments: object;
   private functionReturnType: Type;
   private code: string;
-  innerContent: string;
+  innerContent: string | Snippet;
 
   constructor(funcName: string, args?: object, returnType?: Type) {
     this.functionName = funcName;
@@ -48,9 +49,30 @@ export class Function {
       this.functionReturnType == null ? "any" : this.functionReturnType.type
     } {`;
 
-    this.code += this.innerContent;
+    this.code +=
+      this.innerContent instanceof Snippet
+        ? this.innerContent._defaultSnippet
+        : this.innerContent;
 
     this.code += `}`;
     return this.code;
   }
 }
+
+/**
+ * function FunctionName() {
+ *
+ * }
+ */
+
+const a = new Function("test")
+  .args({
+    param1: Types.any,
+    param2: Types.string,
+  })
+  .returnType(Types.undefined)
+  // TODO Content is Snippet.
+  .content(new Snippet("console.log('hello')"))
+  .call();
+
+console.log(a);
