@@ -6,6 +6,7 @@ import {
 } from "../../../utils/decorations/params";
 import { AstBuildingTree } from "../building-tree";
 import { Reflection as Reflect } from "@abraham/reflection";
+import { Snippet } from "../../../snippet";
 
 export class AstBuildableTree implements Buildable {
   constructor(private readonly _name?: string) {}
@@ -212,50 +213,5 @@ export class AstBuildableTree implements Buildable {
       return `${this.constructor.name}.${this._factoryName}`;
     }
     return this.constructor.name;
-  }
-}
-
-export class Snippet extends AstBuildableTree {
-  _defaultSnippet: string;
-  constructor(defaultSnippet?: string) {
-    super();
-    this._defaultSnippet = defaultSnippet;
-  }
-
-  static fromStatic<T extends AstBuildableTree>(snippet: string): Snippet | T {
-    // dangerously cast type
-    return (new Snippet(snippet) as any) as T;
-  }
-
-  build(depth?: number): AstBuildingTree {
-    return new SnippetBuildingTree(this._defaultSnippet);
-  }
-
-  lookup(): string {
-    return this._defaultSnippet;
-  }
-
-  get name(): string {
-    return this.constructor.name;
-  }
-}
-
-export class EnumClass extends Snippet {}
-
-export class EnumField extends Snippet {}
-
-export class SnippetBuildingTree extends AstBuildingTree {
-  snippet: string;
-  constructor(snippet: string) {
-    super();
-    this.snippet = snippet;
-  }
-
-  build() {
-    return this;
-  }
-
-  lookup() {
-    return this.snippet;
   }
 }

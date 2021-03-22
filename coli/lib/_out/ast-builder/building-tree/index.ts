@@ -1,7 +1,7 @@
 import { AstBuildableTree } from "../buildable-tree";
 import { endsWithSemicolon, normalizeDuplicatedCommas } from "../../utils";
 import { AstBuildable } from "../buildable";
-import { Snippet } from "../buildable-tree";
+import { Snippet } from "../../../snippet";
 
 export class AstBuildingTree implements AstBuildable {
   readonly defaultArguments: Array<string> = Array<string>();
