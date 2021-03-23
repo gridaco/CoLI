@@ -24,7 +24,7 @@ export default function ParameterDesignerPage() {
                     return <ParameterFieldEdit />
                 })
             }
-            <CodePreview src={"print('a')"} />
+            {/* <CodePreview src={"print('a')"} /> */}
             <Button variant="contained" onClick={handleAddField}>add</Button>
             <div style={{ marginTop: 24 }}>
                 <Button variant="contained">Download coli json</Button>
