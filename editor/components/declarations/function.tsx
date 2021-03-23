@@ -72,7 +72,6 @@ function FunctionDeclaration() {
     });
   };
 
-  console.log(declarationValue[1]);
 
   return (
     <Wrapper>
@@ -81,7 +80,7 @@ function FunctionDeclaration() {
         {new ImportDeclaration({
           importDefault: declarationValue[0].value,
           _import: [
-            declarationValue[1].value.map((i) => {
+            ...declarationValue[1].value.map((i) => {
               if (i.includes("as")) {
                 const splitItem = i.split(" as ");
                 return { name: splitItem[0], as: splitItem[1] };
