@@ -58,21 +58,3 @@ export class Function {
     return this.code;
   }
 }
-
-/**
- * function FunctionName() {
- *
- * }
- */
-
-const a = new Function("test")
-  .args({
-    param1: Types.any,
-    param2: Types.string,
-  })
-  .returnType(Types.undefined)
-  // TODO Content is Snippet.
-  .content(new Snippet("console.log('hello')"))
-  .call();
-
-console.log(a);
