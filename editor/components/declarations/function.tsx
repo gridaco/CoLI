@@ -89,6 +89,7 @@ const Wrapper = styled.div`
 
   pre {
     width: 70%;
+    font-size: 0.8em !important;
   }
 `;
 
