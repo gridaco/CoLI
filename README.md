@@ -1,5 +1,7 @@
 # CoLI
 
+![](./branding/coli-cover.png)
+
 Computer Language Interface (node, dart, css, html, python) An AST Builder / Parser
 
 ## Installation
