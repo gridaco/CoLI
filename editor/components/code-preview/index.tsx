@@ -1,35 +1,17 @@
 import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-
-class ImportDeclaration {
-  _default: string;
-  _form: string;
-
-  constructor({ importDefault, from }) {
-    this._default = importDefault;
-    this._form = from;
-  }
-
-  public call() {
-    let code = "";
-
-    code += `import ${this._default} from "${this._form}"`;
-
-    return code;
-  }
-}
+import { useDeclarationState } from "../../context/DeclarationContext";
+import { ImportDeclaration } from "../../class/import";
 
 export function CodePreview() {
-  
+  const state = useDeclarationState()
   const [code, setCode] = useState("");
 
   useEffect(() => {
+    const { value } = state[0].declarationList[0];
     setCode(
-      new ImportDeclaration({
-        importDefault: "styled",
-        from: "@emotion/styled",
-      }).call()
+      new ImportDeclaration(value).call()
     );
   }, []);
 

@@ -1,28 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "@emotion/styled";
 import DeclartionTitle from "./common/title";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-
-const valueList = [
-  {
-    label: "import default",
-    max: Array(1).fill(null),
-    holder: "default",
-    width: 45
-  },
-  {
-    label: "import named",
-    max: Array(5).fill(null),
-    holder: "none",
-    width: 30
-  },
-  {
-    label: "from",
-    max: Array(1).fill(null),
-    holder: "module",
-    width: 45
-  },
-];
+import { ImportDeclaration } from "../../class/import";
 
 /**
  *
@@ -34,6 +14,27 @@ const valueList = [
  *
  */
 function FunctionDeclaration() {
+  const [declarationValue, setDeclarationValue] = useState([
+    {
+      label: "import default",
+      holder: "default",
+      width: 45,
+      value: Array(1).fill(""),
+    },
+    {
+      label: "import named",
+      holder: "none",
+      width: 40,
+      value: Array(5).fill(""),
+    },
+    {
+      label: "from",
+      holder: "module",
+      width: 45,
+      value: Array(1).fill(""),
+    },
+  ]);
+
   const keydownResponsiveInputSize = (e: any, limit) => {
     var value = e.target.value;
     const div = document.createElement("div");
@@ -47,7 +48,6 @@ function FunctionDeclaration() {
     if (inputWidth != undefined) {
       document.querySelector("#virtual_dom")?.remove();
       if (inputWidth > limit) {
-        console.log(inputWidth);
         e.target.style.width = inputWidth + "px";
       } else {
         e.target.style.width = limit + "px";
@@ -55,20 +55,53 @@ function FunctionDeclaration() {
     }
   };
 
+  const onChangeDeclarationValue = (e, ix, inputIndex) => {
+    setDeclarationValue((prev) => {
+      const data = prev.map((i, idx) => {
+        if (idx === ix && inputIndex === 0) {
+          i.value[0] = e.target.value;
+        }
+
+        if (ix === 1 && idx === ix) {
+          i.value[inputIndex] = e.target.value;
+        }
+        return i;
+      });
+
+      return [...data];
+    });
+  };
+
+  console.log(declarationValue[1]);
+
   return (
     <Wrapper>
       <DeclartionTitle lable="IMPORT DECLARTIONS" />
       <SyntaxHighlighter language="javascript">
-        {`import default, { default as styled, p1 as p1, p2 as p2 } from 'module' `}
+        {new ImportDeclaration({
+          importDefault: declarationValue[0].value,
+          _import: [
+            declarationValue[1].value.map((i) => {
+              if (i.includes("as")) {
+                const splitItem = i.split(" as ");
+                return { name: splitItem[0], as: splitItem[1] };
+              } else {
+                return i;
+              }
+            }),
+          ],
+          from: declarationValue[2].value,
+        }).call()}
       </SyntaxHighlighter>
       <Body>
-        {valueList.map((i) => (
+        {declarationValue.map((i, ix) => (
           <div className="coli-values">
             <label>{i.label}</label>
-            {i.max.map((_) => (
+            {i.value.map((_, idx) => (
               <input
+                onChange={(e) => onChangeDeclarationValue(e, ix, idx)}
                 placeholder={i.holder}
-                onKeyDown={e => keydownResponsiveInputSize(e, i.width)}
+                onKeyDown={(e) => keydownResponsiveInputSize(e, i.width)}
                 style={{ width: i.width }}
               />
             ))}
