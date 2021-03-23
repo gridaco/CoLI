@@ -2,57 +2,57 @@ import { Snippet } from "../snippet";
 import { Type, Types } from "../type";
 
 export class Function {
-  private functionName: string;
-  private functionArguments: object;
-  private functionReturnType: Type;
-  private code: string;
-  innerContent: string | Snippet;
+  private _name: string;
+  private _params: object;
+  private _returnType: Type;
+  private _content: string | Snippet;
+  code: string;
 
   constructor(funcName: string, args?: object, returnType?: Type) {
-    this.functionName = funcName;
-    this.functionArguments = args;
-    this.functionReturnType = returnType;
+    this._name = funcName;
+    this._params = args;
+    this._returnType = returnType;
   }
 
   public args(args: object) {
-    this.functionArguments = args;
+    this._params = args;
     return this;
   }
 
   public returnType(type: Type) {
-    this.functionReturnType = type;
+    this._returnType = type;
     return this;
   }
 
   public content(content: any) {
-    this.innerContent = content;
+    this._content = content;
     return this;
   }
 
   public call() {
-    this.code = `function ${this.functionName}`;
+    this.code = `function ${this._name}`;
 
-    if (this.functionArguments != null) {
-      const paramLength = Object.keys(this.functionArguments).length;
+    if (this._params != null) {
+      const paramLength = Object.keys(this._params).length;
       let params = "(";
-      Object.keys(this.functionArguments).map((i, ix) => {
+      Object.keys(this._params).map((i, ix) => {
         if (paramLength == ix + 1) {
-          params += ` ${i} : ${this.functionArguments[i].type}`;
+          params += ` ${i} : ${this._params[i].type}`;
         } else {
-          params += `${i} : ${this.functionArguments[i].type},`;
+          params += `${i} : ${this._params[i].type},`;
         }
       });
       this.code += `${params}) : `;
     }
 
     this.code += `${
-      this.functionReturnType == null ? "any" : this.functionReturnType.type
+      this._returnType == null ? "any" : this._returnType.type
     } {`;
 
     this.code +=
-      this.innerContent instanceof Snippet
-        ? this.innerContent._defaultSnippet
-        : this.innerContent;
+      this._content instanceof Snippet
+        ? this._content._defaultSnippet
+        : this._content;
 
     this.code += `}`;
     return this.code;
