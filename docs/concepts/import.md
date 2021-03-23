@@ -1,3 +1,5 @@
+![](../demos/import-demo.gif)
+
 ## Import for ES
 
 > js, ts, jsx, tsx, vue, svelte
