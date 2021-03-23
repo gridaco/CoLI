@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import DeclartionTitle from "./common/title";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { ImportDeclaration } from "../../class/import";
+import { useDeclarationContext } from "../../context/DeclarationContext";
 
 /**
  *
@@ -13,7 +14,10 @@ import { ImportDeclaration } from "../../class/import";
  * content: string
  *
  */
-function FunctionDeclaration() {
+function FunctionDeclaration(props : {
+  id: number
+}) {
+  const { updateDeclartion } = useDeclarationContext()
   const [declarationValue, setDeclarationValue] = useState([
     {
       label: "import default",
@@ -70,6 +74,21 @@ function FunctionDeclaration() {
 
       return [...data];
     });
+
+    updateDeclartion(props.id, {
+      importDefault: declarationValue[0].value[0],
+      _import: [
+        ...declarationValue[1].value.map((i) => {
+          if (i.includes("as")) {
+            const splitItem = i.split(" as ");
+            return { name: splitItem[0], as: splitItem[1] };
+          } else {
+            return i;
+          }
+        }),
+      ],
+      from: declarationValue[2].value[0],
+    })
   };
 
 

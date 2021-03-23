@@ -7,7 +7,7 @@ import React, {
 } from "react";
 
 interface DeclarationInfo {
-  id?: number;
+  id: number;
   type: "ImportDeclaration";
   value: any;
 }
@@ -19,6 +19,7 @@ export interface DeclarationState {
 interface DeclarationDispatch {
   addDeclaration: (DeclarationInfo: DeclarationInfo) => void;
   removeDeclartion: (id?: number) => void;
+  updateDeclartion: (id: number, value: any) => void;
 }
 
 const DeclarationContext = createContext({});
@@ -60,9 +61,25 @@ export const useDeclarationContext = (): DeclarationState &
 
   function removeDeclartion(id?: number) {}
 
+  function updateDeclartion(id: number, value: any) {
+    setState((prev) => {
+      return {
+        ...prev,
+        declarationList: prev.declarationList.map((i) => {
+          if (i.id === id) {
+            i.value = value;
+            return i;
+          }
+          return i;
+        }),
+      };
+    });
+  }
+
   return {
     ...state,
     addDeclaration,
     removeDeclartion,
+    updateDeclartion,
   };
 };

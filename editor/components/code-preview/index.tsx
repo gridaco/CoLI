@@ -1,29 +1,28 @@
 import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { useDeclarationState } from "../../context/DeclarationContext";
+import { useDeclarationContext } from "../../context/DeclarationContext";
 import { ImportDeclaration } from "../../class/import";
 
 export function CodePreview() {
-  const state = useDeclarationState()
+  const { declarationList } = useDeclarationContext();
   const [code, setCode] = useState("");
 
   useEffect(() => {
-    const { value } = state[0].declarationList[0];
-    setCode(
-      new ImportDeclaration(value).call()
-    );
-  }, []);
+    const { value } = declarationList[0];
+
+    setCode(new ImportDeclaration(value).call());
+  }, [declarationList]);
 
   return (
     <Wrapper showLineNumbers language="typescript">
       {`
 ${code}
-
-// new ImportDeclaration({
-//    importDefault: “styled”,
-//    from: “@emotion/styled”
-// })
+/**
+new ImportDeclaration(
+  ${JSON.stringify(declarationList[0].value)}
+)
+*/
     `}
     </Wrapper>
   );

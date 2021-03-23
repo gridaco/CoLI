@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { CodePreview } from "../components/code-preview";
 import FunctionDeclaration from "../components/declarations/function";
+import { useDeclarationState } from "../context/DeclarationContext";
 
 function MainPage() {
-  const [declarations, setDeclarations] = useState([1]);
-
+  const state = useDeclarationState()
   return (
     <Wrapper>
-      {declarations.map((i) => (
+      {state[0].declarationList.map((i, ix) => (
         <div style={{ display: "inline-flex"}}>
-          <FunctionDeclaration />
+          <FunctionDeclaration id={i.id} />
           <CodePreview />
         </div>
       ))}

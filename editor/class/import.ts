@@ -28,7 +28,7 @@ export class ImportDeclaration {
 
     code += `import ${this._default}`;
 
-    if (innerWrap != "") {
+    if (innerWrap != "" && innerWrap != null) {
       code += `, { ${innerWrap} }`;
     }
 
