@@ -103,3 +103,6 @@ yarn editor
 - https://github.com/benjamn/ast-types
 - https://en.wikipedia.org/wiki/Abstract-Type_and_Scheme-Definition_Language
 - https://docs.python.org/3/library/ast.html
+- https://github.com/estree/estree
+- https://github.com/benjamn/ast-types
+- https://github.com/tc39/proposals
