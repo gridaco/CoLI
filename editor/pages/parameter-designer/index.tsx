@@ -9,7 +9,7 @@ export default function ParameterDesignerPage() {
 
     const [state, setstate] = useState([])
     const handleAddField = () => {
-        setstate(state => [...state, 'newElement'])
+        // setstate(state => [...state, 'newElement'])
     }
 
 
