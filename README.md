@@ -106,3 +106,4 @@ yarn editor
 - https://github.com/estree/estree
 - https://github.com/benjamn/ast-types
 - https://github.com/tc39/proposals
+- https://doc.esdoc.org/github.com/mason-lang/esast/class/src/ast.js~ImportSpecifier.html
