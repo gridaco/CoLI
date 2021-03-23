@@ -4,7 +4,7 @@
     "license": "MIT",
     "private": true,
     "workspaces": [
-        "coli",
+        "packages/*",
         "editor",
         "example"
     ],
