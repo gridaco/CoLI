@@ -2,8 +2,15 @@ import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { CodePreview } from "../components/code-preview";
 import FunctionDeclaration from "../components/declarations/function";
+import { useRouter } from "next/router";
 
 function MainPage() {
+  const router = useRouter();
+
+  useEffect(() => {
+    setTimeout(() => router.push("/function"), 500);
+  }, [])
+
   return (
     <Wrapper>
       <img src="/assets/images/coli-shape.png" />
