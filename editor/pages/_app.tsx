@@ -1,17 +1,24 @@
 import AppBar from "../components/app-bar/index";
 import { Global, css } from "@emotion/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { RecoilRoot } from "recoil";
 import Head from "next/head";
 import {
   DeclarationProvider,
   useDeclarationState,
 } from "../context/DeclarationContext";
-
+import { useRouter } from "next/router";
 function MyApp({ Component, pageProps }) {
   const declarationState = useDeclarationState();
+  const router = useRouter();
+  const [curPath, setCurPath] = useState("/main");
+
+  useEffect(() => {
+    setCurPath(router.pathname);
+  }, [router]);
 
   return (
-    <React.Fragment>
+    <RecoilRoot>
       <DeclarationProvider value={declarationState}>
         <Global
           styles={css`
@@ -30,11 +37,11 @@ function MyApp({ Component, pageProps }) {
           />
         </Head>
         <div>
-          <AppBar />
+          {curPath != "/" && <AppBar />}
           <Component {...pageProps} />
         </div>
       </DeclarationProvider>
-    </React.Fragment>
+    </RecoilRoot>
   );
 }
 

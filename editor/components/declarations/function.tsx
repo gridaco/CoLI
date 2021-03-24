@@ -14,9 +14,7 @@ import { useDeclarationContext } from "../../context/DeclarationContext";
  * content: string
  *
  */
-function FunctionDeclaration(props : {
-  id: number
-}) {
+function FunctionDeclaration() {
   const { updateDeclartion } = useDeclarationContext()
   const [declarationValue, setDeclarationValue] = useState([
     {
@@ -75,20 +73,7 @@ function FunctionDeclaration(props : {
       return [...data];
     });
 
-    updateDeclartion(props.id, {
-      importDefault: declarationValue[0].value[0],
-      _import: [
-        ...declarationValue[1].value.map((i) => {
-          if (i.includes("as")) {
-            const splitItem = i.split(" as ");
-            return { name: splitItem[0], as: splitItem[1] };
-          } else {
-            return i;
-          }
-        }),
-      ],
-      from: declarationValue[2].value[0],
-    })
+   
   };
 
 

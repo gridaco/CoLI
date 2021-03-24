@@ -2,18 +2,12 @@ import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { CodePreview } from "../components/code-preview";
 import FunctionDeclaration from "../components/declarations/function";
-import { useDeclarationState } from "../context/DeclarationContext";
 
 function MainPage() {
-  const state = useDeclarationState()
   return (
     <Wrapper>
-      {state[0].declarationList.map((i, ix) => (
-        <div style={{ display: "inline-flex"}}>
-          <FunctionDeclaration id={i.id} />
-          <CodePreview />
-        </div>
-      ))}
+      <img src="/assets/images/coli-shape.png" />
+      <span>Loading the editor...</span>
     </Wrapper>
   );
 }
@@ -23,6 +17,18 @@ export default MainPage;
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  height: 100%;
+  height: 100vh;
+
+  img {
+    width: 90px;
+  }
+
+  span {
+    font-size: 12px;
+    color: #858585;
+    margin-top: 20px;
+  }
 `;
