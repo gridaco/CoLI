@@ -36,11 +36,32 @@ function FunctionDeclaration(props: { id: number; data: FunctionDeclaration }) {
     setDeclaration(data);
   }, [declarationValue]);
 
-  const onChangeDeclarationValue = (v: string, n: string) => {
-    setDeclarationValue((d) => ({
-      ...d,
-      [n]: v == "" ? data[n] : v,
-    }));
+  const onChangeDeclarationValue = (v: string, n: string, k?: number) => {
+    setDeclarationValue((d) => {
+      const isArray = data[n] instanceof Array;
+
+      if (isArray) {
+        const _import = data[n].map((i, ix) => {
+          if (ix === k) {
+            return v === "" ? i : v;
+          } else if (d[n][ix] != i) {
+            return d[n][ix]
+          } else {
+            return i;
+          }
+        });
+
+        return {
+          ...d,
+          _import,
+        };
+      } else {
+        return {
+          ...d,
+          [n]: v == "" ? data[n] : v,
+        };
+      }
+    });
   };
 
   return (
@@ -52,12 +73,13 @@ function FunctionDeclaration(props: { id: number; data: FunctionDeclaration }) {
           <div className="coli-values" key={_}>
             <label>{fields[_]}</label>
             {data[i] instanceof Array ? (
-              data[i].map((holder: string) => (
+              data[i].map((holder: string, _) => (
                 <AutoGrowInput
                   name={i}
                   onChange={onChangeDeclarationValue}
                   placeholder={holder}
-                  key={holder}
+                  key={_}
+                  ix={_}
                 />
               ))
             ) : (
