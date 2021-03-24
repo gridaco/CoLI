@@ -6,38 +6,66 @@ import AutoGrowInput from "../auto-grow-input";
 import { currentDeclarationAtom } from "../../states/declaration.state";
 import CodeBlock from "../code-block";
 import { ImportDeclaration } from "../../class/import";
+
 export interface FunctionDeclaration {
   _default: string | null;
   _import: Array<string | null>;
   _from: string | null;
 }
 
+const fields = ["default import", "import named", "from"];
+
 function FunctionDeclaration(props: { id: number; data: FunctionDeclaration }) {
   const { data, id } = props;
   const setDeclaration = useSetRecoilState(
     currentDeclarationAtom<FunctionDeclaration>("function", id)
   );
+  const [declarationValue, setDeclarationValue] = useState<FunctionDeclaration>(
+    {
+      _import: [],
+      _default: null,
+      _from: null,
+    }
+  );
+
+  useEffect(() => {
+    setDeclarationValue(data);
+  }, [data]);
 
   useEffect(() => {
     setDeclaration(data);
-  }, [data]);
+  }, [declarationValue]);
+
+  const onChangeDeclarationValue = (v: string, n: string) => {
+    setDeclarationValue((d) => ({
+      ...d,
+      [n]: v == "" ? data[n] : v,
+    }));
+  };
 
   return (
     <Wrapper>
       <DeclartionTitle lable="IMPORT DECLARTIONS" />
-      <CodeBlock>
-        {new ImportDeclaration(data).call()}
-      </CodeBlock>
+      <CodeBlock>{new ImportDeclaration(declarationValue).call()}</CodeBlock>
       <Body>
         {Object.keys(data).map((i, _) => (
           <div className="coli-values" key={_}>
-            <label>{i}</label>
+            <label>{fields[_]}</label>
             {data[i] instanceof Array ? (
               data[i].map((holder: string) => (
-                <AutoGrowInput placeholder={holder} key={holder} />
+                <AutoGrowInput
+                  name={i}
+                  onChange={onChangeDeclarationValue}
+                  placeholder={holder}
+                  key={holder}
+                />
               ))
             ) : (
-              <AutoGrowInput placeholder={data[i]} />
+              <AutoGrowInput
+                name={i}
+                onChange={onChangeDeclarationValue}
+                placeholder={data[i]}
+              />
             )}
           </div>
         ))}

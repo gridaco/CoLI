@@ -10,11 +10,11 @@ export class ImportDeclaration {
   }
 
   public call() {
-    let code = "";
+    let code = "import";
 
-    code += `import ${this._default}`;
+    this._default != null && (code += ` ${this._default}`);
 
-    code += ` from "${this._form}"`;
+    this._form != null && (code += ` from "${this._form}"`);
 
     return code;
   }
