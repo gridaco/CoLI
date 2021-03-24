@@ -1,7 +1,8 @@
-import { atom } from "recoil";
+import { atom, selector, ReadOnlySelectorOptions } from "recoil";
 
-export const currentDeclarationAtom = (declarationName: string) =>
-  atom({
-    key: `${declarationName}-declaration`,
-    default: undefined,
+export function currentDeclarationAtom<T>(declarationName: string, id: number) {
+  return atom<T>({
+    key: `${declarationName}-declaration:${id}`,
+    default: undefined!,
   });
+}

@@ -16,42 +16,35 @@ const functionDefaultData: {
   example: `import default, { default as styled, p1 as p1, p2 as p2 } from 'module'`,
   declarations: [
     {
-      defaultImport: "styled",
-      importNamed: [null],
-      from: "@emotion/styled",
+      _default: "styled",
+      _import: [null],
+      _from: "@emotion/styled",
     },
     {
-      defaultImport: "styled",
-      importNamed: ["utils", "helpers"],
-      from: "@emotion/styled",
+      _default: "styled",
+      _import: ["utils", "helpers"],
+      _from: "@emotion/styled",
     },
     {
-      defaultImport: null,
-      importNamed: ["utils", "helpers"],
-      from: "@emotion/styled",
+      _default: null,
+      _import: ["utils", "helpers"],
+      _from: "@emotion/styled",
     },
     {
-      defaultImport: null,
-      importNamed: ["utils as ut", "helpers as hp"],
-      from: "@emotion/styled",
+      _default: null,
+      _import: ["utils as ut", "helpers as hp"],
+      _from: "@emotion/styled",
     },
   ],
 };
 
 function CoLiFunctionDemoPage() {
-  // const [declaration, setDeclaration] = useRecoilState({
-  //   key : "function-declaration",
-  //   // get: ({ get }) => {}
-  // })
-
-  useEffect(() => {}, []);
-
   return (
     <Wrapper>
       <div className="declarations-view">
         <CodeBlock>{functionDefaultData.example}</CodeBlock>
         {functionDefaultData.declarations.map((i, ix) => (
-          <FunctionDeclaration id={ix} data={i} />
+          <FunctionDeclaration id={ix} data={i} key={ix} />
         ))}
       </div>
       <div className="code-previews-view">.</div>

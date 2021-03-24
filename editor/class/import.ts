@@ -1,36 +1,18 @@
 export class ImportDeclaration {
-  _default: string;
-  _form: string;
-  _import: Array<string | { name: string; as: string }> = [];
+  _default?: string;
+  _form?: string;
+  _import?: Array<string>;
 
-  constructor({ importDefault, from, _import }) {
-    this._default = importDefault;
-    this._form = from;
+  constructor({ _default, _from, _import }) {
+    this._default = _default;
+    this._form = _from;
     this._import = _import;
   }
 
   public call() {
-    const imports = this._import
-      ?.filter((i) => i != "")
-      .map((i) => {
-        if (typeof i === "object") {
-          return `${i.name} as ${i.as == null ? "" : i.as}`;
-        } else if (i !== "") {
-          return `${i}`;
-        } else {
-          return "";
-        }
-      });
-
-    const innerWrap = imports?.join(", ");
-
     let code = "";
 
     code += `import ${this._default}`;
-
-    if (innerWrap != "" && innerWrap != null) {
-      code += `, { ${innerWrap} }`;
-    }
 
     code += ` from "${this._form}"`;
 
