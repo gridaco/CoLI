@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import styled from "@emotion/styled";
-import { CodePreview } from "../components/code-preview";
-import FunctionDeclaration from "../components/declarations/function";
 import { useRouter } from "next/router";
+import { keyframes } from "@emotion/react";
 
 function MainPage() {
   const router = useRouter();
 
   useEffect(() => {
-    setTimeout(() => router.push("/function"), 500);
+    setTimeout(() => router.push("/function"), 1000);
   }, [])
 
   return (
@@ -21,6 +20,16 @@ function MainPage() {
 
 export default MainPage;
 
+const fadeOut = keyframes`
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0.25;
+    }
+`;
+
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -28,6 +37,7 @@ const Wrapper = styled.div`
   justify-content: center;
   width: 100%;
   height: 100vh;
+  animation: ${fadeOut} 1s infinite linear alternate;
 
   img {
     width: 90px;
