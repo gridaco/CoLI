@@ -5,6 +5,12 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { ImportDeclaration } from "../../class/import";
 import { useDeclarationContext } from "../../context/DeclarationContext";
 
+export interface FunctionDeclaration {
+  defaultImport: string | null;
+  importNamed: Array<string | null>;
+  from: string | null;
+}
+
 /**
  *
  * @interface
@@ -14,8 +20,8 @@ import { useDeclarationContext } from "../../context/DeclarationContext";
  * content: string
  *
  */
-function FunctionDeclaration() {
-  const { updateDeclartion } = useDeclarationContext()
+function FunctionDeclaration(props: { id: number; data: FunctionDeclaration }) {
+  const { updateDeclartion } = useDeclarationContext();
   const [declarationValue, setDeclarationValue] = useState([
     {
       label: "import default",
@@ -72,15 +78,12 @@ function FunctionDeclaration() {
 
       return [...data];
     });
-
-   
   };
-
 
   return (
     <Wrapper>
       <DeclartionTitle lable="IMPORT DECLARTIONS" />
-      <SyntaxHighlighter language="javascript">
+      {/* <SyntaxHighlighter language="javascript">
         {new ImportDeclaration({
           importDefault: declarationValue[0].value,
           _import: [
@@ -95,19 +98,15 @@ function FunctionDeclaration() {
           ],
           from: declarationValue[2].value,
         }).call()}
-      </SyntaxHighlighter>
+      </SyntaxHighlighter> */}
       <Body>
         {declarationValue.map((i, ix) => (
           <div className="coli-values">
             <label>{i.label}</label>
-            {i.value.map((_, idx) => (
-              <input
-                onChange={(e) => onChangeDeclarationValue(e, ix, idx)}
-                placeholder={i.holder}
-                onKeyDown={(e) => keydownResponsiveInputSize(e, i.width)}
-                style={{ width: i.width }}
-              />
-            ))}
+            {/* <span className="input" role="textbox" contentEditable>99</span>  */}
+            <input onInput={(e: any) =>{
+               e.target.parentNode.dataset.value = e.target.value
+            }} placeholder={i.holder} />
           </div>
         ))}
       </Body>
@@ -118,10 +117,11 @@ function FunctionDeclaration() {
 export default FunctionDeclaration;
 
 const Wrapper = styled.div`
+  margin-top: 32px;
+  padding: 17px 0px;
   display: flex;
   flex-direction: column;
   flex: 2;
-  padding-left: 40px;
 
   pre {
     width: 70%;
@@ -146,7 +146,7 @@ const Body = styled.div`
       color: #959595;
     }
 
-    input {
+    .input {
       background-color: #fbfbfb;
       border-radius: 4px;
       border: none;
