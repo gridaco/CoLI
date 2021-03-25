@@ -16,17 +16,17 @@ export class Function extends ColiBuilder {
     this._returnType = returnType;
   }
 
-  public args(args: object) {
+  public withParams(args: object) {
     this._params = args;
     return this;
   }
 
-  public returnType(type: Type) {
+  public returns(type: Type) {
     this._returnType = type;
     return this;
   }
 
-  public content(content: any) {
+  public withBody(content: any) {
     this._content = content;
     return this;
   }
