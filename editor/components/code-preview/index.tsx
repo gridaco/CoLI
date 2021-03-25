@@ -7,9 +7,11 @@ export function CodePreview(props: { value: object; interface: any }) {
   return (
     <Wrapper showLineNumbers language="typescript" wrapLines>
       {`
-  ${new props.interface(props.value).exportAs()}
+${new props.interface(props.value).exportAs()}
 
-    new ${props.interface.name}(${JSON.stringify(props.value)})
+/**
+new ${props.interface.name}(${JSON.stringify(props.value)})
+*/
     `}
     </Wrapper>
   );
