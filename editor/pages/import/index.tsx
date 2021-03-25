@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
-import { CodePreview } from "../../components/code-preview";
-import FunctionDeclaration, {
-  FunctionDeclaration as FunctionDeclarationInterface,
-} from "../../components/declarations/function";
-import { useDeclarationState } from "../../context/DeclarationContext";
-import { useRecoilState } from "recoil";
-import { currentDeclarationAtom } from "../../states/declaration.state";
+import ImportDeclaration, {
+  ImportDeclaration as ImportDeclarationInterface,
+} from "../../components/declarations/import";
 import CodeBlock from "../../components/code-block";
 
-const functionDefaultData: {
+const importDefaultData: {
   example: string;
-  declarations: FunctionDeclarationInterface[];
+  declarations: ImportDeclarationInterface[];
 } = {
   example: `import default, { default as styled, p1 as p1, p2 as p2 } from 'module'`,
   declarations: [
@@ -38,20 +34,20 @@ const functionDefaultData: {
   ],
 };
 
-function CoLiFunctionDemoPage() {
+function CoLiImportDemoPage() {
   return (
     <Wrapper>
       <div className="declarations-view">
-        <CodeBlock>{functionDefaultData.example}</CodeBlock>
-        {functionDefaultData.declarations.map((i, ix) => (
-          <FunctionDeclaration id={ix} data={i} key={ix} />
+        <CodeBlock>{importDefaultData.example}</CodeBlock>
+        {importDefaultData.declarations.map((i, ix) => (
+          <ImportDeclaration id={ix} data={i} key={ix} />
         ))}
       </div>
     </Wrapper>
   );
 }
 
-export default CoLiFunctionDemoPage;
+export default CoLiImportDemoPage;
 
 const Wrapper = styled.div`
   display: flex;
