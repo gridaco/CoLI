@@ -55,6 +55,7 @@ const Wrapper = styled.div`
   height: 100%;
 
   .declarations-view {
+    width: calc(100% - 175px);
     margin-top: 35px;
     margin-left: 175px;
     flex: 1;
@@ -63,9 +64,5 @@ const Wrapper = styled.div`
       font-size: 12px !important;
       padding-left: 0px !important;
     }
-  }
-
-  .code-previews-view {
-    flex: 1;
   }
 `;
