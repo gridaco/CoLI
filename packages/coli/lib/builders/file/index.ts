@@ -46,4 +46,8 @@ export class File extends ColiBuilder {
   addFunction(functionDeclaration: FunctionDeclraration) {
     return this;
   }
+
+  finalize() {
+    throw "not implemented";
+  }
 }

@@ -31,6 +31,10 @@ export class Function extends ColiBuilder {
     return this;
   }
 
+  finalize() {
+    throw "not implemented";
+  }
+
   public exportAs() {
     this.code = `function ${this._name}`;
 

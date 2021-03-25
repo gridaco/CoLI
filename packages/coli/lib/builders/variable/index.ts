@@ -60,4 +60,8 @@ export class Variable extends ColiBuilder {
     this.code += ";";
     return this.code;
   }
+
+  finalize() {
+    throw "not implemented";
+  }
 }
