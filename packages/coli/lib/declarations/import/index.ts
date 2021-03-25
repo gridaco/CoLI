@@ -1,4 +1,6 @@
+import { _DECLARATION_IMPORT } from "../../_internal/constants/declarations-name";
 import { _SPEFICIER_DEFAULT_IMPORT } from "../../_internal/constants/specifiers-name";
+import { Declaration } from "../declaration.base";
 import { ImportDefaultSpecifier } from "./import-default.specifier";
 import { BaseImportSpecifier } from "./import-specifier.base";
 
@@ -6,7 +8,7 @@ export * from "./import-specifier.base";
 export * from "./import.specifier";
 export * from "./import-default.specifier";
 
-export class ImportDeclaration {
+export class ImportDeclaration extends Declaration {
   /**
    * import specifiers; both default and imports
    */
@@ -24,6 +26,7 @@ export class ImportDeclaration {
   }
 
   constructor(params: { specifiers?: BaseImportSpecifier[]; source: string }) {
+    super(_DECLARATION_IMPORT);
     if (params.specifiers) {
       this.specifiers = params.specifiers;
     }
