@@ -1,5 +1,5 @@
+import { ColiBuilder } from "../builder";
 import { Class } from "../class";
-import { Buildable } from "../_out/buildable";
 
 /**
  * interface of general in-project contained file
@@ -23,7 +23,7 @@ export interface File {
   ext: string;
 }
 
-export abstract class File implements Buildable {
+export abstract class File extends ColiBuilder {
   abstract addImport(module: string): this;
   abstract addClass(_class: Class): this;
   abstract build();

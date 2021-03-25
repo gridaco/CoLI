@@ -1,7 +1,8 @@
+import { ColiBuilder } from "../builder";
 import { Snippet } from "../snippet";
 import { Type, Types } from "../type";
 
-export class Function {
+export class Function extends ColiBuilder {
   private _name: string;
   private _params: object;
   private _returnType: Type;
@@ -9,6 +10,7 @@ export class Function {
   code: string;
 
   constructor(funcName: string, args?: object, returnType?: Type) {
+    super();
     this._name = funcName;
     this._params = args;
     this._returnType = returnType;

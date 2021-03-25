@@ -1,3 +1,4 @@
+import { ColiBuilder } from "../builder";
 import { Type, Types } from "../type";
 
 type JSVariableType = "var" | "let" | "const";
@@ -18,7 +19,7 @@ type DartVariableType =
 type VariableType = JSVariableType | DartVariableType;
 
 // TODO Call Value string -> "string", boject -> { object }
-export class Variable {
+export class Variable extends ColiBuilder {
   private _defineType: VariableType;
   private _name: string;
   private _value: any;
@@ -26,6 +27,7 @@ export class Variable {
   private code: string;
 
   constructor(name: string) {
+    super();
     this._name = name;
   }
 

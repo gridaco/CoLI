@@ -1,3 +1,3 @@
-import { AstToken } from "../ast";
+import { ColiBuilder } from "../builder";
 
-export class Class extends AstToken {}
+export class Class extends ColiBuilder {}
