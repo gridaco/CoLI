@@ -1,6 +1,7 @@
 import {
   _DECLARATION_FUNCTION,
   _DECLARATION_IMPORT,
+  _DECLARATION_VARIABLE,
 } from "../_internal/constants/declarations-name";
 import {
   _EXPRESSION_CALL,
@@ -18,7 +19,8 @@ import {
 // declrarations
 export type ColiDeclarationType =
   | typeof _DECLARATION_FUNCTION
-  | typeof _DECLARATION_IMPORT;
+  | typeof _DECLARATION_IMPORT
+  | typeof _DECLARATION_VARIABLE;
 
 // expressions
 export type ColiExpressionType =
