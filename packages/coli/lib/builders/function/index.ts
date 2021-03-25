@@ -1,66 +1,63 @@
 import { ColiBuilder } from "../../builder";
+import { FunctionDeclraration } from "../../declarations/function";
 import { Snippet } from "../snippet";
-import { Type, Types } from "../type";
+import { Type } from "../type";
 
-export class Function extends ColiBuilder {
-  private _name: string;
-  private _params: object;
-  private _returnType: Type;
-  private _content: string | Snippet;
-  code: string;
+export class Function extends ColiBuilder<FunctionDeclraration> {
+  private name: string;
+  private parameters: object;
+  private returnType: Type;
+  private body: Snippet;
 
   constructor(funcName: string, args?: object, returnType?: Type) {
     super();
-    this._name = funcName;
-    this._params = args;
-    this._returnType = returnType;
+    this.name = funcName;
+    this.parameters = args;
+    this.returnType = returnType;
   }
 
-  public withParams(args: object) {
-    this._params = args;
+  public withParams(parameters: object) {
+    this.parameters = parameters;
     return this;
   }
 
   public returns(type: Type) {
-    this._returnType = type;
+    this.returnType = type;
     return this;
   }
 
   public withBody(content: any) {
-    this._content = content;
+    this.body = content;
     return this;
   }
 
-  finalize() {
+  finalize(): FunctionDeclraration {
     throw "not implemented";
   }
 
   public exportAs() {
-    this.code = `function ${this._name}`;
+    let code = "";
+    code = `function ${this.name}`;
 
-    if (this._params != null) {
-      const paramLength = Object.keys(this._params).length;
+    if (this.parameters != null) {
+      const paramLength = Object.keys(this.parameters).length;
       let params = "(";
-      Object.keys(this._params).map((i, ix) => {
+      Object.keys(this.parameters).map((i, ix) => {
         if (paramLength == ix + 1) {
-          params += ` ${i} : ${this._params[i].type}`;
+          params += ` ${i} : ${this.parameters[i].type}`;
         } else {
-          params += `${i} : ${this._params[i].type},`;
+          params += `${i} : ${this.parameters[i].type},`;
         }
       });
-      this.code += `${params}) : `;
+      code += `${params}) : `;
     }
 
-    this.code += `${
-      this._returnType == null ? "any" : this._returnType.type
-    } {`;
+    code += `${this.returnType == null ? "any" : this.returnType.type} {`;
 
-    this.code +=
-      this._content instanceof Snippet
-        ? this._content._defaultSnippet
-        : this._content;
+    code +=
+      this.body instanceof Snippet ? this.body._defaultSnippet : this.body;
 
-    this.code += `}`;
-    return this.code;
+    code += `}`;
+    return code;
   }
 }
