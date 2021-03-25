@@ -4,32 +4,21 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { useDeclarationContext } from "../../context/DeclarationContext";
 import { ImportDeclaration } from "../../class/import";
 
-export function CodePreview() {
-  const { declarationList } = useDeclarationContext();
-  const [code, setCode] = useState("");
-
-  useEffect(() => {
-    const { value } = declarationList[0];
-
-    setCode(new ImportDeclaration(value).call());
-  }, [declarationList]);
-
+export function CodePreview(props: { value: object; interface: any }) {
+  console.log();
   return (
-    <Wrapper showLineNumbers language="typescript">
+    <Wrapper showLineNumbers language="typescript" wrapLines>
       {`
-${code}
-/**
-new ImportDeclaration(
-  ${JSON.stringify(declarationList[0].value)}
-)
-*/
+  ${new props.interface(props.value).call()}
+
+    new ${props.interface.name}(${JSON.stringify(props.value)})
     `}
     </Wrapper>
   );
 }
 
 const Wrapper = styled(SyntaxHighlighter)`
-  flex: 1.5;
+  flex: 2;
 
   font-size: 0.9em !important;
   margin: 0em !important;

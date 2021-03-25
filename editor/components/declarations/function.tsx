@@ -1,142 +1,117 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import DeclartionTitle from "./common/title";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { useSetRecoilState, useRecoilValue } from "recoil";
+import AutoGrowInput from "../auto-grow-input";
+import { currentDeclarationAtom } from "../../states/declaration.state";
+import CodeBlock from "../code-block";
 import { ImportDeclaration } from "../../class/import";
-import { useDeclarationContext } from "../../context/DeclarationContext";
+import { CodePreview } from "../code-preview";
 
-/**
- *
- * @interface
- * name : string
- * params : object
- * returnType: Type;
- * content: string
- *
- */
-function FunctionDeclaration(props : {
-  id: number
-}) {
-  const { updateDeclartion } = useDeclarationContext()
-  const [declarationValue, setDeclarationValue] = useState([
+export interface FunctionDeclaration {
+  _default: string | null;
+  _import: Array<string | null>;
+  _from: string | null;
+}
+
+const fields = ["default import", "import named", "from"];
+
+function FunctionDeclaration(props: { id: number; data: FunctionDeclaration }) {
+  const { data, id } = props;
+  const setDeclaration = useSetRecoilState(
+    currentDeclarationAtom<FunctionDeclaration>("function", id)
+  );
+  const [declarationValue, setDeclarationValue] = useState<FunctionDeclaration>(
     {
-      label: "import default",
-      holder: "default",
-      width: 45,
-      value: Array(1).fill(""),
-    },
-    {
-      label: "import named",
-      holder: "none",
-      width: 40,
-      value: Array(5).fill(""),
-    },
-    {
-      label: "from",
-      holder: "module",
-      width: 45,
-      value: Array(1).fill(""),
-    },
-  ]);
-
-  const keydownResponsiveInputSize = (e: any, limit) => {
-    var value = e.target.value;
-    const div = document.createElement("div");
-    div.innerText = value;
-    div.id = "virtual_dom";
-
-    document.querySelector(".coli-values")?.append(div);
-
-    var inputWidth = document.querySelector("#virtual_dom")?.clientWidth;
-
-    if (inputWidth != undefined) {
-      document.querySelector("#virtual_dom")?.remove();
-      if (inputWidth > limit) {
-        e.target.style.width = inputWidth + "px";
-      } else {
-        e.target.style.width = limit + "px";
-      }
+      _import: [],
+      _default: null,
+      _from: null,
     }
-  };
+  );
 
-  const onChangeDeclarationValue = (e, ix, inputIndex) => {
-    setDeclarationValue((prev) => {
-      const data = prev.map((i, idx) => {
-        if (idx === ix && inputIndex === 0) {
-          i.value[0] = e.target.value;
-        }
+  useEffect(() => {
+    setDeclarationValue(data);
+  }, [data]);
 
-        if (ix === 1 && idx === ix) {
-          i.value[inputIndex] = e.target.value;
-        }
-        return i;
-      });
+  useEffect(() => {
+    setDeclaration(data);
+  }, [declarationValue]);
 
-      return [...data];
-    });
+  const onChangeDeclarationValue = (v: string, n: string, k?: number) => {
+    setDeclarationValue((d) => {
+      const isArray = data[n] instanceof Array;
 
-    updateDeclartion(props.id, {
-      importDefault: declarationValue[0].value[0],
-      _import: [
-        ...declarationValue[1].value.map((i) => {
-          if (i.includes("as")) {
-            const splitItem = i.split(" as ");
-            return { name: splitItem[0], as: splitItem[1] };
+      if (isArray) {
+        const _import = data[n].map((i, ix) => {
+          if (ix === k) {
+            return v === "" ? i : v;
+          } else if (d[n][ix] != i) {
+            return d[n][ix];
           } else {
             return i;
           }
-        }),
-      ],
-      from: declarationValue[2].value[0],
-    })
+        });
+
+        return {
+          ...d,
+          _import,
+        };
+      } else {
+        return {
+          ...d,
+          [n]: v == "" ? data[n] : v,
+        };
+      }
+    });
   };
 
-
   return (
-    <Wrapper>
-      <DeclartionTitle lable="IMPORT DECLARTIONS" />
-      <SyntaxHighlighter language="javascript">
-        {new ImportDeclaration({
-          importDefault: declarationValue[0].value,
-          _import: [
-            ...declarationValue[1].value.map((i) => {
-              if (i.includes("as")) {
-                const splitItem = i.split(" as ");
-                return { name: splitItem[0], as: splitItem[1] };
-              } else {
-                return i;
-              }
-            }),
-          ],
-          from: declarationValue[2].value,
-        }).call()}
-      </SyntaxHighlighter>
-      <Body>
-        {declarationValue.map((i, ix) => (
-          <div className="coli-values">
-            <label>{i.label}</label>
-            {i.value.map((_, idx) => (
-              <input
-                onChange={(e) => onChangeDeclarationValue(e, ix, idx)}
-                placeholder={i.holder}
-                onKeyDown={(e) => keydownResponsiveInputSize(e, i.width)}
-                style={{ width: i.width }}
-              />
-            ))}
-          </div>
-        ))}
-      </Body>
-    </Wrapper>
+    <Positioner>
+      <Wrapper>
+        <DeclartionTitle lable="IMPORT DECLARTIONS" />
+        <CodeBlock>{new ImportDeclaration(declarationValue).call()}</CodeBlock>
+        <Body>
+          {Object.keys(data).map((i, _) => (
+            <div className="coli-values" key={_}>
+              <label>{fields[_]}</label>
+              {data[i] instanceof Array ? (
+                data[i].map((holder: string, _) => (
+                  <AutoGrowInput
+                    name={i}
+                    onChange={onChangeDeclarationValue}
+                    placeholder={holder}
+                    key={_}
+                    ix={_}
+                  />
+                ))
+              ) : (
+                <AutoGrowInput
+                  name={i}
+                  onChange={onChangeDeclarationValue}
+                  placeholder={data[i]}
+                />
+              )}
+            </div>
+          ))}
+        </Body>
+      </Wrapper>
+      <CodePreview value={declarationValue} interface={ImportDeclaration} />
+    </Positioner>
   );
 }
 
 export default FunctionDeclaration;
 
+const Positioner = styled.div`
+  display: flex;
+  margin-top: 32px;
+  padding: 17px 0px;
+`;
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   flex: 2;
-  padding-left: 40px;
 
   pre {
     width: 70%;
@@ -159,21 +134,6 @@ const Body = styled.div`
       flex: 1;
       font-size: 14px;
       color: #959595;
-    }
-
-    input {
-      background-color: #fbfbfb;
-      border-radius: 4px;
-      border: none;
-      outline: none;
-      padding: 3px 7px;
-      margin-right: 4px;
-
-      color: #6b6b6b;
-
-      &::placeholder {
-        color: #d2d2d2;
-      }
     }
   }
 `;
