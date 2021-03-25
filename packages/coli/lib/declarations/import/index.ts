@@ -1,3 +1,4 @@
+import { _SPEFICIER_DEFAULT_IMPORT } from "../../_internal/constants/specifiers-name";
 import { ImportDefaultSpecifier } from "./import-default.specifier";
 import { BaseImportSpecifier } from "./import-specifier.base";
 
@@ -17,7 +18,9 @@ export class ImportDeclaration {
   source: string;
 
   get defaultImport(): ImportDefaultSpecifier | undefined {
-    throw "not implemented";
+    return this.specifiers.find((s) => {
+      return s.type == _SPEFICIER_DEFAULT_IMPORT;
+    });
   }
 
   constructor(params: { specifiers?: BaseImportSpecifier[]; source: string }) {
