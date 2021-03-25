@@ -4,6 +4,7 @@ import {
   _DECLARATION_VARIABLE,
 } from "../_internal/constants/declarations-name";
 import {
+  _EXPRESSION_AWAIT,
   _EXPRESSION_CALL,
   _EXPRESSION_COMMENT,
 } from "../_internal/constants/expressions-name";
@@ -25,7 +26,8 @@ export type ColiDeclarationType =
 // expressions
 export type ColiExpressionType =
   | typeof _EXPRESSION_CALL
-  | typeof _EXPRESSION_COMMENT;
+  | typeof _EXPRESSION_COMMENT
+  | typeof _EXPRESSION_AWAIT;
 
 // specifiers
 export type ColiSpecifierType =
