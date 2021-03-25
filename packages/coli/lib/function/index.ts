@@ -29,7 +29,7 @@ export class Function {
     return this;
   }
 
-  public call() {
+  public exportAs() {
     this.code = `function ${this._name}`;
 
     if (this._params != null) {

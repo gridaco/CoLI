@@ -19,5 +19,5 @@ new Function(
   "test",
   [{ argName: "testArg", argType: Types.any }],
   Types.any
-).call();
+).exportAs();
 // -> test()

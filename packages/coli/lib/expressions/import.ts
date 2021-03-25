@@ -9,7 +9,7 @@ export class ImportDeclaration {
     this._import = _import;
   }
 
-  public call() {
+  public exportAs() {
     const { _default, _from, _import } = this;
     const importIsNotEmpty = _import != null && _import.join("") !== "";
     let code = "import";

@@ -63,7 +63,7 @@ class Component {
     return this;
   }
 
-  public call() {
+  public exportAs() {
     // <Text
     this.code = `<${this.componentName}`;
 
@@ -82,7 +82,9 @@ class Component {
 
     if (this.innerContent != null) {
       if (this.innerContent instanceof Component) {
-        this.code += `> ${this.innerContent.call()} </${this.componentName}>`;
+        this.code += `> ${this.innerContent.exportAs()} </${
+          this.componentName
+        }>`;
       } else {
         this.code += `> ${this.innerContent} </${this.componentName}>`;
       }
@@ -100,13 +102,13 @@ const a = new Component("Text")
   .props({ props: "label1" })
   .complex()
   .wrapProps()
-  .call();
+  .exportAs();
 console.log(a);
 const a1 = new Component("Text").props({ props: "label1" });
 
 const b = new Component("TextWrapper")
   .props({ innerText: "hello" })
   .content(a1)
-  .call();
+  .exportAs();
 
 console.log(b);

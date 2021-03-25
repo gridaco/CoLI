@@ -69,7 +69,9 @@ function FunctionDeclaration(props: { id: number; data: FunctionDeclaration }) {
     <Positioner>
       <Wrapper>
         <DeclartionTitle lable="IMPORT DECLARTIONS" />
-        <CodeBlock>{new ImportDeclaration(declarationValue).call()}</CodeBlock>
+        <CodeBlock>
+          {new ImportDeclaration(declarationValue).exportAs()}
+        </CodeBlock>
         <Body>
           {Object.keys(data).map((i, _) => (
             <div className="coli-values" key={_}>

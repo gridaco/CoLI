@@ -44,7 +44,7 @@ export class Variable {
     return this;
   }
 
-  public call() {
+  public exportAs() {
     this.code = `${this._defineType} ${this._name}`;
 
     if (this._type != null) {
