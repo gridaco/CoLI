@@ -1,3 +1,4 @@
+import { _SPEFICIER_DEFAULT_IMPORT } from "../../_internal/constants/specifiers-name";
 import { BaseImportSpecifier } from "./import-specifier.base";
 
 export class ImportDefaultSpecifier extends BaseImportSpecifier {
@@ -10,7 +11,7 @@ export class ImportDefaultSpecifier extends BaseImportSpecifier {
    * @param params
    */
   constructor(params: { local: string }) {
-    super("ImportDefaultSpecifier");
+    super(_SPEFICIER_DEFAULT_IMPORT);
 
     // set local.name with local
     this.local = {
