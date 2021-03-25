@@ -31,19 +31,19 @@ export class File extends ColiBuilder {
     super();
   }
 
-  addImport(importDeclaration: ImportDeclaration): this {
+  import(importDeclaration: ImportDeclaration): this {
     return this;
   }
 
-  addClass(_class: Class): this {
+  withClass(_class: Class): this {
     return this;
   }
 
-  addDeclaration(declaration: Declaration): this {
+  declare(declaration: Declaration): this {
     return this;
   }
 
-  addFunction(functionDeclaration: FunctionDeclraration) {
+  withFunction(functionDeclaration: FunctionDeclraration) {
     return this;
   }
 

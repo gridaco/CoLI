@@ -1,3 +1,4 @@
+import { CommentExpression } from "../expressions/comment";
 import {
   _DECLARATION_FUNCTION,
   _DECLARATION_IMPORT,
@@ -46,5 +47,22 @@ export type ColiObjectType =
   | ColiStatementType;
 
 export class ColiObject {
+  /**
+   * e.g.
+   * ```
+   * // this comment is leading comment of below expression
+   * call_expression()
+   * ```
+   */
+  leadingComments: CommentExpression[] = [];
+
+  /**
+   * e.g.
+   * ```
+   * let tralingComments; // this comment is traling comment of previous variable declaration.
+   * ```
+   */
+  tralingComments: CommentExpression[] = [];
+
   constructor(readonly type: ColiObjectType) {}
 }
