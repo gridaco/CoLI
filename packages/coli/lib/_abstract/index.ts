@@ -8,6 +8,7 @@ import {
   _EXPRESSION_AWAIT,
   _EXPRESSION_CALL,
   _EXPRESSION_COMMENT,
+  _EXPRESSION_TAGGED_TEMPLATE,
 } from "../_internal/constants/expressions-name";
 import {
   _SPEFICIER_DEFAULT_IMPORT,
@@ -28,7 +29,8 @@ export type ColiDeclarationType =
 export type ColiExpressionType =
   | typeof _EXPRESSION_CALL
   | typeof _EXPRESSION_COMMENT
-  | typeof _EXPRESSION_AWAIT;
+  | typeof _EXPRESSION_AWAIT
+  | typeof _EXPRESSION_TAGGED_TEMPLATE;
 
 // specifiers
 export type ColiSpecifierType =
