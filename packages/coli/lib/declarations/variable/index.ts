@@ -1,11 +1,27 @@
+import { stringfy } from "../../../../export-string";
 import { Type, Types } from "../../builders/type";
 import { _DECLARATION_VARIABLE } from "../../_internal/constants/declarations-name";
 import { Declaration } from "../declaration.base";
 
-type JSscope = "const" | "let" | "var";
+type JsScope = "var" | "let" | "const";
+type DartScope =
+  | "var"
+  | "dynamic"
+  | "const"
+  | "final"
+  | "Number"
+  | "String"
+  | "Booleans"
+  | "List"
+  | "Set"
+  | "Map"
+  | "Runes"
+  | "Symbols";
+
+type ScopeType = JsScope | DartScope;
 
 export class VariableDeclaration extends Declaration {
-  private scope: JSscope;
+  private scope: ScopeType;
   private name: string;
   private varType: Type;
   private initValue: any;
@@ -43,3 +59,15 @@ export class VariableDeclaration extends Declaration {
     return code;
   }
 }
+
+console.log(
+  stringfy(
+    new VariableDeclaration({
+      scope: "const",
+      varType: Types.any,
+      initValue: "",
+      name: "test",
+    }),
+    { language: "python" }
+  )
+);
