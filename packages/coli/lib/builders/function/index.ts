@@ -1,4 +1,4 @@
-import { ColiBuilder } from "../builder";
+import { ColiBuilder } from "../../builder";
 import { Snippet } from "../snippet";
 import { Type, Types } from "../type";
 

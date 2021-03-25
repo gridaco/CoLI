@@ -6,7 +6,7 @@ import {
 } from "../../../utils/decorations/params";
 import { AstBuildingTree } from "../building-tree";
 import { Reflection as Reflect } from "@abraham/reflection";
-import { Snippet } from "../../../snippet";
+import { Snippet } from "../../../builders/snippet";
 
 export class AstBuildableTree implements Buildable {
   constructor(private readonly _name?: string) {}

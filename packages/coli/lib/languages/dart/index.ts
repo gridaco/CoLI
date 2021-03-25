@@ -1,5 +1,5 @@
-import { Class } from "../../class";
-import { File } from "../../file";
+import { Class } from "../../builders/class";
+import { File } from "../../builders/file";
 
 // TODO
 export class DartFile extends File {

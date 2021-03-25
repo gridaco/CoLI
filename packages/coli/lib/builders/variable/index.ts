@@ -1,5 +1,5 @@
-import { ColiBuilder } from "../builder";
-import { Type, Types } from "../type";
+import { ColiBuilder } from "../../builder";
+import { Type, Types } from "../../builders/type";
 
 type JSVariableType = "var" | "let" | "const";
 type DartVariableType =
