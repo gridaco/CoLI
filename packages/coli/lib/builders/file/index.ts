@@ -1,4 +1,7 @@
 import { ColiBuilder } from "../../builder";
+import { Declaration } from "../../declarations/declaration.base";
+import { FunctionDeclraration } from "../../declarations/function";
+import { ImportDeclaration } from "../../declarations/import";
 import { Class } from "../class";
 
 /**
@@ -23,8 +26,24 @@ export interface File {
   ext: string;
 }
 
-export abstract class File extends ColiBuilder {
-  abstract addImport(module: string): this;
-  abstract addClass(_class: Class): this;
-  abstract build();
+export class File extends ColiBuilder {
+  constructor(params: { readonly path: string; readonly name: string }) {
+    super();
+  }
+
+  addImport(importDeclaration: ImportDeclaration): this {
+    return this;
+  }
+
+  addClass(_class: Class): this {
+    return this;
+  }
+
+  addDeclaration(declaration: Declaration): this {
+    return this;
+  }
+
+  addFunction(functionDeclaration: FunctionDeclraration) {
+    return this;
+  }
 }
