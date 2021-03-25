@@ -47,7 +47,6 @@ function CoLiFunctionDemoPage() {
           <FunctionDeclaration id={ix} data={i} key={ix} />
         ))}
       </div>
-      <div className="code-previews-view">.</div>
     </Wrapper>
   );
 }
@@ -66,7 +65,6 @@ const Wrapper = styled.div`
 
     pre {
       font-size: 12px !important;
-      background-color: #fff !important;
       padding-left: 0px !important;
     }
   }
