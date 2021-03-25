@@ -1,5 +1,6 @@
 import React from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import styled from "@emotion/styled";
 
 /**
  *
@@ -9,7 +10,11 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
  */
 function CodeBlock(props: { children: React.ReactNode; language?: string }) {
   const { children, language = "javascript" } = props;
-  return <SyntaxHighlighter language={language} >{children}</SyntaxHighlighter>;
+  return <Highligther language={language}>{children}</Highligther>;
 }
 
 export default CodeBlock;
+
+const Highligther = styled(SyntaxHighlighter)`
+  background-color: #fff !important;
+`;

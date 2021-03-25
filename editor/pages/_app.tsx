@@ -8,6 +8,7 @@ import {
   useDeclarationState,
 } from "../context/DeclarationContext";
 import { useRouter } from "next/router";
+import Header from "../components/header";
 function MyApp({ Component, pageProps }) {
   const declarationState = useDeclarationState();
   const router = useRouter();
@@ -37,7 +38,13 @@ function MyApp({ Component, pageProps }) {
           />
         </Head>
         <div>
-          {curPath != "/" && <AppBar />}
+          {curPath != "/" && (
+            <React.Fragment>
+              <AppBar />
+              <Header />
+            </React.Fragment>
+          )}
+
           <Component {...pageProps} />
         </div>
       </DeclarationProvider>
