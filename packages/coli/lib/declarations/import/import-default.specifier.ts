@@ -4,4 +4,8 @@ export class ImportDefaultSpecifier extends BaseImportSpecifier {
   local: {
     name: string;
   };
+
+  constructor() {
+    super("ImportDefaultSpecifier");
+  }
 }

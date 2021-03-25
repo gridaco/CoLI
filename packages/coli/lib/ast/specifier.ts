@@ -1,3 +1,3 @@
 export abstract class AstSpefifier {
-  type: string;
+  constructor(readonly type: string) {}
 }
