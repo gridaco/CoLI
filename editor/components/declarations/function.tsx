@@ -5,7 +5,7 @@ import { useSetRecoilState, useRecoilValue } from "recoil";
 import AutoGrowInput from "../auto-grow-input";
 import { currentDeclarationAtom } from "../../states/declaration.state";
 import CodeBlock from "../code-block";
-import { ImportDeclaration } from "../../class/import";
+import { ImportDeclaration } from "coli/lib/expressions/import";
 import { CodePreview } from "../code-preview";
 
 export interface FunctionDeclaration {

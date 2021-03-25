@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { useDeclarationContext } from "../../context/DeclarationContext";
-import { ImportDeclaration } from "../../class/import";
 
 export function CodePreview(props: { value: object; interface: any }) {
   console.log();
