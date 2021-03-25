@@ -5,11 +5,11 @@ import { useSetRecoilState, useRecoilValue } from "recoil";
 import AutoGrowInput from "../auto-grow-input";
 import { currentDeclarationAtom } from "../../states/declaration.state";
 import CodeBlock from "../code-block";
-import { ImportDeclaration } from "coli/lib/expressions/import";
+import { ImportDeclaration } from "coli/lib/declarations/import";
 import { CodePreview } from "../code-preview";
 
 export interface FunctionDeclaration {
-  _default: string | null;
+  default: string | null;
   _import: Array<string | null>;
   _from: string | null;
 }
@@ -24,7 +24,7 @@ function FunctionDeclaration(props: { id: number; data: FunctionDeclaration }) {
   const [declarationValue, setDeclarationValue] = useState<FunctionDeclaration>(
     {
       _import: [],
-      _default: null,
+      default: null,
       _from: null,
     }
   );
@@ -70,7 +70,8 @@ function FunctionDeclaration(props: { id: number; data: FunctionDeclaration }) {
       <Wrapper>
         <DeclartionTitle lable="IMPORT DECLARTIONS" />
         <CodeBlock>
-          {new ImportDeclaration(declarationValue).exportAs()}
+          THIS FEAURE IS TEMPORARILY DISABLED BY @SOFTMARSHMMALLOW
+          {/* {new ImportDeclaration(declarationValue).exportAs()} */}
         </CodeBlock>
         <Body>
           {Object.keys(data).map((i, _) => (

@@ -16,22 +16,22 @@ const functionDefaultData: {
   example: `import default, { default as styled, p1 as p1, p2 as p2 } from 'module'`,
   declarations: [
     {
-      _default: "styled",
+      default: "styled",
       _import: [null],
       _from: "@emotion/styled",
     },
     {
-      _default: "styled",
+      default: "styled",
       _import: ["utils", "helpers"],
       _from: "@emotion/styled",
     },
     {
-      _default: null,
+      default: null,
       _import: ["utils", "helpers"],
       _from: "@emotion/styled",
     },
     {
-      _default: null,
+      default: null,
       _import: ["utils as ut", "helpers as hp"],
       _from: "@emotion/styled",
     },
