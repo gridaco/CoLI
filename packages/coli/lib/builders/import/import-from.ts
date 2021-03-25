@@ -15,4 +15,8 @@ export class ImportFrom extends ColiBuilder {
       source: params.from,
     });
   }
+
+  finalize() {
+    throw "not implemented";
+  }
 }
