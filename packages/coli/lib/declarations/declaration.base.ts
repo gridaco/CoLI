@@ -1,3 +1,7 @@
-export abstract class Declaration {
-  constructor(readonly type: string) {}
+import { ColiDeclarationType, ColiObject } from "../_abstract";
+
+export abstract class Declaration extends ColiObject {
+  constructor(readonly type: ColiDeclarationType) {
+    super(type);
+  }
 }
