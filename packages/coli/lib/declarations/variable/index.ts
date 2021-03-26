@@ -13,32 +13,22 @@ export class VariableDeclaration extends Declaration {
   name: string;
   value?: any;
 
-  constructor(params: {
-    scope: VariableScope;
-    name: string;
-    value?: any;
-    variableType?: Type;
-  }) {
+  constructor(
+    name: string,
+    args?: {
+      scope: VariableScope;
+      variableType?: Type;
+      value?: any;
+    }
+  ) {
     super(_DECLARATION_VARIABLE);
-    if (params.value) {
-      this.value = params.value;
+    if (args.value) {
+      this.value = args.value;
     }
-    if (params.variableType) {
-      this.variableType = params.variableType;
+    if (args.variableType) {
+      this.variableType = args.variableType;
     }
-    this.scope = params.scope;
-    this.name = params.name;
+    this.scope = args.scope;
+    this.name = name;
   }
 }
-
-console.log(
-  stringfy(
-    new VariableDeclaration({
-      scope: "const",
-      name: "test",
-      value: "1",
-      variableType: Types.any,
-    }),
-    { language: "typescript" }
-  )
-);
