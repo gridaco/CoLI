@@ -118,3 +118,4 @@ yarn editor
 - https://github.com/csstree/csstree
 - https://github.com/davidbonnet/astring
 - https://shift-ast.org/
+- https://github.com/estree/estree/blob/master/es5.md
