@@ -4,16 +4,16 @@ import { BlockStatement } from "../../statements";
 import { _DECLARATION_FUNCTION } from "../../_internal/constants/declarations-name";
 import { Declaration } from "../declaration.base";
 import assert from "assert";
-import { EmptyBlockStatement } from "../../builders/block-statement/empty-block";
+import { EmptyBlock } from "../../builders/block/empty-block";
 export class FunctionDeclraration extends Declaration {
   id: Identifier;
   params: [] = [];
-  body: BlockStatement = new EmptyBlockStatement();
+  body: BlockStatement = new EmptyBlock();
   returnType: Type = Types.any;
 
   constructor(
     name: string,
-    args: {
+    args?: {
       returnType?: Type;
       body?: BlockStatement;
     }
@@ -24,7 +24,7 @@ export class FunctionDeclraration extends Declaration {
     assert(/^[$A-Z_][0-9A-Z_$]*$/i.test(name), "invalid function name");
 
     // set return type. default value is provided.
-    if (args.returnType) {
+    if (args?.returnType) {
       this.returnType = args.returnType;
     }
   }

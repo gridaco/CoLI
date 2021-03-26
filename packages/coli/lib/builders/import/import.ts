@@ -55,7 +55,7 @@ export class Import extends ColiBuilder<ImportDeclaration> {
     return final;
   }
 
-  finalize(): ImportDeclaration {
+  __finalize(): ImportDeclaration {
     return new ImportDeclaration({
       specifiers: this.specifiers,
       source: this.source,

@@ -1,6 +1,7 @@
 import { Identifier } from "../../ast/identifier";
 import { ColiBuilder } from "../../builder";
 import { FunctionDeclraration } from "../../declarations/function";
+import { CallExpression } from "../../expressions/call-expression";
 import { BlockStatement } from "../../statements";
 import { Snippet } from "../snippet";
 import { Type } from "../type";
@@ -33,8 +34,16 @@ export class Function extends ColiBuilder<FunctionDeclraration> {
     return this;
   }
 
-  finalize(): FunctionDeclraration {
-    throw "not implemented";
+  // call this function
+  call(): CallExpression {
+    return new CallExpression((this.make() as FunctionDeclraration).id);
+  }
+
+  __finalize(): FunctionDeclraration {
+    return new FunctionDeclraration(this.name, {
+      returnType: this.returnType,
+      body: this.body,
+    });
   }
 
   public exportAs() {

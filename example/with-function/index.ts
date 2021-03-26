@@ -1,7 +1,8 @@
 import { Function, Block, Snippet } from "coli/lib";
 import { Type, Types } from "coli/lib";
+import { FunctionDeclraration } from "coli/lib/declarations/function";
 
-/** Example */
+// builder example
 new Function("sum")
   .withParams(
     { name: "a", typeAnnotation: Types.number },
@@ -13,17 +14,7 @@ new Function("sum")
 ///   return a + b
 /// }
 
-new Function("test", [{ name: "b", typeAnnotation: Types.boolean }]).returns(
-  Types.any
-);
-// -> function test( testArg : any ) : any
-
-new Function("test", [{ name: "b", typeAnnotation: Types.boolean }], Types.any);
-// -> function test( testArg : any ) : any
-
-new Function(
-  "test",
-  [{ name: "b", typeAnnotation: Types.boolean }],
-  Types.any
-).exportAs();
-// -> test()
+// raw example
+const sum = new FunctionDeclraration("sum", {
+  body: new Block(Snippet.fromStatic("")),
+});

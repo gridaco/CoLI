@@ -3,7 +3,7 @@ import { ColiBuilder } from "../../builder";
 export class Repository extends ColiBuilder {
   git: string;
 
-  finalize() {
+  __finalize() {
     throw "not implemented";
   }
 }
