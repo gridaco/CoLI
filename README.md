@@ -115,3 +115,6 @@ yarn editor
 - https://github.com/acornjs/acorn-jsx
 - https://www.typescriptlang.org/docs/handbook/jsx.html
 - https://github.com/github/codeql
+- https://github.com/csstree/csstree
+- https://github.com/davidbonnet/astring
+- https://shift-ast.org/
