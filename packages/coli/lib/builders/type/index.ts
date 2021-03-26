@@ -3,6 +3,9 @@ export class Type {
 }
 
 export class Types {
+  static struct(obj: object): Type {
+    return new Type(JSON.stringify(obj));
+  }
   static any: Type = new Type("any");
   static string: Type = new Type("string");
   static number: Type = new Type("number");

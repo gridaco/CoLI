@@ -1,6 +1,7 @@
-import { File, Function, Import } from "coli/lib";
+import { Block, File, Function, Import, Return, Types } from "coli/lib";
 import { Identifier } from "coli/lib/ast/identifier";
 import { VariableDeclaration } from "coli/lib/declarations/variable";
+import { JSXElement } from "coli/lib/jsx";
 
 const AppbarFile = new File({
   name: "Appbar.tsx",
@@ -40,7 +41,18 @@ const Message = new VariableDeclaration("Message");
  *  </Wrapper>
  * }
  */
-const Appbar = new Function("Appbar").withParams(new Identifier("props"));
+const AppbarBody = new Block().add(new Return(new JSXElement()));
+const Appbar = new Function("Appbar")
+  .withParams(
+    new Identifier("props", {
+      typeAnnotation: Types.struct({
+        title: "string",
+        message: "string",
+        avatar: "string",
+      }),
+    })
+  )
+  .withBody(AppbarBody);
 
 const callExpression = Appbar.call();
 

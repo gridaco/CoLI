@@ -10,3 +10,4 @@ export * from "./builders/repository";
 export * from "./builders/snippet";
 export * from "./builders/type";
 export * from "./builders/block";
+export * from "./builders/return";

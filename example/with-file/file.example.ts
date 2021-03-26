@@ -6,15 +6,13 @@ const file = new File({ name: "example", path: "." })
       .importDefault("styled")
       .and({ import: "utils", as: "sutil" })
       .from("@emotion/styled")
-      .finalize()
+      .make()
   )
   .import(
     new Import()
       .import({ import: "Button" })
       .and({ import: "Radio", as: "MRadio" })
       .from("@material/core")
-      .finalize()
+      .make()
   )
-  .withFunction(
-    new Function("Login").returns(new Type("JSX.Element")).finalize()
-  );
+  .withFunction(new Function("Login").returns(new Type("JSX.Element")).make());
