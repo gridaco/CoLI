@@ -2,27 +2,37 @@ import { Type } from "coli/lib";
 
 interface VariableDeclaration {
   scope: string;
+  variableType: Type;
   name: string;
-  varType: Type;
-  initValue: any;
+  value?: any;
 }
 
 function Typescript(coli: VariableDeclaration) {
-  const { scope, name, varType, initValue } = coli;
+  const {
+    scope,
+    name,
+    variableType: { type },
+    value,
+  } = coli;
   let code = "";
 
-  code += `${scope} ${name} : ${varType.type} `;
+  code += `${scope} ${name} : ${type}`;
 
-  if (initValue != null) {
-    switch (typeof initValue) {
+  if (value != null) {
+    code += " ";
+    if (type != "any" && type !== typeof value) {
+      throw new Error("This is a contradiction. Type does not match.");
+    }
+
+    switch (typeof value) {
       case "string":
-        code += `= "${initValue}"`;
+        code += `= "${value}"`;
         break;
       case "object":
-        code += `= ${JSON.stringify(initValue)}`;
+        code += `= ${JSON.stringify(value)}`;
         break;
       default:
-        code += `= ${initValue}`;
+        code += `= ${value}`;
     }
   }
 
@@ -32,21 +42,22 @@ function Typescript(coli: VariableDeclaration) {
 }
 
 function Python(coli: VariableDeclaration) {
-  const { scope, name, varType, initValue } = coli;
+  const { scope, name, variableType, value } = coli;
   let code = "";
 
-  code += `${name} `;
+  code += `${scope} ${name} : ${variableType.type}`;
 
-  if (initValue != null) {
-    switch (typeof initValue) {
+  if (value != null) {
+    code += " ";
+    switch (typeof value) {
       case "string":
-        code += `= "${initValue}"`;
+        code += `= "${value}"`;
         break;
       case "object":
-        code += `= ${JSON.stringify(initValue)}`;
+        code += `= ${JSON.stringify(value)}`;
         break;
       default:
-        code += `= ${initValue}`;
+        code += `= ${value}`;
     }
   }
 
@@ -56,21 +67,22 @@ function Python(coli: VariableDeclaration) {
 }
 
 function Dart(coli: VariableDeclaration) {
-  const { scope, name, initValue } = coli;
+  const { scope, name, variableType, value } = coli;
   let code = "";
 
-  code += `${scope} ${name} `;
+  code += `${scope} ${name} : ${variableType.type}`;
 
-  if (initValue != null) {
-    switch (typeof initValue) {
+  if (value != null) {
+    code += " ";
+    switch (typeof value) {
       case "string":
-        code += `= "${initValue}"`;
+        code += `= "${value}"`;
         break;
       case "object":
-        code += `= ${JSON.stringify(initValue)}`;
+        code += `= ${JSON.stringify(value)}`;
         break;
       default:
-        code += `= ${initValue}`;
+        code += `= ${value}`;
     }
   }
 

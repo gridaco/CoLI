@@ -6,8 +6,8 @@ export class Types {
   static struct(obj: object): Type {
     return new Type(JSON.stringify(obj));
   }
-  static any: Type = new Type("any");
   static string: Type = new Type("string");
+  static any: Type = new Type("any");
   static number: Type = new Type("number");
   static bigint: Type = new Type("bigint");
   static object: Type = new Type("object");
