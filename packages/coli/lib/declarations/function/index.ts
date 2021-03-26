@@ -20,6 +20,7 @@ export class FunctionDeclraration extends Declaration {
   ) {
     super(_DECLARATION_FUNCTION);
     // validate function name
+    // ref: https://stackoverflow.com/questions/2008279/validate-a-javascript-function-name
     assert(/^[$A-Z_][0-9A-Z_$]*$/i.test(name), "invalid function name");
 
     // set return type. default value is provided.
