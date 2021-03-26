@@ -1,10 +1,11 @@
 import { Class } from "../../builders/class";
 import { File } from "../../builders/file";
+import { ImportDeclaration } from "../../declarations/import";
 
 // TODO
 export class DartFile extends File {
-  imports: Array<string>;
-  import(module: string): this {
+  imports: Array<ImportDeclaration>;
+  import(module: ImportDeclaration): this {
     this.imports.push(module);
     return this;
   }
