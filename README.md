@@ -4,7 +4,7 @@
 
 Computer Language Interface (node, dart, css, html, python) An AST Builder / Parser
 
-*design file available [here](https://www.figma.com/file/JYhmzaX7E5HNHQEK2Dp7Cp/CoLI?node-id=0%3A1)*
+_design file available [here](https://www.figma.com/file/JYhmzaX7E5HNHQEK2Dp7Cp/CoLI?node-id=0%3A1)_
 
 ## Installation
 
@@ -111,3 +111,6 @@ yarn editor
 - https://github.com/benjamn/ast-types
 - https://github.com/tc39/proposals
 - https://doc.esdoc.org/github.com/mason-lang/esast/class/src/ast.js~ImportSpecifier.html
+- https://github.com/facebook/jsx/blob/master/AST.md
+- https://github.com/acornjs/acorn-jsx
+- https://www.typescriptlang.org/docs/handbook/jsx.html

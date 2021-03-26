@@ -8,6 +8,7 @@ import {
   _EXPRESSION_AWAIT,
   _EXPRESSION_CALL,
   _EXPRESSION_COMMENT,
+  _EXPRESSION_JSX,
   _EXPRESSION_TAGGED_TEMPLATE,
 } from "../_internal/constants/expressions-name";
 import {
@@ -30,7 +31,8 @@ export type ColiExpressionType =
   | typeof _EXPRESSION_CALL
   | typeof _EXPRESSION_COMMENT
   | typeof _EXPRESSION_AWAIT
-  | typeof _EXPRESSION_TAGGED_TEMPLATE;
+  | typeof _EXPRESSION_TAGGED_TEMPLATE
+  | typeof _EXPRESSION_JSX;
 
 // specifiers
 export type ColiSpecifierType =
