@@ -85,5 +85,16 @@ export class ColiObject {
    */
   tralingComments: CommentExpression[] = [];
 
+  addComment(params: { message: string; position: "above" | "below" }): this {
+    switch (params.position) {
+      case "above":
+      // this.tralingComments.push(new CommentExpression());
+
+      case "below":
+      // this.tralingComments.push(new CommentExpression());
+    }
+    return this;
+  }
+
   constructor(readonly type: ColiObjectType) {}
 }

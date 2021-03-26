@@ -37,13 +37,15 @@ export class Import extends ColiBuilder<ImportDeclaration> {
     return this;
   }
 
-  and(_import: { import: string; as?: string }): this {
-    this.imports.push(
-      new ImportSpecifier({
-        import: _import.import,
-        local: _import.as,
-      })
-    );
+  and(..._import: { import: string; as?: string }[]): this {
+    _import.forEach((e) => {
+      this.imports.push(
+        new ImportSpecifier({
+          import: e.import,
+          local: e.as,
+        })
+      );
+    });
     return this;
   }
 

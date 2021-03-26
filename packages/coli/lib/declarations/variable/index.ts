@@ -26,12 +26,20 @@ export class VariableDeclaration extends Declaration {
   private varType: Type;
   private initValue: any;
 
-  constructor({ scope, name, varType, initValue }) {
+  constructor(
+    name: string,
+    args?: {
+      scope: ScopeType;
+      type: Type;
+      init: any;
+    }
+  ) {
     super(_DECLARATION_VARIABLE);
-    this.scope = scope;
     this.name = name;
-    this.varType = varType;
-    this.initValue = initValue;
+    this.scope = args.scope;
+    this.varType = args.type;
+    // fixme
+    this.initValue = args.init;
   }
 
   public exportAs() {}
@@ -62,11 +70,10 @@ export class VariableDeclaration extends Declaration {
 
 console.log(
   stringfy(
-    new VariableDeclaration({
+    new VariableDeclaration("test", {
       scope: "const",
-      varType: Types.any,
-      initValue: "",
-      name: "test",
+      type: Types.any,
+      init: "",
     }),
     { language: "python" }
   )
