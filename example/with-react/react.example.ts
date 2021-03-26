@@ -1,9 +1,14 @@
-import { Function, Import } from "coli/lib";
+import { File, Function, Import } from "coli/lib";
 import { Identifier } from "coli/lib/ast/identifier";
 import { VariableDeclaration } from "coli/lib/declarations/variable";
 
+const AppbarFile = new File({
+  name: "Appbar.tsx",
+  path: ".",
+});
+
 // import React, { useEffect, useState } from "react"
-new Import()
+const importReact = new Import()
   .importDefault("React")
   .and(
     {
@@ -38,6 +43,9 @@ const Message = new VariableDeclaration("Message");
 const Appbar = new Function("Appbar").withParams(new Identifier("props"));
 
 const callExpression = Appbar.call();
+
+AppbarFile.import(importReact.make());
+AppbarFile.declare(Wrapper, TitleAndAvatarWrapper, Title, Message);
 
 // THE FINAL OUTPUT MUST SEEM LIKE
 /**
