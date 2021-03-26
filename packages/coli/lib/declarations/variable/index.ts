@@ -2,9 +2,9 @@ import { Type, Types } from "../../builders/type";
 import { _DECLARATION_VARIABLE } from "../../_internal/constants/declarations-name";
 import { Declaration } from "../declaration.base";
 
-type JSScope = "const" | "let" | "var";
+type ESScope = "const" | "let" | "var";
 
-type VariableScope = JSScope | string;
+type VariableScope = ESScope;
 
 export class VariableDeclaration extends Declaration {
   scope: VariableScope;
@@ -12,8 +12,20 @@ export class VariableDeclaration extends Declaration {
   name: string;
   value?: any;
 
-  constructor() {
+  constructor(
+    name: string,
+    args?: {
+      scope: VariableScope;
+      type: Type;
+      init: any;
+    }
+  ) {
     super(_DECLARATION_VARIABLE);
+    this.name = name;
+    this.scope = args.scope;
+    this.variableType = args.type;
+    // fixme
+    this.value = args.init;
   }
 }
 
