@@ -23,6 +23,7 @@ import {
 import {
   _STATEMENT_BLOCK,
   _STATEMENT_EXPRESSION,
+  _STATEMENT_RETURN,
 } from "../_internal/constants/statements-name";
 
 const COLI_WILDCARD_OBJECT = "__WILDCARD__";
@@ -49,7 +50,8 @@ export type ColiSpecifierType =
 // statements
 export type ColiStatementType =
   | typeof _STATEMENT_EXPRESSION
-  | typeof _STATEMENT_BLOCK;
+  | typeof _STATEMENT_BLOCK
+  | typeof _STATEMENT_RETURN;
 
 // elements
 export type ColiElementType =
