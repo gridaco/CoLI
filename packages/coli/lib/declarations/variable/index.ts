@@ -1,80 +1,25 @@
-import { stringfy } from "../../../../export-string";
 import { Type, Types } from "../../builders/type";
 import { _DECLARATION_VARIABLE } from "../../_internal/constants/declarations-name";
 import { Declaration } from "../declaration.base";
 
-type JsScope = "var" | "let" | "const";
-type DartScope =
-  | "var"
-  | "dynamic"
-  | "const"
-  | "final"
-  | "Number"
-  | "String"
-  | "Booleans"
-  | "List"
-  | "Set"
-  | "Map"
-  | "Runes"
-  | "Symbols";
+type JSScope = "const" | "let" | "var";
 
-type ScopeType = JsScope | DartScope;
+type VariableScope = JSScope | string;
 
 export class VariableDeclaration extends Declaration {
-  private scope: ScopeType;
-  private name: string;
-  private varType: Type;
-  private initValue: any;
+  scope: VariableScope;
+  variableType: Type = Types.any;
+  name: string;
+  value?: any;
 
-  constructor(
-    name: string,
-    args?: {
-      scope: ScopeType;
-      type: Type;
-      init: any;
-    }
-  ) {
+  constructor() {
     super(_DECLARATION_VARIABLE);
-    this.name = name;
-    this.scope = args.scope;
-    this.varType = args.type;
-    // fixme
-    this.initValue = args.init;
-  }
-
-  public exportAs() {}
-
-  public exportAsTypescript() {
-    let code = "";
-
-    code += `${this.scope} ${this.name} `;
-
-    if (this.initValue != null) {
-      switch (typeof this.initValue) {
-        case "string":
-          code += `= "${this.initValue}"`;
-          break;
-        case "object":
-          code += `= ${JSON.stringify(this.initValue)}`;
-          break;
-        default:
-          code += `= ${this.initValue}`;
-      }
-    }
-
-    code += ";";
-
-    return code;
   }
 }
 
-console.log(
-  stringfy(
-    new VariableDeclaration("test", {
-      scope: "const",
-      type: Types.any,
-      init: "",
-    }),
-    { language: "python" }
-  )
-);
+// const a : any = ""
+
+// const, let, var ... -> scope
+// a, test, functionName -> name
+// any, String, int -> type
+// "str", 1, {} -> value
