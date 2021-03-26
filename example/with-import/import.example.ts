@@ -4,6 +4,7 @@ import {
   ImportDefaultSpecifier,
   ImportSpecifier,
 } from "coli/lib/declarations/import";
+import { stringfy } from "../../packages/export-string";
 
 // plain
 const importDec = new ImportDeclaration({
@@ -24,4 +25,10 @@ const simpleImport = new Import()
   .importDefault("styled")
   .and({ import: "utils", as: "sutil" })
   .from("@emotion/styled")
-  .finalize();
+  .make();
+
+console.log(
+  stringfy(simpleImport, {
+    language: "typescript",
+  })
+);

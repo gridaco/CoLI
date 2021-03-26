@@ -1,4 +1,4 @@
 import { ColiBuilder } from "../../builder/builder";
 import { BlockStatement } from "../../statements";
 
-export class EmptyBlockStatement extends BlockStatement {}
+export class EmptyBlock extends BlockStatement {}

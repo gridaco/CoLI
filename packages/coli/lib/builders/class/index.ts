@@ -1,7 +1,7 @@
 import { ColiBuilder } from "../../builder";
 
 export class Class extends ColiBuilder {
-  finalize() {
+  __finalize() {
     throw "not implemented";
   }
 }

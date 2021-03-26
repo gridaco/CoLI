@@ -16,7 +16,7 @@ export class ImportFrom extends ColiBuilder {
     });
   }
 
-  finalize() {
+  __finalize() {
     throw "not implemented";
   }
 }

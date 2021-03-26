@@ -47,7 +47,7 @@ export class File extends ColiBuilder {
     return this;
   }
 
-  finalize() {
+  __finalize() {
     throw "not implemented";
   }
 }

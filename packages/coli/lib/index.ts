@@ -9,4 +9,4 @@ export * from "./builders/parameter";
 export * from "./builders/repository";
 export * from "./builders/snippet";
 export * from "./builders/type";
-export * from "./builders/variable";
+export * from "./builders/block";
