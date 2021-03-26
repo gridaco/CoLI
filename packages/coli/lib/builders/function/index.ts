@@ -1,6 +1,7 @@
 import { Identifier } from "../../ast/identifier";
 import { ColiBuilder } from "../../builder";
 import { FunctionDeclraration } from "../../declarations/function";
+import { BlockStatement } from "../../statements";
 import { Snippet } from "../snippet";
 import { Type } from "../type";
 
@@ -8,7 +9,7 @@ export class Function extends ColiBuilder<FunctionDeclraration> {
   private name: string;
   private parameters: Identifier[];
   private returnType: Type;
-  private body: Snippet;
+  private body: BlockStatement;
 
   constructor(funcName: string, parameters?: Identifier[], returnType?: Type) {
     super();
@@ -27,7 +28,7 @@ export class Function extends ColiBuilder<FunctionDeclraration> {
     return this;
   }
 
-  public withBody(content: any) {
+  public withBody(content: BlockStatement) {
     this.body = content;
     return this;
   }
