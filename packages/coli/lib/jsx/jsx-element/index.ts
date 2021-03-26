@@ -1,4 +1,4 @@
-import { Element } from "../element.base";
+import { Element } from "../../elements/element.base";
 export class JSXElement extends Element {
   openingElement: any;
   closingElement: any;

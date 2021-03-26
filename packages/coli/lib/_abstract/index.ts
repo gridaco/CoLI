@@ -4,7 +4,11 @@ import {
   _DECLARATION_IMPORT,
   _DECLARATION_VARIABLE,
 } from "../_internal/constants/declarations-name";
-import { _ELEMENT_JSX } from "../_internal/constants/elements-name";
+import {
+  _ELEMENT_JSX,
+  _ELEMENT_JSX_CLOSING,
+  _ELEMENT_JSX_OPENING,
+} from "../_internal/constants/elements-name";
 import {
   _EXPRESSION_AWAIT,
   _EXPRESSION_CALL,
@@ -48,9 +52,13 @@ export type ColiStatementType =
   | typeof _STATEMENT_BLOCK;
 
 // elements
-export type ColiElementType = typeof _ELEMENT_JSX | typeof COLI_WILDCARD_OBJECT;
+export type ColiElementType =
+  | typeof _ELEMENT_JSX
+  | typeof _ELEMENT_JSX_OPENING
+  | typeof _ELEMENT_JSX_CLOSING;
 
 export type ColiObjectType =
+  | typeof COLI_WILDCARD_OBJECT
   | ColiDeclarationType
   | ColiExpressionType
   | ColiSpecifierType
