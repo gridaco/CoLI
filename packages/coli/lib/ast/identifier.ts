@@ -1,7 +1,9 @@
+import { Type, Types } from "../builders/type";
+
 export interface Identifier {
   readonly name: string;
   optional?: boolean;
-  typeAnnotation?: any;
+  typeAnnotation?: Type;
 }
 
 export class Identifier {
@@ -9,11 +11,11 @@ export class Identifier {
     readonly name: string,
     args?: {
       optional?: boolean;
-      typeAnnotation?: any;
+      typeAnnotation?: Type;
     }
   ) {
     const { optional, typeAnnotation } = args;
     this.optional = optional;
-    this.typeAnnotation = args;
+    this.typeAnnotation = typeAnnotation;
   }
 }

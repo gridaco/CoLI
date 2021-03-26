@@ -3,21 +3,24 @@ import { Type, Types } from "coli/lib";
 
 /** Example */
 new Function("test")
-  .withParams({ argName: "testArg", argType: Types.any })
+  .withParams(
+    { name: "a", typeAnnotation: Types.boolean },
+    { name: "b", typeAnnotation: Types.boolean }
+  )
   .returns(Types.any);
 // -> function test( testArg : any ) : any
 
-new Function("test", [{ argName: "testArg", argType: Types.any }]).returns(
+new Function("test", [{ name: "b", typeAnnotation: Types.boolean }]).returns(
   Types.any
 );
 // -> function test( testArg : any ) : any
 
-new Function("test", [{ argName: "testArg", argType: Types.any }], Types.any);
+new Function("test", [{ name: "b", typeAnnotation: Types.boolean }], Types.any);
 // -> function test( testArg : any ) : any
 
 new Function(
   "test",
-  [{ argName: "testArg", argType: Types.any }],
+  [{ name: "b", typeAnnotation: Types.boolean }],
   Types.any
 ).exportAs();
 // -> test()
