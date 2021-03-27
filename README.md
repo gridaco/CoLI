@@ -120,3 +120,5 @@ yarn editor
 - https://shift-ast.org/
 - https://github.com/estree/estree/blob/master/es5.md
 - https://github.com/csstree/csstree/blob/master/docs/generate.md#generateast-options
+- https://github.com/frenic/csstype
+- https://github.com/mdn/data
