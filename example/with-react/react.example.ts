@@ -5,7 +5,7 @@ import { JSXElement } from "coli/lib/jsx";
 
 const AppbarFile = new File({
   name: "Appbar.tsx",
-  path: ".",
+  path: "src/components",
 });
 
 // import React, { useEffect, useState } from "react"
@@ -41,6 +41,7 @@ const Message = new VariableDeclaration("Message");
  *  </Wrapper>
  * }
  */
+
 const AppbarBody = new Block().add(new Return(new JSXElement()));
 const Appbar = new Function("Appbar")
   .withParams(

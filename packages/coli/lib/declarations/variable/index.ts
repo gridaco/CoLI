@@ -1,4 +1,3 @@
-import { stringfy } from "../../../../export-string";
 import { Type, Types } from "../../builders/type";
 import { _DECLARATION_VARIABLE } from "../../_internal/constants/declarations-name";
 import { Declaration } from "../declaration.base";
