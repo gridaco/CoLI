@@ -46,9 +46,9 @@ function stringfyColiToPython(coli: any) {
     case _EXPRESSION_COMMENT:
       return StringfyComment.Python(coli);
     case _DECLARATION_VARIABLE:
-      return StringfyVariable.Typescript(coli);
+      return StringfyVariable.Python(coli);
     case _DECLARATION_IMPORT:
-      return StringfyImport.Typescript(coli);
+      return StringfyImport.Python(coli);
   }
 }
 
@@ -57,8 +57,8 @@ function stringfyColiToDart(coli: any) {
     case _EXPRESSION_COMMENT:
       return StringfyComment.Dart(coli);
     case _DECLARATION_VARIABLE:
-      return StringfyVariable.Typescript(coli);
+      return StringfyVariable.Dart(coli);
     case _DECLARATION_IMPORT:
-      return StringfyImport.Typescript(coli);
+      return StringfyImport.Dart(coli);
   }
 }

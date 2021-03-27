@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { constSelector } from "recoil";
+import { constSelector, useRecoilValue } from "recoil";
+import { stringfy, StringfyLanguage } from "../../../packages/export-string";
+import { currentColiEditorOption } from "../../states/option.state";
 
 export function CodePreview(props: { value: object; interface: any }) {
+  const editorOption = useRecoilValue(currentColiEditorOption);
 
   const valueToInterfaceData = (data: object) => {
     let code = [];
@@ -27,7 +30,9 @@ export function CodePreview(props: { value: object; interface: any }) {
   return (
     <Wrapper showLineNumbers language="typescript" wrapLines>
       {`
-${new props.interface(props.value).exportAs()}
+${stringfy(new props.interface(props.value), {
+  language: editorOption.lauangue as StringfyLanguage,
+})}
 
 /**
 new ${props.interface.name}({
