@@ -39,16 +39,35 @@ function Typescript(coli: ImportDeclaration) {
 }
 
 function Python(coli: ImportDeclaration) {
-  let code = "";
+  let code = "from ";
+  let importAttribute = [];
+  let specifier = [];
+
+  code += `${coli.source} import`;
+
+  coli.specifiers.map((i) => {
+    if (i instanceof ImportDefaultSpecifier) {
+      importAttribute.push(i.local.name);
+    } else if (i instanceof ImportSpecifier) {
+      if (i.imported.name === i.local.name) {
+        specifier.push(`${i.imported.name}`);
+      } else {
+        specifier.push(`${i.imported.name} as ${i.local.name}`);
+      }
+    }
+  });
+
+  if (specifier.length != 0) {
+    importAttribute.push(`${specifier.join(", ")}`);
+    code += ` ${importAttribute.join(", ")}`;
+  }
 
   code += ";";
   return code;
 }
 
 function Dart(coli: ImportDeclaration) {
-  let code = "";
-
-  code += ";";
+  let code = `import "package:${coli.source}";`;
   return code;
 }
 
