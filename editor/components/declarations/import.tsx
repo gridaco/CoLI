@@ -34,9 +34,6 @@ function ImportDeclaration(props: { id: number; data: ImportDeclaration }) {
 
   useEffect(() => {
     setDeclarationValue(data);
-    console.log(stringfy(new ImportClass(declarationValue), {
-      language: editorOption.lauangue as StringfyLanguage,
-    }))
   }, [data]);
 
   useEffect(() => {
@@ -75,7 +72,11 @@ function ImportDeclaration(props: { id: number; data: ImportDeclaration }) {
     <Positioner>
       <Wrapper>
         <DeclartionTitle lable="IMPORT DECLARTIONS" />
-        <CodeBlock>{"test"}</CodeBlock>
+        <CodeBlock>
+          {stringfy(new ImportClass(declarationValue), {
+            language: editorOption.lauangue as StringfyLanguage,
+          })}
+        </CodeBlock>
         <Body>
           {Object.keys(data).map((i, _) => (
             <div className="coli-values" key={_}>
