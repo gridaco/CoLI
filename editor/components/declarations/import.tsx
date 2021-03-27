@@ -5,13 +5,16 @@ import { useSetRecoilState, useRecoilValue } from "recoil";
 import AutoGrowInput from "../auto-grow-input";
 import { currentDeclarationAtom } from "../../states/declaration.state";
 import CodeBlock from "../code-block";
-import { ImportDeclaration as ImportClass } from "coli/lib/declarations/import";
+import {
+  ImportDeclaration as ImportClass,
+  ImportDefaultSpecifier,
+  ImportSpecifier,
+} from "coli/lib/declarations/import";
 import { CodePreview } from "../code-preview";
 
 export interface ImportDeclaration {
-  _default: string | null;
-  _import: Array<string | null>;
-  _from: string | null;
+  specifiers?: Array<ImportDefaultSpecifier | ImportSpecifier>;
+  source: string;
 }
 
 const fields = ["default import", "import named", "from"];
@@ -22,9 +25,8 @@ function ImportDeclaration(props: { id: number; data: ImportDeclaration }) {
     currentDeclarationAtom<ImportDeclaration>("function", id)
   );
   const [declarationValue, setDeclarationValue] = useState<ImportDeclaration>({
-    _import: [],
-    _default: null,
-    _from: null,
+    specifiers: [],
+    source: ""
   });
 
   useEffect(() => {

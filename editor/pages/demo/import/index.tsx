@@ -2,8 +2,12 @@ import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import ImportDeclaration, {
   ImportDeclaration as ImportDeclarationInterface,
-} from "../../components/declarations/import";
-import CodeBlock from "../../components/code-block";
+} from "../../../components/declarations/import";
+import CodeBlock from "../../../components/code-block";
+import {
+  ImportDefaultSpecifier,
+  ImportSpecifier,
+} from "coli/lib/declarations/import";
 
 const importDefaultData: {
   example: string;
@@ -12,24 +16,50 @@ const importDefaultData: {
   example: `import default, { default as styled, p1 as p1, p2 as p2 } from 'module'`,
   declarations: [
     {
-      _default: "styled",
-      _import: [null],
-      _from: "@emotion/styled",
+      specifiers: [
+        new ImportDefaultSpecifier({
+          local: "styled",
+        }),
+      ],
+      source: "@emotion/styled",
     },
     {
-      _default: "styled",
-      _import: ["utils", "helpers"],
-      _from: "@emotion/styled",
+      specifiers: [
+        new ImportDefaultSpecifier({
+          local: "styled",
+        }),
+        new ImportSpecifier({
+          import: "utils",
+        }),
+        new ImportSpecifier({
+          import: "helpers",
+        }),
+      ],
+      source: "@emotion/styled",
     },
     {
-      _default: null,
-      _import: ["utils", "helpers"],
-      _from: "@emotion/styled",
+      specifiers: [
+        new ImportSpecifier({
+          import: "utils",
+        }),
+        new ImportSpecifier({
+          import: "helpers",
+        }),
+      ],
+      source: "@emotion/styled",
     },
     {
-      _default: null,
-      _import: ["utils as ut", "helpers as hp"],
-      _from: "@emotion/styled",
+      specifiers: [
+        new ImportSpecifier({
+          import: "utils",
+          local: "u",
+        }),
+        new ImportSpecifier({
+          import: "helpers",
+          local: "hp",
+        }),
+      ],
+      source: "@emotion/styled",
     },
   ],
 };

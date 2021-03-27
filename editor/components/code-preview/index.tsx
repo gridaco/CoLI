@@ -3,14 +3,36 @@ import styled from "@emotion/styled";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 
 export function CodePreview(props: { value: object; interface: any }) {
-  console.log();
+  const [renderToken, setRenderToken] = useState(false);
+
+
+  const valueToInterfaceData = (data: object) => {
+    let code = [];
+
+    Object.keys(data).map((i) => {
+      switch (typeof data[i]) {
+        case "string":
+          code.push(`  ${i} : "${data[i]}"`);
+          break;
+        case "object":
+          code.push(`${i} : []`);
+          break;
+        default:
+          break;
+      }
+    });
+    return code.join(",\n");
+  };
+
   return (
     <Wrapper showLineNumbers language="typescript" wrapLines>
       {`
 ${new props.interface(props.value).exportAs()}
 
 /**
-new ${props.interface.name}(${JSON.stringify(props.value)})
+new ${props.interface.name}({
+  ${valueToInterfaceData(props.value)}
+})
 */
     `}
     </Wrapper>

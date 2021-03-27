@@ -38,7 +38,7 @@ function MyApp({ Component, pageProps }) {
           />
         </Head>
         <div>
-          {curPath != "/" && (
+          {curPath != "/" && curPath != "/demo" && (
             <React.Fragment>
               <AppBar />
               <Header />

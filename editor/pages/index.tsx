@@ -7,7 +7,7 @@ function MainPage() {
   const router = useRouter();
 
   useEffect(() => {
-    setTimeout(() => router.push("/function"), 1000);
+    setTimeout(() => router.push("/demo"), 1000);
   }, [])
 
   return (
