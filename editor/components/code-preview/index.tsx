@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { constSelector } from "recoil";
 
 export function CodePreview(props: { value: object; interface: any }) {
-  const [renderToken, setRenderToken] = useState(false);
-
 
   const valueToInterfaceData = (data: object) => {
     let code = [];
@@ -15,7 +14,8 @@ export function CodePreview(props: { value: object; interface: any }) {
           code.push(`  ${i} : "${data[i]}"`);
           break;
         case "object":
-          code.push(`${i} : []`);
+          //TODO Change [object object] -> real code
+          code.push(`  ${i} : ${data[i]}`);
           break;
         default:
           break;
@@ -31,7 +31,7 @@ ${new props.interface(props.value).exportAs()}
 
 /**
 new ${props.interface.name}({
-  ${valueToInterfaceData(props.value)}
+${valueToInterfaceData(props.value)}
 })
 */
     `}

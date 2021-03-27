@@ -11,6 +11,8 @@ import {
   ImportSpecifier,
 } from "coli/lib/declarations/import";
 import { CodePreview } from "../code-preview";
+import { stringfy, StringfyLanguage } from "../../../packages/export-string";
+import { currentColiEditorOption } from "../../states/option.state";
 
 export interface ImportDeclaration {
   specifiers?: Array<ImportDefaultSpecifier | ImportSpecifier>;
@@ -24,13 +26,17 @@ function ImportDeclaration(props: { id: number; data: ImportDeclaration }) {
   const setDeclaration = useSetRecoilState(
     currentDeclarationAtom<ImportDeclaration>("function", id)
   );
+  const editorOption = useRecoilValue(currentColiEditorOption);
   const [declarationValue, setDeclarationValue] = useState<ImportDeclaration>({
     specifiers: [],
-    source: ""
+    source: "",
   });
 
   useEffect(() => {
     setDeclarationValue(data);
+    console.log(stringfy(new ImportClass(declarationValue), {
+      language: editorOption.lauangue as StringfyLanguage,
+    }))
   }, [data]);
 
   useEffect(() => {
@@ -69,10 +75,7 @@ function ImportDeclaration(props: { id: number; data: ImportDeclaration }) {
     <Positioner>
       <Wrapper>
         <DeclartionTitle lable="IMPORT DECLARTIONS" />
-        <CodeBlock>
-          THIS FEATURE IS BLOCKED
-          {/* {new ImportClass(declarationValue).exportAs()} */}
-        </CodeBlock>
+        <CodeBlock>{"test"}</CodeBlock>
         <Body>
           {Object.keys(data).map((i, _) => (
             <div className="coli-values" key={_}>
