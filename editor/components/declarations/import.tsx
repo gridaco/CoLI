@@ -19,7 +19,20 @@ export interface ImportDeclaration {
   source: string;
 }
 
-const fields = ["default import", "import named", "from"];
+const fields = [
+  {
+    label: "default import",
+    lookup: "ImportDefaultSpecifier",
+  },
+  {
+    label: "import named",
+    lookup: "ImportSpecifier",
+  },
+  {
+    label: "from",
+    lookup: "source",
+  },
+];
 
 function ImportDeclaration(props: { id: number; data: ImportDeclaration }) {
   const { data, id } = props;
@@ -40,32 +53,23 @@ function ImportDeclaration(props: { id: number; data: ImportDeclaration }) {
     setDeclaration(data);
   }, [declarationValue]);
 
-  const onChangeDeclarationValue = (v: string, n: string, k?: number) => {
-    setDeclarationValue((d) => {
-      const isArray = data[n] instanceof Array;
-
-      if (isArray) {
-        const _import = data[n].map((i, ix) => {
-          if (ix === k) {
-            return v === "" ? i : v;
-          } else if (d[n][ix] != i) {
-            return d[n][ix];
-          } else {
-            return i;
-          }
-        });
-
+  const onChangeDeclarationValue = (v: string, n: string) => {
+    if (n === "ImportDefaultSpecifier") {
+      setDeclarationValue((d) => ({
+        ...d,
+        specifiers: [new ImportDefaultSpecifier({ local: v })],
+      }));
+    } else if (n === "ImportSpecifier") {
+      const [prev, next] = v.split(' as ')
+      setDeclarationValue(d => {
         return {
-          ...d,
-          _import,
-        };
-      } else {
-        return {
-          ...d,
-          [n]: v == "" ? data[n] : v,
-        };
-      }
-    });
+          ...d, 
+          specifiers: [...d.specifiers, new ImportSpecifier({ import : prev, local : (next || prev) })]
+        }
+      })
+    } else if (n === "source") {
+      setDeclarationValue((d) => ({ ...d, source: v }));
+    }
   };
 
   return (
@@ -78,7 +82,17 @@ function ImportDeclaration(props: { id: number; data: ImportDeclaration }) {
           })}
         </CodeBlock>
         <Body>
-          {Object.keys(data).map((i, _) => (
+          {fields.map((i, _) => (
+            <div className="coli-values" key={_}>
+              <label>{i.label}</label>
+              <AutoGrowInput
+                placeholder="none"
+                onChange={onChangeDeclarationValue}
+                name={i.lookup}
+              />
+            </div>
+          ))}
+          {/* {Object.keys(data).map((i, _) => (
             <div className="coli-values" key={_}>
               <label>{fields[_]}</label>
               {data[i] instanceof Array ? (
@@ -99,7 +113,7 @@ function ImportDeclaration(props: { id: number; data: ImportDeclaration }) {
                 />
               )}
             </div>
-          ))}
+          ))} */}
         </Body>
       </Wrapper>
       <CodePreview value={declarationValue} interface={ImportClass} />

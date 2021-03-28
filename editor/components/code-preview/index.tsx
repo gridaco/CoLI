@@ -22,7 +22,6 @@ const valueToInterfaceData = (data: object) => {
     }
   });
 
-  console.log(code);
   return code.join(",\n  ");
 };
 
