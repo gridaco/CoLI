@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import React from "react";
 
-function AutoGrowInput(props: {
+export default function AutoGrowTextArea(props: {
   placeholder: string;
   onChange: (v: string, n: string, k?: number) => void;
   name: string;
@@ -9,12 +9,11 @@ function AutoGrowInput(props: {
 }) {
   return (
     <Wrapper>
-      <input
+      <textarea
         name={props.name}
         onChange={(e) =>
           props.onChange(e.target.value, e.target.name, props.ix)
         }
-        size={props.placeholder?.length | 4}
         onInput={(e: any) =>
           (e.target.parentNode.dataset.value = e.target.value)
         }
@@ -24,8 +23,6 @@ function AutoGrowInput(props: {
   );
 }
 
-export default AutoGrowInput;
-
 const Wrapper = styled.div`
   display: inline-grid;
   background-color: #fbfbfb;
@@ -33,7 +30,7 @@ const Wrapper = styled.div`
   margin-left: 7px;
 
   &::after,
-  input {
+  textarea {
     width: auto;
     min-width: 1em;
     grid-area: 1 / 2;
@@ -44,6 +41,9 @@ const Wrapper = styled.div`
     border: none;
     color: #6b6b6b;
     outline: none;
+    resize: none;
+
+    white-space: pre-wrap;
 
     &::placeholder {
       color: #d2d2d2;
