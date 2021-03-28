@@ -122,3 +122,5 @@ yarn editor
 - https://github.com/csstree/csstree/blob/master/docs/generate.md#generateast-options
 - https://github.com/frenic/csstype
 - https://github.com/mdn/data
+- https://pub.dev/documentation/analyzer/latest/dart_ast_ast_factory/dart_ast_ast_factory-library.html
+- https://pub.dev/documentation/analyzer/latest/dart_ast_ast/dart_ast_ast-library.html
