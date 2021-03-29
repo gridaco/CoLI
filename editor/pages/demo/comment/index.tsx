@@ -16,7 +16,7 @@ const importDefaultData: {
     },
     {
       style: "multi-line",
-      content: "multi-line comment demo \n _markdown_ **also** `supported`",
+      content: "multi-line comment demo \\n\n _markdown_ **also** `supported`",
     },
   ],
 };

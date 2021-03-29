@@ -8,6 +8,13 @@ export default function AutoGrowTextArea(props: {
   ix?: number;
   value: any;
 }) {
+  const keyPressHandler = (e) => {
+    switch (props.value) {
+      case "single-line":
+        e.key === "Enter" && e.preventDefault();
+    }
+  };
+
   return (
     <Wrapper>
       <textarea
@@ -19,11 +26,7 @@ export default function AutoGrowTextArea(props: {
           (e.target.parentNode.dataset.value = e.target.value)
         }
         placeholder={props.placeholder ? props.placeholder : "none"}
-        onKeyPress={(e) =>
-          props.value === "single-line" &&
-          e.key === "Enter" &&
-          e.preventDefault()
-        }
+        onKeyPress={keyPressHandler}
       />
     </Wrapper>
   );
