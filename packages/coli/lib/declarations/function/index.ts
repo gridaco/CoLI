@@ -6,12 +6,9 @@ import { Declaration } from "../declaration.base";
 import assert from "assert";
 import { EmptyBlock } from "../../builders/block/empty-block";
 
-type FunctionParams = {
-  [x: string]: Type;
-};
 export class FunctionDeclraration extends Declaration {
   id: Identifier;
-  params: FunctionParams = {};
+  params: Identifier[];
   body: BlockStatement = new EmptyBlock();
   returnType: Type = Types.any;
   name: string;
@@ -19,7 +16,7 @@ export class FunctionDeclraration extends Declaration {
   constructor(
     name: string,
     args?: {
-      params?: FunctionParams;
+      params?: Identifier[];
       returnType?: Type;
       body?: BlockStatement;
     }

@@ -1,13 +1,10 @@
 import { Block, Type } from "coli/lib";
-import {
-  ImportDefaultSpecifier,
-  ImportSpecifier,
-} from "coli/lib/declarations/import";
+import { Identifier } from "coli/lib/ast/identifier";
 
 interface FunctionDeclaration {
   leadingComment: Array<any>;
   tralingComments: Array<any>;
-  params: any;
+  params: Identifier[];
   name: string;
   body: Block;
   returnType: Type;
@@ -15,12 +12,13 @@ interface FunctionDeclaration {
 
 function Typescript(coli: FunctionDeclaration) {
   const { body, name, params } = coli;
-  console.log();
-  let code = `function ${name}(${Object.keys(params)
-    .map((i) => `${i} : ${params[i].type}`)
-    .join(", ")}) {\n`;
+  const parameters = params
+    .map((i) => `${i.name} : ${i.typeAnnotation.type}`)
+    .join(", ");
+  let code = `function ${name}(${parameters}) {\n`;
 
-  code += `${body.body[0][0]._defaultSnippet}`;
+  // console.log(body.body.map(i => i.));
+  // code += `${body.body[0][0]._defaultSnippet}`;
 
   code += `\n}`;
   return code;
