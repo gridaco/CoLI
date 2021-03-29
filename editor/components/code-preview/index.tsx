@@ -14,8 +14,24 @@ const valueToInterfaceData = (data: object) => {
         code.push(`${i} : "${data[i]}"`);
         break;
       case "object":
+        let objectCodes = [];
+        if (data[i] instanceof Array) {
+          data[i].map((_i) => {
+            let tempArray = [];
+            const { type, ...result } = _i;
+
+            Object.keys(result).map((key) =>
+              tempArray.push(`${key} : ${_i[key]}`)
+            );
+
+            objectCodes.push(
+              `${i} : new ${_i.type}({\n    ${tempArray.join(",\n     ")}\n  })`
+            );
+            console.log(objectCodes);
+          });
+        }
         //TODO Change [object object] -> real code
-        code.push(`${i} : ${data[i]}`);
+        code.push(objectCodes.join(",\n  "));
         break;
       default:
         break;
