@@ -11,11 +11,21 @@ interface FunctionDeclaration {
 }
 
 function Typescript(coli: FunctionDeclaration) {
-  const { body, name, params } = coli;
-  const parameters = params
-    .map((i) => `${i.name} : ${i.typeAnnotation.type}`)
-    .join(", ");
-  let code = `function ${name}(${parameters}) {\n`;
+  const {
+    body,
+    name,
+    params,
+    returnType: { type },
+  } = coli;
+  let code = "";
+  if (params) {
+    const parameters = params
+      .map((i) => `${i.name} : ${i.typeAnnotation.type}`)
+      .join(", ");
+    code = `function ${name}(${parameters}) : ${type} {\n`;
+  } else {
+    code = `function ${name}() : ${type} {\n`;
+  }
 
   // console.log(body.body.map(i => i.));
   // code += `${body.body[0][0]._defaultSnippet}`;
