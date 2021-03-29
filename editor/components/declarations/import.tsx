@@ -55,18 +55,38 @@ function ImportDeclaration(props: { id: number; data: ImportDeclaration }) {
 
   const onChangeDeclarationValue = (v: string, n: string) => {
     if (n === "ImportDefaultSpecifier") {
+      const prevDefaultData =
+        data.specifiers[
+          data.specifiers
+            .map((i) => i.type === "ImportDefaultSpecifier")
+            .indexOf(true)
+        ];
+      const prevSpecifierData = data.specifiers.reduce((acc, i) => {
+        if (i.type != "ImportDefaultSpecifier") {
+          acc.push(i);
+        }
+        return acc;
+      }, []);
       setDeclarationValue((d) => ({
         ...d,
-        specifiers: [new ImportDefaultSpecifier({ local: v })],
+        specifiers: [
+          new ImportDefaultSpecifier({
+            local: v || prevDefaultData.local.name,
+          }),
+          ...prevSpecifierData,
+        ],
       }));
     } else if (n === "ImportSpecifier") {
-      const [prev, next] = v.split(' as ')
-      setDeclarationValue(d => {
+      const [prev, next] = v.split(" as ");
+     
+      setDeclarationValue((d) => {
         return {
-          ...d, 
-          specifiers: [...d.specifiers, new ImportSpecifier({ import : prev, local : (next || prev) })]
-        }
-      })
+          ...d,
+          specifiers: [
+            new ImportSpecifier({ import: prev, local: next || prev }),
+          ],
+        };
+      });
     } else if (n === "source") {
       setDeclarationValue((d) => ({ ...d, source: v }));
     }
@@ -92,28 +112,6 @@ function ImportDeclaration(props: { id: number; data: ImportDeclaration }) {
               />
             </div>
           ))}
-          {/* {Object.keys(data).map((i, _) => (
-            <div className="coli-values" key={_}>
-              <label>{fields[_]}</label>
-              {data[i] instanceof Array ? (
-                data[i].map((holder: string, _) => (
-                  <AutoGrowInput
-                    name={i}
-                    onChange={onChangeDeclarationValue}
-                    placeholder={holder}
-                    key={_}
-                    ix={_}
-                  />
-                ))
-              ) : (
-                <AutoGrowInput
-                  name={i}
-                  onChange={onChangeDeclarationValue}
-                  placeholder={data[i]}
-                />
-              )}
-            </div>
-          ))} */}
         </Body>
       </Wrapper>
       <CodePreview value={declarationValue} interface={ImportClass} />
