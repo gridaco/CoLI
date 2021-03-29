@@ -10,6 +10,7 @@ import { CommentExpression as CommentClass } from "coli/lib/expressions/comment"
 import { currentDeclarationAtom } from "../../states/declaration.state";
 import AutoGrowTextArea from "../auto-grow-textarea";
 import Selector from "../selector";
+import { setMaxListeners } from "process";
 
 export interface CommentExpression {
   style: string;
@@ -17,7 +18,16 @@ export interface CommentExpression {
 }
 
 const fields = ["line", "content"];
-const lineValue = ["single", "multi"];
+const lineValue = [
+  {
+    label: "single",
+    value: "single-line",
+  },
+  {
+    label: "multi",
+    value: "multi-line",
+  },
+];
 
 export default function CommentExpression(props: {
   id: number;
@@ -43,32 +53,21 @@ export default function CommentExpression(props: {
 
   const onChangeExpressionValue = (v: string, n: string, k?: number) => {
     setExpressionValue((d) => {
-      const isArray = data[n] instanceof Array;
-
-      if (isArray) {
-        const _import = data[n].map((i, ix) => {
-          if (ix === k) {
-            return v === "" ? i : v;
-          } else if (d[n][ix] != i) {
-            return d[n][ix];
-          } else {
-            return i;
-          }
-        });
-
-        return {
-          ...d,
-          _import,
-        };
-      } else {
-        return {
-          ...d,
-          [n]: v == "" ? data[n] : v,
-        };
-      }
+      return {
+        ...d,
+        [n]: v == "" ? data[n] : v,
+      };
     });
   };
 
+  const onChangeLineValue = (v: any) => {
+    setExpressionValue((d) => {
+      return {
+        ...d,
+        style: v,
+      };
+    });
+  };
   return (
     <Positioner>
       <Wrapper>
@@ -80,15 +79,28 @@ export default function CommentExpression(props: {
         </CodeBlock>
         <Body>
           {Object.keys(data).map((i, _) => (
-            <div className="coli-values" key={_}>
+            <div
+              style={
+                _ === 1
+                  ? { flexDirection: "column", alignItems: "flex-start" }
+                  : {}
+              }
+              className="coli-values"
+              key={_}
+            >
               <label>{fields[_]}</label>
               {_ == 0 ? (
-                <Selector options={lineValue} />
+                <Selector
+                  onChange={onChangeLineValue}
+                  value={expressionValue.style}
+                  options={lineValue}
+                />
               ) : (
                 <AutoGrowTextArea
                   name={i}
                   onChange={onChangeExpressionValue}
                   placeholder={data[i]}
+                  value={expressionValue.style}
                 />
               )}
             </div>
