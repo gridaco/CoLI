@@ -48,16 +48,13 @@ export default function CommentExpression(props: { data: CommentExpression }) {
   });
 
   useEffect(() => {
-    setExpressionValue({
-      style: data.style,
-      content: data.content.replaceAll("\n", "\\n"),
-    });
+    setExpressionValue(data);
   }, [data]);
 
   const onChangeExpressionValue = (v: string, n: string, k?: number) => {
     setExpressionValue((d) => ({
       ...d,
-      [n]: v == "" ? data[n] : v,
+      [n]: v == "" ? data[n] : v.replaceAll("\\n", '\n'),
     }));
   };
 
