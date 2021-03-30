@@ -4,9 +4,12 @@ function DemoListPage() {
   return (
     <div>
       <h1>Hello CoLi 👋</h1>
-      <p>
+      <p style={{ display: "flex", flexDirection: "column" }}>
         <Link href="/demo/import">
           <a>import</a>
+        </Link>
+        <Link href="/demo/comment">
+          <a>comment</a>
         </Link>
       </p>
     </div>
