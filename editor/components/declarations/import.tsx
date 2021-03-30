@@ -38,12 +38,13 @@ const fields = [
 const returnExampleImportCode = (args: {
   class: ImportClass | any;
   value: ImportDeclaration;
+  language: StringfyLanguage;
 }) => {
-  const { class: variableClass, value } = args;
+  const { class: variableClass, value, language } = args;
   let code = "";
   code += `new ${variableClass.name}(\n"${JSON.stringify(value)}\n)`;
   const comment = new CommentExpression({ style: "multi-line", content: code });
-  return stringfy(comment, { language: "typescript" });
+  return stringfy(comment, { language });
 };
 
 function ImportDeclaration(props: { id: number; data: ImportDeclaration }) {
@@ -51,7 +52,7 @@ function ImportDeclaration(props: { id: number; data: ImportDeclaration }) {
   const setDeclaration = useSetRecoilState(
     currentDeclarationAtom<ImportDeclaration>("function", id)
   );
-  const editorOption = useRecoilValue(currentColiEditorOption);
+  const { language } = useRecoilValue(currentColiEditorOption);
   const [declarationValue, setDeclarationValue] = useState<ImportDeclaration>({
     specifiers: [],
     source: "",
@@ -133,7 +134,7 @@ function ImportDeclaration(props: { id: number; data: ImportDeclaration }) {
         <DeclartionTitle lable="IMPORT DECLARTIONS" />
         <CodeBlock>
           {stringfy(new ImportClass(declarationValue), {
-            language: editorOption.lauangue as StringfyLanguage,
+            language,
           })}
         </CodeBlock>
         <Body>

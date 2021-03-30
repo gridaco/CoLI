@@ -75,24 +75,23 @@ export function CodePreview(props: {
   value: object;
   interface: any;
   // will be required
-  codeHandler?: (args: { class: any; value: object }) => void;
+  codeHandler: (args: {
+    class: any;
+    value: object;
+    language: StringfyLanguage;
+  }) => void;
 }) {
-  const editorOption = useRecoilValue(currentColiEditorOption);
+  const { language } = useRecoilValue(currentColiEditorOption);
 
   return (
-    <Wrapper showLineNumbers language={editorOption.lauangue} wrapLines>
+    <Wrapper showLineNumbers language={language} wrapLines>
       {`
 ${stringfy(new props.interface(props.value), {
-  language: editorOption.lauangue as StringfyLanguage,
+  language: language,
 })}
 
-${props.codeHandler({ class: props.interface, value: props.value })}
+${props.codeHandler({ class: props.interface, value: props.value, language })}
     `}
-      {/* ${codePreviewCommentInterface({
-  value: props.value,
-  interface: props.interface,
-  lauangue: editorOption.lauangue as StringfyLanguage,
-})} */}
     </Wrapper>
   );
 }

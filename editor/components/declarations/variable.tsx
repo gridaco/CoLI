@@ -26,13 +26,14 @@ export interface VariableDeclaration {
 const returnExampleVariableCode = (args: {
   class: VariableClass | any;
   value: VariableDeclaration;
+  language: StringfyLanguage;
 }) => {
-  const { class: variableClass, value } = args;
+  const { class: variableClass, value, language } = args;
   const { name, args: values } = value;
   let code = "";
   code += `new ${variableClass.name}(\n"${name}", ${JSON.stringify(values)}\n)`;
   const comment = new CommentExpression({ style: "multi-line", content: code });
-  return stringfy(comment, { language: "typescript" });
+  return stringfy(comment, { language });
 };
 
 function VariableDeclaration(props: {
@@ -43,7 +44,7 @@ function VariableDeclaration(props: {
   const setDeclaration = useSetRecoilState(
     currentDeclarationAtom<VariableDeclaration>("function", id)
   );
-  const editorOption = useRecoilValue(currentColiEditorOption);
+  const { language } = useRecoilValue(currentColiEditorOption);
   const [declarationValue, setDeclarationValue] = useState<VariableDeclaration>(
     {
       name: "",
@@ -71,7 +72,7 @@ function VariableDeclaration(props: {
           {stringfy(
             new VariableClass(declarationValue.name, declarationValue.args),
             {
-              language: editorOption.lauangue as StringfyLanguage,
+              language,
             }
           )}
         </CodeBlock>

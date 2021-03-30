@@ -2,18 +2,18 @@ import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { useSetRecoilState } from "recoil";
 import { currentColiEditorOption } from "../../states/option.state";
+import { StringfyLanguage } from "../../../packages/export-string";
 
-type LanguageType = "typescript" | "python" | "dart";
 type ViewType = "block" | "grid";
 
 function Header() {
   const [viewType, setViewType] = useState<ViewType>("block");
-  const [language, setLanguage] = useState<LanguageType>("typescript");
+  const [language, setLanguage] = useState<StringfyLanguage>("typescript");
   const setEditorOption = useSetRecoilState(currentColiEditorOption);
 
   useEffect(() => {
     setEditorOption({
-      lauangue: language,
+      language,
     });
   }, [language]);
 
@@ -35,7 +35,9 @@ function Header() {
       </div>
       <ColiOptions>
         <div className="in-playground">
-          <select onChange={(e) => setLanguage(e.target.value as LanguageType)}>
+          <select
+            onChange={(e) => setLanguage(e.target.value as StringfyLanguage)}
+          >
             <option value="typescript">playground.tsx</option>
             <option value="python">playground.py</option>
             <option value="dart">playground.dart</option>

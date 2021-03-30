@@ -30,17 +30,18 @@ const lineValue = [
 const returnExampleCommentCode = (args: {
   class: CommentClass | any;
   value: CommentExpression;
+  language: StringfyLanguage;
 }) => {
-  const { class: commentClass, value } = args;
+  const { class: commentClass, value, language } = args;
   let code = "";
   code += `new ${commentClass.name}(\n${JSON.stringify(value)}\n)`;
   const comment = new CommentClass({ style: "multi-line", content: code });
-  return stringfy(comment, { language: "typescript" });
+  return stringfy(comment, { language });
 };
 
 export default function CommentExpression(props: { data: CommentExpression }) {
   const { data } = props;
-  const editorOption = useRecoilValue(currentColiEditorOption);
+  const { language } = useRecoilValue(currentColiEditorOption);
   const [expressionValue, setExpressionValue] = useState<CommentExpression>({
     style: "",
     content: "",
@@ -70,7 +71,7 @@ export default function CommentExpression(props: { data: CommentExpression }) {
         <DeclartionTitle lable="COMMENT EXPRESSION" />
         <CodeBlock>
           {stringfy(new CommentClass(expressionValue), {
-            language: editorOption.lauangue as StringfyLanguage,
+            language,
           })}
         </CodeBlock>
         <Body>
