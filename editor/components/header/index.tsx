@@ -8,14 +8,16 @@ type ViewType = "block" | "grid";
 
 function Header() {
   const [viewType, setViewType] = useState<ViewType>("block");
+  const [previewStatus, setPreviewStatus] = useState<"play" | "stop">("stop");
   const [language, setLanguage] = useState<StringfyLanguage>("typescript");
   const setEditorOption = useSetRecoilState(currentColiEditorOption);
 
   useEffect(() => {
     setEditorOption({
       language,
+      previewStatus,
     });
-  }, [language]);
+  }, [language, previewStatus]);
 
   return (
     <Wrapper>
@@ -48,6 +50,14 @@ function Header() {
         <div className="coli-options">
           <img src="/assets/icons/download.svg" />
           <img src="/assets/icons/copy.svg" />
+          <img
+            src={`/assets/icons/${
+              previewStatus === "play" ? "stop" : "play"
+            }.svg`}
+            onClick={() =>
+              setPreviewStatus(previewStatus === "play" ? "stop" : "play")
+            }
+          />
         </div>
       </ColiOptions>
     </Wrapper>
