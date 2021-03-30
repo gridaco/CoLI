@@ -90,41 +90,65 @@ function ImportDeclaration(props: { id: number; data: ImportDeclaration }) {
   };
 
   const onChangeDeclarationValue = (v: string, n: string) => {
+    const prevDefaultData =
+      data.specifiers[
+        data.specifiers
+          .map((i) => i.type === "ImportDefaultSpecifier")
+          .indexOf(true)
+      ];
+    const prevSpecifierData = data.specifiers.filter(data => data.type != "ImportDefaultSpecifier");
+
     if (n === "ImportDefaultSpecifier") {
-      const prevDefaultData =
-        data.specifiers[
-          data.specifiers
-            .map((i) => i.type === "ImportDefaultSpecifier")
-            .indexOf(true)
-        ];
-      const prevSpecifierData = data.specifiers.reduce((acc, i) => {
-        if (i.type != "ImportDefaultSpecifier") {
-          acc.push(i);
-        }
-        return acc;
-      }, []);
       setDeclarationValue((d) => ({
         ...d,
         specifiers: [
           new ImportDefaultSpecifier({
             local: v || prevDefaultData.local.name,
           }),
-          ...prevSpecifierData,
+          ...(prevSpecifierData as []),
         ],
       }));
     } else if (n === "ImportSpecifier") {
       const [prev, next] = v.split(" as ");
-
       setDeclarationValue((d) => {
         return {
           ...d,
           specifiers: [
+            prevDefaultData,
             new ImportSpecifier({ import: prev, local: next || prev }),
           ],
         };
       });
     } else if (n === "source") {
       setDeclarationValue((d) => ({ ...d, source: v }));
+    }
+  };
+
+  const getTextFieldPlacholder = (lookup: string, idx: number) => {
+    const defaultData =
+      data.specifiers[
+        data.specifiers
+          .map((i) => i.type === "ImportDefaultSpecifier")
+          .indexOf(true)
+      ];
+    const specifierData = data.specifiers.filter(data => data instanceof ImportSpecifier);
+
+    if (lookup === "source") {
+      return data[lookup];
+    } else if (lookup === "ImportSpecifier") {
+      // TODO CLEAN UP
+      let placeholder : any  = specifierData[idx] as ImportSpecifier
+      if (placeholder?.imported.name == null || placeholder?.local.name == null) {
+        return null;
+      } 
+      if (placeholder?.imported.name != placeholder?.local.name) {
+        placeholder = `${placeholder?.imported.name} as ${placeholder?.local.name}`
+      } else if (placeholder?.imported.name === placeholder?.local.name) {
+        placeholder  = `${placeholder?.local.name}`
+      } 
+      return placeholder;
+    } else if (lookup === "ImportDefaultSpecifier") {
+      return defaultData != null ? defaultData.local.name : null;
     }
   };
 
@@ -141,9 +165,9 @@ function ImportDeclaration(props: { id: number; data: ImportDeclaration }) {
           {fields.map((i, _) => (
             <div className="coli-values" key={_}>
               <label>{i.label}</label>
-              {mappingTextField(i.lookup).map((_) => (
+              {mappingTextField(i.lookup).map((_, ix) => (
                 <AutoGrowInput
-                  placeholder="none"
+                  placeholder={getTextFieldPlacholder(i.lookup, ix)}
                   onChange={onChangeDeclarationValue}
                   name={i.lookup}
                 />
