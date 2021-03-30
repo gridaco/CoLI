@@ -24,6 +24,8 @@ const functionDefaultData: {
             typeAnnotation: Types.number,
           }),
         ],
+        returnType: Types.any,
+        body: null
       },
     },
   ],

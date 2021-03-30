@@ -50,7 +50,11 @@ function FunctionDeclaration(props: {
   const [declarationValue, setDeclarationValue] = useState<FunctionDeclaration>(
     {
       name: "sum",
-      args: {},
+      args: {
+        params: [],
+        body: null,
+        returnType: Types.any,
+      },
     }
   );
 
@@ -61,6 +65,77 @@ function FunctionDeclaration(props: {
   useEffect(() => {
     setDeclaration(data);
   }, [declarationValue]);
+
+  const onChangeValue = (v: any, n: string, isArgs: boolean = false) => {
+    if (isArgs) {
+      setDeclarationValue((d) => ({
+        ...d,
+        args: {
+          ...d.args,
+          [n]: v || data[n],
+        },
+      }));
+    } else {
+      setDeclarationValue((d) => ({
+        ...d,
+        [n]: v || data[n],
+      }));
+    }
+  };
+
+  const returnArgumentsFiledMappingComponent = (
+    k: keyof FunctionDeclaration["args"],
+    ix?: number
+  ) => {
+    const variableTypeSelector = Types.getAllTypes().map((i) => ({
+      label: i,
+      value: i,
+    }));
+    switch (k) {
+      case "params":
+        return (
+          <React.Fragment>
+            <AutoGrowInput
+              placeholder={data.args.params[ix].name}
+              onChange={(v) =>
+                setDeclarationValue((d) => {
+                  let params = d.args.params;
+                  params[ix] = new Identifier(v, {
+                    typeAnnotation: params[ix].typeAnnotation,
+                  })
+                  
+                  return {
+                    ...d,
+                    args: {
+                      ...d.args,
+                      params,
+                    },
+                  };
+                })
+              }
+              name={k}
+            />
+            <Selector
+              onChange={(v) => onChangeValue(Types[v], k, true)}
+              value={
+                declarationValue.args.params[ix]?.typeAnnotation.type ||
+                Types.any
+              }
+              options={variableTypeSelector}
+            />
+          </React.Fragment>
+        );
+      case "returnType":
+        return (
+          <Selector
+            onChange={(v) => onChangeValue(Types[v], k, true)}
+            value={declarationValue.args.returnType.type}
+            options={variableTypeSelector}
+          />
+        );
+      case "body":
+    }
+  };
 
   return (
     <Positioner>
@@ -75,14 +150,40 @@ function FunctionDeclaration(props: {
           )}
         </CodeBlock>
         <Body>
-          {/* <div className="coli-values" key={idx}>
+          {Object.keys(data).map((i, idx) =>
+            data[i] instanceof Object ? (
+              Object.keys(data[i]).map((innerData: any) =>
+                data.args[innerData] instanceof Array ? (
+                  data.args[innerData].map((param, ix) => {
+                    return (
+                      <div className="coli-values" key={idx}>
+                        <label>
+                          {i} : {innerData} - {ix + 1}
+                        </label>
+                        {returnArgumentsFiledMappingComponent(innerData, ix)}
+                      </div>
+                    );
+                  })
+                ) : (
+                  <div className="coli-values" key={idx}>
+                    <label>
+                      {i} : {innerData}
+                    </label>
+                    {returnArgumentsFiledMappingComponent(innerData)}
+                  </div>
+                )
+              )
+            ) : (
+              <div className="coli-values" key={idx}>
                 <label>{i}</label>
                 <AutoGrowInput
                   placeholder={data[i]}
                   onChange={onChangeValue}
                   name={i}
                 />
-              </div> */}
+              </div>
+            )
+          )}
         </Body>
       </Wrapper>
       <CodePreview
