@@ -38,3 +38,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 - code lint ( use prettier & other linting library )
 - same struct code ( declarations, expressions folder ) optimize ( use template ... +etc )
 - change Type stringfy current `Type.any -(stringfy)> { type : "any" }` develop `Type.any -(stringfy)> Types.any`
+
+
+## Executable App
+- [node via codesandbox](https://codesandbox.io/)
+- [python via brython + codesandbox](https://github.com/brython-dev/brython)
+- [dart flutter via bridged appbox's frame](https://frames-appbox.vercel.app/flutter)
