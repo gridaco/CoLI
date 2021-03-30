@@ -78,20 +78,13 @@ function VariableDeclaration(props: {
         </CodeBlock>
         <Body>
           {Object.keys(data).map((i, idx) => (
-            <div
-              style={
-                idx === 1
-                  ? { flexDirection: "column", alignItems: "flex-start" }
-                  : {}
-              }
-              className="coli-values"
-              key={idx}
-            ></div>
+            <div className="coli-values" key={idx}></div>
           ))}
         </Body>
       </Wrapper>
       <CodePreview
         value={declarationValue}
+        customValue={[declarationValue.name, declarationValue.args]}
         interface={VariableClass}
         codeHandler={returnExampleVariableCode}
       />

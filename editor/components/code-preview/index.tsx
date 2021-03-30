@@ -72,9 +72,9 @@ import { currentColiEditorOption } from "../../states/option.state";
 // };
 
 export function CodePreview(props: {
-  value: object;
+  value: any;
+  customValue?: any;
   interface: any;
-  // will be required
   codeHandler: (args: {
     class: any;
     value: object;
@@ -86,9 +86,15 @@ export function CodePreview(props: {
   return (
     <Wrapper showLineNumbers language={language} wrapLines>
       {`
-${stringfy(new props.interface(props.value), {
-  language: language,
-})}
+${
+  props.customValue
+    ? stringfy(new props.interface(...props.customValue), {
+        language: language,
+      })
+    : stringfy(new props.interface(props.value), {
+        language: language,
+      })
+}
 
 ${props.codeHandler({ class: props.interface, value: props.value, language })}
     `}
