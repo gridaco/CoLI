@@ -89,14 +89,16 @@ function ImportDeclaration(props: { id: number; data: ImportDeclaration }) {
     }
   };
 
-  const onChangeDeclarationValue = (v: string, n: string) => {
+  const onChangeDeclarationValue = (v: string, n: string, k?: number) => {
     const prevDefaultData =
       data.specifiers[
         data.specifiers
           .map((i) => i.type === "ImportDefaultSpecifier")
           .indexOf(true)
       ];
-    const prevSpecifierData = data.specifiers.filter(data => data.type != "ImportDefaultSpecifier");
+    const prevSpecifierData = data.specifiers.filter(
+      (data) => data.type != "ImportDefaultSpecifier"
+    );
 
     if (n === "ImportDefaultSpecifier") {
       setDeclarationValue((d) => ({
@@ -111,12 +113,16 @@ function ImportDeclaration(props: { id: number; data: ImportDeclaration }) {
     } else if (n === "ImportSpecifier") {
       const [prev, next] = v.split(" as ");
       setDeclarationValue((d) => {
+        const specifiers = d.specifiers.filter(
+          (i) => i instanceof ImportSpecifier
+        );
+        specifiers[k] = new ImportSpecifier({
+          import: prev,
+          local: next || prev,
+        });
         return {
           ...d,
-          specifiers: [
-            prevDefaultData,
-            new ImportSpecifier({ import: prev, local: next || prev }),
-          ],
+          specifiers: [prevDefaultData, ...specifiers],
         };
       });
     } else if (n === "source") {
@@ -131,21 +137,26 @@ function ImportDeclaration(props: { id: number; data: ImportDeclaration }) {
           .map((i) => i.type === "ImportDefaultSpecifier")
           .indexOf(true)
       ];
-    const specifierData = data.specifiers.filter(data => data instanceof ImportSpecifier);
+    const specifierData = data.specifiers.filter(
+      (data) => data instanceof ImportSpecifier
+    );
 
     if (lookup === "source") {
       return data[lookup];
     } else if (lookup === "ImportSpecifier") {
       // TODO CLEAN UP
-      let placeholder : any  = specifierData[idx] as ImportSpecifier
-      if (placeholder?.imported.name == null || placeholder?.local.name == null) {
+      let placeholder: any = specifierData[idx] as ImportSpecifier;
+      if (
+        placeholder?.imported.name == null ||
+        placeholder?.local.name == null
+      ) {
         return null;
-      } 
+      }
       if (placeholder?.imported.name != placeholder?.local.name) {
-        placeholder = `${placeholder?.imported.name} as ${placeholder?.local.name}`
+        placeholder = `${placeholder?.imported.name} as ${placeholder?.local.name}`;
       } else if (placeholder?.imported.name === placeholder?.local.name) {
-        placeholder  = `${placeholder?.local.name}`
-      } 
+        placeholder = `${placeholder?.local.name}`;
+      }
       return placeholder;
     } else if (lookup === "ImportDefaultSpecifier") {
       return defaultData != null ? defaultData.local.name : null;
@@ -170,6 +181,7 @@ function ImportDeclaration(props: { id: number; data: ImportDeclaration }) {
                   placeholder={getTextFieldPlacholder(i.lookup, ix)}
                   onChange={onChangeDeclarationValue}
                   name={i.lookup}
+                  ix={ix}
                 />
               ))}
             </div>
