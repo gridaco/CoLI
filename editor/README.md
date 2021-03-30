@@ -36,3 +36,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ## Todo
 
 - code lint ( use prettier & other linting library )
+- same struct code ( declarations, expressions folder ) optimize ( use template ... +etc )
