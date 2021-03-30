@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import CodeBlock from "../code-block";
-import { CodePreview } from "../code-preview";
 import DeclartionTitle from "../declarations/common/title";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { currentColiEditorOption } from "../../states/option.state";
@@ -10,7 +9,7 @@ import { CommentExpression as CommentClass } from "coli/lib/expressions/comment"
 import { currentDeclarationAtom } from "../../states/declaration.state";
 import AutoGrowTextArea from "../auto-grow-textarea";
 import Selector from "../selector";
-import { setMaxListeners } from "process";
+import { CodePreview } from "../code-preview";
 
 export interface CommentExpression {
   style: string;
