@@ -54,12 +54,6 @@ const variableScopeSelector = [
   },
 ];
 
-// const ArgumentsFiledMapping = {
-//   scope : Selector,
-//   variableType: AutoGrowInput,
-//   value: AutoGrowTextArea
-// }
-
 function VariableDeclaration(props: {
   id?: number;
   data: VariableDeclaration;
@@ -93,6 +87,7 @@ function VariableDeclaration(props: {
       setDeclarationValue((d) => ({
         ...d,
         args: {
+          ...d.args,
           [n]: v || data[n],
         },
       }));
@@ -125,12 +120,17 @@ function VariableDeclaration(props: {
           />
         );
       case "variableType":
-        const variableTypeSelector = Types.getAllTypes().map(i => ({ label : i, value : i }))
-        return <Selector
+        const variableTypeSelector = Types.getAllTypes().map((i) => ({
+          label: i,
+          value: i,
+        }));
+        return (
+          <Selector
             onChange={(v) => onChangeValue(Types[v], k, true)}
             value={declarationValue.args.variableType.type}
             options={variableTypeSelector}
           />
+        );
     }
   };
 
