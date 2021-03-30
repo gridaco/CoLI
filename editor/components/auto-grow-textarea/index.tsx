@@ -1,40 +1,51 @@
 import styled from "@emotion/styled";
 import React from "react";
 
-function AutoGrowInput(props: {
+export default function AutoGrowTextArea(props: {
   placeholder: string;
-  onChange: (v: string, n: string) => void;
+  onChange: (v: string, n: string, k?: number) => void;
   name: string;
   ix?: number;
+  value: any;
 }) {
+  const keyPressHandler = (e) => {
+    switch (props.value) {
+      case "single-line":
+        e.key === "Enter" && e.preventDefault();
+    }
+  };
+
   return (
     <Wrapper>
-      <input
+      <textarea
         name={props.name}
-        onChange={(e) => props.onChange(e.target.value, e.target.name)}
-        size={props.placeholder?.length | 4}
+        onChange={(e) =>
+          props.onChange(e.target.value, e.target.name, props.ix)
+        }
         onInput={(e: any) =>
           (e.target.parentNode.dataset.value = e.target.value)
         }
         placeholder={props.placeholder ? props.placeholder : "none"}
+        onKeyPress={keyPressHandler}
       />
     </Wrapper>
   );
 }
 
-export default AutoGrowInput;
-
 const Wrapper = styled.div`
   display: inline-grid;
+  width: 90%;
+  height: auto;
   background-color: #fbfbfb;
   border-radius: 4px;
-  margin-left: 7px;
+  margin-top: 16px;
+  align-items: center;
 
   &::after,
-  input {
+  textarea {
     width: auto;
     min-width: 1em;
-    grid-area: 1 / 2;
+    grid-area: 1 / 1;
     padding: 3px 7px;
     font-size: 12px;
     appearance: none;
@@ -42,9 +53,12 @@ const Wrapper = styled.div`
     border: none;
     color: #6b6b6b;
     outline: none;
+    resize: none;
+    white-space: pre-wrap;
+    overflow: hidden;
 
     &::placeholder {
-      color: #d2d2d2;
+      color: #6b6b6b;
     }
   }
 
