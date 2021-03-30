@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { VariableDeclaration as VariableClass, VariableScope } from "coli/lib/declarations/variable";
+import {
+  VariableDeclaration as VariableClass,
+  VariableScope,
+} from "coli/lib/declarations/variable";
 import { Type, Types } from "coli/lib";
 import styled from "@emotion/styled";
 import { useRecoilValue, useSetRecoilState } from "recoil";
@@ -9,6 +12,7 @@ import DeclartionTitle from "./common/title";
 import CodeBlock from "../code-block";
 import { stringfy, StringfyLanguage } from "../../../packages/export-string";
 import { CodePreview } from "../code-preview";
+import { CommentExpression } from "coli/lib/expressions/comment";
 
 export interface VariableDeclaration {
   name: string;
@@ -19,6 +23,19 @@ export interface VariableDeclaration {
   };
 }
 
+const returnExampleVariableCode = (args: {
+  class: VariableClass | any;
+  value: VariableDeclaration;
+  language: StringfyLanguage;
+}) => {
+  const { class: variableClass, value, language } = args;
+  const { name, args: values } = value;
+  let code = "";
+  code += `new ${variableClass.name}(\n"${name}", ${JSON.stringify(values)}\n)`;
+  const comment = new CommentExpression({ style: "multi-line", content: code });
+  return stringfy(comment, { language });
+};
+
 function VariableDeclaration(props: {
   id?: number;
   data: VariableDeclaration;
@@ -27,12 +44,12 @@ function VariableDeclaration(props: {
   const setDeclaration = useSetRecoilState(
     currentDeclarationAtom<VariableDeclaration>("function", id)
   );
-  const editorOption = useRecoilValue(currentColiEditorOption);
+  const { language } = useRecoilValue(currentColiEditorOption);
   const [declarationValue, setDeclarationValue] = useState<VariableDeclaration>(
     {
       name: "",
       args: {
-        scope: 'let',
+        scope: "let",
         variableType: Types.any,
         value: "",
       },
@@ -55,7 +72,7 @@ function VariableDeclaration(props: {
           {stringfy(
             new VariableClass(declarationValue.name, declarationValue.args),
             {
-              language: editorOption.lauangue as StringfyLanguage,
+              language,
             }
           )}
         </CodeBlock>
@@ -73,7 +90,11 @@ function VariableDeclaration(props: {
           ))}
         </Body>
       </Wrapper>
-      <CodePreview value={declarationValue} interface={VariableClass} />
+      <CodePreview
+        value={declarationValue}
+        interface={VariableClass}
+        codeHandler={returnExampleVariableCode}
+      />
     </Positioner>
   );
 }

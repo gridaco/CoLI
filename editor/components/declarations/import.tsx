@@ -13,6 +13,7 @@ import {
 import { CodePreview } from "../code-preview";
 import { stringfy, StringfyLanguage } from "../../../packages/export-string";
 import { currentColiEditorOption } from "../../states/option.state";
+import { CommentExpression } from "coli/lib/expressions/comment";
 
 export interface ImportDeclaration {
   specifiers?: Array<ImportDefaultSpecifier | ImportSpecifier>;
@@ -34,12 +35,24 @@ const fields = [
   },
 ];
 
+const returnExampleImportCode = (args: {
+  class: ImportClass | any;
+  value: ImportDeclaration;
+  language: StringfyLanguage;
+}) => {
+  const { class: variableClass, value, language } = args;
+  let code = "";
+  code += `new ${variableClass.name}(\n"${JSON.stringify(value)}\n)`;
+  const comment = new CommentExpression({ style: "multi-line", content: code });
+  return stringfy(comment, { language });
+};
+
 function ImportDeclaration(props: { id: number; data: ImportDeclaration }) {
   const { data, id } = props;
   const setDeclaration = useSetRecoilState(
     currentDeclarationAtom<ImportDeclaration>("function", id)
   );
-  const editorOption = useRecoilValue(currentColiEditorOption);
+  const { language } = useRecoilValue(currentColiEditorOption);
   const [declarationValue, setDeclarationValue] = useState<ImportDeclaration>({
     specifiers: [],
     source: "",
@@ -121,7 +134,7 @@ function ImportDeclaration(props: { id: number; data: ImportDeclaration }) {
         <DeclartionTitle lable="IMPORT DECLARTIONS" />
         <CodeBlock>
           {stringfy(new ImportClass(declarationValue), {
-            language: editorOption.lauangue as StringfyLanguage,
+            language,
           })}
         </CodeBlock>
         <Body>
@@ -139,7 +152,11 @@ function ImportDeclaration(props: { id: number; data: ImportDeclaration }) {
           ))}
         </Body>
       </Wrapper>
-      <CodePreview value={declarationValue} interface={ImportClass} />
+      <CodePreview
+        value={declarationValue}
+        interface={ImportClass}
+        codeHandler={returnExampleImportCode}
+      />
     </Positioner>
   );
 }

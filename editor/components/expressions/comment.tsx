@@ -10,7 +10,6 @@ import { currentDeclarationAtom } from "../../states/declaration.state";
 import AutoGrowTextArea from "../auto-grow-textarea";
 import Selector from "../selector";
 import { CodePreview } from "../code-preview";
-
 export interface CommentExpression {
   style: string;
   content: string;
@@ -28,15 +27,21 @@ const lineValue = [
   },
 ];
 
-export default function CommentExpression(props: {
-  id: number;
-  data: CommentExpression;
-}) {
-  const { id, data } = props;
-  const setExpression = useSetRecoilState(
-    currentDeclarationAtom<CommentExpression>("function", id)
-  );
-  const editorOption = useRecoilValue(currentColiEditorOption);
+const returnExampleCommentCode = (args: {
+  class: CommentClass | any;
+  value: CommentExpression;
+  language: StringfyLanguage;
+}) => {
+  const { class: commentClass, value, language } = args;
+  let code = "";
+  code += `new ${commentClass.name}(\n${JSON.stringify(value)}\n)`;
+  const comment = new CommentClass({ style: "multi-line", content: code });
+  return stringfy(comment, { language });
+};
+
+export default function CommentExpression(props: { data: CommentExpression }) {
+  const { data } = props;
+  const { language } = useRecoilValue(currentColiEditorOption);
   const [expressionValue, setExpressionValue] = useState<CommentExpression>({
     style: "",
     content: "",
@@ -49,34 +54,24 @@ export default function CommentExpression(props: {
     });
   }, [data]);
 
-  useEffect(() => {
-    setExpression(data);
-  }, [expressionValue]);
-
   const onChangeExpressionValue = (v: string, n: string, k?: number) => {
-    setExpressionValue((d) => {
-      return {
-        ...d,
-        [n]: v == "" ? data[n] : v,
-      };
-    });
+    setExpressionValue((d) => ({
+      ...d,
+      [n]: v == "" ? data[n] : v,
+    }));
   };
 
   const onChangeLineValue = (v: any) => {
-    setExpressionValue((d) => {
-      return {
-        ...d,
-        style: v,
-      };
-    });
+    setExpressionValue((d) => ({ ...d, style: v }));
   };
+
   return (
     <Positioner>
       <Wrapper>
         <DeclartionTitle lable="COMMENT EXPRESSION" />
         <CodeBlock>
           {stringfy(new CommentClass(expressionValue), {
-            language: editorOption.lauangue as StringfyLanguage,
+            language,
           })}
         </CodeBlock>
         <Body>
@@ -84,8 +79,11 @@ export default function CommentExpression(props: {
             <div
               style={
                 idx === 1
-                  ? { flexDirection: "column", alignItems: "flex-start" }
-                  : {}
+                  ? {
+                      flexDirection: "column",
+                      alignItems: "flex-start",
+                    }
+                  : null
               }
               className="coli-values"
               key={idx}
@@ -109,7 +107,11 @@ export default function CommentExpression(props: {
           ))}
         </Body>
       </Wrapper>
-      <CodePreview value={expressionValue} interface={CommentClass} />
+      <CodePreview
+        value={expressionValue}
+        interface={CommentClass}
+        codeHandler={returnExampleCommentCode}
+      />
     </Positioner>
   );
 }
