@@ -77,18 +77,18 @@ export default function CommentExpression(props: {
           })}
         </CodeBlock>
         <Body>
-          {Object.keys(data).map((i, _) => (
+          {Object.keys(data).map((i, idx) => (
             <div
               style={
-                _ === 1
+                idx === 1
                   ? { flexDirection: "column", alignItems: "flex-start" }
                   : {}
               }
               className="coli-values"
-              key={_}
+              key={idx}
             >
-              <label>{fields[_]}</label>
-              {_ == 0 ? (
+              <label>{fields[idx]}</label>
+              {idx == 0 ? (
                 <Selector
                   onChange={onChangeLineValue}
                   value={expressionValue.style}

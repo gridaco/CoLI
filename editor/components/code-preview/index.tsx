@@ -11,7 +11,7 @@ const valueToInterfaceData = (data: object) => {
   Object.keys(data).map((i) => {
     switch (typeof data[i]) {
       case "string":
-        code.push(`${i} : "${String(data[i]).replaceAll("\n", "\\n")}"`);
+        code.push(`${i} : "${(data[i] as string).replaceAll("\n", "\\n")}"`);
         break;
       case "object":
         let objectCodes = {};
