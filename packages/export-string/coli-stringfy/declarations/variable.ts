@@ -1,4 +1,5 @@
 import { Type } from "coli/lib";
+import { convertValue } from "../../utils/convert-value";
 
 interface VariableDeclaration {
   scope: string;
@@ -14,26 +15,13 @@ function Typescript(coli: VariableDeclaration) {
     variableType: { type },
     value,
   } = coli;
+
   let code = "";
 
   code += `${scope} ${name} : ${type}`;
 
-  if (value != null) {
-    code += " ";
-    if (type != "any" && type !== typeof value) {
-      throw new Error("This is a contradiction. Type does not match.");
-    }
-
-    switch (typeof value) {
-      case "string":
-        code += `= "${value}"`;
-        break;
-      case "object":
-        code += `= ${JSON.stringify(value)}`;
-        break;
-      default:
-        code += `= ${value}`;
-    }
+  if (value) {
+    code += ` = ${convertValue(value)}`;
   }
 
   code += ";";

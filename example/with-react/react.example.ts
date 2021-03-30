@@ -2,6 +2,7 @@ import { Block, File, Function, Import, Return, Types } from "coli/lib";
 import { Identifier } from "coli/lib/ast/identifier";
 import { VariableDeclaration } from "coli/lib/declarations/variable";
 import { JSXElement } from "coli/lib/jsx";
+import { stringfy } from "../../packages/export-string";
 
 const AppbarFile = new File({
   name: "Appbar.tsx",

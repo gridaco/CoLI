@@ -14,15 +14,29 @@ const valueToInterfaceData = (data: object) => {
         code.push(`${i} : "${data[i].replaceAll("\n", "\\n")}"`);
         break;
       case "object":
-        //TODO Change [object object] -> real code
-        code.push(`${i} : ${data[i]}`);
+        let objectCodes = {};
+        objectCodes[i] = [];
+        if (data[i] instanceof Array) {
+          data[i].map((_i) => {
+            let tempArray = [];
+            const { type, ...result } = _i;
+
+            Object.keys(result).map((key) => {
+              tempArray.push(`${key} : ${JSON.stringify(_i[key])}`);
+            });
+
+            objectCodes[i].push(
+              `new ${_i.type}({\n    ${tempArray.join(",\n    ")}\n  })`
+            );
+          });
+        }
+        code.push(Object.values(objectCodes[i]).join(",\n  "));
         break;
       default:
         break;
     }
   });
 
-  console.log(code);
   return code.join(",\n  ");
 };
 
