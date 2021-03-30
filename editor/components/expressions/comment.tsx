@@ -43,7 +43,10 @@ export default function CommentExpression(props: {
   });
 
   useEffect(() => {
-    setExpressionValue(data);
+    setExpressionValue({
+      style: data.style,
+      content: data.content.replaceAll("\n", "\\n"),
+    });
   }, [data]);
 
   useEffect(() => {
