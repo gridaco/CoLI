@@ -13,6 +13,7 @@ import {
 import { CodePreview } from "../code-preview";
 import { stringfy, StringfyLanguage } from "../../../packages/export-string";
 import { currentColiEditorOption } from "../../states/option.state";
+import { CommentExpression } from "coli/lib/expressions/comment";
 
 export interface ImportDeclaration {
   specifiers?: Array<ImportDefaultSpecifier | ImportSpecifier>;
@@ -33,6 +34,17 @@ const fields = [
     lookup: "source",
   },
 ];
+
+const returnExampleImportCode = (args: {
+  class: ImportClass | any;
+  value: ImportDeclaration;
+}) => {
+  const { class: variableClass, value } = args;
+  let code = "";
+  code += `new ${variableClass.name}(\n"${JSON.stringify(value)}\n)`;
+  const comment = new CommentExpression({ style: "multi-line", content: code });
+  return stringfy(comment, { language: "typescript" });
+};
 
 function ImportDeclaration(props: { id: number; data: ImportDeclaration }) {
   const { data, id } = props;
@@ -139,7 +151,11 @@ function ImportDeclaration(props: { id: number; data: ImportDeclaration }) {
           ))}
         </Body>
       </Wrapper>
-      <CodePreview value={declarationValue} interface={ImportClass} />
+      <CodePreview
+        value={declarationValue}
+        interface={ImportClass}
+        codeHandler={returnExampleImportCode}
+      />
     </Positioner>
   );
 }

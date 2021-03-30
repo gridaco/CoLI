@@ -12,7 +12,7 @@ export default function Selector(props: {
       onChange={(e) => props.onChange(e.target.value)}
     >
       {props.options.map((i, _) => (
-        <option value={i.value}>{i.label}</option>
+        <option value={i.value} key={_}>{i.label}</option>
       ))}
     </Wrapper>
   );
