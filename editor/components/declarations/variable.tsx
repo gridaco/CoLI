@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { VariableDeclaration as VariableClass, VariableScope } from "coli/lib/declarations/variable";
+import {
+  VariableDeclaration as VariableClass,
+  VariableScope,
+} from "coli/lib/declarations/variable";
 import { Type, Types } from "coli/lib";
 import styled from "@emotion/styled";
 import { useRecoilValue, useSetRecoilState } from "recoil";
@@ -9,6 +12,7 @@ import DeclartionTitle from "./common/title";
 import CodeBlock from "../code-block";
 import { stringfy, StringfyLanguage } from "../../../packages/export-string";
 import { CodePreview } from "../code-preview";
+import { CommentExpression } from "coli/lib/expressions/comment";
 
 export interface VariableDeclaration {
   name: string;
@@ -18,6 +22,18 @@ export interface VariableDeclaration {
     value?: any;
   };
 }
+
+const returnExampleVariableCode = (args: {
+  class: VariableClass | any;
+  value: VariableDeclaration;
+}) => {
+  const { class: variableClass, value } = args;
+  const { name, args: values } = value;
+  let code = "";
+  code += `new ${variableClass.name}(\n"${name}", ${JSON.stringify(values)}\n)`;
+  const comment = new CommentExpression({ style: "multi-line", content: code });
+  return stringfy(comment, { language: "typescript" });
+};
 
 function VariableDeclaration(props: {
   id?: number;
@@ -32,7 +48,7 @@ function VariableDeclaration(props: {
     {
       name: "",
       args: {
-        scope: 'let',
+        scope: "let",
         variableType: Types.any,
         value: "",
       },
@@ -73,7 +89,11 @@ function VariableDeclaration(props: {
           ))}
         </Body>
       </Wrapper>
-      <CodePreview value={declarationValue} interface={VariableClass} />
+      <CodePreview
+        value={declarationValue}
+        interface={VariableClass}
+        codeHandler={returnExampleVariableCode}
+      />
     </Positioner>
   );
 }

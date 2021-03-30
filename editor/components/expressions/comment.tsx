@@ -34,7 +34,6 @@ const returnExampleCommentCode = (args: {
   const { class: commentClass, value } = args;
   let code = "";
   code += `new ${commentClass.name}(\n${JSON.stringify(value)}\n)`;
-  console.log(value.content)
   const comment = new CommentClass({ style: "multi-line", content: code });
   return stringfy(comment, { language: "typescript" });
 };
