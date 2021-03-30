@@ -16,4 +16,7 @@ export class Types {
   static void: Type = new Type("void");
   static undefined: Type = new Type("undefined");
   static never: Type = new Type("never");
+  static getAllTypes() {
+    return Object.keys(this);
+  }
 }

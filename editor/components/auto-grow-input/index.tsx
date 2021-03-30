@@ -3,7 +3,7 @@ import React from "react";
 
 function AutoGrowInput(props: {
   placeholder: string;
-  onChange: (v: string, n: string, k?: number) => void;
+  onChange: (v: string, n: string, k?: any) => void;
   name: string;
   ix?: number;
 }) {

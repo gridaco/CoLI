@@ -4,7 +4,7 @@ import React from "react";
 export default function AutoGrowTextArea(props: {
   placeholder: string;
   onChange: (v: string, n: string, k?: number) => void;
-  name: string;
+  name?: string;
   ix?: number;
   value: any;
 }) {
@@ -12,7 +12,7 @@ export default function AutoGrowTextArea(props: {
   return (
     <Wrapper>
       <textarea
-        name={props.name}
+        name={props.name || ""}
         onChange={(e) =>
           props.onChange(e.target.value, e.target.name, props.ix)
         }

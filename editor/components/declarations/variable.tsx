@@ -13,6 +13,9 @@ import CodeBlock from "../code-block";
 import { stringfy, StringfyLanguage } from "../../../packages/export-string";
 import { CodePreview } from "../code-preview";
 import { CommentExpression } from "coli/lib/expressions/comment";
+import Selector from "../selector";
+import AutoGrowInput from "../auto-grow-input";
+import AutoGrowTextArea from "../auto-grow-textarea";
 
 export interface VariableDeclaration {
   name: string;
@@ -35,6 +38,27 @@ const returnExampleVariableCode = (args: {
   const comment = new CommentExpression({ style: "multi-line", content: code });
   return stringfy(comment, { language });
 };
+
+const variableScopeSelector = [
+  {
+    label: "const",
+    value: "const",
+  },
+  {
+    label: "let",
+    value: "let",
+  },
+  {
+    label: "var",
+    value: "var",
+  },
+];
+
+// const ArgumentsFiledMapping = {
+//   scope : Selector,
+//   variableType: AutoGrowInput,
+//   value: AutoGrowTextArea
+// }
 
 function VariableDeclaration(props: {
   id?: number;
@@ -64,6 +88,52 @@ function VariableDeclaration(props: {
     setDeclaration(data);
   }, [declarationValue]);
 
+  const onChangeValue = (v: any, n: string, isArgs: boolean = false) => {
+    if (isArgs) {
+      setDeclarationValue((d) => ({
+        ...d,
+        args: {
+          [n]: v || data[n],
+        },
+      }));
+    } else {
+      setDeclarationValue((d) => ({
+        ...d,
+        [n]: v || data[n],
+      }));
+    }
+  };
+
+  const returnArgumentsFiledMappingComponent = (
+    k: keyof VariableDeclaration["args"]
+  ) => {
+    switch (k) {
+      case "scope":
+        return (
+          <Selector
+            onChange={(v) => onChangeValue(v, k, true)}
+            value={declarationValue.args.scope}
+            options={variableScopeSelector}
+          />
+        );
+      case "value":
+        return (
+          <AutoGrowTextArea
+            onChange={(v) => onChangeValue(v, k, true)}
+            placeholder={data["args"].value}
+            value={declarationValue.args.value}
+          />
+        );
+      case "variableType":
+        const variableTypeSelector = Types.getAllTypes().map(i => ({ label : i, value : i }))
+        return <Selector
+            onChange={(v) => onChangeValue(Types[v], k, true)}
+            value={declarationValue.args.variableType.type}
+            options={variableTypeSelector}
+          />
+    }
+  };
+
   return (
     <Positioner>
       <Wrapper>
@@ -77,9 +147,39 @@ function VariableDeclaration(props: {
           )}
         </CodeBlock>
         <Body>
-          {Object.keys(data).map((i, idx) => (
-            <div className="coli-values" key={idx}></div>
-          ))}
+          {Object.keys(data).map((i, idx) =>
+            data[i] instanceof Object ? (
+              Object.keys(data[i]).map((innerData: any) => (
+                <div
+                  className="coli-values"
+                  key={idx}
+                  style={
+                    innerData === "value"
+                      ? {
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "flex-start",
+                        }
+                      : null
+                  }
+                >
+                  <label>
+                    {i} : {innerData}
+                  </label>
+                  {returnArgumentsFiledMappingComponent(innerData)}
+                </div>
+              ))
+            ) : (
+              <div className="coli-values" key={idx}>
+                <label>{i}</label>
+                <AutoGrowInput
+                  placeholder={data[i]}
+                  onChange={onChangeValue}
+                  name={i}
+                />
+              </div>
+            )
+          )}
         </Body>
       </Wrapper>
       <CodePreview
