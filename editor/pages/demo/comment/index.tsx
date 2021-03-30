@@ -26,7 +26,7 @@ function CoLiCommentDemoPage() {
     <Wrapper>
       <div className="expressions-view">
         {importDefaultData.declarations.map((i, ix) => (
-          <CommentExpression id={ix} data={i} key={ix} />
+          <CommentExpression data={i} key={ix} />
         ))}
       </div>
     </Wrapper>

@@ -13,6 +13,7 @@ import {
 import { CodePreview } from "../code-preview";
 import { stringfy, StringfyLanguage } from "../../../packages/export-string";
 import { currentColiEditorOption } from "../../states/option.state";
+import { CommentExpression } from "coli/lib/expressions/comment";
 
 export interface ImportDeclaration {
   specifiers?: Array<ImportDefaultSpecifier | ImportSpecifier>;
@@ -34,12 +35,24 @@ const fields = [
   },
 ];
 
+const returnExampleImportCode = (args: {
+  class: ImportClass | any;
+  value: ImportDeclaration;
+  language: StringfyLanguage;
+}) => {
+  const { class: variableClass, value, language } = args;
+  let code = "";
+  code += `new ${variableClass.name}(\n"${JSON.stringify(value)}\n)`;
+  const comment = new CommentExpression({ style: "multi-line", content: code });
+  return stringfy(comment, { language });
+};
+
 function ImportDeclaration(props: { id: number; data: ImportDeclaration }) {
   const { data, id } = props;
   const setDeclaration = useSetRecoilState(
     currentDeclarationAtom<ImportDeclaration>("function", id)
   );
-  const editorOption = useRecoilValue(currentColiEditorOption);
+  const { language } = useRecoilValue(currentColiEditorOption);
   const [declarationValue, setDeclarationValue] = useState<ImportDeclaration>({
     specifiers: [],
     source: "",
@@ -76,42 +89,77 @@ function ImportDeclaration(props: { id: number; data: ImportDeclaration }) {
     }
   };
 
-  const onChangeDeclarationValue = (v: string, n: string) => {
+  const onChangeDeclarationValue = (v: string, n: string, k?: number) => {
+    const prevDefaultData =
+      data.specifiers[
+        data.specifiers
+          .map((i) => i.type === "ImportDefaultSpecifier")
+          .indexOf(true)
+      ];
+    const prevSpecifierData = data.specifiers.filter(
+      (data) => data.type != "ImportDefaultSpecifier"
+    );
+
     if (n === "ImportDefaultSpecifier") {
-      const prevDefaultData =
-        data.specifiers[
-          data.specifiers
-            .map((i) => i.type === "ImportDefaultSpecifier")
-            .indexOf(true)
-        ];
-      const prevSpecifierData = data.specifiers.reduce((acc, i) => {
-        if (i.type != "ImportDefaultSpecifier") {
-          acc.push(i);
-        }
-        return acc;
-      }, []);
       setDeclarationValue((d) => ({
         ...d,
         specifiers: [
           new ImportDefaultSpecifier({
             local: v || prevDefaultData.local.name,
           }),
-          ...prevSpecifierData,
+          ...(prevSpecifierData as []),
         ],
       }));
     } else if (n === "ImportSpecifier") {
       const [prev, next] = v.split(" as ");
-
       setDeclarationValue((d) => {
+        const specifiers = d.specifiers.filter(
+          (i) => i instanceof ImportSpecifier
+        );
+        specifiers[k] = new ImportSpecifier({
+          import: prev,
+          local: next || prev,
+        });
         return {
           ...d,
-          specifiers: [
-            new ImportSpecifier({ import: prev, local: next || prev }),
-          ],
+          specifiers: [prevDefaultData, ...specifiers],
         };
       });
     } else if (n === "source") {
       setDeclarationValue((d) => ({ ...d, source: v }));
+    }
+  };
+
+  const getTextFieldPlacholder = (lookup: string, idx: number) => {
+    const defaultData =
+      data.specifiers[
+        data.specifiers
+          .map((i) => i.type === "ImportDefaultSpecifier")
+          .indexOf(true)
+      ];
+    const specifierData = data.specifiers.filter(
+      (data) => data instanceof ImportSpecifier
+    );
+
+    if (lookup === "source") {
+      return data[lookup];
+    } else if (lookup === "ImportSpecifier") {
+      // TODO CLEAN UP
+      let placeholder: any = specifierData[idx] as ImportSpecifier;
+      if (
+        placeholder?.imported.name == null ||
+        placeholder?.local.name == null
+      ) {
+        return null;
+      }
+      if (placeholder?.imported.name != placeholder?.local.name) {
+        placeholder = `${placeholder?.imported.name} as ${placeholder?.local.name}`;
+      } else if (placeholder?.imported.name === placeholder?.local.name) {
+        placeholder = `${placeholder?.local.name}`;
+      }
+      return placeholder;
+    } else if (lookup === "ImportDefaultSpecifier") {
+      return defaultData != null ? defaultData.local.name : null;
     }
   };
 
@@ -121,25 +169,30 @@ function ImportDeclaration(props: { id: number; data: ImportDeclaration }) {
         <DeclartionTitle lable="IMPORT DECLARTIONS" />
         <CodeBlock>
           {stringfy(new ImportClass(declarationValue), {
-            language: editorOption.lauangue as StringfyLanguage,
+            language,
           })}
         </CodeBlock>
         <Body>
           {fields.map((i, _) => (
             <div className="coli-values" key={_}>
               <label>{i.label}</label>
-              {mappingTextField(i.lookup).map((_) => (
+              {mappingTextField(i.lookup).map((_, ix) => (
                 <AutoGrowInput
-                  placeholder="none"
+                  placeholder={getTextFieldPlacholder(i.lookup, ix)}
                   onChange={onChangeDeclarationValue}
                   name={i.lookup}
+                  ix={ix}
                 />
               ))}
             </div>
           ))}
         </Body>
       </Wrapper>
-      <CodePreview value={declarationValue} interface={ImportClass} />
+      <CodePreview
+        value={declarationValue}
+        interface={ImportClass}
+        codeHandler={returnExampleImportCode}
+      />
     </Positioner>
   );
 }
