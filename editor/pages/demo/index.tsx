@@ -11,6 +11,12 @@ function DemoListPage() {
         <Link href="/demo/comment">
           <a>comment</a>
         </Link>
+        <Link href="/demo/function">
+          <a>function</a>
+        </Link>
+        <Link href="/demo/variable">
+          <a>variable</a>
+        </Link>
       </p>
     </div>
   );

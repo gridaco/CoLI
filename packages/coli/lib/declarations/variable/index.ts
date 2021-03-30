@@ -4,7 +4,7 @@ import { Declaration } from "../declaration.base";
 
 type ESScope = "const" | "let" | "var";
 
-type VariableScope = ESScope;
+export type VariableScope = ESScope;
 
 export class VariableDeclaration extends Declaration {
   scope: VariableScope = "let";
