@@ -26,11 +26,11 @@ const valueToInterfaceData = (data: object) => {
             });
 
             objectCodes[i].push(
-              `new ${_i.type}({\n    ${tempArray.join(",\n    ")}\n  })`
+              `  new ${_i.type}({\n\t\t${tempArray.join(",\n\t\t")}\n\t  })`
             );
           });
+          code.push(`${i} : [\n\t${Object.values(objectCodes[i]).join(",\n\t")}\n\t]`);
         }
-        code.push(Object.values(objectCodes[i]).join(",\n  "));
         break;
       default:
         break;

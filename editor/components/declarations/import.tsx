@@ -53,6 +53,29 @@ function ImportDeclaration(props: { id: number; data: ImportDeclaration }) {
     setDeclaration(data);
   }, [declarationValue]);
 
+  const mappingTextField = (fleid?: string) => {
+    const MappingOneArray = Array(1).fill(null);
+    if (fleid === "ImportDefaultSpecifier") {
+      return MappingOneArray;
+    } else if (fleid === "source") {
+      return MappingOneArray;
+    } else if (fleid === "ImportSpecifier") {
+      const list = data.specifiers.reduce((acc, i) => {
+        if (i.type != "ImportDefaultSpecifier") {
+          acc.push(i);
+        }
+        return acc;
+      }, []);
+
+      if (list.length === 0) {
+        return MappingOneArray;
+      }
+      return list;
+    } else {
+      return [];
+    }
+  };
+
   const onChangeDeclarationValue = (v: string, n: string) => {
     if (n === "ImportDefaultSpecifier") {
       const prevDefaultData =
@@ -78,7 +101,7 @@ function ImportDeclaration(props: { id: number; data: ImportDeclaration }) {
       }));
     } else if (n === "ImportSpecifier") {
       const [prev, next] = v.split(" as ");
-     
+
       setDeclarationValue((d) => {
         return {
           ...d,
@@ -105,11 +128,13 @@ function ImportDeclaration(props: { id: number; data: ImportDeclaration }) {
           {fields.map((i, _) => (
             <div className="coli-values" key={_}>
               <label>{i.label}</label>
-              <AutoGrowInput
-                placeholder="none"
-                onChange={onChangeDeclarationValue}
-                name={i.lookup}
-              />
+              {mappingTextField(i.lookup).map((_) => (
+                <AutoGrowInput
+                  placeholder="none"
+                  onChange={onChangeDeclarationValue}
+                  name={i.lookup}
+                />
+              ))}
             </div>
           ))}
         </Body>
