@@ -16,7 +16,7 @@ const importDefaultData: {
     },
     {
       style: "multi-line",
-      content: "multi-line comment demo \\n\n _markdown_ **also** `supported`",
+      content: "multi-line comment demo\n_markdown_ **also** `supported`",
     },
   ],
 };
@@ -26,7 +26,7 @@ function CoLiCommentDemoPage() {
     <Wrapper>
       <div className="expressions-view">
         {importDefaultData.declarations.map((i, ix) => (
-          <CommentExpression id={ix} data={i} key={ix} />
+          <CommentExpression data={i} key={ix} />
         ))}
       </div>
     </Wrapper>

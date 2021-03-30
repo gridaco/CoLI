@@ -1,6 +1,6 @@
 import { VariableDeclaration } from "../lib/declarations/variable";
 import { stringfy } from "../../export-string";
-import { Types } from "../../../coli/dist";
+import { Types } from "../lib";
 
 /**
  * @test VariableDeclaration

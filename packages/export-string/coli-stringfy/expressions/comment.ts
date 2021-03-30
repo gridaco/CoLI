@@ -8,8 +8,10 @@ function Typescript(coli: CommentExpression) {
   let code = "";
 
   if (style === "single-line") {
-    code += `// ${content}`;
+    code = "";
+    content.split("\n").map((cmt) => (code += `// ${cmt}\n`));
   } else {
+    code = "";
     code += "/**\n";
     content.split("\n").map((cmt) => (code += `* ${cmt}\n`));
     code += "*/";
