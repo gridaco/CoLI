@@ -27,8 +27,13 @@ function Typescript(coli: FunctionDeclaration) {
     code = `function ${name}() : ${type} {\n`;
   }
 
-  // console.log(body.body.map(i => i.));
-  // code += `${body.body[0][0]._defaultSnippet}`;
+  code += body.body
+    .map((i) => {
+      if (i instanceof Array) {
+        return i.map((i) => `  ` + i._defaultSnippet).join("");
+      }
+    })
+    .join("\n");
 
   code += `\n}`;
   return code;
