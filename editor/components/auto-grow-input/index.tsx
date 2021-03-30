@@ -3,7 +3,7 @@ import React from "react";
 
 function AutoGrowInput(props: {
   placeholder: string;
-  onChange: (v: string, n: string, k?: number) => void;
+  onChange: (v: string, n: string) => void;
   name: string;
   ix?: number
 }) {
@@ -11,7 +11,7 @@ function AutoGrowInput(props: {
     <Wrapper>
       <input
         name={props.name}
-        onChange={(e) => props.onChange(e.target.value, e.target.name, props.ix)}
+        onChange={(e) => props.onChange(e.target.value, e.target.name)}
         size={props.placeholder?.length | 4}
         onInput={(e: any) =>
           (e.target.parentNode.dataset.value = e.target.value)

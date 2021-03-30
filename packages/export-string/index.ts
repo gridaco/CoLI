@@ -1,11 +1,13 @@
 import { ColiObjectType } from "coli/lib/_abstract";
 import {
+  _DECLARATION_FUNCTION,
   _DECLARATION_IMPORT,
   _DECLARATION_VARIABLE,
 } from "coli/lib/_internal/constants/declarations-name";
 import { _EXPRESSION_COMMENT } from "coli/lib/_internal/constants/expressions-name";
 import {
   StringfyComment,
+  StringfyFunction,
   StringfyImport,
   StringfyVariable,
 } from "./coli-stringfy";
@@ -36,6 +38,8 @@ function stringfyColiToTypescript(coli: any) {
       return StringfyComment.Typescript(coli);
     case _DECLARATION_VARIABLE:
       return StringfyVariable.Typescript(coli);
+    case _DECLARATION_FUNCTION:
+      return StringfyFunction.Typescript(coli);
     case _DECLARATION_IMPORT:
       return StringfyImport.Typescript(coli);
   }

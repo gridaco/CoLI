@@ -4,7 +4,7 @@ import { FunctionDeclraration } from "../../declarations/function";
 import { CallExpression } from "../../expressions/call-expression";
 import { BlockStatement } from "../../statements";
 import { Snippet } from "../snippet";
-import { Type } from "../type";
+import { Type, Types } from "../type";
 
 export class Function extends ColiBuilder<FunctionDeclraration> {
   private name: string;
@@ -43,6 +43,7 @@ export class Function extends ColiBuilder<FunctionDeclraration> {
     return new FunctionDeclraration(this.name, {
       returnType: this.returnType,
       body: this.body,
+      params: this.parameters,
     });
   }
 
