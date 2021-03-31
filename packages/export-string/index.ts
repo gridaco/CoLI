@@ -2,18 +2,6 @@ import { ColiInterpretable, ColiObject } from "coli/lib/_abstract";
 import { NoTokenInterpreterFoundError } from "./errors";
 import * as COLI from "coli/lib/_internal/node-name";
 import * as CORE from "./core";
-import { VariableDeclaration } from "coli/lib/declarations/variable";
-import { Identifier } from "coli/lib/ast/identifier";
-import { TaggedTemplateExpression } from "coli/lib/expressions/tagged-template-expression";
-import { PropertyAccessExpression } from "coli/lib/expressions/property-access-exporession";
-import { TemplateLiteral } from "coli/lib/ast/template-literal";
-import {
-  ImportDeclaration,
-  ImportDefaultSpecifier,
-  ImportSpecifier,
-} from "coli/lib/declarations/import";
-import { FunctionDeclaration } from "coli/lib/declarations/function";
-import { Block, Snippet, Type, Types } from "coli/lib";
 
 /*@internal*/
 export type StringfyLanguage =
