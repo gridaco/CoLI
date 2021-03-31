@@ -1,4 +1,9 @@
-export function convertValue(value: any) {
+/**
+ * stringfy value in ecma script syntax
+ * @param value
+ * @returns
+ */
+export function convertEsValue(value: any) {
   if (value instanceof RegExp) {
     // regex type is not part of typeof operator, we need to handle it separately.
     return value;

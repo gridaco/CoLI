@@ -1,6 +1,6 @@
 import { Type } from "coli/lib";
 import { VariableDeclaration } from "coli/lib/declarations/variable";
-import { convertValue } from "../../utils/convert-value";
+import { convertEsValue } from "../../utils/convert-value";
 
 // FIXEM id has changed to identifier which is another coli object, convert identifer {name : "a"} as a via identifier converter.
 
@@ -17,7 +17,7 @@ function Typescript(coli: VariableDeclaration) {
   code += `${kind} ${name} : ${type}`;
 
   if (init) {
-    code += ` = ${convertValue(init)}`;
+    code += ` = ${convertEsValue(init)}`;
   }
 
   code += ";";
