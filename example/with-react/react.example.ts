@@ -62,7 +62,7 @@ AppbarFile.import(importReact.make());
 AppbarFile.declare(Wrapper, TitleAndAvatarWrapper, Title, Message);
 
 console.log(
-  stringfy(AppbarFile, {
+  stringfy(AppbarFile.blocks, {
     language: "tsx",
   })
 );

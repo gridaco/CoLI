@@ -1,8 +1,10 @@
 import { ColiBuilder } from "../../builder";
+import { ColiBlock } from "../../builder/block";
 import { Declaration } from "../../declarations/declaration.base";
 import { FunctionDeclaration } from "../../declarations/function";
 import { ImportDeclaration } from "../../declarations/import";
 import { Class } from "../class";
+import { Function } from "../function";
 
 /**
  * interface of general in-project contained file
@@ -27,6 +29,7 @@ export interface File {
 }
 
 export class File extends ColiBuilder {
+  readonly blocks: ColiBlock[] = [];
   constructor(params: {
     readonly path: string;
     readonly name: string;
@@ -51,7 +54,7 @@ export class File extends ColiBuilder {
         this.ext = __ext;
 
         // if name like hello.py givven, extract py as extension, set hello as file name
-        this.name = params.name.replace(__ext, "");
+        this.name = params.name.replace("." + __ext, "");
       } catch (_) {
         throw "you must provide approporate file extension in name or with ext field.";
       }
@@ -60,22 +63,31 @@ export class File extends ColiBuilder {
   }
 
   import(importDeclaration: ImportDeclaration): this {
+    this.blocks.push(importDeclaration);
     return this;
   }
 
   withClass(_class: Class): this {
+    this.blocks.push(_class);
     return this;
   }
 
   declare(...declaration: Declaration[]): this {
+    this.blocks.push(declaration);
     return this;
   }
 
-  withFunction(functionDeclaration: FunctionDeclaration) {
+  withFunction(func: FunctionDeclaration | Function) {
+    if (func instanceof FunctionDeclaration) {
+      this.blocks.push(func);
+    } else if (func instanceof Function) {
+      this.blocks.push(func.make());
+    }
     return this;
   }
 
   __finalize() {
-    throw "not implemented";
+    // file is not a ast node. returning this.
+    return this;
   }
 }

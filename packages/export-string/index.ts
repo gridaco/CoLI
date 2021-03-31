@@ -1,5 +1,6 @@
+import { ColiBlock } from "coli/lib/builder/block";
 import { CommentExpression } from "coli/lib/expressions/comment";
-import { ColiObject } from "coli/lib/_abstract";
+import { ColiInterpretable, ColiObject } from "coli/lib/_abstract";
 import {
   _DECLARATION_FUNCTION,
   _DECLARATION_IMPORT,
@@ -29,20 +30,31 @@ const NO_INTERPRETER_ERROR = new Error(
 );
 
 export function stringfy(
-  coli: any,
+  coli: ColiInterpretable,
   options: { language: StringfyLanguage }
 ): string {
-  if (options.language === "typescript" || options.language === "tsx") {
-    return stringfyColiToTypescript(coli);
-  } else if (options.language === "python") {
-    return stringfyColiToPython(coli);
-  } else if (options.language === "dart") {
-    return stringfyColiToDart(coli);
-  } else {
-    throw new Error(
-      `Unsupported language exception. ${options.language} is not yet supported by coli:stringfy`
-    );
+  if (Array.isArray(coli)) {
+    let string = "";
+    coli.map((c) => {
+      string += stringfy(c, options);
+      string += "\n";
+    });
+    return string;
   }
+
+  if (coli instanceof ColiObject) {
+    if (options.language === "typescript" || options.language === "tsx") {
+      return stringfyColiToTypescript(coli);
+    } else if (options.language === "python") {
+      return stringfyColiToPython(coli);
+    } else if (options.language === "dart") {
+      return stringfyColiToDart(coli);
+    }
+  }
+
+  throw new Error(
+    `Unsupported language exception. ${options.language} is not yet supported by coli:stringfy`
+  );
 }
 
 function stringfyColiToTypescript(coli: ColiObject) {

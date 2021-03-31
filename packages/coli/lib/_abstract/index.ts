@@ -1,3 +1,4 @@
+import { ColiBlock } from "../builder/block";
 import { CommentExpression } from "../expressions/comment";
 import {
   _NODE_IDENTIFIER,
@@ -111,3 +112,5 @@ export class ColiObject {
 
   constructor(readonly __type: ColiObjectType) {}
 }
+
+export type ColiInterpretable = ColiObject | ColiBlock | Array<ColiBlock>;
