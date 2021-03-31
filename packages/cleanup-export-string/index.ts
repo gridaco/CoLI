@@ -7,6 +7,11 @@ import { Identifier, Literal } from "coli/lib/ast";
 import { TaggedTemplateExpression } from "coli/lib/expressions/tagged-template-expression";
 import { PropertyAccessExpression } from "coli/lib/expressions/property-access-exporession";
 import { TemplateLiteral } from "coli/lib/ast/template-literal";
+import {
+  ImportDeclaration,
+  ImportDefaultSpecifier,
+  ImportSpecifier,
+} from "coli/lib/declarations/import";
 
 /*@internal*/
 export type StringfyLanguage =
@@ -58,6 +63,9 @@ export function createSourceCode(
     case COLI._EXPRESSION_COMMENT:
       useStringfyFunction = CORE.coliCommentStringfy;
       break;
+    case COLI._DECLARATION_IMPORT:
+      useStringfyFunction = CORE.coliImportStringfy;
+      break;
     case COLI._STATEMENT_VARIABLE:
       useStringfyFunction = CORE.coliVariableStringfy;
       break;
@@ -69,12 +77,20 @@ export function createSourceCode(
   throw new NoTokenInterpreterFoundError(nodeName, coli);
 }
 
-const messageValue = new Literal("hello world");
-const messageVariable = new VariableDeclaration("message", {
-  kind: "const",
-  initializer: messageValue,
+const importDec = new ImportDeclaration({
+  specifiers: [
+    new ImportDefaultSpecifier({
+      local: "styled",
+    }),
+    new ImportSpecifier({
+      import: "utils",
+    }),
+  ],
+  source: "@motion/styled",
 });
 
-stringfy(messageVariable, {
-  language: "typescript",
-});
+console.log(
+  stringfy(importDec, {
+    language: "typescript",
+  })
+);
