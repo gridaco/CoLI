@@ -1,4 +1,8 @@
 export function convertValue(value: any) {
+  if (value instanceof RegExp) {
+    // regex type is not part of typeof operator, we need to handle it separately.
+    return value;
+  }
   switch (typeof value) {
     case "string":
       return `"${value}"`;
