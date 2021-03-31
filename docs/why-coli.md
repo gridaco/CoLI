@@ -28,3 +28,10 @@ It also has native support for web technologies such as GraqhQL, CSS, HTML, XML
 > If you are looking for javasciprt builder, typescript's compiler factory has all the compatible functionallities.
 
 Thous, CoLI is a builder sdk as mentioned above. It's focus is on providing the best experience to developers building code generation application with simple and unified interface.
+
+## Foundation & Initial Goal
+
+CoLI is built for Bridged's Design to code project, building usable and reliable UI application code supporting web apps using React, Vue, Svelte and Flutter.
+
+You will find CoLI most useful when building UI Application generator technologies.
+We have few logic representing nodes, but it's all basic supporting only standard libraries. for custom language-specific codes, please visit [buiders.md](./BUILDERS.md) to check if any of them are already implemented. if not, we recommand you to fill the blanks with custom implementation or extending CoLI or using template markups such like pug.
