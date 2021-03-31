@@ -1,7 +1,7 @@
 import { AstType } from "../ast-types";
 
 export interface AstToken {
-  type: AstType;
+  __type: AstType;
 }
 
 export class AstToken {}
