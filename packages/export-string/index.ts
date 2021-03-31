@@ -64,5 +64,8 @@ export function createSourceCode(
   if (useStringfyFunction) {
     return useStringfyFunction(coli, stringfyLanguage);
   }
+
+  /** @TEST */
+  return JSON.stringify(coli);
   throw new NoTokenInterpreterFoundError(nodeName, coli);
 }
