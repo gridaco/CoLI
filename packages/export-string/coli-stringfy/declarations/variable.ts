@@ -1,5 +1,8 @@
 import { Type } from "coli/lib";
+import { Identifier } from "coli/lib/ast";
 import { VariableDeclaration } from "coli/lib/declarations/variable";
+import { PropertyAccessExpression } from "coli/lib/expressions/property-access-exporession";
+import { TaggedTemplateExpression } from "coli/lib/expressions/tagged-template-expression";
 import { convertEsValue } from "../../utils/convert-value";
 
 // FIXEM id has changed to identifier which is another coli object, convert identifer {name : "a"} as a via identifier converter.
@@ -12,7 +15,6 @@ function Typescript(coli: VariableDeclaration) {
     initializer: init,
   } = coli;
 
-  console.log();
   let code = `${kind} ${name}`;
 
   if (type) {
@@ -20,7 +22,17 @@ function Typescript(coli: VariableDeclaration) {
   }
 
   if (init) {
-    code += ` = ${convertEsValue(init)}`;
+    if (init instanceof TaggedTemplateExpression) {
+      if (init.tag instanceof PropertyAccessExpression) {
+        if (init.tag.expression instanceof Identifier) {
+          code += ` = ${init.tag.expression.name}.${init.tag.name}\``;
+          code += `${init.template.value}`;
+          code += "`";
+        }
+      }
+    } else {
+      code += ` = ${convertEsValue(init)}`;
+    }
   }
 
   code += ";";
