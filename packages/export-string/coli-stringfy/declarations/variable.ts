@@ -12,9 +12,12 @@ function Typescript(coli: VariableDeclaration) {
     initializer: init,
   } = coli;
 
-  let code = "";
+  console.log();
+  let code = `${kind} ${name}`;
 
-  code += `${kind} ${name} : ${type}`;
+  if (type) {
+    code += `: ${type}`;
+  }
 
   if (init) {
     code += ` = ${convertEsValue(init)}`;
