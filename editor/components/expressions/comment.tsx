@@ -5,13 +5,13 @@ import DeclartionTitle from "../declarations/common/title";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { currentColiEditorOption } from "../../states/option.state";
 import { stringfy, StringfyLanguage } from "../../../packages/export-string";
-import { CommentExpression as CommentClass } from "coli/lib/expressions/comment";
+import { CommentExpression as CommentClass, CommentStyleEnum } from "coli/lib/expressions/comment";
 import { currentDeclarationAtom } from "../../states/declaration.state";
 import AutoGrowTextArea from "../auto-grow-textarea";
 import Selector from "../selector";
 import { CodePreview } from "../code-preview";
 export interface CommentExpression {
-  style: string;
+  style: CommentStyleEnum;
   content: string;
 }
 
@@ -43,7 +43,7 @@ export default function CommentExpression(props: { data: CommentExpression }) {
   const { data } = props;
   const { language } = useRecoilValue(currentColiEditorOption);
   const [expressionValue, setExpressionValue] = useState<CommentExpression>({
-    style: "",
+    style: "single-line",
     content: "",
   });
 

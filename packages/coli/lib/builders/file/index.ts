@@ -1,6 +1,6 @@
 import { ColiBuilder } from "../../builder";
 import { Declaration } from "../../declarations/declaration.base";
-import { FunctionDeclraration } from "../../declarations/function";
+import { FunctionDeclaration } from "../../declarations/function";
 import { ImportDeclaration } from "../../declarations/import";
 import { Class } from "../class";
 
@@ -71,7 +71,7 @@ export class File extends ColiBuilder {
     return this;
   }
 
-  withFunction(functionDeclaration: FunctionDeclraration) {
+  withFunction(functionDeclaration: FunctionDeclaration) {
     return this;
   }
 
