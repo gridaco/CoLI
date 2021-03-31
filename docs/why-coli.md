@@ -27,7 +27,7 @@ It also has native support for web technologies such as GraqhQL, CSS, HTML, XML
 
 > If you are looking for javasciprt builder, typescript's compiler factory has all the compatible functionallities.
 
-Thous, CoLI is a builder sdk as mentioned above. It's focus is on providing the best experience to developers building code generation application with simple and unified interface.
+Thus, CoLI is a builder sdk as mentioned above. It's focus is on providing the best experience to developers building code generation application with simple and unified interface.
 
 ## Foundation & Initial Goal
 
