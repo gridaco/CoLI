@@ -2,13 +2,6 @@ import { Type } from "coli/lib";
 import { VariableDeclaration } from "coli/lib/declarations/variable";
 import { convertValue } from "../../utils/convert-value";
 
-// interface VariableDeclaration {
-//   scope: string;
-//   variableType: Type;
-//   name: string;
-//   value?: any;
-// }
-
 function Typescript(coli: VariableDeclaration) {
   const {
     kind,
