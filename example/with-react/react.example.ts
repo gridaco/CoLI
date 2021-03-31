@@ -90,10 +90,29 @@ console.log(
  *  </Wrapper>
  * }
  *
- * const Wrapper = styled.div``
- * const TitleAndAvatarWrapper = styled.div``
- * const Title = styled.h1``
- * const Message = styled.span``
+ *
+ * const Wrapper = styled.div`
+ *   margin: 60px 20px;
+ * `;
+ *
+ * const TitleAndAvatarWrapper = styled.div`
+ *   display: flex;
+ *   justify-content: space-between;
+ *   align-items: center;
+ * `;
+ *
+ * const Title = styled.h1`
+ *   font-size: 36px;
+ * `;
+ *
+ * const Avatar = styled.img`
+ *   margin-left: 20px;
+ * `;
+ *
+ * const Message = styled.span`
+ * color: #a4a4a4;
+ * font-size: 14px;
+ * `;
  *
  * export default Appbar
  */
