@@ -1,7 +1,7 @@
 import { Types } from "coli/lib";
 import React from "react";
-import VariableDeclaration, {
-  VariableDeclaration as VariableDeclarationInterface,
+import VariableStatement, {
+  VariableStatement as VariableDeclarationInterface,
 } from "../../../components/statements/variable";
 import styled from "@emotion/styled";
 import CodeBlock from "../../../components/code-block";
@@ -29,7 +29,7 @@ function CoLiVariableDemoPage() {
       <div className="declarations-view">
         <CodeBlock>{variableDefaultData.example}</CodeBlock>
         {variableDefaultData.declarations.map((i, ix) => (
-          <VariableDeclaration id={ix} data={i} key={ix} />
+          <VariableStatement id={ix} data={i} key={ix} />
         ))}
       </div>
       <CodeSandBoxView source="console.log('hello')" />

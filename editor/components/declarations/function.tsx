@@ -3,7 +3,10 @@ import { FunctionDeclaration as FunctionClass } from "coli/lib/declarations/func
 import { Type, Types } from "coli/lib";
 import styled from "@emotion/styled";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { currentDeclarationAtom } from "../../states/declaration.state";
+import {
+  currentDeclarationAtom,
+  functionDeclarationAtom,
+} from "../../states/declaration.state";
 import { currentColiEditorOption } from "../../states/option.state";
 import DeclartionTitle from "./common/title";
 import CodeBlock from "../code-block";
@@ -43,9 +46,7 @@ function FunctionDeclaration(props: {
   data: FunctionDeclaration;
 }) {
   const { id, data } = props;
-  const setDeclaration = useSetRecoilState(
-    currentDeclarationAtom<FunctionDeclaration>("function", id)
-  );
+  const setGlobalFunctionDeclarationValue = useSetRecoilState(functionDeclarationAtom);
   const { language } = useRecoilValue(currentColiEditorOption);
   const [declarationValue, setDeclarationValue] = useState<FunctionDeclaration>(
     {
@@ -63,7 +64,8 @@ function FunctionDeclaration(props: {
   }, [data]);
 
   useEffect(() => {
-    setDeclaration(data);
+    // TODO CHANGE PUSH CURRENT DATA ( Declaration Value )
+    // setDeclaration(data);
   }, [declarationValue]);
 
   const onChangeValue = (v: any, n: string, isArgs: boolean = false) => {

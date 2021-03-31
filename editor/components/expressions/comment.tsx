@@ -10,6 +10,7 @@ import { currentDeclarationAtom } from "../../states/declaration.state";
 import AutoGrowTextArea from "../auto-grow-textarea";
 import Selector from "../selector";
 import { CodePreview } from "../code-preview";
+import { commentExpressionAtom } from "../../states/expression.state";
 export interface CommentExpression {
   style: CommentStyleEnum;
   content: string;
@@ -41,6 +42,7 @@ const returnExampleCommentCode = (args: {
 
 export default function CommentExpression(props: { data: CommentExpression }) {
   const { data } = props;
+  const setGlobalCommentExpressionValue = useSetRecoilState(commentExpressionAtom)
   const { language } = useRecoilValue(currentColiEditorOption);
   const [expressionValue, setExpressionValue] = useState<CommentExpression>({
     style: "single-line",
@@ -50,6 +52,11 @@ export default function CommentExpression(props: { data: CommentExpression }) {
   useEffect(() => {
     setExpressionValue(data);
   }, [data]);
+
+  useEffect(() => {
+    // TODO CHANGE PUSH CURRENT DATA ( Declaration Value )
+    // setGlobalCommentExpressionValue(expressionValue)
+  }, [expressionValue])
 
   const onChangeExpressionValue = (v: string, n: string, k?: number) => {
     setExpressionValue((d) => ({
