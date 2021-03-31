@@ -6,7 +6,7 @@ import { Declaration } from "../declaration.base";
 import assert from "assert";
 import { EmptyBlock } from "../../builders/block/empty-block";
 
-export class FunctionDeclraration extends Declaration {
+export class FunctionDeclaration extends Declaration {
   id: Identifier;
   params: Identifier[];
   body: BlockStatement = new EmptyBlock();

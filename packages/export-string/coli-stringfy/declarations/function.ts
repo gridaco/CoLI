@@ -1,14 +1,5 @@
 import { Block, Type } from "coli/lib";
-import { Identifier } from "coli/lib/ast/identifier";
-
-interface FunctionDeclaration {
-  leadingComment: Array<any>;
-  tralingComments: Array<any>;
-  params: Identifier[];
-  name: string;
-  body: Block;
-  returnType: Type;
-}
+import { FunctionDeclaration } from "coli/lib/declarations/function";
 
 function Typescript(coli: FunctionDeclaration) {
   const {
