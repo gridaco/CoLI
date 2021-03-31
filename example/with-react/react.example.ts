@@ -40,7 +40,7 @@ const Message = new VariableDeclaration("Message");
  * }
  */
 
-const AppbarBody = new Block().add(new Return(new JSXElement()));
+const AppbarBody = new Block().add(new Return(new JSXElement("div")));
 const Appbar = new Function("Appbar")
   .withParams(
     new Identifier("props", {

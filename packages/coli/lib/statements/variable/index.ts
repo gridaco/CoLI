@@ -13,9 +13,9 @@ export class VariableStatement extends Statement {
   readonly declarations: ReadonlyArray<VariableDeclaration> = [];
 
   constructor(args: {
-    kind: VariableKind;
+    kind?: VariableKind;
     type?: Type;
-    declarations: Array<VariableDeclaration>;
+    declarations?: Array<VariableDeclaration>;
   }) {
     super(_STATEMENT_VARIABLE);
     args.type && (this.type = args.type);

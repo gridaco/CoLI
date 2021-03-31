@@ -12,6 +12,8 @@ export class JSX extends ColiBuilder {
 
   static fromClass<C>() {}
 
+  static fragment() {}
+
   __finalize() {
     throw new Error("Method not implemented.");
   }

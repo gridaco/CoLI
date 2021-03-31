@@ -3,8 +3,7 @@ import { _STATEMENT_EXPRESSION } from "../../_internal/node-name/statements-name
 import { Statement } from "../statement.base";
 
 export class ExpressionStatement extends Statement {
-  expression: ColiObject;
-  constructor() {
+  constructor(readonly expression: ColiObject) {
     super(_STATEMENT_EXPRESSION);
   }
 }
