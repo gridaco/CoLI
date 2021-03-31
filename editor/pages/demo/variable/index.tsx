@@ -15,7 +15,7 @@ const variableDefaultData: {
     {
       name: "variableName",
       args: {
-        scope: "let",
+        kind: "let",
         variableType: Types.any,
         value: "",
       },

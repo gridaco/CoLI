@@ -7,14 +7,14 @@ import { Types } from "../lib";
  */
 
 const notInitValue = new VariableDeclaration("notInitValue", {
-  scope: "const",
+  kind: "const",
 });
 
 // const notInitValue : any;
 console.log(stringfy(notInitValue, { language: "typescript" }));
 
 const initValue = new VariableDeclaration("initValue", {
-  scope: "const",
+  kind: "const",
   value: 1,
 });
 
@@ -22,7 +22,7 @@ const initValue = new VariableDeclaration("initValue", {
 console.log(stringfy(initValue, { language: "typescript" }));
 
 const initType = new VariableDeclaration("initType", {
-  scope: "const",
+  kind: "const",
   variableType: Types.number,
 });
 

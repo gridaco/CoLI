@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   VariableDeclaration as VariableClass,
-  VariableScope,
+  VariableKind as VariableScope,
 } from "coli/lib/declarations/variable";
 import { Type, Types } from "coli/lib";
 import styled from "@emotion/styled";
@@ -20,7 +20,7 @@ import AutoGrowTextArea from "../auto-grow-textarea";
 export interface VariableDeclaration {
   name: string;
   args?: {
-    scope: VariableScope;
+    kind: VariableScope;
     variableType?: Type;
     value?: any;
   };
@@ -67,7 +67,7 @@ function VariableDeclaration(props: {
     {
       name: "",
       args: {
-        scope: "let",
+        kind: "let",
         variableType: Types.any,
         value: "",
       },
@@ -103,11 +103,11 @@ function VariableDeclaration(props: {
     k: keyof VariableDeclaration["args"]
   ) => {
     switch (k) {
-      case "scope":
+      case "kind":
         return (
           <Selector
             onChange={(v) => onChangeValue(v, k, true)}
-            value={declarationValue.args.scope}
+            value={declarationValue.args.kind}
             options={variableScopeSelector}
           />
         );

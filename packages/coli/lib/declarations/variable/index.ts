@@ -2,12 +2,12 @@ import { Type, Types } from "../../builders/type";
 import { _DECLARATION_VARIABLE } from "../../_internal/constants/declarations-name";
 import { Declaration } from "../declaration.base";
 
-type ESScope = "const" | "let" | "var";
+type EsVarKind = "const" | "let" | "var";
 
-export type VariableScope = ESScope;
+export type VariableKind = EsVarKind;
 
 export class VariableDeclaration extends Declaration {
-  kind: VariableScope = "let";
+  kind: VariableKind = "let";
   variableType: Type = Types.any;
   name: string;
   value?: any;
@@ -15,7 +15,7 @@ export class VariableDeclaration extends Declaration {
   constructor(
     name: string,
     args?: {
-      scope: VariableScope;
+      kind: VariableKind;
       variableType?: Type;
       value?: any;
     }
@@ -25,7 +25,7 @@ export class VariableDeclaration extends Declaration {
     if (args) {
       args.value && (this.value = args.value);
       args.variableType && (this.variableType = args.variableType);
-      args.scope && (this.kind = args.scope);
+      args.kind && (this.kind = args.kind);
     }
   }
 }
