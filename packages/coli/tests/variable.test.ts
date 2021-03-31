@@ -1,6 +1,7 @@
 import { VariableDeclaration } from "../lib/declarations/variable";
 import { stringfy } from "../../export-string";
 import { Types } from "../lib";
+import { Literal } from "../lib/ast";
 
 /**
  * @test VariableDeclaration
@@ -15,7 +16,7 @@ console.log(stringfy(notInitValue, { language: "typescript" }));
 
 const initValue = new VariableDeclaration("initValue", {
   kind: "const",
-  initializer: 1,
+  initializer: new Literal(1),
 });
 
 // const initValue : any = 1;
