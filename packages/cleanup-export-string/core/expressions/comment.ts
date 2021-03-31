@@ -70,7 +70,5 @@ export function coliCommentStringfy(
     code += `\n${traling}`;
   }
 
-  console.log(code);
-
   return code;
 }

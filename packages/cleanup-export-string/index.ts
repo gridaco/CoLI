@@ -2,7 +2,8 @@ import { ColiInterpretable, ColiObject } from "coli/lib/_abstract";
 import { NoTokenInterpreterFoundError } from "./errors";
 import * as COLI from "coli/lib/_internal/node-name";
 import * as CORE from "./core";
-import { CommentExpression } from "coli/lib/expressions/comment";
+import { VariableDeclaration } from "coli/lib/declarations/variable";
+import { Literal } from "coli/lib/ast";
 
 /*@internal*/
 export type StringfyLanguage =
@@ -64,3 +65,13 @@ export function createSourceCode(
   }
   throw new NoTokenInterpreterFoundError(nodeName, coli);
 }
+
+const messageValue = new Literal("hello world");
+const messageVariable = new VariableDeclaration("message", {
+  kind: "const",
+  initializer: messageValue,
+});
+
+stringfy(messageVariable, {
+  language: "typescript",
+});
