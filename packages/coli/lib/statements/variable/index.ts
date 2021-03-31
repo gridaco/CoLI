@@ -1,31 +1,25 @@
 import { Type, Types } from "../../builders/type";
+import { VariableDeclaration } from "../../declarations/variable";
+import { VariableKind } from "../../_internal/kinds/variable-kind";
 import { _STATEMENT_VARIABLE } from "../../_internal/node-name/statements-name";
 import { Statement } from "../statement.base";
 
-type EsVarKind = "const" | "let" | "var";
-
-export type VariableKind = EsVarKind;
-
+/**
+ * Variable statement is set of Variable declarations. for general simple usage, you may use VariableDeclaration instead.
+ */
 export class VariableStatement extends Statement {
-  kind: VariableKind = "let";
-  variableType: Type = Types.any;
-  name: string;
-  value?: any;
+  readonly kind: VariableKind = "let";
+  readonly type: Type = Types.any;
+  readonly declarations: ReadonlyArray<VariableDeclaration> = [];
 
-  constructor(
-    name: string,
-    args?: {
-      kind: VariableKind;
-      variableType?: Type;
-      value?: any;
-    }
-  ) {
+  constructor(args: {
+    kind: VariableKind;
+    type?: Type;
+    declarations: Array<VariableDeclaration>;
+  }) {
     super(_STATEMENT_VARIABLE);
-    this.name = name;
-    if (args) {
-      args.value && (this.value = args.value);
-      args.variableType && (this.variableType = args.variableType);
-      args.kind && (this.kind = args.kind);
-    }
+    args.type && (this.type = args.type);
+    args.kind && (this.kind = args.kind);
+    args.declarations && (this.declarations = args.declarations);
   }
 }

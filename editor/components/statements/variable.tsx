@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import {
-  VariableStatement as VariableClass,
-  VariableKind as VariableScope,
-} from "coli/lib/statements/variable";
+import { VariableDeclaration as VariableClass } from "coli/lib/declarations/variable";
+import { VariableKind as VariableScope } from "coli/lib/_internal/kinds/variable-kind";
 import { Type, Types } from "coli/lib";
 import styled from "@emotion/styled";
 import { useRecoilValue, useSetRecoilState } from "recoil";

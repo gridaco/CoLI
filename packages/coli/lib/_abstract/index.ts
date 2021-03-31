@@ -2,6 +2,7 @@ import { CommentExpression } from "../expressions/comment";
 import {
   _DECLARATION_FUNCTION,
   _DECLARATION_IMPORT,
+  _DECLARATION_VARIABLE,
 } from "../_internal/node-name/declarations-name";
 import {
   _ELEMENT_JSX,
@@ -31,7 +32,8 @@ const COLI_WILDCARD_OBJECT = "__WILDCARD__";
 // declrarations
 export type ColiDeclarationType =
   | typeof _DECLARATION_FUNCTION
-  | typeof _DECLARATION_IMPORT;
+  | typeof _DECLARATION_IMPORT
+  | typeof _DECLARATION_VARIABLE;
 
 // expressions
 export type ColiExpressionType =

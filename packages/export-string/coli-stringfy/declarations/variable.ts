@@ -1,21 +1,21 @@
 import { Type } from "coli/lib";
-import { VariableStatement } from "coli/lib/statements/variable";
+import { VariableDeclaration } from "coli/lib/declarations/variable";
 import { convertValue } from "../../utils/convert-value";
 
-function Typescript(coli: VariableStatement) {
+function Typescript(coli: VariableDeclaration) {
   const {
     kind,
     name,
-    variableType: { type },
-    value,
+    type: { type },
+    init,
   } = coli;
 
   let code = "";
 
   code += `${kind} ${name} : ${type}`;
 
-  if (value) {
-    code += ` = ${convertValue(value)}`;
+  if (init) {
+    code += ` = ${convertValue(init)}`;
   }
 
   code += ";";
@@ -23,23 +23,23 @@ function Typescript(coli: VariableStatement) {
   return code;
 }
 
-function Python(coli: VariableStatement) {
-  const { kind, name, variableType, value } = coli;
+function Python(coli: VariableDeclaration) {
+  const { kind, name, type: variableType, init } = coli;
   let code = "";
 
   code += `${kind} ${name} : ${variableType.type}`;
 
-  if (value != null) {
+  if (init != null) {
     code += " ";
-    switch (typeof value) {
+    switch (typeof init) {
       case "string":
-        code += `= "${value}"`;
+        code += `= "${init}"`;
         break;
       case "object":
-        code += `= ${JSON.stringify(value)}`;
+        code += `= ${JSON.stringify(init)}`;
         break;
       default:
-        code += `= ${value}`;
+        code += `= ${init}`;
     }
   }
 
@@ -48,23 +48,23 @@ function Python(coli: VariableStatement) {
   return code;
 }
 
-function Dart(coli: VariableStatement) {
-  const { kind, name, variableType, value } = coli;
+function Dart(coli: VariableDeclaration) {
+  const { kind, name, type: variableType, init } = coli;
   let code = "";
 
   code += `${kind} ${name} : ${variableType.type}`;
 
-  if (value != null) {
+  if (init != null) {
     code += " ";
-    switch (typeof value) {
+    switch (typeof init) {
       case "string":
-        code += `= "${value}"`;
+        code += `= "${init}"`;
         break;
       case "object":
-        code += `= ${JSON.stringify(value)}`;
+        code += `= ${JSON.stringify(init)}`;
         break;
       default:
-        code += `= ${value}`;
+        code += `= ${init}`;
     }
   }
 
