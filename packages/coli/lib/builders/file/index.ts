@@ -62,7 +62,7 @@ export class File extends ColiBuilder {
     // endregion handle ext
   }
 
-  import(importDeclaration: ImportDeclaration): this {
+  import(...importDeclaration: ImportDeclaration[]): this {
     this.blocks.push(importDeclaration);
     return this;
   }

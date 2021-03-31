@@ -29,22 +29,14 @@ export class Import extends ColiBuilder<ImportDeclaration> {
     return this;
   }
 
-  import(_import: { import: string; as?: string }): this {
-    this.m_import = new ImportSpecifier({
-      import: _import.import,
-      local: _import.as,
-    });
+  import(_import: HandyImport): this {
+    this.m_import = handyImportToImportSpecifier(_import);
     return this;
   }
 
-  and(..._import: { import: string; as?: string }[]): this {
+  and(..._import: HandyImport[]): this {
     _import.forEach((e) => {
-      this.imports.push(
-        new ImportSpecifier({
-          import: e.import,
-          local: e.as,
-        })
-      );
+      this.imports.push(handyImportToImportSpecifier(e));
     });
     return this;
   }
@@ -62,5 +54,17 @@ export class Import extends ColiBuilder<ImportDeclaration> {
       specifiers: this.specifiers,
       source: this.source,
     });
+  }
+}
+
+type HandyImport = { import: string; as?: string } | string;
+
+function handyImportToImportSpecifier(_import: HandyImport): ImportSpecifier {
+  if (typeof _import == "string") {
+    return new ImportSpecifier({
+      import: _import,
+    });
+  } else if (typeof _import == "object") {
+    return new ImportSpecifier(_import);
   }
 }

@@ -12,15 +12,12 @@ const AppbarFile = new File({
 // import React, { useEffect, useState } from "react"
 const importReact = new Import()
   .importDefault("React")
-  .and(
-    {
-      import: "useEffect",
-    },
-    {
-      import: "useState",
-    }
-  )
+  .and("useEffect", "useState")
   .from("react");
+
+const inportStyled = new Import()
+  .importDefault("styled")
+  .from("@emotion/styled");
 
 const Wrapper = new VariableDeclaration("Wrapper");
 const TitleAndAvatarWrapper = new VariableDeclaration("TitleAndAvatarWrapper");
@@ -58,8 +55,11 @@ const Appbar = new Function("Appbar")
 
 const callExpression = Appbar.call();
 
-AppbarFile.import(importReact.make());
+// region make file
+AppbarFile.import(importReact.make(), inportStyled.make());
+AppbarFile.declare(Appbar.make());
 AppbarFile.declare(Wrapper, TitleAndAvatarWrapper, Title, Message);
+// endregion make file
 
 console.log(
   stringfy(AppbarFile.blocks, {
