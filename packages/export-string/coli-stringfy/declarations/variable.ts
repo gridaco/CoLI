@@ -7,7 +7,7 @@ import { convertEsValue } from "../../utils/convert-value";
 function Typescript(coli: VariableDeclaration) {
   const {
     kind,
-    id: name,
+    id: { name },
     type: { keyword: type },
     initializer: init,
   } = coli;
