@@ -1,4 +1,4 @@
-import { _EXPRESSION_COMMENT } from "../_internal/constants/expressions-name";
+import { _EXPRESSION_COMMENT } from "../_internal/node-name/expressions-name";
 import { Expression } from "./expression.base";
 import { stringfy } from "../../../export-string/index";
 type CommentStyleEnum = "single-line" | "multi-line";

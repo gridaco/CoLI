@@ -1,12 +1,12 @@
 import { Type, Types } from "../../builders/type";
-import { _DECLARATION_VARIABLE } from "../../_internal/constants/declarations-name";
-import { Declaration } from "../declaration.base";
+import { _STATEMENT_VARIABLE } from "../../_internal/node-name/statements-name";
+import { Statement } from "../statement.base";
 
 type EsVarKind = "const" | "let" | "var";
 
 export type VariableKind = EsVarKind;
 
-export class VariableDeclaration extends Declaration {
+export class VariableStatement extends Statement {
   kind: VariableKind = "let";
   variableType: Type = Types.any;
   name: string;
@@ -20,7 +20,7 @@ export class VariableDeclaration extends Declaration {
       value?: any;
     }
   ) {
-    super(_DECLARATION_VARIABLE);
+    super(_STATEMENT_VARIABLE);
     this.name = name;
     if (args) {
       args.value && (this.value = args.value);

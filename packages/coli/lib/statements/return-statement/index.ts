@@ -1,4 +1,4 @@
-import { _STATEMENT_RETURN } from "../../_internal/constants/statements-name";
+import { _STATEMENT_RETURN } from "../../_internal/node-name/statements-name";
 import { Statement } from "../statement.base";
 
 export class ReturnStatement extends Statement {

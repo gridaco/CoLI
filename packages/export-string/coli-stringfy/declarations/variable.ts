@@ -1,8 +1,8 @@
 import { Type } from "coli/lib";
-import { VariableDeclaration } from "coli/lib/declarations/variable";
+import { VariableStatement } from "coli/lib/statements/variable";
 import { convertValue } from "../../utils/convert-value";
 
-function Typescript(coli: VariableDeclaration) {
+function Typescript(coli: VariableStatement) {
   const {
     kind,
     name,
@@ -23,7 +23,7 @@ function Typescript(coli: VariableDeclaration) {
   return code;
 }
 
-function Python(coli: VariableDeclaration) {
+function Python(coli: VariableStatement) {
   const { kind, name, variableType, value } = coli;
   let code = "";
 
@@ -48,7 +48,7 @@ function Python(coli: VariableDeclaration) {
   return code;
 }
 
-function Dart(coli: VariableDeclaration) {
+function Dart(coli: VariableStatement) {
   const { kind, name, variableType, value } = coli;
   let code = "";
 

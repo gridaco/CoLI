@@ -1,4 +1,4 @@
-import { _SPEFICIER_DEFAULT_IMPORT } from "../../_internal/constants/specifiers-name";
+import { _SPEFICIER_DEFAULT_IMPORT } from "../../_internal/node-name/specifiers-name";
 import { BaseImportSpecifier } from "./import-specifier.base";
 
 export class ImportDefaultSpecifier extends BaseImportSpecifier {

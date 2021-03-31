@@ -2,37 +2,36 @@ import { CommentExpression } from "../expressions/comment";
 import {
   _DECLARATION_FUNCTION,
   _DECLARATION_IMPORT,
-  _DECLARATION_VARIABLE,
-} from "../_internal/constants/declarations-name";
+} from "../_internal/node-name/declarations-name";
 import {
   _ELEMENT_JSX,
   _ELEMENT_JSX_CLOSING,
   _ELEMENT_JSX_OPENING,
-} from "../_internal/constants/elements-name";
+} from "../_internal/node-name/elements-name";
 import {
   _EXPRESSION_AWAIT,
   _EXPRESSION_CALL,
   _EXPRESSION_COMMENT,
   _EXPRESSION_JSX,
   _EXPRESSION_TAGGED_TEMPLATE,
-} from "../_internal/constants/expressions-name";
+} from "../_internal/node-name/expressions-name";
 import {
   _SPEFICIER_DEFAULT_IMPORT,
   _SPEFICIER_IMPORT,
-} from "../_internal/constants/specifiers-name";
+} from "../_internal/node-name/specifiers-name";
 import {
   _STATEMENT_BLOCK,
   _STATEMENT_EXPRESSION,
   _STATEMENT_RETURN,
-} from "../_internal/constants/statements-name";
+  _STATEMENT_VARIABLE,
+} from "../_internal/node-name/statements-name";
 
 const COLI_WILDCARD_OBJECT = "__WILDCARD__";
 
 // declrarations
 export type ColiDeclarationType =
   | typeof _DECLARATION_FUNCTION
-  | typeof _DECLARATION_IMPORT
-  | typeof _DECLARATION_VARIABLE;
+  | typeof _DECLARATION_IMPORT;
 
 // expressions
 export type ColiExpressionType =
@@ -51,7 +50,8 @@ export type ColiSpecifierType =
 export type ColiStatementType =
   | typeof _STATEMENT_EXPRESSION
   | typeof _STATEMENT_BLOCK
-  | typeof _STATEMENT_RETURN;
+  | typeof _STATEMENT_RETURN
+  | typeof _STATEMENT_VARIABLE;
 
 // elements
 export type ColiElementType =

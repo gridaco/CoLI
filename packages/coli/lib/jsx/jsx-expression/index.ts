@@ -1,4 +1,4 @@
-import { _EXPRESSION_JSX } from "../../_internal/constants/expressions-name";
+import { _EXPRESSION_JSX } from "../../_internal/node-name/expressions-name";
 import { Expression } from "../../expressions/expression.base";
 
 export class JSXExpression extends Expression {

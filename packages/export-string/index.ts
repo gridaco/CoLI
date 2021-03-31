@@ -2,9 +2,9 @@ import { ColiObjectType } from "coli/lib/_abstract";
 import {
   _DECLARATION_FUNCTION,
   _DECLARATION_IMPORT,
-  _DECLARATION_VARIABLE,
-} from "coli/lib/_internal/constants/declarations-name";
-import { _EXPRESSION_COMMENT } from "coli/lib/_internal/constants/expressions-name";
+  _STATEMENT_VARIABLE,
+  _EXPRESSION_COMMENT,
+} from "coli/lib/_internal/node-name";
 import {
   StringfyComment,
   StringfyFunction,
@@ -36,7 +36,7 @@ function stringfyColiToTypescript(coli: any) {
   switch (coli.type) {
     case _EXPRESSION_COMMENT:
       return StringfyComment.Typescript(coli);
-    case _DECLARATION_VARIABLE:
+    case _STATEMENT_VARIABLE:
       return StringfyVariable.Typescript(coli);
     case _DECLARATION_FUNCTION:
       return StringfyFunction.Typescript(coli);
@@ -49,7 +49,7 @@ function stringfyColiToPython(coli: any) {
   switch (coli.type) {
     case _EXPRESSION_COMMENT:
       return StringfyComment.Python(coli);
-    case _DECLARATION_VARIABLE:
+    case _STATEMENT_VARIABLE:
       return StringfyVariable.Python(coli);
     case _DECLARATION_IMPORT:
       return StringfyImport.Python(coli);
@@ -60,7 +60,7 @@ function stringfyColiToDart(coli: any) {
   switch (coli.type) {
     case _EXPRESSION_COMMENT:
       return StringfyComment.Dart(coli);
-    case _DECLARATION_VARIABLE:
+    case _STATEMENT_VARIABLE:
       return StringfyVariable.Dart(coli);
     case _DECLARATION_IMPORT:
       return StringfyImport.Dart(coli);

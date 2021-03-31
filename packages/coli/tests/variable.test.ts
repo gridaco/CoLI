@@ -1,4 +1,4 @@
-import { VariableDeclaration } from "../lib/declarations/variable";
+import { VariableStatement } from "../lib/statements/variable";
 import { stringfy } from "../../export-string";
 import { Types } from "../lib";
 
@@ -6,14 +6,14 @@ import { Types } from "../lib";
  * @test VariableDeclaration
  */
 
-const notInitValue = new VariableDeclaration("notInitValue", {
+const notInitValue = new VariableStatement("notInitValue", {
   kind: "const",
 });
 
 // const notInitValue : any;
 console.log(stringfy(notInitValue, { language: "typescript" }));
 
-const initValue = new VariableDeclaration("initValue", {
+const initValue = new VariableStatement("initValue", {
   kind: "const",
   value: 1,
 });
@@ -21,7 +21,7 @@ const initValue = new VariableDeclaration("initValue", {
 // const initValue : any = 1;
 console.log(stringfy(initValue, { language: "typescript" }));
 
-const initType = new VariableDeclaration("initType", {
+const initType = new VariableStatement("initType", {
   kind: "const",
   variableType: Types.number,
 });

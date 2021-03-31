@@ -1,5 +1,5 @@
 import { Identifier } from "../../ast/identifier";
-import { _EXPRESSION_CALL } from "../../_internal/constants/expressions-name";
+import { _EXPRESSION_CALL } from "../../_internal/node-name/expressions-name";
 import { Expression } from "../expression.base";
 
 export class CallExpression extends Expression {

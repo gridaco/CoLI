@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
-  VariableDeclaration as VariableClass,
+  VariableStatement as VariableClass,
   VariableKind as VariableScope,
 } from "coli/lib/declarations/variable";
 import { Type, Types } from "coli/lib";

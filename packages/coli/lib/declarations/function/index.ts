@@ -1,7 +1,7 @@
 import { Identifier } from "../../ast/identifier";
 import { Type, Types } from "../../builders/type";
 import { BlockStatement } from "../../statements";
-import { _DECLARATION_FUNCTION } from "../../_internal/constants/declarations-name";
+import { _DECLARATION_FUNCTION } from "../../_internal/node-name/declarations-name";
 import { Declaration } from "../declaration.base";
 import assert from "assert";
 import { EmptyBlock } from "../../builders/block/empty-block";
