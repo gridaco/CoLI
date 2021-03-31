@@ -4,6 +4,11 @@ import { PropertyAccessExpression } from "coli/lib/expressions/property-access-e
 import { TaggedTemplateExpression } from "coli/lib/expressions/tagged-template-expression";
 import { StringfyLanguage } from "../..";
 
+/**
+ *
+ * @todo transpile lauganage
+ * @todo value stringfy
+ */
 export function coliVariableStringfy(
   c: VariableDeclaration,
   l: StringfyLanguage
@@ -50,6 +55,5 @@ export function coliVariableStringfy(
     code += "`";
   }
 
-  /** @ADD_VARIABLE_TYPE */
   return code;
 }
