@@ -2,8 +2,10 @@ import { ColiInterpretable, ColiObject } from "coli/lib/_abstract";
 import { NoTokenInterpreterFoundError } from "./errors";
 import * as COLI from "coli/lib/_internal/node-name";
 import * as CORE from "./core";
+import { CommentExpression } from "coli/lib/expressions/comment";
 
-type StringfyLanguage =
+/*@internal*/
+export type StringfyLanguage =
   | "typescript"
   | "tsx"
   | "javascript"
@@ -15,6 +17,11 @@ type StringfyLanguage =
 interface StringfyOptions {
   language: StringfyLanguage;
 }
+
+type useStrinfyFunction = (
+  c: ColiObject,
+  l: StringfyOptions["language"]
+) => string;
 
 export function stringfy(
   coli: ColiInterpretable,
@@ -28,21 +35,32 @@ export function stringfy(
   }
 
   if (coli instanceof ColiObject) {
-    return createSourceCode(coli);
+    return createSourceCode(coli, language);
   }
 }
 
 /*@internal*/
-export function createSourceCode(coli: ColiObject) {
+export function createSourceCode(
+  coli: ColiObject,
+  stringfyLanguage: StringfyLanguage
+) {
   const { __type: nodeName } = coli;
+  let useStringfyFunction: useStrinfyFunction = null;
 
   switch (nodeName) {
     case COLI._DECLARATION_FUNCTION:
-      return CORE.coliFunctionStringfy();
+      useStringfyFunction = CORE.coliFunctionStringfy;
+      break;
     case COLI._EXPRESSION_COMMENT:
-      return CORE.coliCommentStringfy();
+      useStringfyFunction = CORE.coliCommentStringfy;
+      break;
     case COLI._STATEMENT_VARIABLE:
-      return CORE.coliVariableStringfy();
+      useStringfyFunction = CORE.coliVariableStringfy;
+      break;
+  }
+
+  if (useStringfyFunction) {
+    return useStringfyFunction(coli, stringfyLanguage);
   }
   throw new NoTokenInterpreterFoundError(nodeName, coli);
 }
