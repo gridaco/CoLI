@@ -124,3 +124,6 @@ yarn editor
 - https://github.com/mdn/data
 - https://pub.dev/documentation/analyzer/latest/dart_ast_ast_factory/dart_ast_ast_factory-library.html
 - https://pub.dev/documentation/analyzer/latest/dart_ast_ast/dart_ast_ast-library.html
+- https://github.com/Microsoft/TypeScript/wiki/Using-the-Compiler-API
+- https://github.com/ktsn/ts-compiler-api-examples
+- https://learning-notes.mistermicheels.com/javascript/typescript/compiler-api/
