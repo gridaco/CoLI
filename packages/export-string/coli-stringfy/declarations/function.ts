@@ -6,12 +6,12 @@ function Typescript(coli: FunctionDeclaration) {
     body,
     name,
     params,
-    returnType: { type },
+    returnType: { keyword: type },
   } = coli;
   let code = "";
   if (params) {
     const parameters = params
-      .map((i) => `${i.name} : ${i.typeAnnotation.type}`)
+      .map((i) => `${i.name} : ${i.typeAnnotation.keyword}`)
       .join(", ");
     code = `function ${name}(${parameters}) : ${type} {\n`;
   } else {

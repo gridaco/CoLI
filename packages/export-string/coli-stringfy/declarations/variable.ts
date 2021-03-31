@@ -6,8 +6,8 @@ function Typescript(coli: VariableDeclaration) {
   const {
     kind,
     name,
-    type: { type },
-    init,
+    type: { keyword: type },
+    initializer: init,
   } = coli;
 
   let code = "";
@@ -24,10 +24,10 @@ function Typescript(coli: VariableDeclaration) {
 }
 
 function Python(coli: VariableDeclaration) {
-  const { kind, name, type: variableType, init } = coli;
+  const { kind, name, type: variableType, initializer: init } = coli;
   let code = "";
 
-  code += `${kind} ${name} : ${variableType.type}`;
+  code += `${kind} ${name} : ${variableType.keyword}`;
 
   if (init != null) {
     code += " ";
@@ -49,10 +49,10 @@ function Python(coli: VariableDeclaration) {
 }
 
 function Dart(coli: VariableDeclaration) {
-  const { kind, name, type: variableType, init } = coli;
+  const { kind, name, type: variableType, initializer: init } = coli;
   let code = "";
 
-  code += `${kind} ${name} : ${variableType.type}`;
+  code += `${kind} ${name} : ${variableType.keyword}`;
 
   if (init != null) {
     code += " ";

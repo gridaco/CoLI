@@ -1,5 +1,5 @@
 export class Type {
-  constructor(readonly type: string) {}
+  constructor(readonly keyword: string) {}
 }
 
 export class Types {
@@ -8,6 +8,9 @@ export class Types {
   }
   static string: Type = new Type("string");
   static any: Type = new Type("any");
+
+  // FIXME - this needs special handling case.
+  static none: Type = new Type(undefined);
   static number: Type = new Type("number");
   static bigint: Type = new Type("bigint");
   static object: Type = new Type("object");

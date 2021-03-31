@@ -64,7 +64,7 @@ export class Function extends ColiBuilder<FunctionDeclaration> {
       code += `${params}) : `;
     }
 
-    code += `${this.returnType == null ? "any" : this.returnType.type} {`;
+    code += `${this.returnType == null ? "any" : this.returnType.keyword} {`;
 
     code +=
       this.body instanceof Snippet ? this.body._defaultSnippet : this.body;

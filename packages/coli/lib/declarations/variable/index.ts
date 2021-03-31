@@ -10,21 +10,21 @@ export class VariableDeclaration extends Declaration {
   readonly name: string;
 
   // TODO: this should be refactored as variable decl
-  readonly init?: ColiObject;
+  readonly initializer?: ColiObject;
 
   constructor(
     name: string,
     args?: {
       kind: VariableKind;
       type?: Type;
-      value?: any;
+      initializer?: any;
     }
   ) {
     super(_DECLARATION_VARIABLE);
 
     this.name = name;
     if (args) {
-      args.value && (this.init = args.value);
+      args.initializer && (this.initializer = args.initializer);
       args.type && (this.type = args.type);
       args.kind && (this.kind = args.kind);
     }

@@ -102,8 +102,8 @@ function FunctionDeclaration(props: {
                   let params = d.args.params;
                   params[ix] = new Identifier(v, {
                     typeAnnotation: params[ix].typeAnnotation,
-                  })
-                  
+                  });
+
                   return {
                     ...d,
                     args: {
@@ -118,7 +118,7 @@ function FunctionDeclaration(props: {
             <Selector
               onChange={(v) => onChangeValue(Types[v], k, true)}
               value={
-                declarationValue.args.params[ix]?.typeAnnotation.type ||
+                declarationValue.args.params[ix]?.typeAnnotation.keyword ||
                 Types.any
               }
               options={variableTypeSelector}
@@ -129,7 +129,7 @@ function FunctionDeclaration(props: {
         return (
           <Selector
             onChange={(v) => onChangeValue(Types[v], k, true)}
-            value={declarationValue.args.returnType.type}
+            value={declarationValue.args.returnType.keyword}
             options={variableTypeSelector}
           />
         );

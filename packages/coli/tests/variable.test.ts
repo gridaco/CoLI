@@ -15,7 +15,7 @@ console.log(stringfy(notInitValue, { language: "typescript" }));
 
 const initValue = new VariableDeclaration("initValue", {
   kind: "const",
-  value: 1,
+  initializer: 1,
 });
 
 // const initValue : any = 1;

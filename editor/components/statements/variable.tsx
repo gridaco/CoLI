@@ -125,7 +125,7 @@ function VariableDeclaration(props: {
         return (
           <Selector
             onChange={(v) => onChangeValue(Types[v], k, true)}
-            value={declarationValue.args.variableType.type}
+            value={declarationValue.args.variableType.keyword}
             options={variableTypeSelector}
           />
         );
