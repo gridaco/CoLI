@@ -59,6 +59,9 @@ export function createSourceCode(
     case COLI._STATEMENT_VARIABLE:
       useStringfyFunction = CORE.coliVariableStringfy;
       break;
+    case COLI._ELEMENT_JSX:
+      useStringfyFunction = CORE.coliJSXElementStringfy;
+      break;
   }
 
   if (useStringfyFunction) {

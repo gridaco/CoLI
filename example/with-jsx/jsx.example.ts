@@ -45,7 +45,7 @@ console.log(
 );
 
 // BUILDER
-
+/*
 // <div></div>
 const div1 = JSX.tag("div");
 
@@ -63,3 +63,4 @@ JSX.div()(
   JSX.h1(),
   JSX.h1()
 );
+*/
