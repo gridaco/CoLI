@@ -1,7 +1,4 @@
-interface CommentExpression {
-  style: "single-line" | "multi-line";
-  content: string;
-}
+import { CommentExpression } from "coli/lib/expressions/comment";
 
 function Typescript(coli: CommentExpression) {
   const { style, content } = coli;

@@ -4,12 +4,12 @@ import { stringfy } from "../../../export-string/index";
 type CommentStyleEnum = "single-line" | "multi-line";
 
 export class CommentExpression extends Expression {
-  private style: CommentStyleEnum;
-  private content: string;
+  readonly style: CommentStyleEnum;
+  readonly content: string;
 
-  constructor({ style, content }) {
+  constructor(params: { style: CommentStyleEnum; content: string }) {
     super(_EXPRESSION_COMMENT);
-    this.style = style;
-    this.content = content;
+    this.style = params.style;
+    this.content = params.content;
   }
 }
