@@ -13,7 +13,18 @@ import {
   StringfyVariable,
 } from "./coli-stringfy";
 
-export type StringfyLanguage = "typescript" | "python" | "dart";
+export type StringfyLanguage =
+  | "typescript"
+  | "tsx"
+  | "javascript"
+  | "jsx"
+  | "html"
+  | "python"
+  | "dart";
+
+const NO_INTERPRETER_ERROR = new Error(
+  "no coli interpreter found for givven input"
+);
 
 export function stringfy(
   coli: any,
@@ -25,6 +36,10 @@ export function stringfy(
     return stringfyColiToPython(coli);
   } else if (options.language === "dart") {
     return stringfyColiToDart(coli);
+  } else {
+    throw new Error(
+      `Unsupported language exception. ${options.language} is not yet supported by coli:stringfy`
+    );
   }
 }
 
@@ -39,6 +54,7 @@ function stringfyColiToTypescript(coli: ColiObject) {
     case _DECLARATION_IMPORT:
       return StringfyImport.Typescript(coli as any);
   }
+  throw NO_INTERPRETER_ERROR;
 }
 
 function stringfyColiToPython(coli: ColiObject) {
@@ -50,6 +66,7 @@ function stringfyColiToPython(coli: ColiObject) {
     case _DECLARATION_IMPORT:
       return StringfyImport.Python(coli as any);
   }
+  throw NO_INTERPRETER_ERROR;
 }
 
 function stringfyColiToDart(coli: ColiObject) {
@@ -61,4 +78,5 @@ function stringfyColiToDart(coli: ColiObject) {
     case _DECLARATION_IMPORT:
       return StringfyImport.Dart(coli as any);
   }
+  throw NO_INTERPRETER_ERROR;
 }
