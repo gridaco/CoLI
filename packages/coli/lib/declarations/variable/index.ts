@@ -7,7 +7,7 @@ type ESScope = "const" | "let" | "var";
 export type VariableScope = ESScope;
 
 export class VariableDeclaration extends Declaration {
-  scope: VariableScope = "let";
+  kind: VariableScope = "let";
   variableType: Type = Types.any;
   name: string;
   value?: any;
@@ -25,7 +25,7 @@ export class VariableDeclaration extends Declaration {
     if (args) {
       args.value && (this.value = args.value);
       args.variableType && (this.variableType = args.variableType);
-      args.scope && (this.scope = args.scope);
+      args.scope && (this.kind = args.scope);
     }
   }
 }

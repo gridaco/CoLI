@@ -1,16 +1,17 @@
 import { Type } from "coli/lib";
+import { VariableDeclaration } from "coli/lib/declarations/variable";
 import { convertValue } from "../../utils/convert-value";
 
-interface VariableDeclaration {
-  scope: string;
-  variableType: Type;
-  name: string;
-  value?: any;
-}
+// interface VariableDeclaration {
+//   scope: string;
+//   variableType: Type;
+//   name: string;
+//   value?: any;
+// }
 
 function Typescript(coli: VariableDeclaration) {
   const {
-    scope,
+    kind,
     name,
     variableType: { type },
     value,
@@ -18,7 +19,7 @@ function Typescript(coli: VariableDeclaration) {
 
   let code = "";
 
-  code += `${scope} ${name} : ${type}`;
+  code += `${kind} ${name} : ${type}`;
 
   if (value) {
     code += ` = ${convertValue(value)}`;
@@ -30,10 +31,10 @@ function Typescript(coli: VariableDeclaration) {
 }
 
 function Python(coli: VariableDeclaration) {
-  const { scope, name, variableType, value } = coli;
+  const { kind, name, variableType, value } = coli;
   let code = "";
 
-  code += `${scope} ${name} : ${variableType.type}`;
+  code += `${kind} ${name} : ${variableType.type}`;
 
   if (value != null) {
     code += " ";
@@ -55,10 +56,10 @@ function Python(coli: VariableDeclaration) {
 }
 
 function Dart(coli: VariableDeclaration) {
-  const { scope, name, variableType, value } = coli;
+  const { kind, name, variableType, value } = coli;
   let code = "";
 
-  code += `${scope} ${name} : ${variableType.type}`;
+  code += `${kind} ${name} : ${variableType.type}`;
 
   if (value != null) {
     code += " ";
