@@ -3,10 +3,13 @@
  * @param value
  * @returns
  */
-export function convertEsValue(value: any) {
+export function convertEsValue(value: any): string {
+  if (value === null) {
+    return "";
+  }
   if (value instanceof RegExp) {
     // regex type is not part of typeof operator, we need to handle it separately.
-    return value;
+    return `${value}`;
   }
   switch (typeof value) {
     case "string":
@@ -15,6 +18,8 @@ export function convertEsValue(value: any) {
       return `${value}`;
     case "object":
       return `${JSON.stringify(value)}`;
+    case "undefined":
+      return "undefined";
     default:
       return `${value}`;
   }

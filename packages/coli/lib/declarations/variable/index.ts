@@ -7,7 +7,7 @@ import { Declaration } from "../declaration.base";
 
 export class VariableDeclaration extends Declaration {
   readonly kind: VariableKind = "let";
-  readonly type: Type = Types.any;
+  readonly type: Type = Types.none;
   readonly id: Identifier;
 
   // TODO: this should be refactored as variable decl
