@@ -6,8 +6,11 @@ import { JSXSelfClosingElement } from "../../jsx/jsx-self-closing-element";
 import { JSXOpeningElement } from "../../jsx/jsx-opening-element";
 import { JSXAtrributes } from "../../jsx/jsx-attributes";
 
+type builder = (...any: constructor[]) => builder;
+type constructor = any | undefined;
+
 export class JSX extends ColiHierarchyBuilder {
-  static anonymous(
+  static tag(
     identifer: _HandyJsxIdentifier,
     options?: {
       attributes?: JSXAtrributes;
@@ -28,6 +31,67 @@ export class JSX extends ColiHierarchyBuilder {
       closingElement: new JSXClosingElement(_id),
     });
   }
+
+  // region native tags
+  // https://developer.mozilla.org/en-US/docs/Web/HTML/Element
+  static h1(any?: constructor): builder {
+    return;
+  }
+  static h2(any?: constructor): builder {
+    return;
+  }
+  static h3(any?: constructor): builder {
+    return;
+  }
+  static h4(any?: constructor): builder {
+    return;
+  }
+  static h5(any?: constructor): builder {
+    return;
+  }
+  static h6(any?: constructor): builder {
+    return;
+  }
+  static p(any?: constructor): builder {
+    return;
+  }
+  static div(any?: constructor): builder {
+    return;
+  }
+  static span(any?: constructor): builder {
+    return;
+  }
+  static a(any?: constructor): builder {
+    return;
+  }
+  static li(any?: constructor): builder {
+    return;
+  }
+  static ol(any?: constructor): builder {
+    return;
+  }
+  static ul(any?: constructor): builder {
+    return;
+  }
+  static i(any?: constructor): builder {
+    return;
+  }
+  static iframe(any?: constructor): builder {
+    return;
+  }
+  static button(any?: constructor): builder {
+    return;
+  }
+  static form(any?: constructor): builder {
+    return;
+  }
+  static input(any?: constructor): builder {
+    return;
+  }
+  static select(any?: constructor): builder {
+    return;
+  }
+  // endregion native tags
 
   static fromFunction<F extends FunctionDeclaration>(_function: F, args?: {}) {}
 

@@ -47,9 +47,19 @@ console.log(
 // BUILDER
 
 // <div></div>
-const div1 = JSX.anonymous("div");
+const div1 = JSX.tag("div");
 
 // <div/>
-const div2 = JSX.anonymous("div", {
+const div2 = JSX.tag("div", {
   selfClosing: true,
 });
+
+JSX.div()(
+  JSX.div()(
+    JSX.h1()(""),
+    JSX.p()(`
+    `)
+  ),
+  JSX.h1(),
+  JSX.h1()
+);
