@@ -1,12 +1,12 @@
 import { Identifier } from "../../ast/identifier";
 import { ColiBuilder } from "../../builder";
-import { FunctionDeclraration } from "../../declarations/function";
+import { FunctionDeclaration } from "../../declarations/function";
 import { CallExpression } from "../../expressions/call-expression";
 import { BlockStatement } from "../../statements";
 import { Snippet } from "../snippet";
 import { Type, Types } from "../type";
 
-export class Function extends ColiBuilder<FunctionDeclraration> {
+export class Function extends ColiBuilder<FunctionDeclaration> {
   private name: string;
   private parameters: Identifier[];
   private returnType: Type;
@@ -36,11 +36,11 @@ export class Function extends ColiBuilder<FunctionDeclraration> {
 
   // call this function
   call(): CallExpression {
-    return new CallExpression((this.make() as FunctionDeclraration).id);
+    return new CallExpression((this.make() as FunctionDeclaration).id);
   }
 
-  __finalize(): FunctionDeclraration {
-    return new FunctionDeclraration(this.name, {
+  __finalize(): FunctionDeclaration {
+    return new FunctionDeclaration(this.name, {
       returnType: this.returnType,
       body: this.body,
       params: this.parameters,

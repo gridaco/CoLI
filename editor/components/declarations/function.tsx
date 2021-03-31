@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FunctionDeclraration as FunctionClass } from "coli/lib/declarations/function";
+import { FunctionDeclaration as FunctionClass } from "coli/lib/declarations/function";
 import { Type, Types } from "coli/lib";
 import styled from "@emotion/styled";
 import { useRecoilValue, useSetRecoilState } from "recoil";
