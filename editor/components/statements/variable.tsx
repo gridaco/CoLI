@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import {
   VariableStatement as VariableClass,
   VariableKind as VariableScope,
-} from "coli/lib/declarations/variable";
+} from "coli/lib/statements/variable";
 import { Type, Types } from "coli/lib";
 import styled from "@emotion/styled";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { currentDeclarationAtom } from "../../states/declaration.state";
 import { currentColiEditorOption } from "../../states/option.state";
-import DeclartionTitle from "./common/title";
+import DeclartionTitle from "../declarations/common/title";
 import CodeBlock from "../code-block";
 import { stringfy, StringfyLanguage } from "../../../packages/export-string";
 import { CodePreview } from "../code-preview";
@@ -137,7 +137,7 @@ function VariableDeclaration(props: {
   return (
     <Positioner>
       <Wrapper>
-        <DeclartionTitle lable="VARIABLE DECLARATION" />
+        <DeclartionTitle lable="VARIABLE STATEMENTS" />
         <CodeBlock>
           {stringfy(
             new VariableClass(declarationValue.name, declarationValue.args),

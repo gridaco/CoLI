@@ -2,9 +2,10 @@ import { Types } from "coli/lib";
 import React from "react";
 import VariableDeclaration, {
   VariableDeclaration as VariableDeclarationInterface,
-} from "../../../components/declarations/variable";
+} from "../../../components/statements/variable";
 import styled from "@emotion/styled";
 import CodeBlock from "../../../components/code-block";
+import CodeSandBoxView from "../../../components/code-sandbox";
 
 const variableDefaultData: {
   example: string;
@@ -31,6 +32,7 @@ function CoLiVariableDemoPage() {
           <VariableDeclaration id={ix} data={i} key={ix} />
         ))}
       </div>
+      <CodeSandBoxView source="console.log('hello')" />
     </Wrapper>
   );
 }
