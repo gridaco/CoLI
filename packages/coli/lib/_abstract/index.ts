@@ -20,6 +20,7 @@ import {
   _EXPRESSION_CALL,
   _EXPRESSION_COMMENT,
   _EXPRESSION_JSX,
+  _EXPRESSION_PROPERTY_ACCESS,
   _EXPRESSION_TAGGED_TEMPLATE,
 } from "../_internal/node-name/expressions-name";
 import {
@@ -46,6 +47,7 @@ export type ColiExpressionType =
   | typeof _EXPRESSION_CALL
   | typeof _EXPRESSION_COMMENT
   | typeof _EXPRESSION_AWAIT
+  | typeof _EXPRESSION_PROPERTY_ACCESS
   | typeof _EXPRESSION_TAGGED_TEMPLATE
   | typeof _EXPRESSION_JSX;
 

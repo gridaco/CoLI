@@ -3,7 +3,9 @@ import { Identifier } from "coli/lib/ast/identifier";
 import { VariableDeclaration } from "coli/lib/declarations/variable";
 import { JSXElement } from "coli/lib/jsx";
 import { stringfy } from "../../packages/export-string";
-
+import { TaggedTemplateExpression } from "coli/lib/expressions/tagged-template-expression";
+import { PropertyAccessExpression } from "coli/lib/expressions/property-access-exporession";
+import { TemplateLiteral } from "coli/lib/ast/template-literal";
 const AppbarFile = new File({
   name: "Appbar.tsx",
   path: "src/components",
@@ -19,10 +21,58 @@ const inportStyled = new Import()
   .importDefault("styled")
   .from("@emotion/styled");
 
-const Wrapper = new VariableDeclaration("Wrapper");
-const TitleAndAvatarWrapper = new VariableDeclaration("TitleAndAvatarWrapper");
-const Title = new VariableDeclaration("Title");
-const Message = new VariableDeclaration("Message");
+const styledIdentifier = new Identifier("styled");
+
+const Wrapper = new VariableDeclaration("Wrapper", {
+  initializer: new TaggedTemplateExpression(
+    new PropertyAccessExpression(styledIdentifier, "div"),
+    {
+      template: new TemplateLiteral(`
+        margin: 60px 20px;
+      `),
+    }
+  ),
+  kind: "const",
+});
+
+const TitleAndAvatarWrapper = new VariableDeclaration("TitleAndAvatarWrapper", {
+  initializer: new TaggedTemplateExpression(
+    new PropertyAccessExpression(styledIdentifier, "div"),
+    {
+      template: new TemplateLiteral(`
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      `),
+    }
+  ),
+  kind: "const",
+});
+
+const Title = new VariableDeclaration("Title", {
+  initializer: new TaggedTemplateExpression(
+    new PropertyAccessExpression(styledIdentifier, "div"),
+    {
+      template: new TemplateLiteral(`
+        font-size: 36px;
+      `),
+    }
+  ),
+  kind: "const",
+});
+
+const Message = new VariableDeclaration("Message", {
+  initializer: new TaggedTemplateExpression(
+    new PropertyAccessExpression(styledIdentifier, "div"),
+    {
+      template: new TemplateLiteral(`
+        color: #a4a4a4;
+        font-size: 14px;
+      `),
+    }
+  ),
+  kind: "const",
+});
 
 /**
  * function Appbar(props: {

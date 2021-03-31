@@ -18,7 +18,7 @@ export class VariableDeclaration extends Declaration {
     args?: {
       kind: VariableKind;
       type?: Type;
-      initializer?: any;
+      initializer?: ColiObject;
     }
   ) {
     super(_DECLARATION_VARIABLE);
