@@ -1,5 +1,5 @@
 import { FunctionDeclaration } from "coli/lib/declarations/function";
-import { StringfyLanguage } from "../..";
+import { stringfy, StringfyLanguage } from "../..";
 
 export function coliFunctionStringfy(
   c: FunctionDeclaration,
@@ -21,9 +21,10 @@ export function coliFunctionStringfy(
 
   const stringfyBody = body
     .map((i) => {
-      if (i instanceof Array) {
-        const innerData = i.map((j) => j._defaultSnippet);
-        return innerData;
+      if (Array.isArray(i)) {
+        return stringfy(i, {
+          language: l,
+        });
       }
     })
     .flat()
