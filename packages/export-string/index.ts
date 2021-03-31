@@ -73,7 +73,7 @@ function stringfyColiToTypescript(coli: ColiObject) {
       return StringfyImport.Typescript(coli as any);
   }
   return JSON.stringify(coli);
-  throw new NoTokenInterpreterFoundError(coli.__type, coli);
+  // throw new NoTokenInterpreterFoundError(coli.__type, coli);
 }
 
 function stringfyColiToPython(coli: ColiObject) {
@@ -88,7 +88,7 @@ function stringfyColiToPython(coli: ColiObject) {
       return StringfyImport.Python(coli as any);
   }
   return JSON.stringify(coli);
-  throw new NoTokenInterpreterFoundError(coli.__type, coli);
+  // throw new NoTokenInterpreterFoundError(coli.__type, coli);
 }
 
 function stringfyColiToDart(coli: ColiObject) {
@@ -103,5 +103,5 @@ function stringfyColiToDart(coli: ColiObject) {
       return StringfyImport.Dart(coli as any);
   }
   return JSON.stringify(coli);
-  throw new NoTokenInterpreterFoundError(coli.__type, coli);
+  // throw new NoTokenInterpreterFoundError(coli.__type, coli);
 }

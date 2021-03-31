@@ -9,7 +9,7 @@ import { JSXIdentifier } from "../jsx-identifier";
 export class JSXAtrribute {
   name: JSXIdentifier;
   value: ColiObject;
-  constructor(name: string, value: any) {
+  constructor(name: string, value: ColiObject) {
     this.name = new JSXIdentifier(name);
     this.value = value;
   }

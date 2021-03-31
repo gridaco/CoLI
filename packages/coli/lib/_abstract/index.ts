@@ -21,12 +21,13 @@ import {
   _EXPRESSION_CALL,
   _EXPRESSION_COMMENT,
   _EXPRESSION_JSX,
+  _EXPRESSION_OBJECT,
   _EXPRESSION_PROPERTY_ACCESS,
   _EXPRESSION_TAGGED_TEMPLATE,
 } from "../_internal/node-name/expressions-name";
 import {
-  _SPEFICIER_DEFAULT_IMPORT,
-  _SPEFICIER_IMPORT,
+  _SPECIFIER_DEFAULT_IMPORT,
+  _SPECIFIER_IMPORT,
 } from "../_internal/node-name/specifiers-name";
 import {
   _STATEMENT_BLOCK,
@@ -49,13 +50,14 @@ export type ColiExpressionType =
   | typeof _EXPRESSION_COMMENT
   | typeof _EXPRESSION_AWAIT
   | typeof _EXPRESSION_PROPERTY_ACCESS
+  | typeof _EXPRESSION_OBJECT
   | typeof _EXPRESSION_TAGGED_TEMPLATE
   | typeof _EXPRESSION_JSX;
 
 // specifiers
 export type ColiSpecifierType =
-  | typeof _SPEFICIER_IMPORT
-  | typeof _SPEFICIER_DEFAULT_IMPORT;
+  | typeof _SPECIFIER_IMPORT
+  | typeof _SPECIFIER_DEFAULT_IMPORT;
 
 // statements
 export type ColiStatementType =

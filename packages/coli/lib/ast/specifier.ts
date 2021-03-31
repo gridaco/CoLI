@@ -1,3 +1,7 @@
-export abstract class AstSpefifier {
-  constructor(readonly type: string) {}
+import { ColiObject, ColiSpecifierType } from "../_abstract";
+
+export abstract class AstSpefifier extends ColiObject {
+  constructor(readonly type: ColiSpecifierType) {
+    super(type);
+  }
 }

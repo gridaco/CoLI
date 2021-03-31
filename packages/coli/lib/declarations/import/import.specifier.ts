@@ -1,4 +1,4 @@
-import { _SPEFICIER_IMPORT } from "../../_internal/node-name/specifiers-name";
+import { _SPECIFIER_IMPORT } from "../../_internal/node-name/specifiers-name";
 import { BaseImportSpecifier } from "./import-specifier.base";
 
 /**
@@ -16,7 +16,7 @@ export class ImportSpecifier extends BaseImportSpecifier {
    * @param params
    */
   constructor(params: { import: string; local?: string }) {
-    super(_SPEFICIER_IMPORT);
+    super(_SPECIFIER_IMPORT);
 
     // set import as imported.name
     this.imported = {

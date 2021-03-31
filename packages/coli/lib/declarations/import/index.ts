@@ -1,5 +1,5 @@
 import { _DECLARATION_IMPORT } from "../../_internal/node-name/declarations-name";
-import { _SPEFICIER_DEFAULT_IMPORT } from "../../_internal/node-name/specifiers-name";
+import { _SPECIFIER_DEFAULT_IMPORT } from "../../_internal/node-name/specifiers-name";
 import { Declaration } from "../declaration.base";
 import { ImportDefaultSpecifier } from "./import-default.specifier";
 import { BaseImportSpecifier } from "./import-specifier.base";
@@ -21,7 +21,7 @@ export class ImportDeclaration extends Declaration {
 
   get defaultImport(): ImportDefaultSpecifier | undefined {
     return this.specifiers.find((s) => {
-      return s.type == _SPEFICIER_DEFAULT_IMPORT;
+      return s.type == _SPECIFIER_DEFAULT_IMPORT;
     });
   }
 

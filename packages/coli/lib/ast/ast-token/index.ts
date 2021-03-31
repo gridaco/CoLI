@@ -1,7 +1,7 @@
-import { AstType } from "../ast-types";
+import { SyntaxKind } from "../syntax-kind";
 
 export interface AstToken {
-  __type: AstType;
+  kind: SyntaxKind;
 }
 
 export class AstToken {}
