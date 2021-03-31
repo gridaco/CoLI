@@ -1,6 +1,6 @@
 import { Block, Type } from "coli/lib";
 import { FunctionDeclaration } from "coli/lib/declarations/function";
-
+import { stringfy } from "../..";
 function Typescript(coli: FunctionDeclaration) {
   const {
     body,
@@ -17,11 +17,13 @@ function Typescript(coli: FunctionDeclaration) {
   } else {
     code = `function ${name}() : ${type} {\n`;
   }
-
+  console.log(body);
   code += body.body
     .map((i) => {
-      if (i instanceof Array) {
-        return i.map((i) => `  ` + i._defaultSnippet).join("");
+      if (Array.isArray(i)) {
+        return stringfy(i, {
+          language: "typescript",
+        });
       }
     })
     .join("\n");

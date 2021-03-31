@@ -1,11 +1,17 @@
 import { Block, File, Function, Import, Return, Types } from "coli/lib";
 import { Identifier } from "coli/lib/ast/identifier";
 import { VariableDeclaration } from "coli/lib/declarations/variable";
-import { JSXElement } from "coli/lib/jsx";
+import {
+  JSXElement,
+  JSXExpressionContainer,
+  JSXIdentifier,
+} from "coli/lib/jsx";
 import { stringfy } from "../../packages/export-string";
 import { TaggedTemplateExpression } from "coli/lib/expressions/tagged-template-expression";
 import { PropertyAccessExpression } from "coli/lib/expressions/property-access-exporession";
 import { TemplateLiteral } from "coli/lib/ast/template-literal";
+import { JSXOpeningElement } from "coli/lib/jsx/jsx-opening-element";
+import { JSXClosingElement } from "coli/lib/jsx/jsx-closing-element";
 const AppbarFile = new File({
   name: "Appbar.tsx",
   path: "src/components",
@@ -90,7 +96,36 @@ const Message = new VariableDeclaration("Message", {
  * }
  */
 
-const AppbarBody = new Block().add(new Return(new JSXElement("div")));
+const wrapperJsxIdentifier = new JSXIdentifier("Wrapper");
+const titleAndAvatarWrapperJsxIdentifier = new JSXIdentifier(
+  "TitleAndAvatarWrapper"
+);
+const titleJsxIdentifier = new JSXIdentifier("Title");
+
+const AppbarBody = new Block().add(
+  new Return(
+    new JSXElement({
+      openingElement: new JSXOpeningElement(wrapperJsxIdentifier),
+      closingElement: new JSXClosingElement(wrapperJsxIdentifier),
+      children: [
+        new JSXElement({
+          openingElement: new JSXOpeningElement(
+            titleAndAvatarWrapperJsxIdentifier
+          ),
+          closingElement: new JSXClosingElement(
+            titleAndAvatarWrapperJsxIdentifier
+          ),
+          children: [
+            new JSXElement({
+              openingElement: new JSXOpeningElement(titleJsxIdentifier),
+              closingElement: new JSXClosingElement(titleJsxIdentifier),
+            }),
+          ],
+        }),
+      ],
+    })
+  )
+);
 const Appbar = new Function("Appbar")
   .withParams(
     new Identifier("props", {
@@ -110,6 +145,8 @@ AppbarFile.import(importReact.make(), inportStyled.make());
 AppbarFile.declare(Appbar.make());
 AppbarFile.declare(Wrapper, TitleAndAvatarWrapper, Title, Message);
 // endregion make file
+
+console.log(JSON.stringify(AppbarFile.blocks, undefined, 2));
 
 console.log(
   stringfy(AppbarFile.blocks, {

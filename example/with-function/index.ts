@@ -14,7 +14,7 @@ new Function("sum")
       typeAnnotation: Types.number,
     })
   )
-  .withBody(new Block().add(Snippet.fromStatic("return a + b")))
+  .withBody(new Block().add(Snippet.fromStatic("return a + b") as any))
   .returns(Types.number);
 /// function sum( a: number, b: number ) : number {
 ///   return a + b

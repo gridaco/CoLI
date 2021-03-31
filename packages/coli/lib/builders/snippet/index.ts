@@ -1,6 +1,7 @@
 import { AstBuildableTree } from "../../_out/ast-builder/buildable-tree";
 import { AstBuildingTree } from "../../_out/ast-builder/building-tree";
 
+// FIXME - extend coli object
 export class Snippet extends AstBuildableTree {
   _defaultSnippet: string;
   constructor(defaultSnippet?: string) {

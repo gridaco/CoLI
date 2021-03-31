@@ -1,11 +1,12 @@
 import { BlockStatement } from "../../statements";
+import { ColiObject } from "../../_abstract";
 
 export class Block extends BlockStatement {
   constructor(...body: any[]) {
     super(body);
   }
 
-  add(body: any): this {
+  add(body: ColiObject): this {
     this.body.push(body);
     return this;
   }

@@ -5,7 +5,7 @@ import { JSXElement } from "../../jsx";
 
 export class JSX extends ColiBuilder {
   static anonymous(identifer: Identifier) {
-    return new JSXElement(identifer.name);
+    // return new JSXElement();
   }
 
   static fromFunction<F extends FunctionDeclaration>(_function: F, args?: {}) {}

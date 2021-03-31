@@ -49,12 +49,14 @@ export function stringfy(
       return stringfyColiToPython(coli);
     } else if (options.language === "dart") {
       return stringfyColiToDart(coli);
+    } else {
+      new Error(
+        `Unsupported language exception. ${options.language} is not yet supported by coli:stringfy`
+      );
     }
   }
 
-  throw new Error(
-    `Unsupported language exception. ${options.language} is not yet supported by coli:stringfy`
-  );
+  return JSON.stringify(coli);
 }
 
 function stringfyColiToTypescript(coli: ColiObject) {
@@ -70,6 +72,7 @@ function stringfyColiToTypescript(coli: ColiObject) {
     case _DECLARATION_IMPORT:
       return StringfyImport.Typescript(coli as any);
   }
+  return JSON.stringify(coli);
   throw new NoTokenInterpreterFoundError(coli.__type, coli);
 }
 
@@ -84,6 +87,7 @@ function stringfyColiToPython(coli: ColiObject) {
     case _DECLARATION_IMPORT:
       return StringfyImport.Python(coli as any);
   }
+  return JSON.stringify(coli);
   throw new NoTokenInterpreterFoundError(coli.__type, coli);
 }
 
@@ -98,5 +102,6 @@ function stringfyColiToDart(coli: ColiObject) {
     case _DECLARATION_IMPORT:
       return StringfyImport.Dart(coli as any);
   }
+  return JSON.stringify(coli);
   throw new NoTokenInterpreterFoundError(coli.__type, coli);
 }
