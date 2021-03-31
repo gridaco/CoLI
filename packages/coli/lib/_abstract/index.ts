@@ -1,4 +1,5 @@
 import { ColiBlock } from "../builder/block";
+import { ColiBuilder } from "../builder/builder";
 import { CommentExpression } from "../expressions/comment";
 import {
   _NODE_IDENTIFIER,
@@ -86,6 +87,8 @@ export type ColiObjectType =
   | ColiSpecifierType
   | ColiStatementType
   | ColiElementType;
+
+export type ColiObjectKind<T extends ColiObject> = T | ColiBuilder<T>;
 
 export class ColiObject {
   /**

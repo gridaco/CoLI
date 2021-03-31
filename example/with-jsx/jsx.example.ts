@@ -3,7 +3,7 @@ import { JSXElement, JSXIdentifier } from "coli/lib/jsx";
 import { JSXClosingElement } from "coli/lib/jsx/jsx-closing-element";
 import { JSXExpression } from "coli/lib/jsx/jsx-expression";
 import { JSXOpeningElement } from "coli/lib/jsx/jsx-opening-element";
-const JSX = new JSXExpression();
+import { JSX } from "coli/lib/builders/jsx";
 
 const wrapperJsxIdentifier = new JSXIdentifier("Wrapper");
 const titleAndAvatarWrapperJsxIdentifier = new JSXIdentifier(
@@ -43,3 +43,13 @@ console.log(
     language: "tsx",
   })
 );
+
+// BUILDER
+
+// <div></div>
+const div1 = JSX.anonymous("div");
+
+// <div/>
+const div2 = JSX.anonymous("div", {
+  selfClosing: true,
+});

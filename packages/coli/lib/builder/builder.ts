@@ -15,3 +15,5 @@ export abstract class ColiBuilder<T extends ColiObject = any> {
     return this.__finalized;
   }
 }
+
+export class ColiHierarchyBuilder {}

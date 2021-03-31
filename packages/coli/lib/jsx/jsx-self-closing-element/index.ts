@@ -8,12 +8,12 @@ export class JSXSelfClosingElement extends Element {
 
   constructor(
     name: JSXIdentifier,
-    params: {
-      atrributes: JSXAtrributes;
+    params?: {
+      atrributes?: JSXAtrributes;
     }
   ) {
     super(_ELEMENT_JSX_SELF_CLOSING);
     this.name = name;
-    this.atrributes = params.atrributes;
+    this.atrributes = params?.atrributes;
   }
 }
