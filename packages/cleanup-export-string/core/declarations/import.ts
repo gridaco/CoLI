@@ -5,6 +5,10 @@ import {
 } from "coli/lib/declarations/import";
 import { StringfyLanguage } from "../..";
 
+/**
+ * @todo transpile lauganage
+ * @todo value stringfy
+ */
 export function coliImportStringfy(
   c: ImportDeclaration,
   l: StringfyLanguage
