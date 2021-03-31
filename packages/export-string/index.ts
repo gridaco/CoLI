@@ -1,21 +1,21 @@
-import { ColiBlock } from "coli/lib/builder/block";
-import { CommentExpression } from "coli/lib/expressions/comment";
 import { ColiInterpretable, ColiObject } from "coli/lib/_abstract";
-import {
-  _DECLARATION_FUNCTION,
-  _DECLARATION_IMPORT,
-  _STATEMENT_VARIABLE,
-  _EXPRESSION_COMMENT,
-  _DECLARATION_VARIABLE,
-} from "coli/lib/_internal/node-name";
-import {
-  StringfyComment,
-  StringfyFunction,
-  StringfyImport,
-  StringfyVariable,
-} from "./coli-stringfy";
 import { NoTokenInterpreterFoundError } from "./errors";
+import * as COLI from "coli/lib/_internal/node-name";
+import * as CORE from "./core";
+import { VariableDeclaration } from "coli/lib/declarations/variable";
+import { Identifier } from "coli/lib/ast/identifier";
+import { TaggedTemplateExpression } from "coli/lib/expressions/tagged-template-expression";
+import { PropertyAccessExpression } from "coli/lib/expressions/property-access-exporession";
+import { TemplateLiteral } from "coli/lib/ast/template-literal";
+import {
+  ImportDeclaration,
+  ImportDefaultSpecifier,
+  ImportSpecifier,
+} from "coli/lib/declarations/import";
+import { FunctionDeclaration } from "coli/lib/declarations/function";
+import { Block, Snippet, Type, Types } from "coli/lib";
 
+/*@internal*/
 export type StringfyLanguage =
   | "typescript"
   | "tsx"
@@ -25,78 +25,56 @@ export type StringfyLanguage =
   | "python"
   | "dart";
 
-const NO_INTERPRETER_ERROR = new Error(
-  "no coli interpreter found for givven input"
-);
+interface StringfyOptions {
+  language: StringfyLanguage;
+}
+
+type useStrinfyFunction = (
+  c: ColiObject,
+  l: StringfyOptions["language"]
+) => string;
 
 export function stringfy(
   coli: ColiInterpretable,
-  options: { language: StringfyLanguage }
+  stringfyOptions: StringfyOptions
 ): string {
+  const { language } = stringfyOptions;
+
   if (Array.isArray(coli)) {
-    let string = "";
-    coli.map((c) => {
-      string += stringfy(c, options);
-      string += "\n";
-    });
-    return string;
+    const stringfyCode = coli.map((c) => stringfy(c, { language })).join("\n");
+    return stringfyCode;
   }
 
   if (coli instanceof ColiObject) {
-    if (options.language === "typescript" || options.language === "tsx") {
-      return stringfyColiToTypescript(coli);
-    } else if (options.language === "python") {
-      return stringfyColiToPython(coli);
-    } else if (options.language === "dart") {
-      return stringfyColiToDart(coli);
-    }
+    return createSourceCode(coli, language);
   }
-
-  throw new Error(
-    `Unsupported language exception. ${options.language} is not yet supported by coli:stringfy`
-  );
 }
 
-function stringfyColiToTypescript(coli: ColiObject) {
-  switch (coli.__type) {
-    case _EXPRESSION_COMMENT:
-      return StringfyComment.Typescript(coli as any);
-    case _DECLARATION_VARIABLE:
-      return StringfyVariable.Typescript(coli as any);
-    case _STATEMENT_VARIABLE:
-      throw "not implemented";
-    case _DECLARATION_FUNCTION:
-      return StringfyFunction.Typescript(coli as any);
-    case _DECLARATION_IMPORT:
-      return StringfyImport.Typescript(coli as any);
-  }
-  throw new NoTokenInterpreterFoundError(coli.__type, coli);
-}
+/*@internal*/
+export function createSourceCode(
+  coli: ColiObject,
+  stringfyLanguage: StringfyLanguage
+) {
+  const { __type: nodeName } = coli;
+  let useStringfyFunction: useStrinfyFunction = null;
 
-function stringfyColiToPython(coli: ColiObject) {
-  switch (coli.__type) {
-    case _EXPRESSION_COMMENT:
-      return StringfyComment.Python(coli as any);
-    case _DECLARATION_VARIABLE:
-      return StringfyVariable.Python(coli as any);
-    case _STATEMENT_VARIABLE:
-      throw "not implemented";
-    case _DECLARATION_IMPORT:
-      return StringfyImport.Python(coli as any);
+  switch (nodeName) {
+    case COLI._DECLARATION_FUNCTION:
+      useStringfyFunction = CORE.coliFunctionStringfy;
+      break;
+    case COLI._EXPRESSION_COMMENT:
+      useStringfyFunction = CORE.coliCommentStringfy;
+      break;
+    case COLI._DECLARATION_IMPORT:
+      useStringfyFunction = CORE.coliImportStringfy;
+      break;
+    case COLI._STATEMENT_VARIABLE:
+      useStringfyFunction = CORE.coliVariableStringfy;
+      break;
   }
-  throw new NoTokenInterpreterFoundError(coli.__type, coli);
-}
 
-function stringfyColiToDart(coli: ColiObject) {
-  switch (coli.__type) {
-    case _EXPRESSION_COMMENT:
-      return StringfyComment.Dart(coli as any);
-    case _DECLARATION_VARIABLE:
-      return StringfyVariable.Dart(coli as any);
-    case _STATEMENT_VARIABLE:
-      throw "not implemented";
-    case _DECLARATION_IMPORT:
-      return StringfyImport.Dart(coli as any);
+  if (useStringfyFunction) {
+    return useStringfyFunction(coli, stringfyLanguage);
   }
-  throw new NoTokenInterpreterFoundError(coli.__type, coli);
+  throw new NoTokenInterpreterFoundError(nodeName, coli);
 }

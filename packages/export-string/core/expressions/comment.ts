@@ -1,5 +1,5 @@
 import { CommentExpression } from "coli/lib/expressions/comment";
-import { StringfyLanguage } from "../../";
+import { StringfyLanguage } from "../..";
 
 interface CommmentToken {
   single?: string;
