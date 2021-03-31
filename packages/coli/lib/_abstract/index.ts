@@ -96,5 +96,5 @@ export class ColiObject {
     return this;
   }
 
-  constructor(readonly type: ColiObjectType) {}
+  constructor(readonly __type: ColiObjectType) {}
 }
