@@ -1,6 +1,7 @@
 import { ColiInterpretable, ColiObject } from "coli/lib/_abstract";
 import { NoTokenInterpreterFoundError } from "./errors";
 import * as COLI from "coli/lib/_internal/node-name";
+import * as CORE from "./core";
 
 type StringfyLanguage =
   | "typescript"
@@ -37,7 +38,11 @@ export function createSourceCode(coli: ColiObject) {
 
   switch (nodeName) {
     case COLI._DECLARATION_FUNCTION:
-      return "";
+      return CORE.coliFunctionStringfy();
+    case COLI._EXPRESSION_COMMENT:
+      return CORE.coliCommentStringfy();
+    case COLI._STATEMENT_VARIABLE:
+      return CORE.coliVariableStringfy();
   }
-  throw new NoTokenInterpreterFoundError(coli.__type, coli);
+  throw new NoTokenInterpreterFoundError(nodeName, coli);
 }
