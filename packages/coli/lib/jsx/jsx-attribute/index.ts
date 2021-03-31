@@ -4,7 +4,7 @@ import { Identifier } from "../../ast/identifier";
  * e.g. new JSXAtrribute("name", {fisrt: "GY", last: "K"})
  * >> name={{fisrt: "GY", last: "K"}}
  */
-class JSXAtrribute {
+export class JSXAtrribute {
   name: Identifier;
   value: any;
   constructor(name: string, value: any) {

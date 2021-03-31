@@ -66,8 +66,13 @@ console.log(
     language: "tsx",
   })
 );
+
 // THE FINAL OUTPUT MUST SEEM LIKE
 /**
+ *
+ * // example
+ * // <Appbar title={"Saturday Morning Mix"} avatar={"https://a.uguu.se/DjjsiLkC.png"} message={"Here are some tunes for you to start your morning. Mostly quiet and slow-beat, some of them are mood changer."}/>
+ *
  * import React, { useEffect, useState } from "react"
  * import styled from "@emotion/styled"
  *
