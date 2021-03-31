@@ -14,8 +14,9 @@ import { CommentExpression } from "coli/lib/expressions/comment";
 import Selector from "../selector";
 import AutoGrowInput from "../auto-grow-input";
 import AutoGrowTextArea from "../auto-grow-textarea";
+import { variableStatementAtom } from "../../states/statement.state";
 
-export interface VariableDeclaration {
+export interface VariableStatement {
   name: string;
   args?: {
     kind: VariableScope;
@@ -26,7 +27,7 @@ export interface VariableDeclaration {
 
 const returnExampleVariableCode = (args: {
   class: VariableClass | any;
-  value: VariableDeclaration;
+  value: VariableStatement;
   language: StringfyLanguage;
 }) => {
   const { class: variableClass, value, language } = args;
@@ -52,16 +53,14 @@ const variableScopeSelector = [
   },
 ];
 
-function VariableDeclaration(props: {
+function VariableStatement(props: {
   id?: number;
-  data: VariableDeclaration;
+  data: VariableStatement;
 }) {
   const { id, data } = props;
-  const setDeclaration = useSetRecoilState(
-    currentDeclarationAtom<VariableDeclaration>("function", id)
-  );
+  const setGlobalVariableStatementValue = useSetRecoilState(variableStatementAtom);
   const { language } = useRecoilValue(currentColiEditorOption);
-  const [declarationValue, setDeclarationValue] = useState<VariableDeclaration>(
+  const [declarationValue, setDeclarationValue] = useState<VariableStatement>(
     {
       name: "",
       args: {
@@ -77,7 +76,8 @@ function VariableDeclaration(props: {
   }, [data]);
 
   useEffect(() => {
-    setDeclaration(data);
+    // TODO CHANGE PUSH CURRENT DATA ( Declaration Value )
+    // setDeclaration(data);
   }, [declarationValue]);
 
   const onChangeValue = (v: any, n: string, isArgs: boolean = false) => {
@@ -98,7 +98,7 @@ function VariableDeclaration(props: {
   };
 
   const returnArgumentsFiledMappingComponent = (
-    k: keyof VariableDeclaration["args"]
+    k: keyof VariableStatement["args"]
   ) => {
     switch (k) {
       case "kind":
@@ -190,7 +190,7 @@ function VariableDeclaration(props: {
   );
 }
 
-export default VariableDeclaration;
+export default VariableStatement;
 
 const Positioner = styled.div`
   display: flex;

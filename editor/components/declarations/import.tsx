@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import DeclartionTitle from "./common/title";
 import { useSetRecoilState, useRecoilValue } from "recoil";
 import AutoGrowInput from "../auto-grow-input";
-import { currentDeclarationAtom } from "../../states/declaration.state";
+import { currentDeclarationAtom, importDeclarationAtom } from "../../states/declaration.state";
 import CodeBlock from "../code-block";
 import {
   ImportDeclaration as ImportClass,
@@ -49,9 +49,7 @@ const returnExampleImportCode = (args: {
 
 function ImportDeclaration(props: { id: number; data: ImportDeclaration }) {
   const { data, id } = props;
-  const setDeclaration = useSetRecoilState(
-    currentDeclarationAtom<ImportDeclaration>("function", id)
-  );
+  const setGlobalImportDeclarationValue = useSetRecoilState(importDeclarationAtom);
   const { language } = useRecoilValue(currentColiEditorOption);
   const [declarationValue, setDeclarationValue] = useState<ImportDeclaration>({
     specifiers: [],
@@ -63,7 +61,8 @@ function ImportDeclaration(props: { id: number; data: ImportDeclaration }) {
   }, [data]);
 
   useEffect(() => {
-    setDeclaration(data);
+    // TODO CHANGE PUSH CURRENT DATA ( Declaration Value )
+    // setDeclaration(data);
   }, [declarationValue]);
 
   const mappingTextField = (fleid?: string) => {
