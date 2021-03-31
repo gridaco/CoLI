@@ -67,9 +67,5 @@ export function createSourceCode(
 
   /** @TEST */
   return JSON.stringify(coli);
-<<<<<<< HEAD
   // throw new NoTokenInterpreterFoundError(nodeName, coli);
-=======
-  throw new NoTokenInterpreterFoundError(nodeName, coli);
->>>>>>> 39cc6d156c218f25ca8573ba03934ca3747f331e
 }
