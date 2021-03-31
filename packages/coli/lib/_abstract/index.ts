@@ -14,6 +14,7 @@ import {
   _ELEMENT_JSX,
   _ELEMENT_JSX_CLOSING,
   _ELEMENT_JSX_OPENING,
+  _ELEMENT_JSX_SELF_CLOSING,
 } from "../_internal/node-name/elements-name";
 import {
   _EXPRESSION_AWAIT,
@@ -67,7 +68,8 @@ export type ColiStatementType =
 export type ColiElementType =
   | typeof _ELEMENT_JSX
   | typeof _ELEMENT_JSX_OPENING
-  | typeof _ELEMENT_JSX_CLOSING;
+  | typeof _ELEMENT_JSX_CLOSING
+  | typeof _ELEMENT_JSX_SELF_CLOSING;
 
 export type ColiBaseNodeType =
   | typeof _NODE_LITERAL

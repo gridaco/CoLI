@@ -1,7 +1,8 @@
 import { JSXAtrributes } from "../jsx-attributes";
 import { JSXIdentifier } from "../jsx-identifier";
-
-export class JSXSelfClosingElement {
+import { Element } from "../../elements/element.base";
+import { _ELEMENT_JSX_SELF_CLOSING } from "../../_internal/node-name";
+export class JSXSelfClosingElement extends Element {
   readonly name: JSXIdentifier;
   readonly atrributes: JSXAtrributes = [];
 
@@ -11,6 +12,7 @@ export class JSXSelfClosingElement {
       atrributes: JSXAtrributes;
     }
   ) {
+    super(_ELEMENT_JSX_SELF_CLOSING);
     this.name = name;
     this.atrributes = params.atrributes;
   }
