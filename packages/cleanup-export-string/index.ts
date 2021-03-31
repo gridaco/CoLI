@@ -3,7 +3,7 @@ import { NoTokenInterpreterFoundError } from "./errors";
 import * as COLI from "coli/lib/_internal/node-name";
 import * as CORE from "./core";
 import { VariableDeclaration } from "coli/lib/declarations/variable";
-import { Identifier, Literal } from "coli/lib/ast";
+import { Identifier } from "coli/lib/ast/identifier";
 import { TaggedTemplateExpression } from "coli/lib/expressions/tagged-template-expression";
 import { PropertyAccessExpression } from "coli/lib/expressions/property-access-exporession";
 import { TemplateLiteral } from "coli/lib/ast/template-literal";
@@ -12,6 +12,8 @@ import {
   ImportDefaultSpecifier,
   ImportSpecifier,
 } from "coli/lib/declarations/import";
+import { FunctionDeclaration } from "coli/lib/declarations/function";
+import { Block, Snippet, Type, Types } from "coli/lib";
 
 /*@internal*/
 export type StringfyLanguage =
@@ -76,21 +78,3 @@ export function createSourceCode(
   }
   throw new NoTokenInterpreterFoundError(nodeName, coli);
 }
-
-const importDec = new ImportDeclaration({
-  specifiers: [
-    new ImportDefaultSpecifier({
-      local: "styled",
-    }),
-    new ImportSpecifier({
-      import: "utils",
-    }),
-  ],
-  source: "@motion/styled",
-});
-
-console.log(
-  stringfy(importDec, {
-    language: "typescript",
-  })
-);
