@@ -4,6 +4,7 @@ import {
   ImportSpecifier,
 } from "coli/lib/declarations/import";
 import { StringfyLanguage } from "../..";
+import { converValue } from "../../utils/convert-value";
 
 /**
  * @todo transpile lauganage
@@ -42,7 +43,7 @@ export function coliImportStringfy(
     _specifiers.push(`{ ${importSpecifiers.join(", ")} }`);
   }
 
-  code += `${_specifiers.join(", ")} from ${source}`;
+  code += `${_specifiers.join(", ")} from ${converValue(source, l)}`;
 
   return code;
 }

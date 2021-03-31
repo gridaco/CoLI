@@ -3,6 +3,7 @@ import { VariableDeclaration } from "coli/lib/declarations/variable";
 import { PropertyAccessExpression } from "coli/lib/expressions/property-access-exporession";
 import { TaggedTemplateExpression } from "coli/lib/expressions/tagged-template-expression";
 import { StringfyLanguage } from "../..";
+import { converValue } from "../../utils/convert-value";
 
 /**
  * @todo transpile lauganage
@@ -28,7 +29,7 @@ export function coliVariableStringfy(
 
   if (initializer instanceof Literal) {
     const { value } = initializer;
-    code += ` = ${value}`;
+    code += ` = ${converValue(value, l)}`;
   }
 
   if (initializer instanceof TaggedTemplateExpression) {
