@@ -3,7 +3,10 @@ import { NoTokenInterpreterFoundError } from "./errors";
 import * as COLI from "coli/lib/_internal/node-name";
 import * as CORE from "./core";
 import { VariableDeclaration } from "coli/lib/declarations/variable";
-import { Literal } from "coli/lib/ast";
+import { Identifier, Literal } from "coli/lib/ast";
+import { TaggedTemplateExpression } from "coli/lib/expressions/tagged-template-expression";
+import { PropertyAccessExpression } from "coli/lib/expressions/property-access-exporession";
+import { TemplateLiteral } from "coli/lib/ast/template-literal";
 
 /*@internal*/
 export type StringfyLanguage =
