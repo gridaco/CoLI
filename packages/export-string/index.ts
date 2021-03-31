@@ -13,6 +13,7 @@ import {
   StringfyImport,
   StringfyVariable,
 } from "./coli-stringfy";
+import { NoTokenInterpreterFoundError } from "./errors";
 
 export type StringfyLanguage =
   | "typescript"
@@ -31,7 +32,7 @@ export function stringfy(
   coli: any,
   options: { language: StringfyLanguage }
 ): string {
-  if (options.language === "typescript") {
+  if (options.language === "typescript" || options.language === "tsx") {
     return stringfyColiToTypescript(coli);
   } else if (options.language === "python") {
     return stringfyColiToPython(coli);
@@ -57,7 +58,7 @@ function stringfyColiToTypescript(coli: ColiObject) {
     case _DECLARATION_IMPORT:
       return StringfyImport.Typescript(coli as any);
   }
-  throw NO_INTERPRETER_ERROR;
+  throw new NoTokenInterpreterFoundError(coli.__type, coli);
 }
 
 function stringfyColiToPython(coli: ColiObject) {
@@ -71,7 +72,7 @@ function stringfyColiToPython(coli: ColiObject) {
     case _DECLARATION_IMPORT:
       return StringfyImport.Python(coli as any);
   }
-  throw NO_INTERPRETER_ERROR;
+  throw new NoTokenInterpreterFoundError(coli.__type, coli);
 }
 
 function stringfyColiToDart(coli: ColiObject) {
@@ -85,5 +86,5 @@ function stringfyColiToDart(coli: ColiObject) {
     case _DECLARATION_IMPORT:
       return StringfyImport.Dart(coli as any);
   }
-  throw NO_INTERPRETER_ERROR;
+  throw new NoTokenInterpreterFoundError(coli.__type, coli);
 }

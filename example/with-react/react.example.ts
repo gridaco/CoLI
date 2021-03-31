@@ -61,6 +61,11 @@ const callExpression = Appbar.call();
 AppbarFile.import(importReact.make());
 AppbarFile.declare(Wrapper, TitleAndAvatarWrapper, Title, Message);
 
+console.log(
+  stringfy(AppbarFile, {
+    language: "tsx",
+  })
+);
 // THE FINAL OUTPUT MUST SEEM LIKE
 /**
  * import React, { useEffect, useState } from "react"
