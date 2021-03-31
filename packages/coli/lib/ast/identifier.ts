@@ -17,8 +17,7 @@ export class Identifier extends ColiObject {
     }
   ) {
     super(_NODE_IDENTIFIER);
-    const { optional, typeAnnotation } = args;
-    this.optional = optional;
-    this.typeAnnotation = typeAnnotation;
+    this.optional = args?.optional;
+    this.typeAnnotation = args?.typeAnnotation;
   }
 }
