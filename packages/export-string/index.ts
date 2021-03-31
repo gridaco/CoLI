@@ -1,4 +1,5 @@
-import { ColiObjectType } from "coli/lib/_abstract";
+import { CommentExpression } from "coli/lib/expressions/comment";
+import { ColiObject } from "coli/lib/_abstract";
 import {
   _DECLARATION_FUNCTION,
   _DECLARATION_IMPORT,
@@ -14,11 +15,6 @@ import {
 
 export type StringfyLanguage = "typescript" | "python" | "dart";
 
-export interface Coli {
-  type: ColiObjectType;
-  [x: string]: any;
-}
-
 export function stringfy(
   coli: any,
   options: { language: StringfyLanguage }
@@ -32,37 +28,37 @@ export function stringfy(
   }
 }
 
-function stringfyColiToTypescript(coli: any) {
-  switch (coli.type) {
+function stringfyColiToTypescript(coli: ColiObject) {
+  switch (coli.__type) {
     case _EXPRESSION_COMMENT:
-      return StringfyComment.Typescript(coli);
+      return StringfyComment.Typescript(coli as any);
     case _STATEMENT_VARIABLE:
-      return StringfyVariable.Typescript(coli);
+      return StringfyVariable.Typescript(coli as any);
     case _DECLARATION_FUNCTION:
-      return StringfyFunction.Typescript(coli);
+      return StringfyFunction.Typescript(coli as any);
     case _DECLARATION_IMPORT:
-      return StringfyImport.Typescript(coli);
+      return StringfyImport.Typescript(coli as any);
   }
 }
 
-function stringfyColiToPython(coli: any) {
-  switch (coli.type) {
+function stringfyColiToPython(coli: ColiObject) {
+  switch (coli.__type) {
     case _EXPRESSION_COMMENT:
-      return StringfyComment.Python(coli);
+      return StringfyComment.Python(coli as any);
     case _STATEMENT_VARIABLE:
-      return StringfyVariable.Python(coli);
+      return StringfyVariable.Python(coli as any);
     case _DECLARATION_IMPORT:
-      return StringfyImport.Python(coli);
+      return StringfyImport.Python(coli as any);
   }
 }
 
-function stringfyColiToDart(coli: any) {
-  switch (coli.type) {
+function stringfyColiToDart(coli: ColiObject) {
+  switch (coli.__type) {
     case _EXPRESSION_COMMENT:
-      return StringfyComment.Dart(coli);
+      return StringfyComment.Dart(coli as any);
     case _STATEMENT_VARIABLE:
-      return StringfyVariable.Dart(coli);
+      return StringfyVariable.Dart(coli as any);
     case _DECLARATION_IMPORT:
-      return StringfyImport.Dart(coli);
+      return StringfyImport.Dart(coli as any);
   }
 }
