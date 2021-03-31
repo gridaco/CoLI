@@ -1,5 +1,10 @@
 import { CommentExpression } from "../expressions/comment";
 import {
+  _NODE_IDENTIFIER,
+  _NODE_LITERAL,
+  _NODE_PROGRAM,
+} from "../_internal/node-name";
+import {
   _DECLARATION_FUNCTION,
   _DECLARATION_IMPORT,
   _DECLARATION_VARIABLE,
@@ -61,7 +66,13 @@ export type ColiElementType =
   | typeof _ELEMENT_JSX_OPENING
   | typeof _ELEMENT_JSX_CLOSING;
 
+export type ColiBaseNodeType =
+  | typeof _NODE_LITERAL
+  | typeof _NODE_IDENTIFIER
+  | typeof _NODE_PROGRAM;
+
 export type ColiObjectType =
+  | ColiBaseNodeType
   | typeof COLI_WILDCARD_OBJECT
   | ColiDeclarationType
   | ColiExpressionType

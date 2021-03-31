@@ -1,3 +1,4 @@
+import { Identifier } from "../../ast/identifier";
 import { Type, Types } from "../../builders/type";
 import { ColiObject } from "../../_abstract";
 import { VariableKind } from "../../_internal/kinds/variable-kind";
@@ -7,7 +8,7 @@ import { Declaration } from "../declaration.base";
 export class VariableDeclaration extends Declaration {
   readonly kind: VariableKind = "let";
   readonly type: Type = Types.any;
-  readonly name: string;
+  readonly id: Identifier;
 
   // TODO: this should be refactored as variable decl
   readonly initializer?: ColiObject;
@@ -22,7 +23,7 @@ export class VariableDeclaration extends Declaration {
   ) {
     super(_DECLARATION_VARIABLE);
 
-    this.name = name;
+    this.id = new Identifier(name);
     if (args) {
       args.initializer && (this.initializer = args.initializer);
       args.type && (this.type = args.type);

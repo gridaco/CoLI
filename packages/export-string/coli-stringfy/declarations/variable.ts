@@ -2,10 +2,12 @@ import { Type } from "coli/lib";
 import { VariableDeclaration } from "coli/lib/declarations/variable";
 import { convertValue } from "../../utils/convert-value";
 
+// FIXEM id has changed to identifier which is another coli object, convert identifer {name : "a"} as a via identifier converter.
+
 function Typescript(coli: VariableDeclaration) {
   const {
     kind,
-    name,
+    id: name,
     type: { keyword: type },
     initializer: init,
   } = coli;
@@ -24,7 +26,7 @@ function Typescript(coli: VariableDeclaration) {
 }
 
 function Python(coli: VariableDeclaration) {
-  const { kind, name, type: variableType, initializer: init } = coli;
+  const { kind, id: name, type: variableType, initializer: init } = coli;
   let code = "";
 
   code += `${kind} ${name} : ${variableType.keyword}`;
@@ -49,7 +51,7 @@ function Python(coli: VariableDeclaration) {
 }
 
 function Dart(coli: VariableDeclaration) {
-  const { kind, name, type: variableType, initializer: init } = coli;
+  const { kind, id: name, type: variableType, initializer: init } = coli;
   let code = "";
 
   code += `${kind} ${name} : ${variableType.keyword}`;
