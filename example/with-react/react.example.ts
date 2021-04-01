@@ -1,11 +1,7 @@
 import { Block, File, Function, Import, Return, Types } from "coli/lib";
 import { Identifier } from "coli/lib/ast/identifier";
 import { VariableDeclaration } from "coli/lib/declarations/variable";
-import {
-  JSXElement,
-  JSXExpressionContainer,
-  JSXIdentifier,
-} from "coli/lib/jsx";
+import { JSXElement, JSXIdentifier } from "coli/lib/jsx";
 import { stringfy } from "../../packages/export-string";
 import { TaggedTemplateExpression } from "coli/lib/expressions/tagged-template-expression";
 import { PropertyAccessExpression } from "coli/lib/expressions/property-access-exporession";

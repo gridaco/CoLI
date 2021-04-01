@@ -1,10 +1,12 @@
 import { ColiBuilder, ColiHierarchyBuilder } from "../../builder/builder";
 import { FunctionDeclaration } from "../../declarations/function";
-import { JSXElement, JSXIdentifier } from "../../jsx";
+import { JSXElement, JSXExpression, JSXIdentifier } from "../../jsx";
 import { JSXClosingElement } from "../../jsx/jsx-closing-element";
 import { JSXSelfClosingElement } from "../../jsx/jsx-self-closing-element";
 import { JSXOpeningElement } from "../../jsx/jsx-opening-element";
 import { JSXAtrributes } from "../../jsx/jsx-attributes";
+import { JSXText } from "../../jsx/jsx-text";
+import { ColiObject } from "../../_abstract";
 
 type builder = (...any: constructor[]) => builder;
 type constructor = any | undefined;
@@ -30,6 +32,14 @@ export class JSX extends ColiHierarchyBuilder {
       }),
       closingElement: new JSXClosingElement(_id),
     });
+  }
+
+  static text(text: string): JSXText {
+    return new JSXText(text);
+  }
+
+  static exp(expression: ColiObject): JSXExpression {
+    return new JSXExpression(expression);
   }
 
   // region native tags
