@@ -1,8 +1,11 @@
 import { JSXExpression } from "coli/lib/jsx";
-import { stringfy } from "..";
+import { stringfy, StringfyLanguage } from "..";
 
-export function STRFY_JsxExpression(c: JSXExpression): string {
-  return `{${stringfy(c.expression, {
-    language: "jsx",
-  })}}`;
+export function coliJSXExpressionStringfy(
+  c: JSXExpression,
+  l: StringfyLanguage
+): string {
+  const { expression } = c;
+  let code = `{${stringfy(expression, { language: l })}}`;
+  return code;
 }

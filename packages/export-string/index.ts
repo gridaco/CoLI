@@ -91,6 +91,9 @@ export function createSourceCode(
     case COLI._EXPRESSION_PROPERTY_ACCESS:
       useStringfyFunction = CORE.coliPropertyAccessStringfy;
       break;
+    case COLI._EXPRESSION_JSX:
+      useStringfyFunction = CORE.coliJSXExpressionStringfy;
+      break;
     /** Nodes */
     case COLI._ELEMENT_JSX:
       useStringfyFunction = CORE.coliJSXElementStringfy;
@@ -112,7 +115,7 @@ export function createSourceCode(
       useStringfyFunction = CORE.coliJSXSelfClosingElementStringfy;
       break;
     case COLI._EXPRESSION_JSX:
-      useStringfyFunction = CORE.STRFY_JsxExpression;
+      useStringfyFunction = CORE.coliJSXExpressionStringfy;
     /** Specifiers */
     case COLI._SPECIFIER_IMPORT:
       useStringfyFunction = CORE.coliSpecifierImportStringfy;
