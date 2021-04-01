@@ -5,7 +5,6 @@ export function coliJSXElementStringfy(
   c: JSXElement,
   l: StringfyLanguage
 ): string {
-  console.log(c);
   let code = "";
   const { openingElement, closingElement, children } = c;
   code += `${stringfy(openingElement, { language: l })}`;
