@@ -1,4 +1,4 @@
-import { Block, File, Function, Import, Return, Types } from "coli/lib";
+import { JSX, Block, File, Function, Import, Return, Types } from "coli/lib";
 import { Identifier } from "coli/lib/ast/identifier";
 import { VariableDeclaration } from "coli/lib/declarations/variable";
 import {
@@ -11,9 +11,7 @@ import { stringfy } from "../../packages/export-string";
 import { TaggedTemplateExpression } from "coli/lib/expressions/tagged-template-expression";
 import { PropertyAccessExpression } from "coli/lib/expressions/property-access-exporession";
 import { TemplateLiteral } from "coli/lib/ast/template-literal";
-import { JSXOpeningElement } from "coli/lib/jsx/jsx-opening-element";
-import { JSXClosingElement } from "coli/lib/jsx/jsx-closing-element";
-import { JSXSelfClosingElement } from "coli/lib/jsx/jsx-self-closing-element";
+
 const AppbarFile = new File({
   name: "Appbar.tsx",
   path: "src/components",
@@ -111,43 +109,25 @@ const Avatar = new VariableDeclaration("Avatar", {
  * }
  */
 
-const wrapperJsxIdentifier = new JSXIdentifier("Wrapper");
-const titleAndAvatarWrapperJsxIdentifier = new JSXIdentifier(
-  "TitleAndAvatarWrapper"
-);
-const titleJsxIdentifier = new JSXIdentifier("Title");
-const avatarJsxIdentifier = new JSXIdentifier("Avatar");
-const messageJsxIdentifier = new JSXIdentifier("Message");
-
 const AppbarBody = new Block().add(
   new Return(
     // Wrapper
-    new JSXElement({
-      openingElement: new JSXOpeningElement(wrapperJsxIdentifier),
-      closingElement: new JSXClosingElement(wrapperJsxIdentifier),
+    JSX.tag("Wrapper", {
       children: [
         // TitleAndAvatarWrapper
-        new JSXElement({
-          openingElement: new JSXOpeningElement(
-            titleAndAvatarWrapperJsxIdentifier
-          ),
-          closingElement: new JSXClosingElement(
-            titleAndAvatarWrapperJsxIdentifier
-          ),
+        JSX.tag("TitleAndAvatarWrapper", {
           children: [
             // Title
-            new JSXElement({
-              openingElement: new JSXOpeningElement(titleJsxIdentifier),
-              closingElement: new JSXClosingElement(titleJsxIdentifier),
+            JSX.tag("Title", {
               children: [
-                new JSXExpression(
+                JSX.exp(
                   new PropertyAccessExpression(new Identifier("props"), "title")
                 ),
               ],
             }),
             // Avatar
-            new JSXSelfClosingElement(avatarJsxIdentifier, {
-              atrributes: [
+            JSX.tag("Avatar", {
+              attributes: [
                 new JSXAtrribute(
                   "src",
                   new JSXExpression(
@@ -162,19 +142,18 @@ const AppbarBody = new Block().add(
           ],
         }),
         // Message
-        new JSXElement({
-          openingElement: new JSXOpeningElement(messageJsxIdentifier),
-          closingElement: new JSXClosingElement(messageJsxIdentifier),
+        JSX.tag("Message", {
           children: [
-            new JSXExpression(
+            JSX.exp(
               new PropertyAccessExpression(new Identifier("props"), "message")
             ),
           ],
         }),
       ],
-    })
+    }).make()
   )
 );
+
 const Appbar = new Function("Appbar")
   .withParams(
     new Identifier("props", {
