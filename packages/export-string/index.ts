@@ -2,6 +2,10 @@ import { ColiInterpretable, ColiObject } from "coli/lib/_abstract";
 import { NoTokenInterpreterFoundError } from "./errors";
 import * as COLI from "coli/lib/_internal/node-name";
 import * as CORE from "./core";
+import { CommentExpression } from "coli/lib/expressions/comment";
+import { Block, Types } from "coli/lib";
+import { Identifier } from "coli/lib/ast";
+import { FunctionDeclaration } from "coli/lib/declarations/function";
 
 /*@internal*/
 export type StringfyLanguage =
@@ -15,6 +19,7 @@ export type StringfyLanguage =
 
 interface StringfyOptions {
   language: StringfyLanguage;
+  arrayDivison?: string;
 }
 
 type useStrinfyFunction = (
@@ -26,10 +31,12 @@ export function stringfy(
   coli: ColiInterpretable,
   stringfyOptions: StringfyOptions
 ): string {
-  const { language } = stringfyOptions;
+  const { language, arrayDivison = "" } = stringfyOptions;
 
   if (Array.isArray(coli)) {
-    const stringfyCode = coli.map((c) => stringfy(c, { language })).join("\n");
+    const stringfyCode = coli
+      .map((c) => stringfy(c, { language }))
+      .join(arrayDivison);
     return stringfyCode;
   }
 
@@ -50,6 +57,9 @@ export function createSourceCode(
     case COLI._DECLARATION_FUNCTION:
       useStringfyFunction = CORE.coliFunctionStringfy;
       break;
+    case COLI._NODE_IDENTIFIER:
+      useStringfyFunction = CORE.coliIdentifierStringfy;
+      break;
     case COLI._EXPRESSION_COMMENT:
       useStringfyFunction = CORE.coliCommentStringfy;
       break;
@@ -58,6 +68,9 @@ export function createSourceCode(
       break;
     case COLI._STATEMENT_VARIABLE:
       useStringfyFunction = CORE.coliVariableStringfy;
+      break;
+    case COLI._STATEMENT_BLOCK:
+      useStringfyFunction = CORE.coliBlockStringfy;
       break;
     case COLI._ELEMENT_JSX:
       useStringfyFunction = CORE.coliJSXElementStringfy;
@@ -72,3 +85,18 @@ export function createSourceCode(
   return JSON.stringify(coli);
   // throw new NoTokenInterpreterFoundError(nodeName, coli);
 }
+
+const comment = new CommentExpression({
+  content: "comment",
+  style: "multi-line",
+});
+
+const func = new FunctionDeclaration("add", {
+  body: new Block(comment),
+  params: [
+    new Identifier("a", { typeAnnotation: Types.number }),
+    new Identifier("b", { typeAnnotation: Types.number }),
+  ],
+});
+
+console.log(stringfy(func, { language: "typescript" }));
