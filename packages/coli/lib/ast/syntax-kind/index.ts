@@ -8,12 +8,12 @@ export const enum SyntaxKind {
   MultiLineCommentTrivia = "MultiLineCommentTrivia",
   NewLineTrivia = "NewLineTrivia",
   WhitespaceTrivia = "WhitespaceTrivia",
-  // = "//" We detect and preserve #! on the first line
+  // We detect and preserve #! on the first line
   ShebangTrivia = "ShebangTrivia",
-  // = "//" We detect and provide better error recovery when we encounter a git merge marker.  This
-  // = "//" allows us to edit files with git-conflict markers in them in a much more pleasant manner.
+  // We detect and provide better error recovery when we encounter a git merge marker.  This
+  // allows us to edit files with git-conflict markers in them in a much more pleasant manner.
   ConflictMarkerTrivia = "ConflictMarkerTrivia",
-  // = "//" Literals
+  // Literals
   NumericLiteral = "NumericLiteral",
   BigIntLiteral = "BigIntLiteral",
   StringLiteral = "StringLiteral",
@@ -21,11 +21,11 @@ export const enum SyntaxKind {
   JsxTextAllWhiteSpaces = "JsxTextAllWhiteSpaces",
   RegularExpressionLiteral = "RegularExpressionLiteral",
   NoSubstitutionTemplateLiteral = "NoSubstitutionTemplateLiteral",
-  // = "//" Pseudo-literals
+  // Pseudo-literals
   TemplateHead = "TemplateHead",
   TemplateMiddle = "TemplateMiddle",
   TemplateTail = "TemplateTail",
-  // = "//" Punctuation
+  // Punctuation
   OpenBraceToken = "OpenBraceToken",
   CloseBraceToken = "CloseBraceToken",
   OpenParenToken = "OpenParenToken",
@@ -69,9 +69,9 @@ export const enum SyntaxKind {
   ColonToken = "ColonToken",
   AtToken = "AtToken",
   QuestionQuestionToken = "QuestionQuestionToken",
-  /** = "/**" Only the JSDoc scanner produces BacktickToken. The normal scanner produces NoSubstitutionTemplateLiteral and related kinds. */
+  /** Only the JSDoc scanner produces BacktickToken. The normal scanner produces NoSubstitutionTemplateLiteral and related kinds. */
   BacktickToken = "BacktickToken",
-  // = "//" Assignments
+  // Assignments
   EqualsToken = "EqualsToken",
   PlusEqualsToken = "PlusEqualsToken",
   MinusEqualsToken = "MinusEqualsToken",
@@ -88,10 +88,10 @@ export const enum SyntaxKind {
   AmpersandAmpersandEqualsToken = "AmpersandAmpersandEqualsToken",
   QuestionQuestionEqualsToken = "QuestionQuestionEqualsToken",
   CaretEqualsToken = "CaretEqualsToken",
-  // = "//" Identifiers and PrivateIdentifiers
+  // Identifiers and PrivateIdentifiers
   Identifier = "Identifier",
   PrivateIdentifier = "PrivateIdentifier",
-  // = "//" Reserved words
+  // Reserved words
   BreakKeyword = "BreakKeyword",
   CaseKeyword = "CaseKeyword",
   CatchKeyword = "CatchKeyword",
@@ -128,7 +128,7 @@ export const enum SyntaxKind {
   VoidKeyword = "VoidKeyword",
   WhileKeyword = "WhileKeyword",
   WithKeyword = "WithKeyword",
-  // = "//" Strict mode reserved words
+  // Strict mode reserved words
   ImplementsKeyword = "ImplementsKeyword",
   InterfaceKeyword = "InterfaceKeyword",
   LetKeyword = "LetKeyword",
@@ -138,7 +138,7 @@ export const enum SyntaxKind {
   PublicKeyword = "PublicKeyword",
   StaticKeyword = "StaticKeyword",
   YieldKeyword = "YieldKeyword",
-  // = "//" Contextual keywords
+  // Contextual keywords
   AbstractKeyword = "AbstractKeyword",
   AsKeyword = "AsKeyword",
   AssertsKeyword = "AssertsKeyword",
@@ -173,18 +173,18 @@ export const enum SyntaxKind {
   OverrideKeyword = "OverrideKeyword",
   OfKeyword = "OfKeyword", // LastKeyword and LastToken and LastContextualKeyword
 
-  // = "
-  //" Parse tree nodes
+  //
+  // Parse tree nodes
 
-  // = "
-  //" Names
+  //
+  // Names
   QualifiedName = "QualifiedName",
   ComputedPropertyName = "ComputedPropertyName",
-  // = "//" Signature elements
+  // Signature elements
   TypeParameter = "TypeParameter",
   Parameter = "Parameter",
   Decorator = "Decorator",
-  // = "//" TypeMember
+  // TypeMember
   PropertySignature = "PropertySignature",
   PropertyDeclaration = "PropertyDeclaration",
   MethodSignature = "MethodSignature",
@@ -195,7 +195,7 @@ export const enum SyntaxKind {
   CallSignature = "CallSignature",
   ConstructSignature = "ConstructSignature",
   IndexSignature = "IndexSignature",
-  // = "//" Type
+  // Type
   TypePredicate = "TypePredicate",
   TypeReference = "TypeReference",
   FunctionType = "FunctionType",
@@ -220,11 +220,11 @@ export const enum SyntaxKind {
   TemplateLiteralType = "TemplateLiteralType",
   TemplateLiteralTypeSpan = "TemplateLiteralTypeSpan",
   ImportType = "ImportType",
-  // = "//" Binding patterns
+  // Binding patterns
   ObjectBindingPattern = "ObjectBindingPattern",
   ArrayBindingPattern = "ArrayBindingPattern",
   BindingElement = "BindingElement",
-  // = "//" Expression
+  // Expression
   ArrayLiteralExpression = "ArrayLiteralExpression",
   ObjectLiteralExpression = "ObjectLiteralExpression",
   PropertyAccessExpression = "PropertyAccessExpression",
@@ -255,11 +255,11 @@ export const enum SyntaxKind {
   MetaProperty = "MetaProperty",
   SyntheticExpression = "SyntheticExpression",
 
-  // = "
-  //" Misc
+  //
+  // Misc
   TemplateSpan = "TemplateSpan",
   SemicolonClassElement = "SemicolonClassElement",
-  // = "//" Element
+  // Element
   Block = "Block",
   EmptyStatement = "EmptyStatement",
   VariableStatement = "VariableStatement",
@@ -303,8 +303,8 @@ export const enum SyntaxKind {
   ExportSpecifier = "ExportSpecifier",
   MissingDeclaration = "MissingDeclaration",
 
-  // = "
-  //" Module references
+  //
+  // Module references
   ExternalModuleReference = "ExternalModuleReference",
 
   // JSX
@@ -320,23 +320,23 @@ export const enum SyntaxKind {
   JsxSpreadAttribute = "JsxSpreadAttribute",
   JsxExpression = "JsxExpression",
 
-  // = "
-  //" Clauses
+  //
+  // Clauses
   CaseClause = "CaseClause",
   DefaultClause = "DefaultClause",
   HeritageClause = "HeritageClause",
   CatchClause = "CatchClause",
 
-  // = "
-  //" Property assignments
+  //
+  // Property assignments
   PropertyAssignment = "PropertyAssignment",
   ShorthandPropertyAssignment = "ShorthandPropertyAssignment",
   SpreadAssignment = "SpreadAssignment",
 
-  // = "
-  //" Enum
+  //
+  // Enum
   EnumMember = "EnumMember",
-  // = "//" Unparsed
+  // Unparsed
   UnparsedPrologue = "UnparsedPrologue",
   UnparsedPrepend = "UnparsedPrepend",
   UnparsedText = "UnparsedText",
