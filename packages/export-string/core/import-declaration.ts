@@ -18,24 +18,27 @@ export function coliImportStringfy(
 ): string {
   const { source, specifiers } = c;
   let code = "import ";
-  const importSpecifiers = [];
-  const stringfySpecifiers = stringfy(specifiers, {
-    language: l,
-    arrayDivison: ", ",
-  });
-  const baseImportSpecifiers = stringfySpecifiers.match(inBraket).map((i) => {
-    return i.replace("{", "").replace("}", "");
-  });
 
-  if (!stringfySpecifiers.split(",")[0].includes("{")) {
-    importSpecifiers.push(stringfySpecifiers.split(",")[0]);
-  }
+  // TODO FIX THAT. NO {}, {} | YES { , , }
+  code += `${stringfy(specifiers, { language: l, arrayDivison: ", " })}`;
+  // const importSpecifiers = [];
+  // const stringfySpecifiers = stringfy(specifiers, {
+  //   language: l,
+  //   arrayDivison: ", ",
+  // });
+  // const baseImportSpecifiers = stringfySpecifiers.match(inBraket).map((i) => {
+  //   return i.replace("{", "").replace("}", "");
+  // });
 
-  if (baseImportSpecifiers.length != 0) {
-    importSpecifiers.push(`{ ${baseImportSpecifiers.join(",")} }`);
-  }
+  // if (!stringfySpecifiers.split(",")[0].includes("{")) {
+  //   importSpecifiers.push(stringfySpecifiers.split(",")[0]);
+  // }
 
-  code += `${importSpecifiers.join(",")}`;
+  // if (baseImportSpecifiers.length != 0) {
+  //   importSpecifiers.push(`{ ${baseImportSpecifiers.join(",")} }`);
+  // }
+
+  // code += `${importSpecifiers.join(",")}`;
 
   code += ` from ${converValue(source, l)}`;
 

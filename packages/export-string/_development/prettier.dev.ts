@@ -1,11 +1,10 @@
 import parserTypeScript from "prettier/parser-typescript";
 import prettier from "prettier/standalone";
 
-const code = "const a = 1;function A(){}"
+const code = "const a = 1;function A(){}";
 
-export const formatted = prettier.format(code, {
-    parser: 'typescript',
+export const formatted = (source) =>
+  prettier.format(source, {
+    parser: "typescript",
     plugins: [parserTypeScript],
-})
-
-console.log(formatted)
+  });

@@ -12,3 +12,4 @@ export * from "./property-access-expression";
 export * from "./jsx-element";
 export * from "./jsx-closing-element";
 export * from "./jsx-opening-element";
+export * from "./return-statement";

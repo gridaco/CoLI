@@ -78,6 +78,9 @@ export function createSourceCode(
     case COLI._STATEMENT_BLOCK:
       useStringfyFunction = CORE.coliBlockStringfy;
       break;
+    case COLI._STATEMENT_RETURN:
+      useStringfyFunction = CORE.coliReturnStringfy;
+      break;
     /** Expressions */
     case COLI._EXPRESSION_COMMENT:
       useStringfyFunction = CORE.coliCommentStringfy;
