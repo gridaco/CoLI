@@ -1,4 +1,4 @@
-import { SyntaxKind } from "../../ast";
+import { SyntaxKind } from "../../ast/syntax-kind";
 
 export const _ELEMENT_JSX = SyntaxKind.JsxElement;
 export const _ELEMENT_JSX_OPENING = SyntaxKind.JsxOpeningElement;

@@ -1,7 +1,7 @@
 /**
  * originally from https://github.com/microsoft/TypeScript/blob/master/src/compiler/types.ts
  */
-export const enum SyntaxKind {
+export enum SyntaxKind {
   Unknown = "Unknown",
   EndOfFileToken = "EndOfFileToken",
   SingleLineCommentTrivia = "SingleLineCommentTrivia",

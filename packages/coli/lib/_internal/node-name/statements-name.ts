@@ -1,4 +1,4 @@
-import { SyntaxKind } from "../../ast";
+import { SyntaxKind } from "../../ast/syntax-kind";
 
 export const _STATEMENT_EXPRESSION = SyntaxKind.ExpressionStatement;
 export const _STATEMENT_BLOCK = SyntaxKind.Block; // BlockStatement
