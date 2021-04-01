@@ -127,3 +127,4 @@ yarn editor
 - https://github.com/Microsoft/TypeScript/wiki/Using-the-Compiler-API
 - https://github.com/ktsn/ts-compiler-api-examples
 - https://learning-notes.mistermicheels.com/javascript/typescript/compiler-api/
+- https://github.com/grommet/jsx-to-string
