@@ -9,7 +9,7 @@ import { JSXClosingElement } from "coli/lib/jsx/jsx-closing-element";
 import { JSXOpeningElement } from "coli/lib/jsx/jsx-opening-element";
 import { JSX } from "coli/lib/builders/jsx";
 import { PropertyAccessExpression } from "coli/lib/expressions/property-access-exporession";
-import { Identifier } from "coli/lib/ast";
+import { Identifier, Literal } from "coli/lib/ast";
 import { JSXSelfClosingElement } from "coli/lib/jsx/jsx-self-closing-element";
 import { VariableDeclaration } from "coli/lib/declarations/variable";
 
@@ -83,17 +83,21 @@ console.log(
 );
 
 // BUILDER
-
-// <div></div>
-const div1 = JSX.tag("div");
-
-// <div/>
-const div2 = JSX.tag("div", {
-  selfClosing: true,
+const customTagBuilder = JSX.tag("div", {
+  children: [
+    JSX.tag("h1", {
+      children: [JSX.text("")],
+    }),
+    JSX.image({
+      attributes: [
+        new JSXAtrribute("src", new Literal("https://example.com/image.png")),
+      ],
+    }),
+  ],
 });
 
 console.log(
-  stringfy(div2, {
+  stringfy(customTagBuilder.make(), {
     language: "tsx",
   })
 );
@@ -111,20 +115,25 @@ console.log(
  * </div>
  * ```
  */
-// const jsxBuiltWithBuilder = JSX.div()(
-//   JSX.div()(
-//     JSX.text("plain text"),
-//     JSX.exp(new VariableDeclaration("name")),
-//     JSX.h1()(JSX.text("heading")),
-//     JSX.p()(`
-//     `)
-//   ),
-//   JSX.h2(),
-//   JSX.h3()
-// );
+const jsxBuiltWithBuilder = JSX.div({
+  children: [
+    JSX.div({
+      children: [
+        JSX.text("plain text"),
+        JSX.exp(new VariableDeclaration("name")),
+        JSX.h1({
+          child: JSX.text("heading"),
+        }),
+        JSX.p(),
+      ],
+    }),
+    JSX.h2(),
+    JSX.h3(),
+  ],
+});
 
-// console.log(
-//   stringfy(jsxBuiltWithBuilder, {
-//     language: "tsx",
-//   })
-// );
+console.log(
+  stringfy(jsxBuiltWithBuilder.make(), {
+    language: "tsx",
+  })
+);

@@ -6,7 +6,7 @@ import { JSXOpeningElement } from "../jsx-opening-element";
 import { JSXSelfClosingElement } from "../jsx-self-closing-element";
 import { JSXText } from "../jsx-text";
 
-type JSXChildLike =
+export type JSXChildLike =
   | JSXElement
   | JSXSelfClosingElement
   | JSXText

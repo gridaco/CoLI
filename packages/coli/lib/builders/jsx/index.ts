@@ -1,6 +1,11 @@
 import { ColiBuilder, ColiHierarchyBuilder } from "../../builder/builder";
 import { FunctionDeclaration } from "../../declarations/function";
-import { JSXElement, JSXExpression, JSXIdentifier } from "../../jsx";
+import {
+  JSXChildLike,
+  JSXElement,
+  JSXExpression,
+  JSXIdentifier,
+} from "../../jsx";
 import { JSXClosingElement } from "../../jsx/jsx-closing-element";
 import { JSXSelfClosingElement } from "../../jsx/jsx-self-closing-element";
 import { JSXOpeningElement } from "../../jsx/jsx-opening-element";
@@ -8,29 +13,34 @@ import { JSXAtrributes } from "../../jsx/jsx-attributes";
 import { JSXText } from "../../jsx/jsx-text";
 import { ColiObject } from "../../_abstract";
 
-type builder = (...any: constructor[]) => builder;
-type constructor = any | undefined;
+export class JSX extends ColiBuilder {
+  children: Array<HandyJSXChildLike>;
+  attributes: JSXAtrributes;
 
-export class JSX extends ColiHierarchyBuilder {
-  static tag(
-    identifer: _HandyJsxIdentifier,
-    options?: {
+  constructor(
+    readonly identifer: _HandyJsxIdentifier,
+    params?: {
       attributes?: JSXAtrributes;
-      selfClosing?: boolean;
+      children?: Array<HandyJSXChildLike>;
     }
   ) {
-    const _id = _handyJsxIdentifierToJSXIdentifier(identifer);
+    super();
 
-    if (options?.selfClosing) {
-      return new JSXSelfClosingElement(_id, {
-        atrributes: options?.attributes,
-      });
+    this.children = params?.children;
+    this.attributes = params?.attributes;
+  }
+
+  static tag(
+    identifer: _HandyJsxIdentifier,
+    params?: {
+      attributes?: JSXAtrributes;
+      selfClosing?: boolean;
+      children?: Array<HandyJSXChildLike>;
     }
-    return new JSXElement({
-      openingElement: new JSXOpeningElement(_id, {
-        atrributes: options?.attributes,
-      }),
-      closingElement: new JSXClosingElement(_id),
+  ) {
+    return new JSX(identifer, {
+      attributes: params?.attributes,
+      children: params?.children,
     });
   }
 
@@ -44,62 +54,65 @@ export class JSX extends ColiHierarchyBuilder {
 
   // region native tags
   // https://developer.mozilla.org/en-US/docs/Web/HTML/Element
-  static h1(any?: constructor): builder {
-    return;
+  static h1(any?: NativeConstructor): JSX {
+    return makeNativeTagMaker("h1")(any);
   }
-  static h2(any?: constructor): builder {
-    return;
+  static h2(any?: NativeConstructor): JSX {
+    return makeNativeTagMaker("h2")(any);
   }
-  static h3(any?: constructor): builder {
-    return;
+  static h3(any?: NativeConstructor): JSX {
+    return makeNativeTagMaker("h3")(any);
   }
-  static h4(any?: constructor): builder {
-    return;
+  static h4(any?: NativeConstructor): JSX {
+    return makeNativeTagMaker("h4")(any);
   }
-  static h5(any?: constructor): builder {
-    return;
+  static h5(any?: NativeConstructor): JSX {
+    return makeNativeTagMaker("h5")(any);
   }
-  static h6(any?: constructor): builder {
-    return;
+  static h6(any?: NativeConstructor): JSX {
+    return makeNativeTagMaker("h6")(any);
   }
-  static p(any?: constructor): builder {
-    return;
+  static p(any?: NativeConstructor): JSX {
+    return makeNativeTagMaker("p")(any);
   }
-  static div(any?: constructor): builder {
-    return;
+  static div(any?: NativeConstructor): JSX {
+    return makeNativeTagMaker("div")(any);
   }
-  static span(any?: constructor): builder {
-    return;
+  static span(any?: NativeConstructor): JSX {
+    return makeNativeTagMaker("span")(any);
   }
-  static a(any?: constructor): builder {
-    return;
+  static a(any?: NativeConstructor): JSX {
+    return makeNativeTagMaker("a")(any);
   }
-  static li(any?: constructor): builder {
-    return;
+  static li(any?: NativeConstructor): JSX {
+    return makeNativeTagMaker("li")(any);
   }
-  static ol(any?: constructor): builder {
-    return;
+  static ol(any?: NativeConstructor): JSX {
+    return makeNativeTagMaker("ol")(any);
   }
-  static ul(any?: constructor): builder {
-    return;
+  static ul(any?: NativeConstructor): JSX {
+    return makeNativeTagMaker("ul")(any);
   }
-  static i(any?: constructor): builder {
-    return;
+  static i(any?: NativeConstructor): JSX {
+    return makeNativeTagMaker("i")(any);
   }
-  static iframe(any?: constructor): builder {
-    return;
+  static iframe(any?: NativeConstructor): JSX {
+    return makeNativeTagMaker("iframe")(any);
   }
-  static button(any?: constructor): builder {
-    return;
+  static button(any?: NativeConstructor): JSX {
+    return makeNativeTagMaker("button")(any);
   }
-  static form(any?: constructor): builder {
-    return;
+  static form(any?: NativeConstructor): JSX {
+    return makeNativeTagMaker("form")(any);
   }
-  static input(any?: constructor): builder {
-    return;
+  static input(any?: NativeConstructor): JSX {
+    return makeNativeTagMaker("input")(any);
   }
-  static select(any?: constructor): builder {
-    return;
+  static select(any?: NativeConstructor): JSX {
+    return makeNativeTagMaker("select")(any);
+  }
+  static image(any?: NativeConstructor): JSX {
+    return makeNativeTagMaker("image")(any);
   }
   // endregion native tags
 
@@ -110,7 +123,22 @@ export class JSX extends ColiHierarchyBuilder {
   static fragment() {}
 
   __finalize() {
-    throw new Error("Method not implemented.");
+    const _id = _handyJsxIdentifierToJSXIdentifier(this.identifer);
+    if (this.children?.length > 0) {
+      return new JSXElement({
+        openingElement: new JSXOpeningElement(_id, {
+          atrributes: this.attributes,
+        }),
+        closingElement: new JSXClosingElement(_id),
+        children: this.children.map((i) => handyJSXChildLikeToJSXChildLike(i)),
+      });
+    }
+
+    // if (options?.selfClosing) {
+    return new JSXSelfClosingElement(_id, {
+      atrributes: this.attributes,
+    });
+    // }
   }
 
   static identifier(name: string): JSXIdentifier {
@@ -131,4 +159,47 @@ function _handyJsxIdentifierToJSXIdentifier(
       identifier
     )} cannot be accepted as HandyJsxIdentifier`;
   }
+}
+
+function makeNativeTagMaker(tag: string): (p?: NativeConstructor) => JSX {
+  return (p: NativeConstructor) => {
+    let altChildren: HandyJSXChildLike[];
+    if (p) {
+      if ("child" in p) {
+        altChildren = [p.child];
+      } else if ("children" in p) {
+        altChildren = p.children;
+      }
+    }
+
+    return new JSX(tag, {
+      attributes: p?.attributes,
+      children: altChildren,
+    });
+  };
+}
+
+type NativeMultiChildConstructor = {
+  children?: Array<HandyJSXChildLike>;
+  attributes?: JSXAtrributes;
+};
+
+type NativeSingleChildConstructor = {
+  child: HandyJSXChildLike;
+  attributes?: JSXAtrributes;
+};
+
+type NativeConstructor =
+  | NativeSingleChildConstructor
+  | NativeMultiChildConstructor;
+
+type HandyJSXChildLike = JSXChildLike | JSX;
+
+function handyJSXChildLikeToJSXChildLike(
+  like: HandyJSXChildLike
+): JSXChildLike {
+  if (like instanceof JSX) {
+    return like.__finalize();
+  }
+  return like as JSXChildLike;
 }
