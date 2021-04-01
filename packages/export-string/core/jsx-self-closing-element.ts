@@ -6,7 +6,10 @@ export function coliJSXSelfClosingElementStringfy(
   l: StringfyLanguage
 ): string {
   const { name, atrributes } = c;
+
   let code = "";
-  code += `<${stringfy(name, { language: l })}/>`;
+  code += `<${stringfy(name, { language: l })} ${stringfy(atrributes, {
+    language: l,
+  })}/>`;
   return code;
 }

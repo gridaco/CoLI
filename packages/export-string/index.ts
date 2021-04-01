@@ -26,7 +26,7 @@ interface StringfyOptions {
 }
 
 type useStrinfyFunction = (
-  c: ColiObject,
+  c: ColiObject | any,
   l: StringfyOptions["language"],
   d?: number
 ) => string;
@@ -70,7 +70,7 @@ function format(source: string, opt: ColiFormatterConfig): string {
 
 /*@internal*/
 export function createSourceCode(
-  coli: ColiObject,
+  coli: ColiObject | any,
   stringfyLanguage: StringfyLanguage,
   depth: number
 ) {
@@ -112,6 +112,9 @@ export function createSourceCode(
     /** Nodes */
     case COLI._ELEMENT_JSX:
       useStringfyFunction = CORE.coliJSXElementStringfy;
+      break;
+    case COLI._JSX_ATTRIBUTE:
+      useStringfyFunction = CORE.coliJSXAtrributeStringfy;
       break;
     case COLI._NODE_IDENTIFIER:
       useStringfyFunction = CORE.coliIdentifierStringfy;
