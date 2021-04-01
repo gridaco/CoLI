@@ -1,11 +1,16 @@
 import { Element } from "../../elements/element.base";
 import { _ELEMENT_JSX } from "../../_internal/node-name/elements-name";
 import { JSXClosingElement } from "../jsx-closing-element";
+import { JSXExpression } from "../jsx-expression";
 import { JSXOpeningElement } from "../jsx-opening-element";
 import { JSXSelfClosingElement } from "../jsx-self-closing-element";
 import { JSXText } from "../jsx-text";
 
-type JSXChildLike = JSXElement | JSXSelfClosingElement | JSXText;
+type JSXChildLike =
+  | JSXElement
+  | JSXSelfClosingElement
+  | JSXText
+  | JSXExpression;
 
 export class JSXElement extends Element {
   readonly openingElement: JSXOpeningElement;
