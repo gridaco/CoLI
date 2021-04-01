@@ -83,6 +83,18 @@ const Message = new VariableDeclaration("Message", {
   kind: "const",
 });
 
+const Avatar = new VariableDeclaration("Avatar", {
+  initializer: new TaggedTemplateExpression(
+    new PropertyAccessExpression(styledIdentifier, "img"),
+    {
+      template: new TemplateLiteral(`
+        margin-left: 20px;
+      `),
+    }
+  ),
+  kind: "const",
+});
+
 /**
  * function Appbar(props: {
  *  title: string,
@@ -180,7 +192,7 @@ const callExpression = Appbar.call();
 // region make file
 AppbarFile.import(importReact.make(), inportStyled.make());
 AppbarFile.declare(Appbar.make());
-AppbarFile.declare(Wrapper, TitleAndAvatarWrapper, Title, Message);
+AppbarFile.declare(Wrapper, TitleAndAvatarWrapper, Title, Message, Avatar);
 // endregion make file
 
 // console.log(JSON.stringify(AppbarFile.blocks, undefined, 2));
@@ -243,5 +255,5 @@ console.log(
  * font-size: 14px;
  * `;
  *
- * export default Appbar
+ * export default Appbar;
  */

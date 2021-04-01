@@ -36,6 +36,10 @@ export function stringfy(
   stringfyOptions: StringfyOptions,
   depth?: number
 ): string {
+  if (coli === undefined) {
+    return "";
+  }
+
   // if depth not specified, set it to root - 0
   depth = depth ?? 0;
   const { language, arrayDivison = "" } = stringfyOptions;
