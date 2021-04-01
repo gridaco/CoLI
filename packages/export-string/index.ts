@@ -4,8 +4,9 @@ import * as COLI from "coli/lib/_internal/node-name";
 import * as CORE from "./core";
 import { CommentExpression } from "coli/lib/expressions/comment";
 import { Block, Types } from "coli/lib";
-import { Identifier } from "coli/lib/ast";
+import { Identifier, Literal } from "coli/lib/ast";
 import { FunctionDeclaration } from "coli/lib/declarations/function";
+import { VariableDeclaration } from "coli/lib/declarations/variable";
 
 /*@internal*/
 export type StringfyLanguage =
@@ -54,26 +55,34 @@ export function createSourceCode(
   let useStringfyFunction: useStrinfyFunction = null;
 
   switch (nodeName) {
+    /** Declarations */
     case COLI._DECLARATION_FUNCTION:
       useStringfyFunction = CORE.coliFunctionStringfy;
-      break;
-    case COLI._NODE_IDENTIFIER:
-      useStringfyFunction = CORE.coliIdentifierStringfy;
-      break;
-    case COLI._EXPRESSION_COMMENT:
-      useStringfyFunction = CORE.coliCommentStringfy;
       break;
     case COLI._DECLARATION_IMPORT:
       useStringfyFunction = CORE.coliImportStringfy;
       break;
+    case COLI._DECLARATION_VARIABLE:
+    /** Statements */
     case COLI._STATEMENT_VARIABLE:
       useStringfyFunction = CORE.coliVariableStringfy;
       break;
     case COLI._STATEMENT_BLOCK:
       useStringfyFunction = CORE.coliBlockStringfy;
       break;
+    /** Expressions */
+    case COLI._EXPRESSION_COMMENT:
+      useStringfyFunction = CORE.coliCommentStringfy;
+      break;
+    /** Nodes */
     case COLI._ELEMENT_JSX:
       useStringfyFunction = CORE.coliJSXElementStringfy;
+      break;
+    case COLI._NODE_IDENTIFIER:
+      useStringfyFunction = CORE.coliIdentifierStringfy;
+      break;
+    case COLI._NODE_LITERAL:
+      useStringfyFunction = CORE.coliLiteralStringfy;
       break;
   }
 
@@ -86,17 +95,15 @@ export function createSourceCode(
   // throw new NoTokenInterpreterFoundError(nodeName, coli);
 }
 
-const comment = new CommentExpression({
-  content: "comment",
-  style: "multi-line",
+const messageValue = new Literal("hello world");
+const messageVariable = new VariableDeclaration("message", {
+  kind: "const",
+  initializer: messageValue,
 });
 
-const func = new FunctionDeclaration("add", {
-  body: new Block(comment),
-  params: [
-    new Identifier("a", { typeAnnotation: Types.number }),
-    new Identifier("b", { typeAnnotation: Types.number }),
-  ],
-});
-
-console.log(stringfy(func, { language: "typescript" }));
+// >> const message = "hello world"
+console.log(
+  stringfy(messageVariable, {
+    language: "typescript",
+  })
+);

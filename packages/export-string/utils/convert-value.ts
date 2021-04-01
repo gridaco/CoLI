@@ -19,9 +19,9 @@ export function converValue(v: any, l: StringfyLanguage) {
 function converESValue(v: any) {
   switch (typeof v) {
     case "string":
-      return `"${v}}`;
+      return `"${v}"`;
   }
-  return "ERROR IN CONVERT";
+  return v;
 }
 
 /*@internal*/

@@ -2,7 +2,7 @@ import { Identifier, Literal } from "coli/lib/ast";
 import { VariableDeclaration } from "coli/lib/declarations/variable";
 import { PropertyAccessExpression } from "coli/lib/expressions/property-access-exporession";
 import { TaggedTemplateExpression } from "coli/lib/expressions/tagged-template-expression";
-import { StringfyLanguage } from "../..";
+import { stringfy, StringfyLanguage } from "../..";
 import { converValue } from "../../utils/convert-value";
 
 /**
@@ -16,44 +16,44 @@ export function coliVariableStringfy(
   const {
     kind,
     type: { keyword: type },
-    id: { name },
+    id,
     initializer,
   } = c;
-  let code = "";
-
-  code += `${kind} ${name}`;
-
+  let code = `${kind} ${stringfy(id, { language: l })}`;
   if (type) {
     code += ` : ${type}`;
   }
-
-  if (initializer instanceof Literal) {
-    const { value } = initializer;
-    code += ` = ${converValue(value, l)}`;
+  if (initializer) {
+    code += ` = ${stringfy(initializer, { language: l })}`;
   }
 
-  if (initializer instanceof TaggedTemplateExpression) {
-    const {
-      tag,
-      template: { value },
-    } = initializer;
-    code += ` = `;
+  // if (initializer instanceof Literal) {
+  //   const { value } = initializer;
+  //   code += ` = ${converValue(value, l)}`;
+  // }
 
-    if (tag instanceof PropertyAccessExpression) {
-      const { expression, name } = tag;
+  // if (initializer instanceof TaggedTemplateExpression) {
+  //   const {
+  //     tag,
+  //     template: { value },
+  //   } = initializer;
+  //   code += ` = `;
 
-      if (expression instanceof Identifier) {
-        const { name } = expression;
-        code += `${name}`;
-      }
+  //   if (tag instanceof PropertyAccessExpression) {
+  //     const { expression, name } = tag;
 
-      code += `.${name}`;
-    }
+  //     if (expression instanceof Identifier) {
+  //       const { name } = expression;
+  //       code += `${name}`;
+  //     }
 
-    code += "`";
-    code += `${value}`;
-    code += "`";
-  }
+  //     code += `.${name}`;
+  //   }
+
+  //   code += "`";
+  //   code += `${value}`;
+  //   code += "`";
+  // }
 
   return code;
 }
