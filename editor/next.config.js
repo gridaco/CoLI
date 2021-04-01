@@ -1,10 +1,27 @@
 const typescriptLoader = {
-    test: /\.ts(x?)$/,
+    test: /\.ts$|tsx/,
     loader: ['ts-loader'],
     exclude: /node_modules/,
 };
 
-module.exports = {
+function fixEnums(config) {
+    config.module.rules.forEach(({
+        use
+    }, i) => {
+        if (!use) return
+        const isBabelLoader = Array.isArray(use) ?
+            use.findIndex((item) => item && item.loader && item.loader === 'next-babel-loader') !== -1 :
+            use.loader === 'next-babel-loader'
+        if (isBabelLoader) {
+            delete config.module.rules[i].include
+        }
+    })
+}
+
+module.exports = (phase, {
+    defaultConfig
+}) => ({
+    ...defaultConfig,
     webpack: (config) => {
         config.module.rules.push(typescriptLoader);
         config.module.rules.push({
@@ -28,6 +45,8 @@ module.exports = {
             use: ['@svgr/webpack'],
         });
 
+        fixEnums(config); // This is important
+
         return config;
     },
     env: {
@@ -40,4 +59,7 @@ module.exports = {
         FIREBASE_APP_ID: process.env.FIREBASE_APP_ID,
         FIREBASE_MEASUREMENT_ID: process.env.FIREBASE_MEASUREMENT_ID,
     },
-};
+    typescript: {
+        ignoreDevErrors: true,
+    },
+});
