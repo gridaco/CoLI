@@ -1,20 +1,8 @@
 import { ColiInterpretable, ColiObject } from "coli/lib/_abstract";
-import { NoTokenInterpreterFoundError } from "./errors";
 import * as COLI from "coli/lib/_internal/node-name";
 import * as CORE from "./core";
-import { CommentExpression } from "coli/lib/expressions/comment";
-import { Block, Types } from "coli/lib";
-import { Identifier, Literal } from "coli/lib/ast";
-import { FunctionDeclaration } from "coli/lib/declarations/function";
-import { VariableDeclaration } from "coli/lib/declarations/variable";
-import { TaggedTemplateExpression } from "coli/lib/expressions/tagged-template-expression";
-import { PropertyAccessExpression } from "coli/lib/expressions/property-access-exporession";
-import { TemplateLiteral } from "coli/lib/ast/template-literal";
-import {
-  ImportDeclaration,
-  ImportDefaultSpecifier,
-  ImportSpecifier,
-} from "coli/lib/declarations/import";
+import parserTypeScript from "prettier/parser-typescript";
+import prettier from "prettier/standalone";
 
 /*@internal*/
 export type StringfyLanguage =
@@ -26,38 +14,65 @@ export type StringfyLanguage =
   | "python"
   | "dart";
 
+interface ColiFormatterConfig {
+  use: "pritter";
+  parser: "typescript";
+}
+
 interface StringfyOptions {
   language: StringfyLanguage;
   arrayDivison?: string;
+  formatter?: ColiFormatterConfig;
 }
 
 type useStrinfyFunction = (
   c: ColiObject,
-  l: StringfyOptions["language"]
+  l: StringfyOptions["language"],
+  d?: number
 ) => string;
 
 export function stringfy(
   coli: ColiInterpretable,
-  stringfyOptions: StringfyOptions
+  stringfyOptions: StringfyOptions,
+  depth?: number
 ): string {
+  // if depth not specified, set it to root - 0
+  depth = depth ?? 0;
   const { language, arrayDivison = "" } = stringfyOptions;
 
+  let final: string;
   if (Array.isArray(coli)) {
     const stringfyCode = coli
-      .map((c) => stringfy(c, { language }))
+      .map((c) => stringfy(c, { language }, depth + 1))
       .join(arrayDivison);
-    return stringfyCode;
+    final = stringfyCode;
   }
 
   if (coli instanceof ColiObject) {
-    return createSourceCode(coli, language);
+    final = createSourceCode(coli, language, depth + 1);
   }
+
+  if (depth == 0) {
+    if (stringfyOptions.formatter) {
+      final = format(final, stringfyOptions.formatter);
+    }
+  }
+
+  return final;
+}
+
+function format(source: string, opt: ColiFormatterConfig): string {
+  return prettier.format(source, {
+    parser: "typescript",
+    plugins: [parserTypeScript],
+  });
 }
 
 /*@internal*/
 export function createSourceCode(
   coli: ColiObject,
-  stringfyLanguage: StringfyLanguage
+  stringfyLanguage: StringfyLanguage,
+  depth: number
 ) {
   const { __type: nodeName } = coli;
   let useStringfyFunction: useStrinfyFunction = null;
@@ -127,7 +142,7 @@ export function createSourceCode(
 
   if (useStringfyFunction) {
     try {
-      return useStringfyFunction(coli, stringfyLanguage);
+      return useStringfyFunction(coli, stringfyLanguage, depth);
     } catch (_) {
       throw new Error(
         `givven object cannot be stringfied. :: ${JSON.stringify(coli)}`
