@@ -6,12 +6,12 @@ export function coliFunctionStringfy(
   l: StringfyLanguage
 ): string {
   const {
-    name,
+    id,
     params,
     body: { body },
     returnType: { keyword: type },
   } = c;
-  let code = `function ${name}(`;
+  let code = `function ${id.name}(`;
 
   code += params
     .map((p) => `${p.name} : ${p.typeAnnotation.keyword}`)

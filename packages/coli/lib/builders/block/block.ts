@@ -2,11 +2,12 @@ import { BlockStatement } from "../../statements";
 import { ColiObject } from "../../_abstract";
 
 export class Block extends BlockStatement {
-  constructor(...body: any[]) {
+  constructor(body: ColiObject) {
     super(body);
   }
 
   add(body: ColiObject): this {
+    throw "this is tempporarily dead";
     this.body.push(body);
     return this;
   }

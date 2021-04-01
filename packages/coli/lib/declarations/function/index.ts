@@ -11,7 +11,6 @@ export class FunctionDeclaration extends Declaration {
   params: Identifier[];
   body: BlockStatement = new EmptyBlock();
   returnType: Type = Types.any;
-  name: string;
 
   constructor(
     name: string,
@@ -25,7 +24,7 @@ export class FunctionDeclaration extends Declaration {
     // validate function name
     // ref: https://stackoverflow.com/questions/2008279/validate-a-javascript-function-name
     assert(/^[$A-Z_][0-9A-Z_$]*$/i.test(name), "invalid function name");
-    this.name = name;
+    this.id = new Identifier(name);
     // set return type. default value is provided.
     if (args?.returnType) {
       this.returnType = args.returnType;
