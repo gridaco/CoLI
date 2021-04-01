@@ -4,13 +4,13 @@ import { FunctionDeclaration } from "coli/lib/declarations/function";
 import { CommentExpression } from "coli/lib/expressions/comment";
 import { ColiObject } from "coli/lib/_abstract";
 type Keyword = string;
-type KindInterpreter<T extends ColiObject = any> =
+type KindInterpreter<T extends ColiObject | string = string> =
   | ((coli: T, a?) => string)
   | Keyword;
 
 interface LanguageInterpreterMap {
-  CommentExpression: KindInterpreter;
-  FunctionDeclaration: KindInterpreter;
+  CommentExpression: KindInterpreter<CommentExpression>;
+  FunctionDeclaration: KindInterpreter<FunctionDeclaration>;
   FunctionKeyword: KindInterpreter;
   Block: KindInterpreter<Block>;
   Identifier: KindInterpreter<Identifier>;
