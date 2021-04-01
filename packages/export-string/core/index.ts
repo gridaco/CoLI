@@ -17,3 +17,4 @@ export * from "./jsx-self-closing-element";
 export * from "./jsx-expression";
 // endregion jsx
 export * from "./return-statement";
+export * from "./jsx-atrribute";
