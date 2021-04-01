@@ -1,4 +1,4 @@
-import { Block } from "coli/lib";
+import { Block, Snippet } from "coli/lib";
 import { Identifier } from "coli/lib/ast";
 import { FunctionDeclaration } from "coli/lib/declarations/function";
 import { CommentExpression } from "coli/lib/expressions/comment";
@@ -14,6 +14,7 @@ interface LanguageInterpreterMap {
   FunctionKeyword: KindInterpreter;
   Block: KindInterpreter<Block>;
   Identifier: KindInterpreter<Identifier>;
+  __WIDLCARD__: KindInterpreter<Snippet | any>;
 }
 
 const ESInterpreter: LanguageInterpreterMap = {
@@ -34,6 +35,12 @@ const ESInterpreter: LanguageInterpreterMap = {
     )}`;
   },
   FunctionKeyword: "function",
+  __WIDLCARD__: (_: Snippet | any) => {
+    if (_ instanceof Snippet) {
+      return _._defaultSnippet;
+    }
+    return stringfy(_);
+  },
 };
 
 const comment = new CommentExpression({
