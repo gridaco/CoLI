@@ -95,17 +95,21 @@ export function createSourceCode(
     case COLI._ELEMENT_JSX:
       useStringfyFunction = CORE.coliJSXElementStringfy;
       break;
+    case COLI._NODE_IDENTIFIER:
+      useStringfyFunction = CORE.coliIdentifierStringfy;
+      break;
+    case COLI._NODE_LITERAL:
+      useStringfyFunction = CORE.coliLiteralStringfy;
+      break;
+    /** JSX */
     case COLI._ELEMENT_JSX_CLOSING:
       useStringfyFunction = CORE.coliJSXClosingElementStringfy;
       break;
     case COLI._ELEMENT_JSX_OPENING:
       useStringfyFunction = CORE.coliJSXOpeningElementStringfy;
       break;
-    case COLI._NODE_IDENTIFIER:
-      useStringfyFunction = CORE.coliIdentifierStringfy;
-      break;
-    case COLI._NODE_LITERAL:
-      useStringfyFunction = CORE.coliLiteralStringfy;
+    case COLI._ELEMENT_JSX_SELF_CLOSING:
+      useStringfyFunction = CORE.coliJSXSelfClosingElementStringfy;
       break;
     /** Specifiers */
     case COLI._SPECIFIER_IMPORT:
