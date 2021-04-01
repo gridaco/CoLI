@@ -167,9 +167,11 @@ export class AstBuildableTree implements Buildable {
   }
 
   extendWithAccessor<T extends AstBuildableTree>(accessor: string): T {
-    const extension = Snippet.fromStatic<T>(accessor);
-    this.extensions.push(extension);
-    return extension as T;
+    // FIXME
+    // const extension = Snippet.fromStatic<T>(accessor);
+    // this.extensions.push(extension);
+    // return extension as T;
+    throw "this feature is disabled";
   }
 
   // endregion extensions
