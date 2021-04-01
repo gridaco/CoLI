@@ -1,5 +1,5 @@
+import { Snippet } from "coli/lib";
 import { stringfy, StringfyLanguage } from "..";
-import { Snippet } from "../../../coli/dist/snippet";
 import { LanguageInterpreterMap } from "./main-interpreter";
 
 export const ESInterpreter: LanguageInterpreterMap = {
