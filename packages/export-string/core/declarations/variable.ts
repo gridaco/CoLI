@@ -26,34 +26,5 @@ export function coliVariableStringfy(
   if (initializer) {
     code += ` = ${stringfy(initializer, { language: l })}`;
   }
-
-  // if (initializer instanceof Literal) {
-  //   const { value } = initializer;
-  //   code += ` = ${converValue(value, l)}`;
-  // }
-
-  // if (initializer instanceof TaggedTemplateExpression) {
-  //   const {
-  //     tag,
-  //     template: { value },
-  //   } = initializer;
-  //   code += ` = `;
-
-  //   if (tag instanceof PropertyAccessExpression) {
-  //     const { expression, name } = tag;
-
-  //     if (expression instanceof Identifier) {
-  //       const { name } = expression;
-  //       code += `${name}`;
-  //     }
-
-  //     code += `.${name}`;
-  //   }
-
-  //   code += "`";
-  //   code += `${value}`;
-  //   code += "`";
-  // }
-
   return code;
 }

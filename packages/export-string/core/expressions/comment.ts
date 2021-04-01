@@ -1,5 +1,6 @@
 import { CommentExpression } from "coli/lib/expressions/comment";
 import { StringfyLanguage } from "../..";
+import { languageInterpreter } from "../../interperters/main-interpreter";
 
 interface CommmentToken {
   single?: string;
@@ -48,25 +49,19 @@ export function coliCommentStringfy(
   l: StringfyLanguage
 ): string {
   const { style, content } = c;
-  const {
-    single,
-    multi: { leading, traling, line },
-  } = getCommentToken(l);
+  const splitContent = content.split("\n");
+  const { MultiCommentKeyword, SingleCommentKeyword } = languageInterpreter(l);
+
   let code = "";
 
   if (style === "single-line") {
-    code += content
-      .split("\n")
-      .map((i) => `${single} ${i}`)
-      .join("\n");
+    code += splitContent.map((i) => `${SingleCommentKeyword} ${i}`).join("\n");
   }
 
   if (style === "multi-line") {
+    const [leading, line, traling] = MultiCommentKeyword.toString().split(" ");
     code += `${leading}\n`;
-    code += content
-      .split("\n")
-      .map((i) => `${line} ${i}`)
-      .join("\n");
+    code += splitContent.map((i) => `${line} ${i}`).join("\n");
     code += `\n${traling}`;
   }
 

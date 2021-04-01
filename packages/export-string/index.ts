@@ -103,3 +103,9 @@ export function createSourceCode(
   return JSON.stringify(coli);
   // throw new NoTokenInterpreterFoundError(nodeName, coli);
 }
+const comment = new CommentExpression({
+  content: "comment",
+  style: "multi-line",
+});
+
+console.log(stringfy(comment, { language: "typescript" }));

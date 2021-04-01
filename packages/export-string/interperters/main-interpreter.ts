@@ -12,6 +12,8 @@ type KindInterpreter<T extends ColiObject | string = string> =
 
 export interface LanguageInterpreterMap {
   FunctionKeyword: KindInterpreter;
+  SingleCommentKeyword: KindInterpreter;
+  MultiCommentKeyword: KindInterpreter;
 }
 
 export function languageInterpreter(
