@@ -7,6 +7,9 @@ import { Block, Types } from "coli/lib";
 import { Identifier, Literal } from "coli/lib/ast";
 import { FunctionDeclaration } from "coli/lib/declarations/function";
 import { VariableDeclaration } from "coli/lib/declarations/variable";
+import { TaggedTemplateExpression } from "coli/lib/expressions/tagged-template-expression";
+import { PropertyAccessExpression } from "coli/lib/expressions/property-access-exporession";
+import { TemplateLiteral } from "coli/lib/ast/template-literal";
 
 /*@internal*/
 export type StringfyLanguage =
@@ -74,6 +77,12 @@ export function createSourceCode(
     case COLI._EXPRESSION_COMMENT:
       useStringfyFunction = CORE.coliCommentStringfy;
       break;
+    case COLI._EXPRESSION_TAGGED_TEMPLATE:
+      useStringfyFunction = CORE.coliTaggedTemplateStringfy;
+      break;
+    case COLI._EXPRESSION_PROPERTY_ACCESS:
+      useStringfyFunction = CORE.coliPropertyAccessStringfy;
+      break;
     /** Nodes */
     case COLI._ELEMENT_JSX:
       useStringfyFunction = CORE.coliJSXElementStringfy;
@@ -94,16 +103,3 @@ export function createSourceCode(
   return JSON.stringify(coli);
   // throw new NoTokenInterpreterFoundError(nodeName, coli);
 }
-
-const messageValue = new Literal("hello world");
-const messageVariable = new VariableDeclaration("message", {
-  kind: "const",
-  initializer: messageValue,
-});
-
-// >> const message = "hello world"
-console.log(
-  stringfy(messageVariable, {
-    language: "typescript",
-  })
-);
