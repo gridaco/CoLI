@@ -3,8 +3,10 @@ import {
   ImportDefaultSpecifier,
   ImportSpecifier,
 } from "coli/lib/declarations/import";
-import { StringfyLanguage } from "../..";
+import { stringfy, StringfyLanguage } from "../..";
 import { converValue } from "../../utils/convert-value";
+
+const inBraket = /\{(.*?)\}/g;
 
 /**
  * @todo transpile lauganage
@@ -16,34 +18,42 @@ export function coliImportStringfy(
 ): string {
   const { source, specifiers } = c;
   let code = "import ";
-  let _specifiers = [];
+  const baseImportSpecifiers = stringfy(specifiers, {
+    language: l,
+    arrayDivison: ", ",
+  }).match(inBraket);
 
-  const importSpecifiers = specifiers.reduce((acc, specifier) => {
-    if (specifier instanceof ImportDefaultSpecifier) {
-      _specifiers.push(`${specifier.local.name}`);
-    }
+  console.log(baseImportSpecifiers);
+  code += `${stringfy(specifiers, { language: l, arrayDivison: ", " })}`;
 
-    if (specifier instanceof ImportSpecifier) {
-      const {
-        imported: { name: importedName },
-        local: { name: localName },
-      } = specifier;
+  code += ` from ${converValue(source, l)}`;
 
-      if (importedName != localName) {
-        acc.push(`${importedName} as ${localName}`);
-      } else {
-        acc.push(`${specifier.imported.name}`);
-      }
-    }
+  // const importSpecifiers = specifiers.reduce((acc, specifier) => {
+  //   if (specifier instanceof ImportDefaultSpecifier) {
+  //     _specifiers.push(`${specifier.local.name}`);
+  //   }
 
-    return acc;
-  }, []);
+  //   if (specifier instanceof ImportSpecifier) {
+  //     const {
+  //       imported: { name: importedName },
+  //       local: { name: localName },
+  //     } = specifier;
 
-  if (importSpecifiers.length != 0) {
-    _specifiers.push(`{ ${importSpecifiers.join(", ")} }`);
-  }
+  //     if (importedName != localName) {
+  //       acc.push(`${importedName} as ${localName}`);
+  //     } else {
+  //       acc.push(`${specifier.imported.name}`);
+  //     }
+  //   }
 
-  code += `${_specifiers.join(", ")} from ${converValue(source, l)}`;
+  //   return acc;
+  // }, []);
+
+  // if (importSpecifiers.length != 0) {
+  //   _specifiers.push(`{ ${importSpecifiers.join(", ")} }`);
+  // }
+
+  // code += `${_specifiers.join(", ")} from ${converValue(source, l)}`;
 
   return code;
 }

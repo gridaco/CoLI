@@ -10,6 +10,11 @@ import { VariableDeclaration } from "coli/lib/declarations/variable";
 import { TaggedTemplateExpression } from "coli/lib/expressions/tagged-template-expression";
 import { PropertyAccessExpression } from "coli/lib/expressions/property-access-exporession";
 import { TemplateLiteral } from "coli/lib/ast/template-literal";
+import {
+  ImportDeclaration,
+  ImportDefaultSpecifier,
+  ImportSpecifier,
+} from "coli/lib/declarations/import";
 
 /*@internal*/
 export type StringfyLanguage =
@@ -93,6 +98,13 @@ export function createSourceCode(
     case COLI._NODE_LITERAL:
       useStringfyFunction = CORE.coliLiteralStringfy;
       break;
+    /** Specifiers */
+    case COLI._SPECIFIER_IMPORT:
+      useStringfyFunction = CORE.coliSpecifierImportStringfy;
+      break;
+    case COLI._SPECIFIER_DEFAULT_IMPORT:
+      useStringfyFunction = CORE.coliDefaultImportStringfy;
+      break;
   }
 
   if (useStringfyFunction) {
@@ -103,9 +115,21 @@ export function createSourceCode(
   return JSON.stringify(coli);
   // throw new NoTokenInterpreterFoundError(nodeName, coli);
 }
-const comment = new CommentExpression({
-  content: "comment",
-  style: "multi-line",
+const importDec = new ImportDeclaration({
+  specifiers: [
+    new ImportDefaultSpecifier({
+      local: "styled",
+    }),
+    new ImportSpecifier({
+      import: "utils",
+      local: "u",
+    }),
+    new ImportSpecifier({
+      import: "helpers",
+      local: "hp",
+    }),
+  ],
+  source: "@motion/styled",
 });
 
-console.log(stringfy(comment, { language: "typescript" }));
+console.log(stringfy(importDec, { language: "typescript" }));
