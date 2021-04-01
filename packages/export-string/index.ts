@@ -92,6 +92,12 @@ export function createSourceCode(
     case COLI._ELEMENT_JSX:
       useStringfyFunction = CORE.coliJSXElementStringfy;
       break;
+    case COLI._ELEMENT_JSX_CLOSING:
+      useStringfyFunction = CORE.coliJSXClosingElementStringfy;
+      break;
+    case COLI._ELEMENT_JSX_OPENING:
+      useStringfyFunction = CORE.coliJSXOpeningElementStringfy;
+      break;
     case COLI._NODE_IDENTIFIER:
       useStringfyFunction = CORE.coliIdentifierStringfy;
       break;
@@ -115,25 +121,3 @@ export function createSourceCode(
   return JSON.stringify(coli);
   // throw new NoTokenInterpreterFoundError(nodeName, coli);
 }
-
-/**
- * @description TEST Import
- */
-const importDec = new ImportDeclaration({
-  specifiers: [
-    new ImportDefaultSpecifier({
-      local: "styled",
-    }),
-    new ImportSpecifier({
-      import: "utils",
-      local: "u",
-    }),
-    new ImportSpecifier({
-      import: "helpers",
-      local: "hp",
-    }),
-  ],
-  source: "@motion/styled",
-});
-
-console.log(stringfy(importDec, { language: "typescript" }));

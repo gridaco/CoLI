@@ -1,58 +1,20 @@
+import { Literal } from "coli/lib/ast";
+import { TemplateLiteral } from "coli/lib/ast/template-literal";
 import { JSXElement } from "coli/lib/jsx";
-import { StringfyLanguage } from "..";
+import { stringfy, StringfyLanguage } from "..";
+import { converValue } from "../utils/convert-value";
 
 export function coliJSXElementStringfy(
   c: JSXElement,
   l: StringfyLanguage
 ): string {
-  const {
-    openingElement: {
-      name: { name: openingElementName },
-    },
-    closingElement: {
-      name: { name: closingElementName },
-    },
-    children,
-  } = c;
+  console.log(c);
   let code = "";
-
-  code += `<${openingElementName}>\n`;
-  if (Array.isArray(children)) {
-    code += mappingArrayField(children).join("");
+  const { openingElement, closingElement, children } = c;
+  code += `${stringfy(openingElement, { language: l })}`;
+  if (children) {
+    code += `${stringfy(children, { language: l })}`;
   }
-  code += `</${closingElementName}>`;
-
+  code += `${stringfy(closingElement, { language: l })}`;
   return code;
 }
-
-function mappingArrayField(target): Array<string> {
-  return target.map((i) => {
-    if (i instanceof JSXElement) {
-      const {
-        openingElement: {
-          name: { name: openingElementName },
-        },
-        closingElement: {
-          name: { name: closingElementName },
-        },
-        children,
-      } = i;
-      if (Array.isArray(children)) {
-        return `<${openingElementName}>\n${mappingArrayField(
-          children
-        )}</${closingElementName}>\n`;
-      }
-      return `<${openingElementName}></${closingElementName}>\n`;
-    }
-  });
-}
-
-/**
- * 
- *  return [
-          
-          openingElementName,
-          ...mappingArrayField(children),
-          closingElementName,
-        ];
- */

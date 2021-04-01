@@ -44,6 +44,7 @@ console.log(
   })
 );
 
+/**
 // BUILDER
 
 // <div></div>
@@ -53,6 +54,7 @@ const div1 = JSX.tag("div");
 const div2 = JSX.tag("div", {
   selfClosing: true,
 });
+*/
 
 /**
  * ```
@@ -67,6 +69,7 @@ const div2 = JSX.tag("div", {
  * </div>
  * ```
  */
+/**
 JSX.div()(
   JSX.div()(
     JSX.text("plain text"),
@@ -78,3 +81,4 @@ JSX.div()(
   JSX.h2(),
   JSX.h3()
 );
+*/
