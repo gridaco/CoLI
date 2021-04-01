@@ -6,7 +6,8 @@ import {
 import { stringfy, StringfyLanguage } from "..";
 import { convertValue } from "../utils/convert-value";
 
-const inBraket = /\{(.*?)\}/g;
+/// import string builder is dirty. this is because import declaratation definition does not follows. ts, but es typings.
+/// this is an exception allowed by authors.
 
 /**
  * @todo transpile lauganage
@@ -16,31 +17,26 @@ export function coliImportStringfy(
   c: ImportDeclaration,
   l: StringfyLanguage
 ): string {
-  const { source, specifiers } = c;
   let code = "import ";
 
-  // TODO FIX THAT. NO {}, {} | YES { , , }
-  code += `${stringfy(specifiers, { language: l, arrayDivison: ", " })}`;
-  // const importSpecifiers = [];
-  // const stringfySpecifiers = stringfy(specifiers, {
-  //   language: l,
-  //   arrayDivison: ", ",
-  // });
-  // const baseImportSpecifiers = stringfySpecifiers.match(inBraket).map((i) => {
-  //   return i.replace("{", "").replace("}", "");
-  // });
+  // optional default import if default import provided.
+  if (c.defaultImport) {
+    code += `${stringfy(c.defaultImport, { language: l })}`;
+  }
 
-  // if (!stringfySpecifiers.split(",")[0].includes("{")) {
-  //   importSpecifiers.push(stringfySpecifiers.split(",")[0]);
-  // }
+  // if one or more than named import is specified.
+  if (c.imports.length > 0) {
+    //
+    if (c.defaultImport) {
+      code += ", ";
+    }
+    code += `{ `;
+    code += stringfy(c.imports, { language: l, arrayDivison: ", " });
+    code += " }";
+  }
 
-  // if (baseImportSpecifiers.length != 0) {
-  //   importSpecifiers.push(`{ ${baseImportSpecifiers.join(",")} }`);
-  // }
-
-  // code += `${importSpecifiers.join(",")}`;
-
-  code += ` from ${convertValue(source, l)}`;
+  // make source
+  code += ` from ${convertValue(c.source, l)}`;
 
   return code;
 }

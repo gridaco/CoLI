@@ -12,14 +12,12 @@ export function coliSpecifierImportStringfy(
     local: { name: localName },
     imported: { name: importedName },
   } = c;
-  let code = `{ `;
+  let code = "";
   if (localName !== importedName) {
     code += `${localName} as ${importedName}`;
   } else {
     code += `${localName}`;
   }
-
-  code += " }";
 
   return code;
 }
