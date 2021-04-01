@@ -188,6 +188,10 @@ AppbarFile.declare(Wrapper, TitleAndAvatarWrapper, Title, Message);
 console.log(
   stringfy(AppbarFile.blocks, {
     language: "tsx",
+    formatter: {
+      use: "pritter",
+      parser: "typescript",
+    },
   })
 );
 

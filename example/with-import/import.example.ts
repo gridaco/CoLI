@@ -25,6 +25,7 @@ const importDec = new ImportDeclaration({
 const simpleImport = new Import()
   .importDefault("styled")
   .and({ import: "utils", as: "sutil" })
+  .and("others")
   .from("@emotion/styled")
   .make();
 
