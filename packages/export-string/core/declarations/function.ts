@@ -10,11 +10,11 @@ export function coliFunctionStringfy(
   const interpreter = languageInterpreter(l);
   let code = "";
   code += `${interpreter.FunctionKeyword} `;
-  code += `${stringfy(c.id, { language: l })} `;
-  code += `(${stringfy(c.params, { language: l, arrayDivison: ", " })}) `;
+  code += `${stringfy(id, { language: l })} `;
+  code += `(${stringfy(params, { language: l, arrayDivison: ", " })}) `;
   if (returnType) {
     code += `: ${returnType.keyword} `;
   }
-  code += `${stringfy(c.body, { language: l })}`;
+  code += `${stringfy(body, { language: l })}`;
   return code;
 }
