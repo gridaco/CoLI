@@ -14,3 +14,4 @@ export * from "./jsx-closing-element";
 export * from "./jsx-opening-element";
 export * from "./jsx-self-closing-element";
 export * from "./return-statement";
+export * from "./jsx-expression";
