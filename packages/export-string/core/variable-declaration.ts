@@ -22,5 +22,9 @@ export function coliVariableStringfy(
   if (initializer) {
     code += ` = ${stringfy(initializer, { language: l })}`;
   }
+
+  // finalize
+  code += ";";
+
   return code;
 }
