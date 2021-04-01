@@ -26,6 +26,7 @@ import {
   _EXPRESSION_PROPERTY_ACCESS,
   _EXPRESSION_TAGGED_TEMPLATE,
 } from "../_internal/node-name/expressions-name";
+import { _JSX_ATTRIBUTE } from "../_internal/node-name/jsx-names";
 import {
   _SPECIFIER_DEFAULT_IMPORT,
   _SPECIFIER_IMPORT,
@@ -79,6 +80,8 @@ export type ColiBaseNodeType =
   | typeof _NODE_IDENTIFIER
   | typeof _NODE_PROGRAM;
 
+export type ColiOtherJsxType = typeof _JSX_ATTRIBUTE;
+
 export type ColiObjectType =
   | ColiBaseNodeType
   | typeof COLI_WILDCARD_OBJECT
@@ -86,6 +89,7 @@ export type ColiObjectType =
   | ColiExpressionType
   | ColiSpecifierType
   | ColiStatementType
+  | ColiOtherJsxType
   | ColiElementType;
 
 export type ColiObjectKind<T extends ColiObject> = T | ColiBuilder<T>;
