@@ -114,12 +114,6 @@ export function createSourceCode(
       useStringfyFunction = CORE.coliJSXExpressionStringfy;
       break;
     /** Nodes */
-    case COLI._ELEMENT_JSX:
-      useStringfyFunction = CORE.coliJSXElementStringfy;
-      break;
-    case COLI._JSX_ATTRIBUTE:
-      useStringfyFunction = CORE.coliJSXAtrributeStringfy;
-      break;
     case COLI._NODE_IDENTIFIER:
       useStringfyFunction = CORE.coliIdentifierStringfy;
       break;
@@ -127,6 +121,12 @@ export function createSourceCode(
       useStringfyFunction = CORE.coliLiteralStringfy;
       break;
     /** JSX */
+    case COLI._ELEMENT_JSX:
+      useStringfyFunction = CORE.coliJSXElementStringfy;
+      break;
+    case COLI._JSX_ATTRIBUTE:
+      useStringfyFunction = CORE.coliJSXAtrributeStringfy;
+      break;
     case COLI._ELEMENT_JSX_CLOSING:
       useStringfyFunction = CORE.coliJSXClosingElementStringfy;
       break;
@@ -138,6 +138,8 @@ export function createSourceCode(
       break;
     case COLI._EXPRESSION_JSX:
       useStringfyFunction = CORE.coliJSXExpressionStringfy;
+    case COLI._JSX_TEXT:
+      useStringfyFunction = CORE.coliJSXTextStringfy;
     /** Specifiers */
     case COLI._SPECIFIER_IMPORT:
       useStringfyFunction = CORE.coliSpecifierImportStringfy;
@@ -151,8 +153,12 @@ export function createSourceCode(
     try {
       return useStringfyFunction(coli, stringfyLanguage, depth);
     } catch (_) {
+      console.error(_);
+      return "error";
       throw new Error(
-        `givven object cannot be stringfied. :: ${JSON.stringify(coli)}`
+        `givven object cannot be stringfied. with ${
+          useStringfyFunction.name
+        }:: ${JSON.stringify(coli)}`
       );
     }
   }

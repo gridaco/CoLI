@@ -86,7 +86,7 @@ console.log(
 const customTagBuilder = JSX.tag("div", {
   children: [
     JSX.tag("h1", {
-      children: [JSX.text("")],
+      children: [JSX.text("heading 1")],
     }),
     JSX.image({
       attributes: [

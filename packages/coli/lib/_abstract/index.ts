@@ -26,7 +26,7 @@ import {
   _EXPRESSION_PROPERTY_ACCESS,
   _EXPRESSION_TAGGED_TEMPLATE,
 } from "../_internal/node-name/expressions-name";
-import { _JSX_ATTRIBUTE } from "../_internal/node-name/jsx-names";
+import { _JSX_ATTRIBUTE, _JSX_TEXT } from "../_internal/node-name/jsx-names";
 import {
   _SPECIFIER_DEFAULT_IMPORT,
   _SPECIFIER_IMPORT,
@@ -80,7 +80,7 @@ export type ColiBaseNodeType =
   | typeof _NODE_IDENTIFIER
   | typeof _NODE_PROGRAM;
 
-export type ColiOtherJsxType = typeof _JSX_ATTRIBUTE;
+export type ColiOtherJsxType = typeof _JSX_ATTRIBUTE | typeof _JSX_TEXT;
 
 export type ColiObjectType =
   | ColiBaseNodeType

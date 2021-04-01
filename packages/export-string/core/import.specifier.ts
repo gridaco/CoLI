@@ -8,10 +8,8 @@ export function coliSpecifierImportStringfy(
   c: ImportSpecifier,
   l: StringfyLanguage
 ): string {
-  const {
-    local: { name: localName },
-    imported: { name: importedName },
-  } = c;
+  const localName = c?.local?.name;
+  const importedName = c?.imported?.name;
   let code = "";
   if (localName !== importedName) {
     code += `${localName} as ${importedName}`;
