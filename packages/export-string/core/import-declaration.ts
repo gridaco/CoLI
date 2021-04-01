@@ -36,8 +36,7 @@ export function coliImportStringfy(
   }
 
   // make source
-  code += ` from ${convertValue(c.source, l)}`;
+  code += ` from ${convertValue(c.source, l)};`;
 
-  // return code;
-  return ""
+  return code;
 }
