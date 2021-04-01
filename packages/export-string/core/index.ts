@@ -9,8 +9,11 @@ export * from "./literal-ast";
 export * from "./comment-expression";
 export * from "./tagged-template-expression";
 export * from "./property-access-expression";
+// region jsx
 export * from "./jsx-element";
 export * from "./jsx-closing-element";
 export * from "./jsx-opening-element";
 export * from "./jsx-self-closing-element";
+export * from "./jsx-expression";
+// endregion jsx
 export * from "./return-statement";

@@ -111,6 +111,8 @@ export function createSourceCode(
     case COLI._ELEMENT_JSX_SELF_CLOSING:
       useStringfyFunction = CORE.coliJSXSelfClosingElementStringfy;
       break;
+    case COLI._EXPRESSION_JSX:
+      useStringfyFunction = CORE.STRFY_JsxExpression;
     /** Specifiers */
     case COLI._SPECIFIER_IMPORT:
       useStringfyFunction = CORE.coliSpecifierImportStringfy;
@@ -121,7 +123,13 @@ export function createSourceCode(
   }
 
   if (useStringfyFunction) {
-    return useStringfyFunction(coli, stringfyLanguage);
+    try {
+      return useStringfyFunction(coli, stringfyLanguage);
+    } catch (_) {
+      throw new Error(
+        `givven object cannot be stringfied. :: ${JSON.stringify(coli)}`
+      );
+    }
   }
 
   /** @TEST */

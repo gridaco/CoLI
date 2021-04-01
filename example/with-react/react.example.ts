@@ -183,7 +183,7 @@ AppbarFile.declare(Appbar.make());
 AppbarFile.declare(Wrapper, TitleAndAvatarWrapper, Title, Message);
 // endregion make file
 
-console.log(JSON.stringify(AppbarFile.blocks, undefined, 2));
+// console.log(JSON.stringify(AppbarFile.blocks, undefined, 2));
 
 console.log(
   stringfy(AppbarFile.blocks, {
