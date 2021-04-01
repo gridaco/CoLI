@@ -4,7 +4,8 @@ import styled from "@emotion/styled";
 function AppBar() {
   return (
     <Wrapper>
-      <IconImage src="/assets/icons/menu.svg" />
+      <img src="/assets/icons/menu.svg" />
+      <img className="coli-logo" src="/assets/images/coli-shape.png" />
     </Wrapper>
   );
 }
@@ -12,12 +13,12 @@ function AppBar() {
 export default AppBar;
 
 const Wrapper = styled.div`
-  height: 30px;
-  padding: 3px 6px;
-`;
-
-const IconImage = styled.img`
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
+  padding: 8px 3px;
+  display: flex;
+  align-items: center;
+  
+  .coli-logo {
+    width: 30px;
+    margin-left: calc(10em - 27px);
+  }
 `;

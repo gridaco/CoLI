@@ -1,4 +1,3 @@
-import AppBar from "../components/app-bar/index";
 import { Global, css } from "@emotion/react";
 import React, { useEffect, useState } from "react";
 import { RecoilRoot } from "recoil";
@@ -8,7 +7,7 @@ import {
   useDeclarationState,
 } from "../context/DeclarationContext";
 import { useRouter } from "next/router";
-import Header from "../components/header";
+import AppBar from "../components/app-bar";
 function MyApp({ Component, pageProps }) {
   const declarationState = useDeclarationState();
   const router = useRouter();
@@ -37,14 +36,12 @@ function MyApp({ Component, pageProps }) {
             type="text/css"
           />
         </Head>
+        {curPath != "/" && curPath != "/demo" && (
+          <React.Fragment>
+            <AppBar />
+          </React.Fragment>
+        )}
         <div>
-          {curPath != "/" && curPath != "/demo" && (
-            <React.Fragment>
-              <AppBar />
-              <Header />
-            </React.Fragment>
-          )}
-
           <Component {...pageProps} />
         </div>
       </DeclarationProvider>

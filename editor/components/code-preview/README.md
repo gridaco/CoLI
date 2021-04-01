@@ -1,1 +1,0 @@
-# A code previewer of syntax designers

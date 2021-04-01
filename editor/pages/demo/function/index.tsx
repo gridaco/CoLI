@@ -1,65 +1,25 @@
-import { Types } from "coli/lib";
-import React from "react";
-import FunctionDeclaration, {
-  FunctionDeclaration as FunctionDeclarationInterface,
-} from "../../../components/declarations/function";
-import styled from "@emotion/styled";
-import CodeBlock from "../../../components/code-block";
-import { Identifier } from "coli/lib/ast/identifier";
+import React from 'react'
+import { useRecoilState } from 'recoil'
+import CodeBlock from '../../../components/code-block'
+import { functionDeclarationAtom } from '../../../states/declaration.state'
+import EditorTemplate from '../../../template/editor-template'
 
-const functionDefaultData: {
-  example: string;
-  declarations: FunctionDeclarationInterface[];
-} = {
-  example: `let variableName : any = 0`,
-  declarations: [
-    {
-      name: "sum",
-      args: {
-        params: [
-          new Identifier("a", {
-            typeAnnotation: Types.number,
-          }),
-          new Identifier("b", {
-            typeAnnotation: Types.number,
-          }),
-        ],
-        returnType: Types.any,
-        body: null
-      },
-    },
-  ],
-};
+const functionExample = "function sum(a : number, b : number ) { return a + b }"
 
-function CoLiFunctionDemoPage() {
+function FunctionDemoPage() {
+  const [atom, setAtom] = useRecoilState(functionDeclarationAtom)
+
+  console.log(atom)
+  
   return (
-    <Wrapper>
-      <div className="declarations-view">
-        <CodeBlock>{functionDefaultData.example}</CodeBlock>
-        {functionDefaultData.declarations.map((i, ix) => (
-          <FunctionDeclaration id={ix} data={i} key={ix} />
-        ))}
-      </div>
-    </Wrapper>
-  );
+    <EditorTemplate example={functionExample} editorNode={[1,2,3]}>
+      <CodeBlock />
+      <CodeBlock />
+      <CodeBlock />
+      <CodeBlock />
+      <CodeBlock />
+    </EditorTemplate>
+  )
 }
 
-export default CoLiFunctionDemoPage;
-
-const Wrapper = styled.div`
-  display: flex;
-  width: 100%;
-  height: 100%;
-
-  .declarations-view {
-    width: calc(100% - 175px);
-    margin-top: 35px;
-    margin-left: 175px;
-    flex: 1;
-
-    pre {
-      font-size: 12px !important;
-      padding-left: 0px !important;
-    }
-  }
-`;
+export default FunctionDemoPage

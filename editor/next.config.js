@@ -4,6 +4,20 @@ const typescriptLoader = {
     exclude: /node_modules/,
 };
 
+function supportSymlinkedFilesInNextBabelLoader(config) {
+    config.module.rules.forEach(({
+        use
+    }, i) => {
+        if (!use) return
+        const isBabelLoader = Array.isArray(use) ?
+            use.findIndex((item) => item && item.loader && item.loader === 'next-babel-loader') !== -1 :
+            use.loader === 'next-babel-loader'
+        if (isBabelLoader) {
+            delete config.module.rules[i].include
+        }
+    })
+}
+
 module.exports = {
     webpack: (config) => {
         config.module.rules.push(typescriptLoader);
@@ -27,6 +41,14 @@ module.exports = {
             test: /\.svg$/,
             use: ['@svgr/webpack'],
         });
+
+        supportSymlinkedFilesInNextBabelLoader(config)
+        if (!config.resolve) {
+            config.resolve = {}
+        }
+        config.resolve.symlinks = false
+
+        console.log(config.module)
 
         return config;
     },

@@ -29,7 +29,6 @@ const fadeOut = keyframes`
     }
 `;
 
-
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
