@@ -4,7 +4,7 @@ import {
   ImportSpecifier,
 } from "coli/lib/declarations/import";
 import { stringfy, StringfyLanguage } from "..";
-import { converValue } from "../utils/convert-value";
+import { convertValue } from "../utils/convert-value";
 
 const inBraket = /\{(.*?)\}/g;
 
@@ -40,7 +40,7 @@ export function coliImportStringfy(
 
   // code += `${importSpecifiers.join(",")}`;
 
-  code += ` from ${converValue(source, l)}`;
+  code += ` from ${convertValue(source, l)}`;
 
   return code;
 }

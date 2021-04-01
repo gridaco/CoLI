@@ -1,8 +1,5 @@
-import { Literal } from "coli/lib/ast";
-import { TemplateLiteral } from "coli/lib/ast/template-literal";
 import { JSXElement } from "coli/lib/jsx";
 import { stringfy, StringfyLanguage } from "..";
-import { converValue } from "../utils/convert-value";
 
 export function coliJSXElementStringfy(
   c: JSXElement,

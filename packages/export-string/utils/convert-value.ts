@@ -1,6 +1,6 @@
 import { StringfyLanguage } from "..";
 
-export function converValue(v: any, l: StringfyLanguage) {
+export function convertValue(v: any, l: StringfyLanguage) {
   switch (l) {
     case "javascript":
     case "jsx":
