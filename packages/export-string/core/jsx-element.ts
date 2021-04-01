@@ -1,5 +1,5 @@
 import { JSXElement } from "coli/lib/jsx";
-import { StringfyLanguage } from "../..";
+import { StringfyLanguage } from "..";
 
 export function coliJSXElementStringfy(
   c: JSXElement,

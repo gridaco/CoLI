@@ -1,5 +1,5 @@
 import { TaggedTemplateExpression } from "coli/lib/expressions/tagged-template-expression";
-import { stringfy, StringfyLanguage } from "../..";
+import { stringfy, StringfyLanguage } from "..";
 
 export function coliTaggedTemplateStringfy(
   c: TaggedTemplateExpression,

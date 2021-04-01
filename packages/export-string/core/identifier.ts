@@ -1,5 +1,5 @@
 import { Identifier } from "coli/lib/ast";
-import { StringfyLanguage } from "../..";
+import { StringfyLanguage } from "..";
 
 export function coliIdentifierStringfy(
   c: Identifier,

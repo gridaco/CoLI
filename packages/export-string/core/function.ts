@@ -1,6 +1,6 @@
 import { FunctionDeclaration } from "coli/lib/declarations/function";
-import { stringfy, StringfyLanguage } from "../..";
-import { languageInterpreter } from "../../interperters/main-interpreter";
+import { stringfy, StringfyLanguage } from "..";
+import { languageInterpreter } from "../interperters/main-interpreter";
 
 export function coliFunctionStringfy(
   c: FunctionDeclaration,

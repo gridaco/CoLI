@@ -3,8 +3,8 @@ import {
   ImportDefaultSpecifier,
   ImportSpecifier,
 } from "coli/lib/declarations/import";
-import { stringfy, StringfyLanguage } from "../..";
-import { converValue } from "../../utils/convert-value";
+import { stringfy, StringfyLanguage } from "..";
+import { converValue } from "../utils/convert-value";
 
 const inBraket = /\{(.*?)\}/g;
 

@@ -1,5 +1,5 @@
 import { Block } from "coli/lib";
-import { stringfy, StringfyLanguage } from "../..";
+import { stringfy, StringfyLanguage } from "..";
 
 export function coliBlockStringfy(c: Block, l: StringfyLanguage): string {
   const { body } = c;
