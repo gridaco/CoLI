@@ -8,6 +8,7 @@ import { PropertyAccessExpression } from "coli/lib/expressions/property-access-e
 import { TemplateLiteral } from "coli/lib/ast/template-literal";
 import { JSXOpeningElement } from "coli/lib/jsx/jsx-opening-element";
 import { JSXClosingElement } from "coli/lib/jsx/jsx-closing-element";
+import { JSXSelfClosingElement } from "coli/lib/jsx/jsx-self-closing-element";
 const AppbarFile = new File({
   name: "Appbar.tsx",
   path: "src/components",
@@ -98,14 +99,17 @@ const titleAndAvatarWrapperJsxIdentifier = new JSXIdentifier(
   "TitleAndAvatarWrapper"
 );
 const titleJsxIdentifier = new JSXIdentifier("Title");
-const messageJsxIdentifier = new JSXIdentifier("Message")
+const avatarJsxIdentifier = new JSXIdentifier("Avatar");
+const messageJsxIdentifier = new JSXIdentifier("Message");
 
 const AppbarBody = new Block().add(
   new Return(
+    // Wrapper
     new JSXElement({
       openingElement: new JSXOpeningElement(wrapperJsxIdentifier),
       closingElement: new JSXClosingElement(wrapperJsxIdentifier),
       children: [
+        // TitleAndAvatarWrapper
         new JSXElement({
           openingElement: new JSXOpeningElement(
             titleAndAvatarWrapperJsxIdentifier
@@ -114,11 +118,23 @@ const AppbarBody = new Block().add(
             titleAndAvatarWrapperJsxIdentifier
           ),
           children: [
+            // Title
             new JSXElement({
               openingElement: new JSXOpeningElement(titleJsxIdentifier),
               closingElement: new JSXClosingElement(titleJsxIdentifier),
+              children: [],
+            }),
+            // Avatar
+            new JSXSelfClosingElement(avatarJsxIdentifier, {
+              atrributes: [],
             }),
           ],
+        }),
+        // Message
+        new JSXElement({
+          openingElement: new JSXOpeningElement(messageJsxIdentifier),
+          closingElement: new JSXClosingElement(messageJsxIdentifier),
+          children: [],
         }),
       ],
     })
