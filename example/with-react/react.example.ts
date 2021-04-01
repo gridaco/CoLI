@@ -19,6 +19,7 @@ const importReact = new Import()
   .and("useEffect", "useState")
   .from("react");
 
+// import styled from "@emotion/styled"
 const inportStyled = new Import()
   .importDefault("styled")
   .from("@emotion/styled");
@@ -97,6 +98,7 @@ const titleAndAvatarWrapperJsxIdentifier = new JSXIdentifier(
   "TitleAndAvatarWrapper"
 );
 const titleJsxIdentifier = new JSXIdentifier("Title");
+const messageJsxIdentifier = new JSXIdentifier("Message")
 
 const AppbarBody = new Block().add(
   new Return(
