@@ -18,42 +18,26 @@ export function coliImportStringfy(
 ): string {
   const { source, specifiers } = c;
   let code = "import ";
-  const baseImportSpecifiers = stringfy(specifiers, {
+  const importSpecifiers = [];
+  const stringfySpecifiers = stringfy(specifiers, {
     language: l,
     arrayDivison: ", ",
-  }).match(inBraket);
+  });
+  const baseImportSpecifiers = stringfySpecifiers.match(inBraket).map((i) => {
+    return i.replace("{", "").replace("}", "");
+  });
 
-  console.log(baseImportSpecifiers);
-  code += `${stringfy(specifiers, { language: l, arrayDivison: ", " })}`;
+  if (!stringfySpecifiers.split(",")[0].includes("{")) {
+    importSpecifiers.push(stringfySpecifiers.split(",")[0]);
+  }
+
+  if (baseImportSpecifiers.length != 0) {
+    importSpecifiers.push(`{ ${baseImportSpecifiers.join(",")} }`);
+  }
+
+  code += `${importSpecifiers.join(",")}`;
 
   code += ` from ${converValue(source, l)}`;
-
-  // const importSpecifiers = specifiers.reduce((acc, specifier) => {
-  //   if (specifier instanceof ImportDefaultSpecifier) {
-  //     _specifiers.push(`${specifier.local.name}`);
-  //   }
-
-  //   if (specifier instanceof ImportSpecifier) {
-  //     const {
-  //       imported: { name: importedName },
-  //       local: { name: localName },
-  //     } = specifier;
-
-  //     if (importedName != localName) {
-  //       acc.push(`${importedName} as ${localName}`);
-  //     } else {
-  //       acc.push(`${specifier.imported.name}`);
-  //     }
-  //   }
-
-  //   return acc;
-  // }, []);
-
-  // if (importSpecifiers.length != 0) {
-  //   _specifiers.push(`{ ${importSpecifiers.join(", ")} }`);
-  // }
-
-  // code += `${_specifiers.join(", ")} from ${converValue(source, l)}`;
 
   return code;
 }
