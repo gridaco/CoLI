@@ -71,12 +71,14 @@ export class AstBuildingTree implements AstBuildable {
 
   build(): AstBuildingTree {
     if (this.isSnippetOverriden) {
-      const comment = buildComments(this.overrideSnippet.comments, {
-        forceSingleLine: true,
-      });
-      this.code = `${this.overrideSnippet
-        .build()
-        .lookup({ withComma: false })}${comment}`;
+      // TEMPORARILY DISABLED
+      throw "disabled. fixme";
+      // const comment = buildComments(this.overrideSnippet.comments, {
+      //   forceSingleLine: true,
+      // });
+      // this.code = `${this.overrideSnippet
+      //   .build()
+      //   .lookup({ withComma: false })}${comment}`;
     } else {
       const comment = buildComments(this.comments);
 

@@ -2,6 +2,8 @@
     "name": "coli",
     "version": "0.0.3",
     "license": "MIT",
+    "homepage": "https://coli.codes",
+    "repository": "https://github.com/bridgedxyz/coli",
     "private": false,
     "main": "index",
     "scripts": {
