@@ -3,7 +3,7 @@
     "version": "0.0.0",
     "description": "example usage of coli via code api",
     "dependencies": {
-        "coli": "0.0.2",
+        "coli": "0.0.3",
         "@coli/export-string": "0.0.0"
     }
 }

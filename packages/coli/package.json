@@ -16,6 +16,7 @@
     ],
     "dependencies": {
         "@abraham/reflection": "^0.7.0",
+        "ajv": "^8.1.0",
         "global": "^4.4.0"
     },
     "devDependencies": {
