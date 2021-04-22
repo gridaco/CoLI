@@ -9,6 +9,7 @@
         "example"
     ],
     "scripts": {
-        "editor": "yarn workspace editor run dev"
+        "editor": "yarn workspace editor run dev",
+        "build:editor": "yarn workspace editor run build"
     }
 }
