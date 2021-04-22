@@ -2,7 +2,7 @@
     "name": "@coli/builder",
     "version": "0.0.0",
     "dependencies": {
-        "coli": "0.0.2",
+        "coli": "0.0.3",
         "@coli/export-string": "0.0.0"
     }
 }
