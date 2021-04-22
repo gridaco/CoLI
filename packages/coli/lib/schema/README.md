@@ -53,3 +53,7 @@ SchemaFactory.fromDefinition();
 - [json-schema.org](https://json-schema.org/)
 - [json-schema-builder](https://github.com/json-schema-form/json-schema-builder) & [its demo](http://ralphowino.github.io/schema-form-builder/#/builder)
 - [GenSON \(python\)](https://github.com/wolverdude/GenSON)
+
+## IDK (Developer's Idea note - something experimental)
+
+- extending a json schema? - https://stackoverflow.com/a/41020586/5463235
