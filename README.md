@@ -30,6 +30,10 @@ Read [BUILDERS.md](./docs/BUILDERS.md)
 - XML
 - HTML
 
+### [Try the demo](https://coli.codes)
+
+![](./branding/coli-web-demo-example.png)
+
 ## CoLI Node implementation.
 
 **jsx building**
