@@ -1,4 +1,4 @@
-import { stringfy } from "@coli/export-string";
+import { stringfy } from "@coli.codes/export-string";
 import {
   JSXAtrribute,
   JSXElement,

@@ -1,5 +1,5 @@
 {
-    "name": "@coli/export-string",
+    "name": "@coli.codes/export-string",
     "version": "0.0.0",
     "dependencies": {
         "prettier": "^2.2.1"

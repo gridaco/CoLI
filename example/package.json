@@ -4,6 +4,6 @@
     "description": "example usage of coli via code api",
     "dependencies": {
         "coli": "0.0.3",
-        "@coli/export-string": "0.0.0"
+        "@coli.codes/export-string": "0.0.0"
     }
 }
