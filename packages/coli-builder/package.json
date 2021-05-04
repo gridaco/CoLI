@@ -1,8 +1,14 @@
 {
     "name": "@coli.codes/builder",
     "version": "0.0.0",
+    "scripts": {
+        "prepack": "tsc"
+    },
     "dependencies": {
-        "coli": "0.0.3",
-        "@coli.codes/export-string": "0.0.0"
+        "@coli.codes/export-string": "0.0.0",
+        "coli": "0.0.3"
+    },
+    "devDependencies": {
+        "typescript": "^4.2.4"
     }
 }
