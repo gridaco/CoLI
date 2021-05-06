@@ -6,11 +6,19 @@ import { JSXOpeningElement } from "../jsx-opening-element";
 import { JSXSelfClosingElement } from "../jsx-self-closing-element";
 import { JSXText } from "../jsx-text";
 
+/**
+ * Types that can be accapted as jsx child
+ */
 export type JSXChildLike =
   | JSXElement
   | JSXSelfClosingElement
   | JSXText
   | JSXExpression;
+
+/**
+ * Types that can be a root Jsx Syntax
+ */
+export type JSXElementLike = JSXElement | JSXSelfClosingElement;
 
 export class JSXElement extends Element {
   readonly openingElement: JSXOpeningElement;
