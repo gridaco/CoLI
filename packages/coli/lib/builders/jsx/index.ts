@@ -5,6 +5,7 @@ import {
   JSXElement,
   JSXExpression,
   JSXIdentifier,
+  JSXElementLike,
 } from "../../jsx";
 import { JSXClosingElement } from "../../jsx/jsx-closing-element";
 import { JSXSelfClosingElement } from "../../jsx/jsx-self-closing-element";
@@ -13,7 +14,7 @@ import { JSXAtrributes } from "../../jsx/jsx-attributes";
 import { JSXText } from "../../jsx/jsx-text";
 import { ColiObject } from "../../_abstract";
 
-export class JSX extends ColiBuilder {
+export class JSX extends ColiBuilder<JSXElementLike> {
   children: Array<HandyJSXChildLike>;
   attributes: JSXAtrributes;
 

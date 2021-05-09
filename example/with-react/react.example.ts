@@ -7,7 +7,7 @@ import {
   JSXExpression,
   JSXIdentifier,
 } from "coli/lib/jsx";
-import { stringfy } from "../../packages/export-string";
+import { stringfy } from "@coli.codes/export-string";
 import { TaggedTemplateExpression } from "coli/lib/expressions/tagged-template-expression";
 import { PropertyAccessExpression } from "coli/lib/expressions/property-access-exporession";
 import { TemplateLiteral } from "coli/lib/ast/template-literal";
