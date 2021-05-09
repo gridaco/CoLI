@@ -6,6 +6,15 @@ import {
   ImportSpecifier,
 } from "../../declarations/import";
 
+/**
+ * A Import Builder with builder pattern.
+ *
+ * **Usage**
+ *
+ * 1. `Import.declare(...)`
+ * 2. `new Import().import(...).from(...)`
+ * 3. `new Import().import(...).from(...).make()`
+ */
 export class Import extends ColiBuilder<ImportDeclaration> {
   private source: string;
   private default: ImportDefaultSpecifier;
@@ -22,6 +31,16 @@ export class Import extends ColiBuilder<ImportDeclaration> {
     return this;
   }
 
+  /**
+   * set single import default specifier. calling this multiple times will override previous call effect.
+   *
+   * e.g.
+   *
+   * 1. `import a from "a"`
+   * 2. ~~import `{ a }` from "a"~~ **(NOT THIS)**
+   * @param local
+   * @returns
+   */
   importDefault(local: string): this {
     this.default = new ImportDefaultSpecifier({
       local: local,
@@ -29,11 +48,26 @@ export class Import extends ColiBuilder<ImportDeclaration> {
     return this;
   }
 
+  /**
+   * adds `{?}` import
+   *
+   * e.g.
+   *
+   * 1. import `{ a }` from "a"
+   * 2. ~~import a from "a"~~ **(NOT THIS)**
+   * @param _import
+   * @returns
+   */
   import(_import: HandyImport): this {
     this.m_import = handyImportToImportSpecifier(_import);
     return this;
   }
 
+  /**
+   * add more import. same as `.import(...)`
+   * @param _import
+   * @returns
+   */
   and(..._import: HandyImport[]): this {
     _import.forEach((e) => {
       this.imports.push(handyImportToImportSpecifier(e));
@@ -57,6 +91,13 @@ export class Import extends ColiBuilder<ImportDeclaration> {
   }
 }
 
+/**
+ * specifies import
+ * e.g.
+ *
+ * 1. import `{ a }` from "a"
+ * 2. import `{a as _}` from "a"
+ */
 type HandyImport = { import: string; as?: string } | string;
 
 function handyImportToImportSpecifier(_import: HandyImport): ImportSpecifier {
