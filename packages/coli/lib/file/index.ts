@@ -1,10 +1,10 @@
-import { ColiBuilder } from "../../builder";
-import { ColiBlock } from "../../builder/block";
-import { Declaration } from "../../declarations/declaration.base";
-import { FunctionDeclaration } from "../../declarations/function";
-import { ImportDeclaration } from "../../declarations/import";
-import { Class } from "../class";
-import { Function } from "../function";
+import { ColiBuilder } from "../builder";
+import { ColiBlock } from "../builder/block";
+import { Declaration } from "../declarations/declaration.base";
+import { FunctionDeclaration } from "../declarations/function";
+import { ImportDeclaration } from "../declarations/import";
+import { Class } from "../builders/class";
+import { Function } from "../builders/function";
 
 /**
  * interface of general in-project contained file

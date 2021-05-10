@@ -1,5 +1,5 @@
 import { Class } from "../../builders/class";
-import { File } from "../../builders/file";
+import { File } from "../../file";
 import { ImportDeclaration } from "../../declarations/import";
 
 // TODO
