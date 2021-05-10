@@ -1,4 +1,4 @@
-import { Types } from "coli/lib";
+import { Types } from "coli";
 import React from "react";
 import VariableStatement, {
   VariableStatement as VariableDeclarationInterface,

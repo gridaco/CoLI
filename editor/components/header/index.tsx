@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { useSetRecoilState } from "recoil";
 import { currentColiEditorOption } from "../../states/option.state";
-import { StringfyLanguage } from "../../../packages/export-string";
+import { StringfyLanguage } from "@coli.codes/export-string";
 
 type ViewType = "block" | "grid";
 

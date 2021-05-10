@@ -1,5 +1,5 @@
-import { stringfy } from "../../export-string";
-import { CommentExpression } from "../lib/expressions/comment";
+import { stringfy } from "@coli.codes/export-string";
+import { CommentExpression } from "coli";
 
 const singleComment = new CommentExpression({
   style: "single-line",

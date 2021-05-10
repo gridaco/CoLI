@@ -1,4 +1,4 @@
-import { JSXSelfClosingElement } from "coli/lib/jsx/jsx-self-closing-element";
+import { JSXSelfClosingElement } from "coli";
 import { stringfy, StringfyLanguage } from "..";
 
 export function coliJSXSelfClosingElementStringfy(

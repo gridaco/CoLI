@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { VariableDeclaration as VariableClass } from "coli/lib/declarations/variable";
-import { VariableKind as VariableScope } from "coli/lib/_internal/kinds/variable-kind";
-import { Type, Types } from "coli/lib";
 import styled from "@emotion/styled";
+import {
+  Type,
+  Types,
+  VariableDeclaration as VariableClass,
+  CommentExpression,
+  _internal,
+} from "coli";
+import { stringfy, StringfyLanguage } from "@coli.codes/export-string";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { currentDeclarationAtom } from "../../states/declaration.state";
 import { currentColiEditorOption } from "../../states/option.state";
 import DeclartionTitle from "../declarations/common/title";
 import CodeBlock from "../code-block";
-import { stringfy, StringfyLanguage } from "../../../packages/export-string";
 import { CodePreview } from "../code-preview";
-import { CommentExpression } from "coli/lib/expressions/comment";
 import Selector from "../selector";
 import AutoGrowInput from "../auto-grow-input";
 import AutoGrowTextArea from "../auto-grow-textarea";
@@ -19,7 +21,7 @@ import { variableStatementAtom } from "../../states/statement.state";
 export interface VariableStatement {
   name: string;
   args?: {
-    kind: VariableScope;
+    kind: _internal.VariableKind;
     variableType?: Type;
     value?: any;
   };
@@ -53,23 +55,20 @@ const variableScopeSelector = [
   },
 ];
 
-function VariableStatement(props: {
-  id?: number;
-  data: VariableStatement;
-}) {
+function VariableStatement(props: { id?: number; data: VariableStatement }) {
   const { id, data } = props;
-  const setGlobalVariableStatementValue = useSetRecoilState(variableStatementAtom);
-  const { language } = useRecoilValue(currentColiEditorOption);
-  const [declarationValue, setDeclarationValue] = useState<VariableStatement>(
-    {
-      name: "",
-      args: {
-        kind: "let",
-        variableType: Types.any,
-        value: "",
-      },
-    }
+  const setGlobalVariableStatementValue = useSetRecoilState(
+    variableStatementAtom
   );
+  const { language } = useRecoilValue(currentColiEditorOption);
+  const [declarationValue, setDeclarationValue] = useState<VariableStatement>({
+    name: "",
+    args: {
+      kind: "let",
+      variableType: Types.any,
+      value: "",
+    },
+  });
 
   useEffect(() => {
     setDeclarationValue(data);

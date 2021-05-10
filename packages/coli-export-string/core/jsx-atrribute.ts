@@ -1,4 +1,4 @@
-import { JSXAtrribute } from "coli/lib/jsx";
+import { JSXAtrribute } from "coli";
 import { stringfy, StringfyLanguage } from "..";
 
 export function coliJSXAtrributeStringfy(

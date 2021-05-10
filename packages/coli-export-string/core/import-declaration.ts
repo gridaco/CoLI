@@ -2,7 +2,7 @@ import {
   ImportDeclaration,
   ImportDefaultSpecifier,
   ImportSpecifier,
-} from "coli/lib/declarations/import";
+} from "coli";
 import { stringfy, StringfyLanguage } from "..";
 import { convertValue } from "../utils/convert-value";
 

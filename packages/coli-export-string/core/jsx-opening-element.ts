@@ -1,4 +1,4 @@
-import { JSXOpeningElement } from "coli/lib/jsx/jsx-opening-element";
+import { JSXOpeningElement } from "coli";
 import { stringfy, StringfyLanguage } from "..";
 
 export function coliJSXOpeningElementStringfy(

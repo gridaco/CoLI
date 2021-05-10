@@ -1,28 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { FunctionDeclaration as FunctionClass } from "coli/lib/declarations/function";
-import { Type, Types } from "coli/lib";
+import { FunctionDeclaration as FunctionClass } from "coli";
+import { Type, Types, ast, BlockStatement } from "coli";
 import styled from "@emotion/styled";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import {
-  currentDeclarationAtom,
-  functionDeclarationAtom,
-} from "../../states/declaration.state";
+import { functionDeclarationAtom } from "../../states/declaration.state";
 import { currentColiEditorOption } from "../../states/option.state";
 import DeclartionTitle from "./common/title";
 import CodeBlock from "../code-block";
-import { stringfy, StringfyLanguage } from "../../../packages/export-string";
+import { stringfy, StringfyLanguage } from "@coli.codes/export-string";
 import { CodePreview } from "../code-preview";
-import { CommentExpression } from "coli/lib/expressions/comment";
+import { CommentExpression } from "coli";
 import Selector from "../selector";
 import AutoGrowInput from "../auto-grow-input";
-import AutoGrowTextArea from "../auto-grow-textarea";
-import { Identifier } from "coli/lib/ast/identifier";
-import { BlockStatement } from "coli/lib/statements";
 
 export interface FunctionDeclaration {
   name: string;
   args?: {
-    params?: Identifier[];
+    params?: ast.Identifier[];
     returnType?: Type;
     body?: BlockStatement;
   };
@@ -46,7 +40,9 @@ function FunctionDeclaration(props: {
   data: FunctionDeclaration;
 }) {
   const { id, data } = props;
-  const setGlobalFunctionDeclarationValue = useSetRecoilState(functionDeclarationAtom);
+  const setGlobalFunctionDeclarationValue = useSetRecoilState(
+    functionDeclarationAtom
+  );
   const { language } = useRecoilValue(currentColiEditorOption);
   const [declarationValue, setDeclarationValue] = useState<FunctionDeclaration>(
     {
@@ -102,7 +98,7 @@ function FunctionDeclaration(props: {
               onChange={(v) =>
                 setDeclarationValue((d) => {
                   let params = d.args.params;
-                  params[ix] = new Identifier(v, {
+                  params[ix] = new ast.Identifier(v, {
                     typeAnnotation: params[ix].typeAnnotation,
                   });
 

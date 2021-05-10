@@ -1,4 +1,4 @@
-import { VariableDeclaration } from "coli/lib/declarations/variable";
+import { VariableDeclaration } from "coli";
 import { stringfy, StringfyLanguage } from "..";
 
 /**

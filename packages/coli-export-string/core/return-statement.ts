@@ -1,4 +1,4 @@
-import { Return } from "coli/lib";
+import { Return } from "coli";
 import { stringfy, StringfyLanguage } from "..";
 
 export function coliReturnStringfy(c: Return, l: StringfyLanguage): string {

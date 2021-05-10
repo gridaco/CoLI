@@ -1,17 +1,18 @@
 import { stringfy } from "@coli.codes/export-string";
 import {
+  JSX,
+  JSXOpeningElement,
+  JSXClosingElement,
   JSXAtrribute,
   JSXElement,
   JSXExpression,
   JSXIdentifier,
-} from "coli/lib/jsx";
-import { JSXClosingElement } from "coli/lib/jsx/jsx-closing-element";
-import { JSXOpeningElement } from "coli/lib/jsx/jsx-opening-element";
-import { JSX } from "coli/lib/builders/jsx";
-import { PropertyAccessExpression } from "coli/lib/expressions/property-access-exporession";
-import { Identifier, Literal } from "coli/lib/ast";
-import { JSXSelfClosingElement } from "coli/lib/jsx/jsx-self-closing-element";
-import { VariableDeclaration } from "coli/lib/declarations/variable";
+  PropertyAccessExpression,
+  JSXSelfClosingElement,
+  VariableDeclaration,
+  Identifier,
+  ast,
+} from "coli";
 
 const wrapperJsxIdentifier = new JSXIdentifier("Wrapper");
 const titleAndAvatarWrapperJsxIdentifier = new JSXIdentifier(
@@ -90,7 +91,10 @@ const customTagBuilder = JSX.tag("div", {
     }),
     JSX.image({
       attributes: [
-        new JSXAtrribute("src", new Literal("https://example.com/image.png")),
+        new JSXAtrribute(
+          "src",
+          new ast.Literal("https://example.com/image.png")
+        ),
       ],
     }),
   ],

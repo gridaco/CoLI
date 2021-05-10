@@ -1,4 +1,4 @@
-import { JSXExpression } from "coli/lib/jsx";
+import { JSXExpression } from "coli";
 import { stringfy, StringfyLanguage } from "..";
 
 export function coliJSXExpressionStringfy(

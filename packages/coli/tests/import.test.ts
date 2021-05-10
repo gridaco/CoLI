@@ -1,9 +1,9 @@
-import { stringfy } from "../../export-string";
+import { stringfy } from "@coli.codes/export-string";
 import {
   ImportDeclaration,
   ImportDefaultSpecifier,
   ImportSpecifier,
-} from "../lib/declarations/import";
+} from "coli";
 
 const importOther = new ImportDeclaration({
   specifiers: [

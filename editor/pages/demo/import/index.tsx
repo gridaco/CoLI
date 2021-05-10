@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
+import { ImportDefaultSpecifier, ImportSpecifier } from "coli";
 import ImportDeclaration, {
   ImportDeclaration as ImportDeclarationInterface,
 } from "../../../components/declarations/import";
 import CodeBlock from "../../../components/code-block";
-import {
-  ImportDefaultSpecifier,
-  ImportSpecifier,
-} from "coli/lib/declarations/import";
 
 const importDefaultData: {
   example: string;

@@ -1,10 +1,10 @@
-import { Import } from "coli/lib";
 import {
+  Import,
   ImportDeclaration,
   ImportDefaultSpecifier,
   ImportSpecifier,
-} from "coli/lib/declarations/import";
-import { stringfy } from "../../packages/export-string";
+} from "coli";
+import { stringfy } from "@coli.codes/export-string";
 
 // import styled, { utils as u } from "@emotion/styled"
 // plain

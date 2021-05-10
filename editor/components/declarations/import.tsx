@@ -3,17 +3,20 @@ import styled from "@emotion/styled";
 import DeclartionTitle from "./common/title";
 import { useSetRecoilState, useRecoilValue } from "recoil";
 import AutoGrowInput from "../auto-grow-input";
-import { currentDeclarationAtom, importDeclarationAtom } from "../../states/declaration.state";
+import {
+  currentDeclarationAtom,
+  importDeclarationAtom,
+} from "../../states/declaration.state";
 import CodeBlock from "../code-block";
 import {
   ImportDeclaration as ImportClass,
   ImportDefaultSpecifier,
   ImportSpecifier,
-} from "coli/lib/declarations/import";
+  CommentExpression,
+} from "coli";
 import { CodePreview } from "../code-preview";
-import { stringfy, StringfyLanguage } from "../../../packages/export-string";
+import { stringfy, StringfyLanguage } from "@coli.codes/export-string";
 import { currentColiEditorOption } from "../../states/option.state";
-import { CommentExpression } from "coli/lib/expressions/comment";
 
 export interface ImportDeclaration {
   specifiers?: Array<ImportDefaultSpecifier | ImportSpecifier>;
@@ -49,7 +52,9 @@ const returnExampleImportCode = (args: {
 
 function ImportDeclaration(props: { id: number; data: ImportDeclaration }) {
   const { data, id } = props;
-  const setGlobalImportDeclarationValue = useSetRecoilState(importDeclarationAtom);
+  const setGlobalImportDeclarationValue = useSetRecoilState(
+    importDeclarationAtom
+  );
   const { language } = useRecoilValue(currentColiEditorOption);
   const [declarationValue, setDeclarationValue] = useState<ImportDeclaration>({
     specifiers: [],

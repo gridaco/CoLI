@@ -1,18 +1,22 @@
-import { JSX, Block, File, Function, Import, Return, Types } from "coli/lib";
-import { Identifier } from "coli/lib/ast/identifier";
-import { VariableDeclaration } from "coli/lib/declarations/variable";
 import {
+  JSX,
+  Block,
+  SourceFile,
+  Function,
+  Import,
+  Return,
+  Types,
+  Identifier,
+  VariableDeclaration,
   JSXAtrribute,
-  JSXElement,
   JSXExpression,
-  JSXIdentifier,
-} from "coli/lib/jsx";
+  PropertyAccessExpression,
+  TaggedTemplateExpression,
+  ast,
+} from "coli";
 import { stringfy } from "@coli.codes/export-string";
-import { TaggedTemplateExpression } from "coli/lib/expressions/tagged-template-expression";
-import { PropertyAccessExpression } from "coli/lib/expressions/property-access-exporession";
-import { TemplateLiteral } from "coli/lib/ast/template-literal";
 
-const AppbarFile = new File({
+const AppbarFile = new SourceFile({
   name: "Appbar.tsx",
   path: "src/components",
 });
@@ -34,7 +38,7 @@ const Wrapper = new VariableDeclaration("Wrapper", {
   initializer: new TaggedTemplateExpression(
     new PropertyAccessExpression(styledIdentifier, "div"),
     {
-      template: new TemplateLiteral(`
+      template: new ast.TemplateLiteral(`
         margin: 60px 20px;
       `),
     }
@@ -46,7 +50,7 @@ const TitleAndAvatarWrapper = new VariableDeclaration("TitleAndAvatarWrapper", {
   initializer: new TaggedTemplateExpression(
     new PropertyAccessExpression(styledIdentifier, "div"),
     {
-      template: new TemplateLiteral(`
+      template: new ast.TemplateLiteral(`
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -60,7 +64,7 @@ const Title = new VariableDeclaration("Title", {
   initializer: new TaggedTemplateExpression(
     new PropertyAccessExpression(styledIdentifier, "div"),
     {
-      template: new TemplateLiteral(`
+      template: new ast.TemplateLiteral(`
         font-size: 36px;
       `),
     }
@@ -72,7 +76,7 @@ const Message = new VariableDeclaration("Message", {
   initializer: new TaggedTemplateExpression(
     new PropertyAccessExpression(styledIdentifier, "div"),
     {
-      template: new TemplateLiteral(`
+      template: new ast.TemplateLiteral(`
         color: #a4a4a4;
         font-size: 14px;
       `),
@@ -85,7 +89,7 @@ const Avatar = new VariableDeclaration("Avatar", {
   initializer: new TaggedTemplateExpression(
     new PropertyAccessExpression(styledIdentifier, "img"),
     {
-      template: new TemplateLiteral(`
+      template: new ast.TemplateLiteral(`
         margin-left: 20px;
       `),
     }

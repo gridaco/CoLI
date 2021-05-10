@@ -1,6 +1,4 @@
-import {
-  ImportDefaultSpecifier,
-} from "coli/lib/declarations/import";
+import { ImportDefaultSpecifier } from "coli";
 import { StringfyLanguage } from "..";
 
 /**

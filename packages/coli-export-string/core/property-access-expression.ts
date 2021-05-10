@@ -1,4 +1,4 @@
-import { PropertyAccessExpression } from "coli/lib/expressions/property-access-exporession";
+import { PropertyAccessExpression } from "coli";
 import { stringfy, StringfyLanguage } from "..";
 
 export function coliPropertyAccessStringfy(
