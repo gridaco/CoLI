@@ -1,9 +1,7 @@
-import { stringfy } from "../../export-string";
-import { Block, Snippet, Types } from "../lib";
-import { Identifier } from "../lib/ast/identifier";
-import { FunctionDeclraration } from "../lib/declarations/function";
+import { stringfy } from "@coli.codes/export-string";
+import { Identifier, Block, Snippet, Types, FunctionDeclaration } from "coli";
 
-const sumNotReturn = new FunctionDeclraration("sum", {
+const sumNotReturn = new FunctionDeclaration("sum", {
   params: [
     new Identifier("a", {
       typeAnnotation: Types.number,
@@ -17,7 +15,7 @@ const sumNotReturn = new FunctionDeclraration("sum", {
 // function sum(a : number, b : number) : any {}
 console.log(stringfy(sumNotReturn, { language: "typescript" }));
 
-const sumReturn = new FunctionDeclraration("sum", {
+const sumReturn = new FunctionDeclaration("sum", {
   body: new Block(Snippet.fromStatic("return a + b")),
   params: [
     new Identifier("a", {
@@ -32,12 +30,12 @@ const sumReturn = new FunctionDeclraration("sum", {
 // TODO UPDATE INNER BODY EXPRESSION
 console.log(stringfy(sumReturn, { language: "typescript" }));
 
-const emptyFunction = new FunctionDeclraration("emptyFunction");
+const emptyFunction = new FunctionDeclaration("emptyFunction");
 
 // function emptyFunction() : any {}
 console.log(stringfy(emptyFunction, { language: "typescript" }));
 
-const returnTypeFunction = new FunctionDeclraration("returnTypeFunction", {
+const returnTypeFunction = new FunctionDeclaration("returnTypeFunction", {
   returnType: Types.string,
 });
 
