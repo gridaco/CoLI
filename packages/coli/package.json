@@ -7,7 +7,8 @@
     "private": false,
     "main": "index",
     "scripts": {
-        "prepack": "tsc"
+        "prepack": "tsc",
+        "test": "tsc"
     },
     "files": [
         "README.md",
@@ -15,9 +16,7 @@
         "LICENSE"
     ],
     "dependencies": {
-        "@abraham/reflection": "^0.7.0",
-        "ajv": "^8.1.0",
-        "global": "^4.4.0"
+        "@abraham/reflection": "^0.7.0"
     },
     "devDependencies": {
         "ts-node": "^9.1.1",

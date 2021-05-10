@@ -9,7 +9,12 @@ import { Function } from "../builders/function";
 /**
  * interface of general in-project contained file
  */
-export interface SourceFile {
+export interface ISourceFile {
+  /**
+   * this will be an abstract conceptual hash when coli runs on non fs platform.
+   * equivalat to concept of "id"
+   */
+  hash: string;
   /**
    * path of this file relative to root
    */
@@ -28,7 +33,13 @@ export interface SourceFile {
   ext: string;
 }
 
-export class SourceFile extends ColiBuilder {
+export class SourceFile extends ColiBuilder implements ISourceFile {
+  hash: string;
+  path: string;
+  root: string;
+  name: string;
+  ext: string;
+
   readonly blocks: ColiBlock[] = [];
   constructor(params: {
     readonly path: string;
@@ -60,6 +71,10 @@ export class SourceFile extends ColiBuilder {
       }
     }
     // endregion handle ext
+
+    // set file hash
+    // consider using "object-hash" (from npm) instead.
+    this.hash = "";
   }
 
   import(...importDeclaration: ImportDeclaration[]): this {
