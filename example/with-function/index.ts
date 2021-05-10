@@ -1,8 +1,12 @@
-import { Function, Block, Snippet } from "coli/lib";
-import { Type, Types } from "coli/lib";
-import { Identifier } from "coli/lib/ast/identifier";
-import { FunctionDeclaration } from "coli/lib/declarations/function";
-import { stringfy } from "../../packages/export-string";
+import {
+  Function,
+  Block,
+  Snippet,
+  Identifier,
+  Types,
+  FunctionDeclaration,
+} from "coli";
+import { stringfy } from "@coli.codes/export-string";
 
 // builder example
 new Function("sum")

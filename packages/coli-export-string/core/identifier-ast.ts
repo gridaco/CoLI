@@ -1,4 +1,4 @@
-import { Identifier } from "coli/lib/ast";
+import { Identifier } from "coli";
 import { StringfyLanguage } from "..";
 
 /*@internal*/

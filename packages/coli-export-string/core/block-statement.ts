@@ -1,4 +1,4 @@
-import { Block } from "coli/lib";
+import { Block } from "coli";
 import { stringfy, StringfyLanguage } from "..";
 
 export function coliBlockStringfy(c: Block, l: StringfyLanguage): string {

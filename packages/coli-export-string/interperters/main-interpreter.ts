@@ -1,12 +1,8 @@
-import { Block, Snippet, Types } from "coli/lib";
-import { Identifier } from "coli/lib/ast";
-import { FunctionDeclaration } from "coli/lib/declarations/function";
-import { CommentExpression } from "coli/lib/expressions/comment";
-import { ColiObject } from "coli/lib/_abstract";
+import { Snippet, _abstract } from "coli";
 import { StringfyLanguage } from "..";
 import { ESInterpreter } from "./es-interpreter";
 type Keyword = string;
-type KindInterpreter<T extends ColiObject | string = string> =
+type KindInterpreter<T extends _abstract.ColiObject | string = string> =
   | ((coli: T, language?: StringfyLanguage) => string)
   | Keyword;
 

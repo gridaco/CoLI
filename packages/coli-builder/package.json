@@ -5,8 +5,9 @@
         "prepack": "tsc"
     },
     "dependencies": {
+        "@coli.codes/core": "0.0.0",
         "@coli.codes/export-string": "0.0.0",
-        "coli": "0.0.3"
+        "@coli.codes/annotations": "0.0.0"
     },
     "devDependencies": {
         "typescript": "^4.2.4"

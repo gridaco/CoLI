@@ -1,4 +1,4 @@
-import { Snippet } from "coli/lib";
+import { Snippet } from "coli";
 import { stringfy, StringfyLanguage } from "..";
 import { LanguageInterpreterMap } from "./main-interpreter";
 
@@ -12,7 +12,7 @@ export const ESInterpreter: LanguageInterpreterMap = {
    * @example const [leading, line, trailing] = MultiCommentKeyword.split(" ")
    */
   MultiCommentKeyword: "/** * **/",
-  __WIDLCARD__: (_: Snippet | any, language : StringfyLanguage) => {
+  __WIDLCARD__: (_: Snippet | any, language: StringfyLanguage) => {
     if (_ instanceof Snippet) {
       return _._defaultSnippet;
     }

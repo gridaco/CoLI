@@ -1,11 +1,10 @@
-import { Types } from "coli/lib";
+import { Types, Identifier } from "coli";
 import React from "react";
 import FunctionDeclaration, {
   FunctionDeclaration as FunctionDeclarationInterface,
 } from "../../../components/declarations/function";
 import styled from "@emotion/styled";
 import CodeBlock from "../../../components/code-block";
-import { Identifier } from "coli/lib/ast/identifier";
 
 const functionDefaultData: {
   example: string;
@@ -25,7 +24,7 @@ const functionDefaultData: {
           }),
         ],
         returnType: Types.any,
-        body: null
+        body: null,
       },
     },
   ],

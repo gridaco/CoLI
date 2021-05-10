@@ -1,4 +1,4 @@
-import { ImportSpecifier } from "coli/lib/declarations/import";
+import { ImportSpecifier } from "coli";
 import { StringfyLanguage } from "..";
 /**
  * @todo transpile lauganage

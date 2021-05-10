@@ -1,4 +1,4 @@
-import { SourceFile, Import, Function, Type } from "coli/lib";
+import { SourceFile, Import, Function, Type } from "coli";
 
 const file = new SourceFile({ name: "example", path: "." })
   .import(

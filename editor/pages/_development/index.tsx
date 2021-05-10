@@ -1,4 +1,4 @@
-import { Function } from "coli/lib";
+import { Function } from "coli";
 
 export default function DevelopmentPage() {
   const fun = new Function("Heading");

@@ -1,4 +1,4 @@
-import { FunctionDeclaration } from "coli/lib/declarations/function";
+import { FunctionDeclaration } from "coli";
 import { stringfy, StringfyLanguage } from "..";
 import { languageInterpreter } from "../interperters/main-interpreter";
 

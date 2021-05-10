@@ -1,5 +1,4 @@
-import { ColiInterpretable, ColiObject } from "coli/lib/_abstract";
-import * as COLI from "coli/lib/_internal/node-name";
+import { _abstract, _internal } from "coli";
 import * as CORE from "./core";
 import parserTypeScript from "prettier/parser-typescript";
 import prettier from "prettier/standalone";
@@ -26,13 +25,13 @@ interface StringfyOptions {
 }
 
 type useStrinfyFunction = (
-  c: ColiObject | any,
+  c: _abstract.ColiObject | any,
   l: StringfyOptions["language"],
   d?: number
 ) => string;
 
 export function stringfy(
-  coli: ColiInterpretable,
+  coli: _abstract.ColiInterpretable,
   stringfyOptions: StringfyOptions,
   depth?: number
 ): string {
@@ -52,7 +51,7 @@ export function stringfy(
     final = stringfyCode;
   }
 
-  if (coli instanceof ColiObject) {
+  if (coli instanceof _abstract.ColiObject) {
     final = createSourceCode(coli, language, depth + 1);
   }
 
@@ -74,7 +73,7 @@ function format(source: string, opt: ColiFormatterConfig): string {
 
 /*@internal*/
 export function createSourceCode(
-  coli: ColiObject | any,
+  coli: _abstract.ColiObject | any,
   stringfyLanguage: StringfyLanguage,
   depth: number
 ) {
@@ -83,68 +82,68 @@ export function createSourceCode(
 
   switch (nodeName) {
     /** Declarations */
-    case COLI._DECLARATION_FUNCTION:
+    case _internal._DECLARATION_FUNCTION:
       useStringfyFunction = CORE.coliFunctionStringfy;
       break;
-    case COLI._DECLARATION_IMPORT:
+    case _internal._DECLARATION_IMPORT:
       useStringfyFunction = CORE.coliImportStringfy;
       break;
-    case COLI._DECLARATION_VARIABLE:
+    case _internal._DECLARATION_VARIABLE:
     /** Statements */
-    case COLI._STATEMENT_VARIABLE:
+    case _internal._STATEMENT_VARIABLE:
       useStringfyFunction = CORE.coliVariableStringfy;
       break;
-    case COLI._STATEMENT_BLOCK:
+    case _internal._STATEMENT_BLOCK:
       useStringfyFunction = CORE.coliBlockStringfy;
       break;
-    case COLI._STATEMENT_RETURN:
+    case _internal._STATEMENT_RETURN:
       useStringfyFunction = CORE.coliReturnStringfy;
       break;
     /** Expressions */
-    case COLI._EXPRESSION_COMMENT:
+    case _internal._EXPRESSION_COMMENT:
       useStringfyFunction = CORE.coliCommentStringfy;
       break;
-    case COLI._EXPRESSION_TAGGED_TEMPLATE:
+    case _internal._EXPRESSION_TAGGED_TEMPLATE:
       useStringfyFunction = CORE.coliTaggedTemplateStringfy;
       break;
-    case COLI._EXPRESSION_PROPERTY_ACCESS:
+    case _internal._EXPRESSION_PROPERTY_ACCESS:
       useStringfyFunction = CORE.coliPropertyAccessStringfy;
       break;
-    case COLI._EXPRESSION_JSX:
+    case _internal._EXPRESSION_JSX:
       useStringfyFunction = CORE.coliJSXExpressionStringfy;
       break;
     /** Nodes */
-    case COLI._NODE_IDENTIFIER:
+    case _internal._NODE_IDENTIFIER:
       useStringfyFunction = CORE.coliIdentifierStringfy;
       break;
-    case COLI._NODE_LITERAL:
+    case _internal._NODE_LITERAL:
       useStringfyFunction = CORE.coliLiteralStringfy;
       break;
     /** JSX */
-    case COLI._ELEMENT_JSX:
+    case _internal._ELEMENT_JSX:
       useStringfyFunction = CORE.coliJSXElementStringfy;
       break;
-    case COLI._JSX_ATTRIBUTE:
+    case _internal._JSX_ATTRIBUTE:
       useStringfyFunction = CORE.coliJSXAtrributeStringfy;
       break;
-    case COLI._ELEMENT_JSX_CLOSING:
+    case _internal._ELEMENT_JSX_CLOSING:
       useStringfyFunction = CORE.coliJSXClosingElementStringfy;
       break;
-    case COLI._ELEMENT_JSX_OPENING:
+    case _internal._ELEMENT_JSX_OPENING:
       useStringfyFunction = CORE.coliJSXOpeningElementStringfy;
       break;
-    case COLI._ELEMENT_JSX_SELF_CLOSING:
+    case _internal._ELEMENT_JSX_SELF_CLOSING:
       useStringfyFunction = CORE.coliJSXSelfClosingElementStringfy;
       break;
-    case COLI._EXPRESSION_JSX:
+    case _internal._EXPRESSION_JSX:
       useStringfyFunction = CORE.coliJSXExpressionStringfy;
-    case COLI._JSX_TEXT:
+    case _internal._JSX_TEXT:
       useStringfyFunction = CORE.coliJSXTextStringfy;
     /** Specifiers */
-    case COLI._SPECIFIER_IMPORT:
+    case _internal._SPECIFIER_IMPORT:
       useStringfyFunction = CORE.coliSpecifierImportStringfy;
       break;
-    case COLI._SPECIFIER_DEFAULT_IMPORT:
+    case _internal._SPECIFIER_DEFAULT_IMPORT:
       useStringfyFunction = CORE.coliDefaultImportStringfy;
       break;
   }

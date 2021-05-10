@@ -1,11 +1,13 @@
-import { Literal } from "coli/lib/ast";
-import { TemplateLiteral } from "coli/lib/ast/template-literal";
+import { ast } from "coli";
 import { StringfyLanguage } from "..";
 import { convertValue } from "../utils/convert-value";
 
-export function coliLiteralStringfy(c: Literal, l: StringfyLanguage): string {
+export function coliLiteralStringfy(
+  c: ast.Literal,
+  l: StringfyLanguage
+): string {
   const { value } = c;
-  const isTemplateLiteral = c instanceof TemplateLiteral;
+  const isTemplateLiteral = c instanceof ast.TemplateLiteral;
   let code = "";
   if (!isTemplateLiteral) {
     code += `${convertValue(value, l)}`;

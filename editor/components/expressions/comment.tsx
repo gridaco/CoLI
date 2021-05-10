@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
+import { CommentExpression as CommentClass, CommentStyleEnum } from "coli";
+import { stringfy, StringfyLanguage } from "@coli.codes/export-string";
 import CodeBlock from "../code-block";
 import DeclartionTitle from "../declarations/common/title";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { currentColiEditorOption } from "../../states/option.state";
-import { stringfy, StringfyLanguage } from "../../../packages/export-string";
-import { CommentExpression as CommentClass, CommentStyleEnum } from "coli/lib/expressions/comment";
-import { currentDeclarationAtom } from "../../states/declaration.state";
 import AutoGrowTextArea from "../auto-grow-textarea";
 import Selector from "../selector";
 import { CodePreview } from "../code-preview";
@@ -42,7 +41,9 @@ const returnExampleCommentCode = (args: {
 
 export default function CommentExpression(props: { data: CommentExpression }) {
   const { data } = props;
-  const setGlobalCommentExpressionValue = useSetRecoilState(commentExpressionAtom)
+  const setGlobalCommentExpressionValue = useSetRecoilState(
+    commentExpressionAtom
+  );
   const { language } = useRecoilValue(currentColiEditorOption);
   const [expressionValue, setExpressionValue] = useState<CommentExpression>({
     style: "single-line",
@@ -56,12 +57,12 @@ export default function CommentExpression(props: { data: CommentExpression }) {
   useEffect(() => {
     // TODO CHANGE PUSH CURRENT DATA ( Declaration Value )
     // setGlobalCommentExpressionValue(expressionValue)
-  }, [expressionValue])
+  }, [expressionValue]);
 
   const onChangeExpressionValue = (v: string, n: string, k?: number) => {
     setExpressionValue((d) => ({
       ...d,
-      [n]: v == "" ? data[n] : v.replaceAll("\\n", '\n'),
+      [n]: v == "" ? data[n] : v.replaceAll("\\n", "\n"),
     }));
   };
 

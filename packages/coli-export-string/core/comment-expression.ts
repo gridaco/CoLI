@@ -1,4 +1,4 @@
-import { CommentExpression } from "coli/lib/expressions/comment";
+import { CommentExpression } from "coli";
 import { StringfyLanguage } from "..";
 import { languageInterpreter } from "../interperters/main-interpreter";
 

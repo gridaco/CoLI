@@ -1,4 +1,4 @@
-import { JSXElement } from "coli/lib/jsx";
+import { JSXElement } from "coli";
 import { stringfy, StringfyLanguage } from "..";
 
 export function coliJSXElementStringfy(

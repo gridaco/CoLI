@@ -1,4 +1,4 @@
-import { JSXClosingElement } from "coli/lib/jsx/jsx-closing-element";
+import { JSXClosingElement } from "coli";
 import { stringfy, StringfyLanguage } from "..";
 
 export function coliJSXClosingElementStringfy(
