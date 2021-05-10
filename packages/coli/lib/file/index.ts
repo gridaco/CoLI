@@ -9,7 +9,7 @@ import { Function } from "../builders/function";
 /**
  * interface of general in-project contained file
  */
-export interface File {
+export interface SourceFile {
   /**
    * path of this file relative to root
    */
@@ -28,7 +28,7 @@ export interface File {
   ext: string;
 }
 
-export class File extends ColiBuilder {
+export class SourceFile extends ColiBuilder {
   readonly blocks: ColiBlock[] = [];
   constructor(params: {
     readonly path: string;

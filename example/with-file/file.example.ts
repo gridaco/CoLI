@@ -1,6 +1,6 @@
-import { File, Import, Function, Type } from "coli/lib";
+import { SourceFile, Import, Function, Type } from "coli/lib";
 
-const file = new File({ name: "example", path: "." })
+const file = new SourceFile({ name: "example", path: "." })
   .import(
     new Import()
       .importDefault("styled")
