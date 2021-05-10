@@ -1,5 +1,5 @@
 import { atom, selector, ReadOnlySelectorOptions } from "recoil";
-import { StringfyLanguage } from "../../packages/export-string";
+import { StringfyLanguage } from "@coli.codes/export-string";
 
 export const currentColiEditorOption = atom<{
   language: StringfyLanguage;

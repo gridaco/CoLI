@@ -2,7 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { useRecoilValue } from "recoil";
-import { stringfy, StringfyLanguage } from "../../../packages/export-string";
+import { stringfy, StringfyLanguage } from "@coli.codes/export-string";
 import { currentColiEditorOption } from "../../states/option.state";
 
 // const valueToInterfaceData = (data: object) => {
