@@ -37,3 +37,29 @@ with `ScopedNamer` you can pervent confliction of each identifiers' name
 
 - `[slug].js`
 - `_app.js`
+
+## Usecases
+
+- const Wrapper = styled.div`~`;
+- interface IModel {}
+- class Model {}
+- function add () {}
+- function Component () {}
+- pages/[slug].js
+- const \_memberVar = calc(porps.value)
+- const API_SECRET = "alza0000"
+- function checkIfThatIsTrue() : boolean
+- const isSomethingTrue : boolean
+
+## Input scenario
+
+`/` is a seperator, it can be replaced with cases - 'a/b' -> "AB", "aB", "a_b", "\_a_b", etc..
+
+- "+-$" - "plus/minus/dollarsign"
+- "- Dollar" - "\_/dollar"
+- "Hi" - "hi"
+- "Content wrap" - "content/wrap"
+- "" - "unnamed/rand()"
+- "_" - "_"
+- "$" - "dollarsign" (`$` is a valid name is es, but not a good pattern, you have to specify it as a sign keyword in order to use it - see it below)
+- Unique.dollarsign - "$"
