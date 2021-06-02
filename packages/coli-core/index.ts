@@ -22,7 +22,7 @@ export * from "./jsx";
 export * from "./builder";
 
 // built in language supports
-export * as css from "./languages/css";
+export * as css from "./css";
 
 export * as utils from "./utils";
 export * as schema from "./schema";
