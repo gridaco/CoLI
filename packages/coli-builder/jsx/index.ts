@@ -13,6 +13,7 @@ import {
   JSXText,
   _abstract,
 } from "@coli.codes/core";
+import { ColiObjectLike } from "../dynamic-builder-handler";
 
 export class JSX extends ColiBuilder<JSXElementLike> {
   children: Array<HandyJSXChildLike>;
@@ -42,6 +43,19 @@ export class JSX extends ColiBuilder<JSXElementLike> {
     return new JSX(identifer, {
       attributes: params?.attributes,
       children: params?.children,
+    });
+  }
+
+  copyWith(p: {
+    identifier?: _HandyJsxIdentifier;
+    params?: {
+      attributes?: JSXAtrributes;
+      children?: Array<HandyJSXChildLike>;
+    };
+  }): JSX {
+    return new JSX(p.identifier ?? this.identifer, {
+      attributes: p.params?.attributes ?? this.attributes,
+      children: p.params?.children ?? this.children,
     });
   }
 
@@ -194,7 +208,7 @@ type NativeConstructor =
   | NativeSingleChildConstructor
   | NativeMultiChildConstructor;
 
-type HandyJSXChildLike = JSXChildLike | JSX;
+type HandyJSXChildLike = ColiObjectLike<JSXChildLike>; //
 
 function handyJSXChildLikeToJSXChildLike(
   like: HandyJSXChildLike

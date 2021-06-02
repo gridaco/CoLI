@@ -1,3 +1,4 @@
+export * from "./dynamic-builder-handler";
 export * from "./argument";
 export * from "./block";
 export * from "./class";

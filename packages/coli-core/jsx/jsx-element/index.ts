@@ -21,9 +21,9 @@ export type JSXChildLike =
 export type JSXElementLike = JSXElement | JSXSelfClosingElement;
 
 export class JSXElement extends Element {
-  readonly openingElement: JSXOpeningElement;
-  readonly closingElement: JSXClosingElement;
-  readonly children: Array<JSXChildLike> | JSXChildLike;
+  openingElement: JSXOpeningElement;
+  closingElement: JSXClosingElement;
+  children: Array<JSXChildLike> | JSXChildLike;
 
   constructor(params: {
     openingElement: JSXOpeningElement;
