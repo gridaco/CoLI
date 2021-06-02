@@ -4,7 +4,7 @@ import { JSXIdentifier } from "../jsx-identifier";
 import { Element } from "../../elements/element.base";
 
 export class JSXOpeningElement extends Element {
-  readonly name: JSXIdentifier;
+  name: JSXIdentifier;
   readonly atrributes: JSXAtrributes = [];
 
   constructor(

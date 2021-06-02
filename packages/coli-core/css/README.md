@@ -40,6 +40,11 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/transform
 - perspective()
 - rotate()
 
+## CSS Custom properties
+
+- https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties
+- https://developer.mozilla.org/en-US/docs/Web/CSS/--*
+
 ## References
 
 - https://drafts.csswg.org/cssom/

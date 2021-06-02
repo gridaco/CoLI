@@ -1,4 +1,5 @@
 import { Identifier } from "../../ast/identifier";
+import { SyntaxKind } from "../../ast/syntax-kind";
 import { Type, Types } from "../../type";
 import { ColiObject } from "../../_abstract";
 import { VariableKind } from "../../_internal/kinds/variable-kind";
@@ -6,7 +7,7 @@ import { _DECLARATION_VARIABLE } from "../../_internal/node-name";
 import { Declaration } from "../declaration.base";
 
 export class VariableDeclaration extends Declaration {
-  readonly kind: VariableKind = "let";
+  readonly kind: VariableKind = SyntaxKind.LetKeyword;
   readonly type: Type = Types.none;
   readonly id: Identifier;
 

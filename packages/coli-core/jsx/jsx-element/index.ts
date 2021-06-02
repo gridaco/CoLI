@@ -2,6 +2,7 @@ import { Element } from "../../elements/element.base";
 import { _ELEMENT_JSX } from "../../_internal/node-name/elements-name";
 import { JSXClosingElement } from "../jsx-closing-element";
 import { JSXExpression } from "../jsx-expression";
+import { JSXIdentifier } from "../jsx-identifier";
 import { JSXOpeningElement } from "../jsx-opening-element";
 import { JSXSelfClosingElement } from "../jsx-self-closing-element";
 import { JSXText } from "../jsx-text";
@@ -34,5 +35,28 @@ export class JSXElement extends Element {
     this.openingElement = params.openingElement;
     this.closingElement = params.closingElement;
     this.children = params.children;
+  }
+
+  /**
+   * change tag will change the tag, copying the existing attributes, but it destroys existing identifier, so technically this, inside coli, will be treated as a new element.
+   * @param newTag
+   */
+  changeTag(newTag: JSXIdentifier): this {
+    const existingAttributes = this.openingElement.atrributes;
+    this.openingElement = new JSXOpeningElement(newTag, {
+      atrributes: existingAttributes,
+    });
+
+    this.closingElement = new JSXClosingElement(newTag);
+    return this;
+  }
+
+  /**
+   * Like rename, this renames the jsx tag. it won't change the existing identifier's id.
+   */
+  rename(name: string): this {
+    this.openingElement.name.rename(name);
+    this.closingElement.name.rename(name);
+    return this;
   }
 }

@@ -1,3 +1,5 @@
+import { SyntaxKind } from "@coli.codes/core/ast/syntax-kind";
+import { VariableKind } from "@coli.codes/core/_internal";
 import { VariableDeclaration } from "coli";
 import { stringfy, StringfyLanguage } from "..";
 
@@ -15,7 +17,8 @@ export function coliVariableStringfy(
     id,
     initializer,
   } = c;
-  let code = `${kind} ${stringfy(id, { language: l })}`;
+
+  let code = `${stringfyKind(kind)} ${stringfy(id, { language: l })}`;
   if (type) {
     code += ` : ${type}`;
   }
@@ -27,4 +30,16 @@ export function coliVariableStringfy(
   code += ";";
 
   return code;
+}
+
+function stringfyKind(kind: VariableKind) {
+  switch (kind) {
+    case SyntaxKind.LetKeyword:
+      return "let";
+    case SyntaxKind.ConstKeyword:
+      return "const";
+    case SyntaxKind.VarKeyword:
+      return "var";
+  }
+  throw `variable kind "${kind}" is not recognized as es standard kind`;
 }
