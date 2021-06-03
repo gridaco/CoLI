@@ -107,6 +107,9 @@ function pureRandomName(): string {
  * @returns
  */
 export function tokenizeSeeds(...names: string[]): string[] {
+  if (names.length == 0) {
+    throw "cannot tokenize empty name seeds";
+  }
   const tokens = names
     .flatMap((name) => {
       const alphabet_and_numbers = name.match(
@@ -115,7 +118,11 @@ export function tokenizeSeeds(...names: string[]): string[] {
       );
       return alphabet_and_numbers;
     })
-    .map((t) => t.toLowerCase());
+    .map((t) => t?.toLowerCase());
+
+  if (tokens.length == 0) {
+    return tokenizeSeeds(pureRandomName());
+  }
 
   // if first token is a number, add _ underscore as the first token.
   if (!isNaN(tokens[0] as any)) {
@@ -141,6 +148,23 @@ export function nameVariable(
  * @param tokens
  */
 export function buildObjectName(...tokens: string[]): CasedObjectName {
+  if (tokens.length == 0) {
+    // not handlable input givven
+    return <CasedObjectName>{
+      flat: "$___empty",
+      snake: "$___empty",
+      _snake: "$___empty",
+      camel: "$___empty",
+      _camel: "$___empty",
+      pascal: "$___empty",
+      _pascal: "$___empty",
+      kebab: "$___empty",
+      upper: "$___empty",
+      upper_snake: "$___empty",
+      _upper_snake: "$___empty",
+    };
+  }
+
   if (tokens[0] === "_") {
     const _no_underscore_tokens = tokens.slice(1, tokens.length);
     const flat = tokens.join("");
@@ -149,9 +173,9 @@ export function buildObjectName(...tokens: string[]): CasedObjectName {
     const camelCase = tokens
       .map((substr, i) => {
         if (i == 0) {
-          return substr.toLowerCase();
+          return substr?.toLowerCase();
         }
-        return substr.charAt(0).toUpperCase() + substr.slice(1);
+        return substr?.charAt(0).toUpperCase() + substr?.slice(1);
       })
       .join("");
     const PascalCase = tokens
@@ -186,13 +210,13 @@ export function buildObjectName(...tokens: string[]): CasedObjectName {
     const camelCase = tokens
       .map((substr, i) => {
         if (i == 0) {
-          return substr.toLowerCase();
+          return substr?.toLowerCase();
         }
-        return substr.charAt(0).toUpperCase() + substr.slice(1);
+        return substr?.charAt(0).toUpperCase() + substr?.slice(1);
       })
       .join("");
     const PascalCase = tokens
-      .map((substr) => substr.charAt(0).toUpperCase() + substr.slice(1))
+      .map((substr) => substr?.charAt(0).toUpperCase() + substr?.slice(1))
       .join("");
     const kebab__case = tokens.join("-"); // kebab case is not a accepted variable name. though, we are returning this for dynamic advanced usage.
     const _snake_case = `_${snake_case}`;

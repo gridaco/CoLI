@@ -64,7 +64,7 @@ export function stringfy(
   return final;
 }
 
-function format(source: string, opt: ColiFormatterConfig): string {
+export function format(source: string, opt: ColiFormatterConfig): string {
   return prettier.format(source, {
     parser: "typescript",
     plugins: [parserTypeScript],
