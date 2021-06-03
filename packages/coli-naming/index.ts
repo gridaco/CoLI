@@ -1,5 +1,50 @@
 interface NamingSeed {}
 
+export enum NameCases {
+  flat = "flat",
+  snake = "snake",
+  _snake = "_snake",
+  camel = "camel",
+  _camel = "_camel",
+  pascal = "pascal",
+  _pascal = "_pascal",
+  kebab = "kebab",
+  upper_snake = "upper_snake",
+  _upper_snake = "_upper_snake",
+  upper = "upper",
+  _upper = "_upper",
+}
+
+export type NameCase =
+  | typeof NameCases.flat
+  | typeof NameCases.snake
+  | typeof NameCases._snake
+  | typeof NameCases.camel
+  | typeof NameCases._camel
+  | typeof NameCases.pascal
+  | typeof NameCases._pascal
+  | typeof NameCases.kebab
+  | typeof NameCases.upper_snake
+  | typeof NameCases._upper_snake
+  | typeof NameCases.upper
+  | typeof NameCases._upper;
+
+/**
+ * subset of NameCase. without kebab case
+ */
+export type VariableNameCase =
+  | typeof NameCases.flat
+  | typeof NameCases.snake
+  | typeof NameCases._snake
+  | typeof NameCases.camel
+  | typeof NameCases._camel
+  | typeof NameCases.pascal
+  | typeof NameCases._pascal
+  | typeof NameCases.upper_snake
+  | typeof NameCases._upper_snake
+  | typeof NameCases.upper
+  | typeof NameCases._upper;
+
 export type NamingSeedLike = string | NamingSeed;
 
 export interface NamingResult {
@@ -15,7 +60,12 @@ export interface NamingResult {
  * @param seed
  * @returns
  */
-export function nameit(seed: NamingSeedLike): NamingResult {
+export function nameit(
+  seed: NamingSeedLike,
+  preferences: {
+    case: NameCase;
+  }
+): NamingResult {
   if (!seed) {
     return {
       name: pureRandomName(),
@@ -29,7 +79,7 @@ export function nameit(seed: NamingSeedLike): NamingResult {
     const tokens = tokenizeSeeds(seed);
     const objectNames = buildObjectName(...tokens);
     return {
-      name: objectNames.pascal,
+      name: objectNames[preferences.case],
       object: objectNames,
       reason: "normal single string input converted as name",
       warn: false,
@@ -73,6 +123,17 @@ export function tokenizeSeeds(...names: string[]): string[] {
   }
 
   return tokens;
+}
+
+export function nameVariable(
+  seed: NamingSeedLike,
+  preferences: {
+    case: VariableNameCase;
+  }
+): NamingResult {
+  return nameit(seed, {
+    case: preferences.case,
+  });
 }
 
 /**
@@ -192,11 +253,14 @@ export class ScopedNamer {
   constructor(readonly identifier: string) {}
   nameit(
     seed: NamingSeedLike,
+    preferences: {
+      case: NameCase;
+    },
     options?: {
       register?: boolean;
     }
   ): NamingResult {
-    const name = nameit(seed);
+    const name = nameit(seed, preferences);
 
     // if not explicitly set to false, register it.
     if (options?.register !== false) {
