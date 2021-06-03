@@ -1,0 +1,10 @@
+{
+    "name": "@coli.codes/css",
+    "version": "0.0.0",
+    "devDependencies": {
+        "typescript": "^4.3.2"
+    },
+    "dependencies": {
+        "csstype": "^3.0.8"
+    }
+}
