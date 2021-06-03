@@ -43,3 +43,15 @@ test("numberic start variable name -- 21st Century Fox", () => {
     upper_snake: "_21_ST_CENTURY_FOX",
   });
 });
+
+test("empty seed variable name (random)", () => {
+  const mockMath = Object.create(global.Math);
+  mockMath.random = () => 0.5299497971;
+  global.Math = mockMath;
+
+  expect(
+    nameVariable(undefined, {
+      case: NameCases.flat,
+    }).name
+  ).toBe("_05299497971");
+});

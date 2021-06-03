@@ -96,7 +96,7 @@ export function nameit(
 }
 
 function pureRandomName(): string {
-  return `_${Math.random()}`;
+  return `_${Math.random()}`.replace(".", "");
 }
 
 /**
