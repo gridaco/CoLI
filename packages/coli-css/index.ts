@@ -1,4 +1,5 @@
 export * from "./color";
+export * from "./font-weight";
 
 import { Properties, PropertiesHyphen } from "csstype";
 
