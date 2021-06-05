@@ -77,10 +77,11 @@ export function createSourceCode(
   stringfyLanguage: StringfyLanguage,
   depth: number
 ) {
-  const { __type: nodeName } = coli;
+  const { __type: colitype } = coli;
+
   let useStringfyFunction: useStrinfyFunction = null;
 
-  switch (nodeName) {
+  switch (colitype) {
     /** Declarations */
     case _internal._DECLARATION_FUNCTION:
       useStringfyFunction = CORE.coliFunctionStringfy;
@@ -137,8 +138,10 @@ export function createSourceCode(
       break;
     case _internal._EXPRESSION_JSX:
       useStringfyFunction = CORE.coliJSXExpressionStringfy;
+      break;
     case _internal._JSX_TEXT:
       useStringfyFunction = CORE.coliJSXTextStringfy;
+      break;
     /** Specifiers */
     case _internal._SPECIFIER_IMPORT:
       useStringfyFunction = CORE.coliSpecifierImportStringfy;
@@ -152,13 +155,12 @@ export function createSourceCode(
     try {
       return useStringfyFunction(coli, stringfyLanguage, depth);
     } catch (_) {
-      console.error(_);
+      const message = `givven object cannot be stringfied. with ${
+        useStringfyFunction.name
+      }:: ${JSON.stringify(coli)}`;
+      console.error(message, _);
       return "error";
-      throw new Error(
-        `givven object cannot be stringfied. with ${
-          useStringfyFunction.name
-        }:: ${JSON.stringify(coli)}`
-      );
+      throw new Error(message);
     }
   }
 
