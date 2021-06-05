@@ -1,4 +1,8 @@
 import { nameit, randomHash } from "../main";
+import {
+  getReservedKeywords,
+  ReservedKeywordPlatformSelection,
+} from "../reserved";
 import { NameCase, NamingResult, NamingSeedLike } from "../types";
 
 /**
@@ -13,7 +17,10 @@ export class ScopedVariableNamer {
     return this.table;
   }
 
-  constructor(readonly identifier: string) {}
+  constructor(
+    readonly identifier: string,
+    readonly platform: ReservedKeywordPlatformSelection
+  ) {}
   nameit(
     seed: NamingSeedLike,
     preferences: {
@@ -24,7 +31,6 @@ export class ScopedVariableNamer {
     }
   ): NamingResult {
     const name = nameit(seed, preferences);
-    console.log("name", name);
     const safename = this.nonconflicingname([
       name.name,
       ...(name.candidates ?? []),
@@ -43,14 +49,16 @@ export class ScopedVariableNamer {
 
   private nonconflicingname(candidates: string[]): string {
     const safe = candidates.find((c) => {
-      return !this._table.includes(c);
+      const notintable = !this._table.includes(c);
+      const notinreserved = !getReservedKeywords(this.platform).includes(c);
+      return notintable && notinreserved;
     });
 
     if (safe) {
       return safe;
     } else {
       const firstCandidate = candidates[0];
-      const safe = this.extendWithRandom(firstCandidate);
+      const safe = this.extendWithIncremental(firstCandidate);
       console.warn(
         `all of the scoped naming candidates are used. using pure random name instead - "${safe}". the candidates were ${candidates}`
       );
@@ -60,6 +68,23 @@ export class ScopedVariableNamer {
 
   private extendWithRandom(nonsafeName: string): string {
     return nonsafeName + `_` + randomHash(4);
+  }
+
+  private extendWithIncremental(nonsafeName: string) {
+    const formattedNum = (i: number): string => {
+      // 1 to 0001
+      var str = "" + i;
+      var pad = "0000";
+      var ans = pad.substring(0, pad.length - str.length) + str;
+      return ans;
+    };
+    let i = 1;
+    let safeName = `${nonsafeName}_${formattedNum(i)}`;
+    while (this._table.includes(safeName)) {
+      i++;
+      safeName = `${nonsafeName}_${formattedNum(i)}`;
+    }
+    return safeName;
   }
 
   register(name: string) {
