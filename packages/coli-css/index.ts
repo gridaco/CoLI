@@ -19,9 +19,9 @@ export function buildCssStandard(css: PropertiesHyphen) {
   const propertyStrs = [];
   for (const k of Object.keys(css)) {
     const value = css[k];
-    const propertyStr = `${k}: "${value}"`;
+    const propertyStr = `${k}: ${value};`;
     propertyStrs.push(propertyStr);
   }
-  const bodyStr = propertyStrs.join(";\n");
-  return `${bodyStr}`;
+  const bodyStr = propertyStrs.join("\n");
+  return `\n${bodyStr}\n`;
 }

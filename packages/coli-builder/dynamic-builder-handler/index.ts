@@ -2,9 +2,7 @@ import { ColiBuilder } from "@coli.codes/core";
 import { ColiObject } from "@coli.codes/core/_abstract";
 
 export type ColiObjectLike<T extends ColiObject> = ColiBuilder<T> | T;
-export function handle<T extends ColiObject = any>(
-  o: ColiObjectLike<T>
-): ColiObject {
+export function handle<T extends ColiObject = any>(o: ColiObjectLike<T>): T {
   if (o instanceof ColiBuilder) {
     return o.make();
   } else if (o instanceof ColiObject) {

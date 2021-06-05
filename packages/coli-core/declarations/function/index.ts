@@ -9,7 +9,7 @@ export class FunctionDeclaration extends Declaration {
   id: Identifier;
   params: Identifier[];
   body: BlockStatement;
-  returnType: Type = Types.any;
+  returnType: Type;
 
   constructor(
     name: string,

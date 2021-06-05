@@ -12,6 +12,7 @@ import {
   JSXAtrributes,
   JSXText,
   _abstract,
+  JSXIdentifierAcceptedInputType,
 } from "@coli.codes/core";
 import { ColiObjectLike } from "../dynamic-builder-handler";
 
@@ -156,7 +157,7 @@ export class JSX extends ColiBuilder<JSXElementLike> {
     // }
   }
 
-  static identifier(name: string): JSXIdentifier {
+  static identifier(name: JSXIdentifierAcceptedInputType): JSXIdentifier {
     return new JSXIdentifier(name);
   }
 }
