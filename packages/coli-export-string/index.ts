@@ -2,6 +2,7 @@ import { _abstract, _internal } from "coli";
 import * as CORE from "./core";
 import parserTypeScript from "prettier/parser-typescript";
 import prettier from "prettier/standalone";
+import { coliExportAssignmentStringfy } from "./core";
 
 /*@internal*/
 export type StringfyLanguage =
@@ -148,6 +149,9 @@ export function createSourceCode(
       break;
     case _internal._SPECIFIER_DEFAULT_IMPORT:
       useStringfyFunction = CORE.coliDefaultImportStringfy;
+      break;
+    case _internal._ASSIGNMENT_EXPORT:
+      useStringfyFunction = coliExportAssignmentStringfy;
       break;
   }
 

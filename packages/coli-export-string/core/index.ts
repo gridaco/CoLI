@@ -9,6 +9,7 @@ export * from "./literal-ast";
 export * from "./comment-expression";
 export * from "./tagged-template-expression";
 export * from "./property-access-expression";
+export * from "./export-assignment";
 // region jsx
 export * from "./jsx-element";
 export * from "./jsx-closing-element";

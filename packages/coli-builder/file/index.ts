@@ -7,6 +7,7 @@ import {
 } from "@coli.codes/core";
 import { Class } from "../class";
 import { Function } from "../function";
+import { ExportAssignment } from "@coli.codes/core/assignment/export-assignment";
 
 /**
  * interface of general in-project contained file
@@ -91,6 +92,11 @@ export class SourceFile extends ColiBuilder implements ISourceFile {
 
   declare(...declaration: Declaration[]): this {
     this.blocks.push(declaration);
+    return this;
+  }
+
+  export(ExportAssignment: ExportAssignment): this {
+    this.blocks.push(ExportAssignment);
     return this;
   }
 

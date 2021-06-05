@@ -1,3 +1,4 @@
+export * from "./assignment-name";
 export * from "./declarations-name";
 export * from "./elements-name";
 export * from "./expressions-name";

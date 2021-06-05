@@ -3,6 +3,8 @@ import { ColiBuilder } from "../builder/builder";
 import { CommentExpression } from "../expressions/comment";
 import { COLI_WILDCARD_KEY } from "../wildcard";
 import {
+  _ASSIGNMENT_EXPORT,
+  _ASSIGNMENT_PROPERTY,
   _NODE_IDENTIFIER,
   _NODE_LITERAL,
   _NODE_PROGRAM,
@@ -38,6 +40,11 @@ import {
   _STATEMENT_RETURN,
   _STATEMENT_VARIABLE,
 } from "../_internal/node-name/statements-name";
+
+// assignments
+export type ColiAssignmentType =
+  | typeof _ASSIGNMENT_EXPORT
+  | typeof _ASSIGNMENT_PROPERTY;
 
 // declrarations
 export type ColiDeclarationType =
@@ -84,6 +91,7 @@ export type ColiOtherJsxType = typeof _JSX_ATTRIBUTE | typeof _JSX_TEXT;
 export type ColiObjectType =
   | ColiBaseNodeType
   | typeof COLI_WILDCARD_KEY
+  | ColiAssignmentType
   | ColiDeclarationType
   | ColiExpressionType
   | ColiSpecifierType
