@@ -1,3 +1,5 @@
+export * from "./color";
+
 import { Properties, PropertiesHyphen } from "csstype";
 
 export type { PropertiesHyphen as CSSProperties } from "csstype";

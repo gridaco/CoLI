@@ -8,7 +8,7 @@ export class JSXIdentifier extends Identifier {
   }
 }
 
-type Html5IdentifierNames =
+export type Html5IdentifierNames =
   | "a"
   | "abbr"
   | "address"
