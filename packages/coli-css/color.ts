@@ -5,6 +5,12 @@ type HexColor = string;
 type CssColorInputLike = CssNamedColor | HexColor | ICssRGBA;
 
 export function makeCssColorValue(input: CssColorInputLike): string {
+  if (!input) {
+    console.warn(
+      'undefined color is passed to "makeCssColorValue". check this.'
+    );
+    return "#000000; /*ERROR*/";
+  }
   if (typeof input == "string") {
     // interpret as hex color or named color
     return input;
