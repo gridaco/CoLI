@@ -1,8 +1,3 @@
-export * from "./color";
-export * from "./font-weight";
-export * from "./dimensions";
-export * from "./box-shadow";
-
 import { Properties, PropertiesHyphen } from "csstype";
 
 export type { PropertiesHyphen as CSSProperties } from "csstype";
