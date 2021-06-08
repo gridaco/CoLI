@@ -2,6 +2,7 @@
     "name": "@coli.codes/export-string",
     "version": "0.0.0",
     "dependencies": {
-        "prettier": "^2.2.1"
+        "prettier": "^2.2.1",
+        "@coli.codes/escape-string": "0.0.0"
     }
 }
