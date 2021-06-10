@@ -12,8 +12,8 @@ import {
  * **Usage**
  *
  * 1. `Import.declare(...)`
- * 2. `new Import().import(...).from(...)`
- * 3. `new Import().import(...).from(...).make()`
+ * 2. `new Import().imports(...).from(...)`
+ * 3. `new Import().imports(...).from(...).make()`
  */
 export class Import extends ColiBuilder<ImportDeclaration> {
   private source: string;
@@ -43,7 +43,7 @@ export class Import extends ColiBuilder<ImportDeclaration> {
     return this;
   }
 
-  // region `import().from()` builder pattern alias
+  // region `imports().from()` builder pattern alias
   // IMPORTANT - use name of `import` as a function name will cause import rejection error on some specific platforms. thus, we are declaring the function name as `imports` with additional `s` - refer issue: https://github.com/bridgedxyz/CoLI/issues/11
   /**
    * adds `{?}` import
@@ -64,7 +64,7 @@ export class Import extends ColiBuilder<ImportDeclaration> {
     this.source = source;
     return this;
   }
-  // endregion `import().from()` builder pattern alias
+  // endregion `imports().from()` builder pattern alias
 
   /**
    * add more import. same as `.import(...)`
