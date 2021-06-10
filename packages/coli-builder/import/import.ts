@@ -19,16 +19,11 @@ export class Import extends ColiBuilder<ImportDeclaration> {
   private source: string;
   private default: ImportDefaultSpecifier;
   private m_import: ImportSpecifier;
-  private imports: ImportSpecifier[] = [];
+  private m_imports: ImportSpecifier[] = [];
   static declare(source: string): ImportDeclaration {
     return new ImportDeclaration({
       source: source,
     });
-  }
-
-  from(source: string): this {
-    this.source = source;
-    return this;
   }
 
   /**
@@ -48,6 +43,8 @@ export class Import extends ColiBuilder<ImportDeclaration> {
     return this;
   }
 
+  // region `import().from()` builder pattern alias
+  // IMPORTANT - use name of `import` as a function name will cause import rejection error on some specific platforms. thus, we are declaring the function name as `imports` with additional `s` - refer issue: https://github.com/bridgedxyz/CoLI/issues/11
   /**
    * adds `{?}` import
    *
@@ -58,10 +55,16 @@ export class Import extends ColiBuilder<ImportDeclaration> {
    * @param _import
    * @returns
    */
-  import(_import: HandyImport): this {
+  imports(_import: HandyImport): this {
     this.m_import = handyImportToImportSpecifier(_import);
     return this;
   }
+
+  from(source: string): this {
+    this.source = source;
+    return this;
+  }
+  // endregion `import().from()` builder pattern alias
 
   /**
    * add more import. same as `.import(...)`
@@ -70,7 +73,7 @@ export class Import extends ColiBuilder<ImportDeclaration> {
    */
   and(..._import: HandyImport[]): this {
     _import.forEach((e) => {
-      this.imports.push(handyImportToImportSpecifier(e));
+      this.m_imports.push(handyImportToImportSpecifier(e));
     });
     return this;
   }
@@ -79,7 +82,7 @@ export class Import extends ColiBuilder<ImportDeclaration> {
     const final = [];
     this.default && final.push(this.default);
     this.m_import && final.push(this.m_import);
-    final.push(...this.imports);
+    final.push(...this.m_imports);
     return final;
   }
 
