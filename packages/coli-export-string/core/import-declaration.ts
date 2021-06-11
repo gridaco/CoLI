@@ -1,12 +1,8 @@
-import {
-  ImportDeclaration,
-  ImportDefaultSpecifier,
-  ImportSpecifier,
-} from "coli";
+import { ImportDeclaration } from "coli";
 import { stringfy, StringfyLanguage } from "..";
 import { convertValue } from "../utils/convert-value";
 
-/// import string builder is dirty. this is because import declaratation definition does not follows. ts, but es typings.
+/// _import string builder is dirty. this is because import declaratation definition does not follows. ts, but es typings.
 /// this is an exception allowed by authors.
 
 /**
