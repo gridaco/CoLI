@@ -1,3 +1,12 @@
+///
+/// IMPORTANT NOTICE
+/// 1. do not use token `import` in comment or as a function name (Upper case or _import is fine)
+/// This is because in some secure environment, such as figma plugin platform, rejects it.
+/// using import keyword as start of the line will throw error on runtime, but like this line, using it on second or later place will be fine.
+/// so using keyword "import" in comment on the first place must be replaced with "_import"
+/// ISSUE: https://github.com/bridgedxyz/CoLI/issues/11
+///
+
 import {
   ColiBuilder,
   BaseImportSpecifier,
@@ -50,15 +59,15 @@ export class Import extends ColiBuilder<ImportDeclaration> {
    *
    * e.g.
    *
-   * 1. import `{ a }` from "a"
+   * 1. _import `{ a }` from "a"
    * 2. ~~import a from "a"~~ **(NOT THIS)**
    * @param _import
    * @returns
    */
-  imports(_import: HandyImport): this {
-    this.m_import = handyImportToImportSpecifier(_import);
-    return this;
-  }
+  // imports(_import: HandyImport): this {
+  //   this.m_import = handyImportToImportSpecifier(_import);
+  //   return this;
+  // }
 
   from(source: string): this {
     this.source = source;
@@ -66,11 +75,6 @@ export class Import extends ColiBuilder<ImportDeclaration> {
   }
   // endregion `imports().from()` builder pattern alias
 
-  /**
-   * add more import. same as `.import(...)`
-   * @param _import
-   * @returns
-   */
   and(..._import: HandyImport[]): this {
     _import.forEach((e) => {
       this.m_imports.push(handyImportToImportSpecifier(e));
@@ -95,11 +99,11 @@ export class Import extends ColiBuilder<ImportDeclaration> {
 }
 
 /**
- * specifies import
+ * specifies _import
  * e.g.
  *
- * 1. import `{ a }` from "a"
- * 2. import `{a as _}` from "a"
+ * 1. _import `{ a }` from "a"
+ * 2. _import `{a as _}` from "a"
  */
 type HandyImport = { import: string; as?: string } | string;
 
