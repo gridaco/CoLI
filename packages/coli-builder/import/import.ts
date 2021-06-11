@@ -64,10 +64,10 @@ export class Import extends ColiBuilder<ImportDeclaration> {
    * @param _import
    * @returns
    */
-  // imports(_import: HandyImport): this {
-  //   this.m_import = handyImportToImportSpecifier(_import);
-  //   return this;
-  // }
+  imports(_import: HandyImport): this {
+    this.m_import = handyImportToImportSpecifier(_import);
+    return this;
+  }
 
   from(source: string): this {
     this.source = source;
