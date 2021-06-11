@@ -80,7 +80,7 @@ export class SourceFile extends ColiBuilder implements ISourceFile {
     this.hash = "";
   }
 
-  import(...importDeclaration: ImportDeclaration[]): this {
+  imports(...importDeclaration: ImportDeclaration[]): this {
     this.blocks.push(importDeclaration);
     return this;
   }

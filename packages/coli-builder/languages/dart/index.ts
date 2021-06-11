@@ -5,7 +5,7 @@ import { ImportDeclaration } from "@coli.codes/core";
 // TODO
 export class DartFile extends SourceFile {
   imports: Array<ImportDeclaration>;
-  import(module: ImportDeclaration): this {
+  imports(module: ImportDeclaration): this {
     this.imports.push(module);
     return this;
   }

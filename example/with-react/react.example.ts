@@ -173,7 +173,7 @@ const Appbar = new Function("Appbar")
 const callExpression = Appbar.call();
 
 // region make file
-AppbarFile.import(importReact.make(), inportStyled.make());
+AppbarFile.imports(importReact.make(), inportStyled.make());
 AppbarFile.declare(Appbar.make());
 AppbarFile.declare(Wrapper, TitleAndAvatarWrapper, Title, Message, Avatar);
 // endregion make file

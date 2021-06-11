@@ -1,16 +1,16 @@
 import { SourceFile, Import, Function, Type } from "coli";
 
 const file = new SourceFile({ name: "example", path: "." })
-  .import(
+  .imports(
     new Import()
       .importDefault("styled")
       .and({ import: "utils", as: "sutil" })
       .from("@emotion/styled")
       .make()
   )
-  .import(
+  .imports(
     new Import()
-      .import({ import: "Button" })
+      .imports({ import: "Button" })
       .and({ import: "Radio", as: "MRadio" })
       .from("@material/core")
       .make()
