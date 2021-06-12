@@ -1,7 +1,5 @@
 import { _abstract, _internal } from "coli";
 import * as CORE from "./core";
-import parserTypeScript from "prettier/parser-typescript";
-import prettier from "prettier/standalone";
 import { coliExportAssignmentStringfy } from "./core";
 
 /*@internal*/
@@ -28,7 +26,8 @@ interface ColiFormatterConfig {
 interface StringfyOptions {
   language: StringfyLanguage;
   arrayDivison?: string;
-  formatter?: ColiFormatterConfig;
+  formatter?: Formatter;
+  formattingOptions?: ColiFormatterConfig;
 }
 
 type useStrinfyFunction = (
@@ -64,19 +63,25 @@ export function stringfy(
 
   if (depth == 0) {
     if (stringfyOptions.formatter) {
-      final = format(final, stringfyOptions.formatter);
+      final = format(
+        final,
+        stringfyOptions.formatter,
+        stringfyOptions.formattingOptions
+      );
     }
   }
 
   return final;
 }
 
-export function format(source: string, opt: ColiFormatterConfig): string {
+type Formatter = (source: string) => string;
+export function format(
+  source: string,
+  formatter: Formatter,
+  opt?: ColiFormatterConfig
+): string {
   try {
-    return prettier.format(source, {
-      parser: "typescript",
-      plugins: [parserTypeScript],
-    });
+    return formatter(source);
   } catch (_) {
     if (opt.throw) {
       throw _;
