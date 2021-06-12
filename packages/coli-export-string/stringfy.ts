@@ -62,6 +62,7 @@ export function stringfy(
     final = createSourceCode(coli, language, depth + 1);
   }
 
+  // finally finalize the "final" string with formatter if requested.
   if (depth == 0) {
     if (stringfyOptions.formatter) {
       final = format(final, stringfyOptions.formatter);
