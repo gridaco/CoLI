@@ -1,5 +1,6 @@
 import { FunctionDeclaration } from "coli";
 import { stringfy, StringfyLanguage } from "..";
+import { FILALIZED_END_OF_FILE_TOKEN_VALUE } from "../eo";
 import { languageInterpreter } from "../interperters/main-interpreter";
 
 export function coliFunctionStringfy(
@@ -15,6 +16,8 @@ export function coliFunctionStringfy(
   if (returnType) {
     code += `: ${returnType.keyword} `;
   }
+
+  // add body block
   code += `${stringfy(body, { language: l })}`;
   return code;
 }
