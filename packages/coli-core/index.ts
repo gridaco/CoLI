@@ -21,8 +21,4 @@ export * from "./jsx";
 // builder
 export * from "./builder";
 
-// built in language supports
-export * as css from "./css";
-
 export * as utils from "./utils";
-export * as schema from "./schema";

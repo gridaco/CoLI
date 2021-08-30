@@ -1,4 +1,4 @@
-import { Identifier } from "../../ast";
+import { Identifier } from "@coli.codes/core";
 
 /**
  * named css colors - https://www.w3.org/wiki/CSS/Properties/color/keywords
