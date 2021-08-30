@@ -1,7 +1,7 @@
 import { ColiBuilder, FunctionDeclaration, _abstract } from "@coli.codes/core";
 import {
   JSXChildLike,
-  JSXElement,
+  JsxBaseElement,
   JSXExpression,
   JSXIdentifier,
   JSXElementLike,
@@ -139,7 +139,7 @@ export class JSX extends ColiBuilder<JSXElementLike> {
   __finalize() {
     const _id = _handyJsxIdentifierToJSXIdentifier(this.identifer);
     if (this.children?.length > 0) {
-      return new JSXElement({
+      return new JsxBaseElement({
         openingElement: new JSXOpeningElement(_id, {
           atrributes: this.attributes,
         }),

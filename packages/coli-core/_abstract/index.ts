@@ -77,7 +77,7 @@ export type ColiStatementType =
   | typeof _STATEMENT_VARIABLE;
 
 // elements
-export type ColiElementType =
+export type ColiJsxElementType =
   | typeof _ELEMENT_JSX
   | typeof _ELEMENT_JSX_OPENING
   | typeof _ELEMENT_JSX_CLOSING
@@ -99,7 +99,7 @@ export type ColiObjectType =
   | ColiSpecifierType
   | ColiStatementType
   | ColiOtherJsxType
-  | ColiElementType;
+  | ColiJsxElementType;
 
 export type ColiObjectKind<T extends ColiObject> = T | ColiBuilder<T>;
 

@@ -1,8 +1,8 @@
 import { JSXIdentifier } from "../jsx-identifier";
-import { Element } from "@coli.codes/core/elements/element.base";
+import { JsxBaseElement } from "../elements/element.base";
 import { _ELEMENT_JSX_CLOSING } from "@coli.codes/core/_internal/node-name";
 
-export class JSXClosingElement extends Element {
+export class JSXClosingElement extends JsxBaseElement {
   constructor(readonly name: JSXIdentifier) {
     super(_ELEMENT_JSX_CLOSING);
   }

@@ -1,4 +1,4 @@
-import { Element } from "@coli.codes/core/elements/element.base";
+import { JsxBaseElement } from "../elements/element.base";
 import { _ELEMENT_JSX } from "@coli.codes/core/_internal/node-name/elements-name";
 import { JSXClosingElement } from "../jsx-closing-element";
 import { JSXExpression } from "../jsx-expression";
@@ -11,7 +11,7 @@ import { JSXText } from "../jsx-text";
  * Types that can be accapted as jsx child
  */
 export type JSXChildLike =
-  | JSXElement
+  | JsxBaseElement
   | JSXSelfClosingElement
   | JSXText
   | JSXExpression;
@@ -19,9 +19,9 @@ export type JSXChildLike =
 /**
  * Types that can be a root Jsx Syntax
  */
-export type JSXElementLike = JSXElement | JSXSelfClosingElement;
+export type JSXElementLike = JsxBaseElement | JSXSelfClosingElement;
 
-export class JSXElement extends Element {
+export class JSXElement extends JsxBaseElement {
   openingElement: JSXOpeningElement;
   closingElement: JSXClosingElement;
   children: Array<JSXChildLike> | JSXChildLike;
