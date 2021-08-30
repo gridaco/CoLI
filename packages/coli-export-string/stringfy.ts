@@ -189,6 +189,12 @@ export function createSourceCode(
     case _internal._TYPE_REFERENCE:
       useStringfyFunction = CORE._strfy_type_reference;
       break;
+    case _internal._EXPRESSION_LITERAL_OBJECT:
+      useStringfyFunction = CORE._strfy_object_literal_expression;
+      break;
+    case _internal._ASSIGNMENT_PROPERTY:
+      useStringfyFunction = CORE._strfy_property_assignment;
+      break;
   }
 
   if (useStringfyFunction) {

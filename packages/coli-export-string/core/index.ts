@@ -23,3 +23,5 @@ export * from "./return-statement";
 export * from "./interface-declaration";
 export * from "./property-signature";
 export * from "./type-reference";
+export * from "./object-literal-expression";
+export * from "./property-assignment";

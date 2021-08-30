@@ -1,6 +1,6 @@
 import { PropertyAssignment } from "../../assignment";
 import { SyntaxKind } from "../../_internal";
-import { _EXPRESSION_OBJECT } from "../../_internal/node-name";
+import { _EXPRESSION_LITERAL_OBJECT } from "../../_internal/node-name";
 import { Expression } from "../expression.base";
 
 /**
@@ -9,10 +9,11 @@ import { Expression } from "../expression.base";
  * const obj = {}
  * ```
  */
-export class ObjectExpression extends Expression {
+export class ObjectLiteralExpression extends Expression {
   kind = SyntaxKind.ObjectLiteralExpression;
   properties?: PropertyAssignment[] = [];
-  constructor() {
-    super(_EXPRESSION_OBJECT);
+  constructor(p: { properties?: PropertyAssignment[] }) {
+    super(_EXPRESSION_LITERAL_OBJECT);
+    this.properties = p.properties;
   }
 }
