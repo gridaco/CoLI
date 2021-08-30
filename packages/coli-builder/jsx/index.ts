@@ -1,6 +1,5 @@
+import { ColiBuilder, FunctionDeclaration, _abstract } from "@coli.codes/core";
 import {
-  ColiBuilder,
-  FunctionDeclaration,
   JSXChildLike,
   JSXElement,
   JSXExpression,
@@ -11,9 +10,8 @@ import {
   JSXOpeningElement,
   JSXAtrributes,
   JSXText,
-  _abstract,
   JSXIdentifierAcceptedInputType,
-} from "@coli.codes/core";
+} from "@coli.codes/jsx-core";
 import { ColiObjectLike } from "../dynamic-builder-handler";
 
 export class JSX extends ColiBuilder<JSXElementLike> {

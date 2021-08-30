@@ -1,19 +1,19 @@
 import { ast, Types, VariableDeclaration } from "coli";
 import { stringfy } from "@coli.codes/export-string";
-
+import { _internal } from "coli";
 /**
  * @test VariableDeclaration
  */
 
 const notInitValue = new VariableDeclaration("notInitValue", {
-  kind: "const",
+  kind: _internal.SyntaxKind.ConstKeyword,
 });
 
 // const notInitValue : any;
 console.log(stringfy(notInitValue, { language: "typescript" }));
 
 const initValue = new VariableDeclaration("initValue", {
-  kind: "const",
+  kind: _internal.SyntaxKind.ConstKeyword,
   initializer: new ast.Literal(1),
 });
 
@@ -21,7 +21,7 @@ const initValue = new VariableDeclaration("initValue", {
 console.log(stringfy(initValue, { language: "typescript" }));
 
 const initType = new VariableDeclaration("initType", {
-  kind: "const",
+  kind: _internal.SyntaxKind.ConstKeyword,
   type: Types.number,
 });
 

@@ -1,5 +1,5 @@
-import { Element } from "../../elements/element.base";
-import { _ELEMENT_JSX } from "../../_internal/node-name/elements-name";
+import { Element } from "@coli.codes/core/elements/element.base";
+import { _ELEMENT_JSX } from "@coli.codes/core/_internal/node-name/elements-name";
 import { JSXClosingElement } from "../jsx-closing-element";
 import { JSXExpression } from "../jsx-expression";
 import { JSXIdentifier } from "../jsx-identifier";

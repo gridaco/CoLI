@@ -1,6 +1,6 @@
-import { _EXPRESSION_JSX } from "../../_internal/node-name/expressions-name";
-import { Expression } from "../../expressions/expression.base";
-import { ColiObject } from "../../_abstract";
+import { _EXPRESSION_JSX } from "@coli.codes/core/_internal/node-name/expressions-name";
+import { Expression } from "@coli.codes/core/expressions/expression.base";
+import { ColiObject } from "@coli.codes/core/_abstract";
 
 /**
  * <Text>{ "this is the jsx expression container area" }</Text>

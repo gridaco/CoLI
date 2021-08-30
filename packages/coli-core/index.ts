@@ -15,7 +15,6 @@ export * from "./statements";
 export * from "./assignment";
 export * from "./declarations";
 export * from "./expressions";
-export * from "./jsx";
 
 // builder
 export * from "./builder";

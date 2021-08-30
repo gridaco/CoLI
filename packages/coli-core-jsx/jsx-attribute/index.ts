@@ -1,5 +1,5 @@
-import { ColiObject } from "../../_abstract";
-import { _JSX_ATTRIBUTE } from "../../_internal/node-name/jsx-names";
+import { ColiObject } from "@coli.codes/core/_abstract";
+import { _JSX_ATTRIBUTE } from "@coli.codes/core/_internal/node-name/jsx-names";
 import { JSXIdentifier } from "../jsx-identifier";
 
 /**
