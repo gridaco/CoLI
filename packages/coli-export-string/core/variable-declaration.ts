@@ -2,7 +2,7 @@ import { SyntaxKind } from "@coli.codes/core/ast/syntax-kind";
 import { VariableKind } from "@coli.codes/core/_internal";
 import { VariableDeclaration } from "coli";
 import { stringfy, StringfyLanguage } from "..";
-import { FILALIZED_END_OF_LINE_TOKEN_VALUE } from "../eo";
+import { eo } from "@coli.codes/export-string-core";
 
 /**
  * @todo transpile lauganage
@@ -28,7 +28,7 @@ export function coliVariableStringfy(
   }
 
   // finalize
-  code += FILALIZED_END_OF_LINE_TOKEN_VALUE;
+  code += eo.FILALIZED_END_OF_LINE_TOKEN_VALUE;
 
   return code;
 }

@@ -1,6 +1,6 @@
 import { ImportDeclaration } from "coli";
 import { stringfy, StringfyLanguage } from "..";
-import { FILALIZED_END_OF_LINE_TOKEN_VALUE } from "../eo";
+import { eo } from "@coli.codes/export-string-core";
 import { convertValue } from "../utils/convert-value";
 
 /// _import string builder is dirty. this is because import declaratation definition does not follows. ts, but es typings.
@@ -35,7 +35,7 @@ export function coliImportStringfy(
   // make source
   code += ` from ${convertValue(c.source, l)}`;
 
-  code += FILALIZED_END_OF_LINE_TOKEN_VALUE;
+  code += eo.FILALIZED_END_OF_LINE_TOKEN_VALUE;
 
   return code;
 }

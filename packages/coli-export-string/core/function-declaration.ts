@@ -1,6 +1,5 @@
 import { FunctionDeclaration } from "coli";
 import { stringfy, StringfyLanguage } from "..";
-import { FILALIZED_END_OF_FILE_TOKEN_VALUE } from "../eo";
 import { languageInterpreter } from "../interperters/main-interpreter";
 
 export function coliFunctionStringfy(
