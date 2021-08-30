@@ -1,10 +1,10 @@
 import { Block } from "coli";
 import { stringfy, StringfyLanguage } from "..";
-import { FILALIZED_END_OF_BLOCK_TOKEN_VALUE } from "../eo/end-of-block";
+import { eo } from "@coli.codes/export-string-core";
 
 export function coliBlockStringfy(c: Block, l: StringfyLanguage): string {
   const { body } = c;
   let code = `{\n${stringfy(body, { language: l, arrayDivison: "\n" })}\n}`;
-  code += FILALIZED_END_OF_BLOCK_TOKEN_VALUE;
+  code += eo.FILALIZED_END_OF_BLOCK_TOKEN_VALUE;
   return code;
 }

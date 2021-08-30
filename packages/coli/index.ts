@@ -10,9 +10,13 @@ export * from "@coli.codes/builder/repository";
 export * from "@coli.codes/builder/snippet";
 export * from "@coli.codes/builder/block";
 export * from "@coli.codes/builder/return";
-export * from "@coli.codes/builder/jsx";
 export * from "@coli.codes/builder/file";
+
+// jsx
+export * from "@coli.codes/builder/jsx";
+export * from "@coli.codes/jsx-core";
 /// #endregion builders
 
 // built in language supports
 export * as css from "@coli.codes/css";
+export * as schema from "@coli.codes/schema";

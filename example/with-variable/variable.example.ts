@@ -1,9 +1,9 @@
-import { VariableDeclaration, ast } from "coli";
+import { VariableDeclaration, ast, _internal } from "coli";
 import { stringfy } from "@coli.codes/export-string";
 
 const messageValue = new ast.Literal("hello world");
 const messageVariable = new VariableDeclaration("message", {
-  kind: "const",
+  kind: _internal.SyntaxKind.ConstKeyword,
   initializer: messageValue,
 });
 
