@@ -1,5 +1,7 @@
 import { Identifier, StringLiteral } from "../ast";
 import { SyntaxKind } from "../ast/syntax-kind";
+import { ColiObject } from "../_abstract";
+import { _SIGNATURE_PROPERTY } from "../_internal";
 
 /**
  * What is property signature?
@@ -11,7 +13,7 @@ import { SyntaxKind } from "../ast/syntax-kind";
  * }
  * ```
  */
-export class PropertySignature {
+export class PropertySignature extends ColiObject {
   /**
    * name is es can be either identifier or string literal. this is only for es. (not supported for other standard languages)
    */
@@ -35,5 +37,9 @@ export class PropertySignature {
    */
   questionToken?: undefined | SyntaxKind.QuestionToken;
 
-  constructor() {}
+  constructor(p: { name: Identifier | StringLiteral }) {
+    super(_SIGNATURE_PROPERTY);
+    this.name = p.name;
+    this.type = "any"; // TODO:
+  }
 }

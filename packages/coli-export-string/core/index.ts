@@ -17,6 +17,8 @@ export * from "./jsx-opening-element";
 export * from "./jsx-self-closing-element";
 export * from "./jsx-expression";
 export * from "./jsx-text";
+export * from "./jsx-atrribute";
 // endregion jsx
 export * from "./return-statement";
-export * from "./jsx-atrribute";
+export * from "./interface-declaration";
+export * from "./property-signature";

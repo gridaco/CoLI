@@ -1,7 +1,7 @@
 import { Identifier } from "../../ast/identifier";
 import { SyntaxKind } from "../../ast/syntax-kind";
 import { PropertySignature } from "../../property-signature";
-import { _DECLARATION_VARIABLE } from "../../_internal/node-name";
+import { _DECLARATION_INTERFACE } from "../../_internal/node-name";
 import { Declaration } from "../declaration.base";
 
 export class InterfaceDeclaration extends Declaration {
@@ -40,9 +40,10 @@ export class InterfaceDeclaration extends Declaration {
    */
   members: PropertySignature[] = [];
 
-  constructor(name: string) {
-    super(_DECLARATION_VARIABLE);
+  constructor(p: { name: string; members?: PropertySignature[] }) {
+    super(_DECLARATION_INTERFACE);
 
-    this.name = new Identifier(name);
+    this.name = new Identifier(p.name);
+    this.members = p.members || [];
   }
 }

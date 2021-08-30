@@ -8,6 +8,7 @@ import {
   _NODE_IDENTIFIER,
   _NODE_LITERAL,
   _NODE_PROGRAM,
+  _SIGNATURE_PROPERTY,
 } from "../_internal/node-name";
 import {
   _DECLARATION_FUNCTION,
@@ -54,6 +55,9 @@ export type ColiDeclarationType =
   | typeof _DECLARATION_VARIABLE
   | typeof _DECLARATION_INTERFACE;
 
+// signatures
+export type ColiSignatureType = typeof _SIGNATURE_PROPERTY;
+
 // expressions
 export type ColiExpressionType =
   | typeof _EXPRESSION_CALL
@@ -96,6 +100,7 @@ export type ColiObjectType =
   | ColiAssignmentType
   | ColiDeclarationType
   | ColiExpressionType
+  | ColiSignatureType
   | ColiSpecifierType
   | ColiStatementType
   | ColiOtherJsxType

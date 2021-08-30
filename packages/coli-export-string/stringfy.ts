@@ -1,6 +1,5 @@
 import { _abstract, _internal } from "coli";
 import * as CORE from "./core";
-import { coliExportAssignmentStringfy } from "./core";
 
 /*@internal*/
 export type StringfyLanguage =
@@ -55,6 +54,7 @@ export function stringfy(
       .map((c) => stringfy(c, { language }, depth + 1))
       .join(arrayDivison);
     final = stringfyCode;
+    return final;
   }
 
   if (coli instanceof _abstract.ColiObject) {
@@ -171,7 +171,13 @@ export function createSourceCode(
       useStringfyFunction = CORE.coliDefaultImportStringfy;
       break;
     case _internal._ASSIGNMENT_EXPORT:
-      useStringfyFunction = coliExportAssignmentStringfy;
+      useStringfyFunction = CORE.coliExportAssignmentStringfy;
+      break;
+    case _internal._DECLARATION_INTERFACE:
+      useStringfyFunction = CORE._strfy_interface_declaration;
+      break;
+    case _internal._SIGNATURE_PROPERTY:
+      useStringfyFunction = CORE._strfy_property_signature;
       break;
   }
 

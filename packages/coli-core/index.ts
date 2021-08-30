@@ -16,6 +16,14 @@ export * from "./assignment";
 export * from "./declarations";
 export * from "./expressions";
 
+// level1 entries
+export * from "./property-signature";
+export * from "./type-parameter";
+export * from "./type-reference";
+export * from "./union-type";
+export * from "./literal-type";
+export * from "./function-type";
+
 // builder
 export * from "./builder";
 
