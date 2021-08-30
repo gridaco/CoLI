@@ -1,14 +1,28 @@
 import { Identifier } from "../../ast/identifier";
 import { SyntaxKind } from "../../ast/syntax-kind";
 import { Type, Types } from "../../type";
+import { TypeReference } from "../../type-reference";
 import { ColiObject } from "../../_abstract";
 import { VariableKind } from "../../_internal/kinds/variable-kind";
 import { _DECLARATION_VARIABLE } from "../../_internal/node-name";
 import { Declaration } from "../declaration.base";
 
+type VariableKindInput = "let" | "const" | "var" | VariableKind;
+function _to_varkind(i: VariableKindInput): VariableKind {
+  switch (i) {
+    case "const":
+      return SyntaxKind.ConstKeyword;
+    case "let":
+      return SyntaxKind.LetKeyword;
+    case "var":
+      return SyntaxKind.VarKeyword;
+  }
+  return i;
+}
+
 export class VariableDeclaration extends Declaration {
   readonly kind: VariableKind = SyntaxKind.LetKeyword;
-  readonly type: Type = Types.none;
+  readonly type: Type | TypeReference = Types.none;
   readonly id: Identifier;
 
   // TODO: this should be refactored as variable decl
@@ -17,8 +31,8 @@ export class VariableDeclaration extends Declaration {
   constructor(
     name: string,
     args?: {
-      kind: VariableKind;
-      type?: Type;
+      kind: VariableKindInput;
+      type?: Type | TypeReference;
       initializer?: ColiObject;
     }
   ) {
@@ -28,7 +42,7 @@ export class VariableDeclaration extends Declaration {
     if (args) {
       args.initializer && (this.initializer = args.initializer);
       args.type && (this.type = args.type);
-      args.kind && (this.kind = args.kind);
+      args.kind && (this.kind = _to_varkind(args.kind));
     }
   }
 }

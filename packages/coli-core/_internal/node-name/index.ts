@@ -10,3 +10,7 @@ export * from "./jsx-names";
 export const _NODE_IDENTIFIER = "Identifier";
 export const _NODE_LITERAL = "Literal";
 export const _NODE_PROGRAM = "Program";
+
+// no family
+import { SyntaxKind } from "../../ast/syntax-kind";
+export const _TYPE_REFERENCE = SyntaxKind.TypeReference;

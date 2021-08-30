@@ -22,3 +22,4 @@ export * from "./jsx-atrribute";
 export * from "./return-statement";
 export * from "./interface-declaration";
 export * from "./property-signature";
+export * from "./type-reference";

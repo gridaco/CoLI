@@ -72,6 +72,13 @@ export function stringfy(
     }
   }
 
+  /**
+   * return guard. if undefined, return empty string otherwise, the code will be built like `let this_variable_actually_has_no_type_set: undefined;`
+   */
+  if (final === undefined) {
+    return "";
+  }
+
   return final;
 }
 
@@ -178,6 +185,9 @@ export function createSourceCode(
       break;
     case _internal._SIGNATURE_PROPERTY:
       useStringfyFunction = CORE._strfy_property_signature;
+      break;
+    case _internal._TYPE_REFERENCE:
+      useStringfyFunction = CORE._strfy_type_reference;
       break;
   }
 

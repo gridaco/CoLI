@@ -12,19 +12,14 @@ export function coliVariableStringfy(
   c: VariableDeclaration,
   l: StringfyLanguage
 ): string {
-  const {
-    kind,
-    type: { keyword: type },
-    id,
-    initializer,
-  } = c;
-
-  let code = `${stringfyKind(kind)} ${stringfy(id, { language: l })}`;
+  const { kind, type, id, initializer } = c;
+  const _opt = { language: l };
+  let code = `${stringfyKind(kind)} ${stringfy(id, _opt)}`;
   if (type) {
-    code += ` : ${type}`;
+    code += `: ${stringfy(type, _opt)}`;
   }
   if (initializer) {
-    code += ` = ${stringfy(initializer, { language: l })}`;
+    code += ` = ${stringfy(initializer, _opt)}`;
   }
 
   // finalize

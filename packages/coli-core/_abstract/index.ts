@@ -9,6 +9,7 @@ import {
   _NODE_LITERAL,
   _NODE_PROGRAM,
   _SIGNATURE_PROPERTY,
+  _TYPE_REFERENCE,
 } from "../_internal/node-name";
 import {
   _DECLARATION_FUNCTION,
@@ -104,7 +105,10 @@ export type ColiObjectType =
   | ColiSpecifierType
   | ColiStatementType
   | ColiOtherJsxType
-  | ColiJsxElementType;
+  | ColiJsxElementType
+  // region no familly
+  | typeof _TYPE_REFERENCE;
+// endregion
 
 export type ColiObjectKind<T extends ColiObject> = T | ColiBuilder<T>;
 
