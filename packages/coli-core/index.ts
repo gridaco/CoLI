@@ -11,7 +11,6 @@ export * from "./type";
 
 // coli core objects
 export * from "./annotation";
-export * from "./languages";
 export * from "./statements";
 export * from "./assignment";
 export * from "./declarations";
@@ -21,4 +20,7 @@ export * from "./jsx";
 // builder
 export * from "./builder";
 
-export * as utils from "./utils";
+/**
+ * @deprecated do not use
+ */
+export * as _utils from "./_utils";

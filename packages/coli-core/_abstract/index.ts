@@ -1,7 +1,7 @@
 import { ColiBlock } from "../builder/block";
 import { ColiBuilder } from "../builder/builder";
 import { CommentExpression } from "../expressions/comment";
-import { COLI_WILDCARD_KEY } from "../wildcard";
+import { COLI_WILDCARD_KEY } from "../_wildcard";
 import {
   _ASSIGNMENT_EXPORT,
   _ASSIGNMENT_PROPERTY,
@@ -12,6 +12,7 @@ import {
 import {
   _DECLARATION_FUNCTION,
   _DECLARATION_IMPORT,
+  _DECLARATION_INTERFACE,
   _DECLARATION_VARIABLE,
 } from "../_internal/node-name/declarations-name";
 import {
@@ -50,7 +51,8 @@ export type ColiAssignmentType =
 export type ColiDeclarationType =
   | typeof _DECLARATION_FUNCTION
   | typeof _DECLARATION_IMPORT
-  | typeof _DECLARATION_VARIABLE;
+  | typeof _DECLARATION_VARIABLE
+  | typeof _DECLARATION_INTERFACE;
 
 // expressions
 export type ColiExpressionType =

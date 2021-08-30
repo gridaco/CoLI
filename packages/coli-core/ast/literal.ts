@@ -1,4 +1,3 @@
-import { Type } from "../type";
 import { ColiObject } from "../_abstract";
 import { _NODE_LITERAL } from "../_internal/node-name";
 

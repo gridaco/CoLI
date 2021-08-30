@@ -1,5 +1,5 @@
 import { _abstract } from "@coli.codes/core";
-import { COLI_WILDCARD_KEY } from "@coli.codes/core/wildcard";
+import { COLI_WILDCARD_KEY } from "@coli.codes/core/_wildcard";
 
 // FIXME - extend coli object
 export class Snippet extends _abstract.ColiObject {

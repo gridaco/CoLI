@@ -19,6 +19,9 @@ const PREFIX_PRECEDENCE: number = 15;
 const POSTFIX_PRECEDENCE: number = 16;
 const SELECTOR_PRECEDENCE: number = 17;
 
+/**
+ * @deprecated not used
+ */
 export abstract class Token implements SyntacticEntity {
   abstract end: number;
   abstract length: number;

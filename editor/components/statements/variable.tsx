@@ -64,7 +64,7 @@ function VariableStatement(props: { id?: number; data: VariableStatement }) {
   const [declarationValue, setDeclarationValue] = useState<VariableStatement>({
     name: "",
     args: {
-      kind: "let",
+      kind: _internal.SyntaxKind.LetKeyword,
       variableType: Types.any,
       value: "",
     },

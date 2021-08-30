@@ -1,4 +1,4 @@
-import { Types } from "coli";
+import { Types, _internal } from "coli";
 import React from "react";
 import VariableStatement, {
   VariableStatement as VariableDeclarationInterface,
@@ -16,7 +16,7 @@ const variableDefaultData: {
     {
       name: "variableName",
       args: {
-        kind: "let",
+        kind: _internal.SyntaxKind.LetKeyword,
         variableType: Types.any,
         value: "",
       },
