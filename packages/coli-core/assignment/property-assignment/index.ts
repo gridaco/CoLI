@@ -1,4 +1,5 @@
-import { Identifier, Literal, StringLiteral } from "../../ast";
+import { Identifier } from "../../ast";
+import { Literal, StringLiteral } from "../../literal";
 import { SyntaxKind, _ASSIGNMENT_PROPERTY } from "../../_internal";
 import { Assignment } from "../assignment.base";
 

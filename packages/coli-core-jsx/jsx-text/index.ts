@@ -1,4 +1,4 @@
-import { Literal } from "@coli.codes/core/ast";
+import { Literal } from "@coli.codes/core";
 import { ColiObject } from "@coli.codes/core/_abstract";
 import { _JSX_TEXT } from "@coli.codes/core/_internal/node-name";
 

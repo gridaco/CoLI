@@ -1,4 +1,4 @@
-import { ast, Types, VariableDeclaration } from "coli";
+import { Literal, Types, VariableDeclaration } from "coli";
 import { stringfy } from "@coli.codes/export-string";
 import { _internal } from "coli";
 /**
@@ -14,7 +14,7 @@ console.log(stringfy(notInitValue, { language: "typescript" }));
 
 const initValue = new VariableDeclaration("initValue", {
   kind: _internal.SyntaxKind.ConstKeyword,
-  initializer: new ast.Literal(1),
+  initializer: new Literal(1),
 });
 
 // const initValue : any = 1;

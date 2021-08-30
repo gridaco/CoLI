@@ -1,4 +1,4 @@
-import { TemplateLiteral } from "../../ast/template-literal";
+import { TemplateLiteral } from "../../literal";
 import { _EXPRESSION_TAGGED_TEMPLATE } from "../../_internal/node-name/expressions-name";
 import { Expression } from "../expression.base";
 

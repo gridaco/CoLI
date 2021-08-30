@@ -1,9 +1,12 @@
-import { VariableDeclaration } from "coli";
-import { Identifier, TypeReference } from "../../coli-core";
-import { StringLiteral } from "../../coli-core/ast";
+import {
+  VariableDeclaration,
+  Identifier,
+  TypeReference,
+  StringLiteral,
+} from "coli";
 import { stringfy } from "../stringfy";
 
-test("", () => {
+test("variable declaration with type reference", () => {
   const interfaceId = new Identifier("Props");
 
   const vardec = new VariableDeclaration("data", {

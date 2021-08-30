@@ -7,6 +7,7 @@ import {
   Return,
   Types,
   Identifier,
+  TemplateLiteral,
   VariableDeclaration,
   JSXAtrribute,
   JSXExpression,
@@ -38,7 +39,7 @@ const Wrapper = new VariableDeclaration("Wrapper", {
   initializer: new TaggedTemplateExpression(
     new PropertyAccessExpression(styledIdentifier, "div"),
     {
-      template: new ast.TemplateLiteral(`
+      template: new TemplateLiteral(`
         margin: 60px 20px;
       `),
     }
@@ -50,7 +51,7 @@ const TitleAndAvatarWrapper = new VariableDeclaration("TitleAndAvatarWrapper", {
   initializer: new TaggedTemplateExpression(
     new PropertyAccessExpression(styledIdentifier, "div"),
     {
-      template: new ast.TemplateLiteral(`
+      template: new TemplateLiteral(`
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -64,7 +65,7 @@ const Title = new VariableDeclaration("Title", {
   initializer: new TaggedTemplateExpression(
     new PropertyAccessExpression(styledIdentifier, "div"),
     {
-      template: new ast.TemplateLiteral(`
+      template: new TemplateLiteral(`
         font-size: 36px;
       `),
     }
@@ -76,7 +77,7 @@ const Message = new VariableDeclaration("Message", {
   initializer: new TaggedTemplateExpression(
     new PropertyAccessExpression(styledIdentifier, "div"),
     {
-      template: new ast.TemplateLiteral(`
+      template: new TemplateLiteral(`
         color: #a4a4a4;
         font-size: 14px;
       `),
@@ -89,7 +90,7 @@ const Avatar = new VariableDeclaration("Avatar", {
   initializer: new TaggedTemplateExpression(
     new PropertyAccessExpression(styledIdentifier, "img"),
     {
-      template: new ast.TemplateLiteral(`
+      template: new TemplateLiteral(`
         margin-left: 20px;
       `),
     }
@@ -183,7 +184,7 @@ AppbarFile.declare(Wrapper, TitleAndAvatarWrapper, Title, Message, Avatar);
 console.log(
   stringfy(AppbarFile.blocks, {
     language: "tsx",
-    formatter: {
+    formattingOptions: {
       use: "pritter",
       parser: "typescript",
     },

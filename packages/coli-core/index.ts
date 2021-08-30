@@ -15,6 +15,7 @@ export * from "./statements";
 export * from "./assignment";
 export * from "./declarations";
 export * from "./expressions";
+export * from "./literal";
 
 // level1 entries
 export * from "./property-signature";
