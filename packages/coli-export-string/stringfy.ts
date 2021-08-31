@@ -150,9 +150,13 @@ export function createSourceCode(
     case _internal._NODE_IDENTIFIER:
       useStringfyFunction = CORE.coliIdentifierStringfy;
       break;
-    case _internal._NODE_LITERAL:
+    /** LITERALS */
+    case _internal._LITERAL_STRING:
+    case _internal._LITERAL_NUMERIC:
+    case _internal._LITERAL_BIGINT:
       useStringfyFunction = CORE.coliLiteralStringfy;
       break;
+
     /** JSX */
     case _internal._ELEMENT_JSX:
       useStringfyFunction = CORE.coliJSXElementStringfy;
@@ -191,14 +195,17 @@ export function createSourceCode(
     case _internal._SIGNATURE_PROPERTY:
       useStringfyFunction = CORE._strfy_property_signature;
       break;
-    case _internal._TYPE_REFERENCE:
-      useStringfyFunction = CORE._strfy_type_reference;
-      break;
     case _internal._EXPRESSION_LITERAL_OBJECT:
       useStringfyFunction = CORE._strfy_object_literal_expression;
       break;
     case _internal._ASSIGNMENT_PROPERTY:
       useStringfyFunction = CORE._strfy_property_assignment;
+      break;
+    case _internal._TYPE_REFERENCE:
+      useStringfyFunction = CORE._strfy_type_reference;
+      break;
+    case _internal._TYPE_LITERAL:
+      useStringfyFunction = CORE._strfy_literal_type;
       break;
   }
 

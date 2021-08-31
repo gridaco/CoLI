@@ -1,5 +1,4 @@
-import { ColiObject } from "../_abstract";
-import { _NODE_LITERAL } from "../_internal/node-name";
+import { ColiObject, ColiLiteralType } from "../_abstract";
 
 /* @internal */ type LiteralValueAcceptableType =
   | string
@@ -8,13 +7,11 @@ import { _NODE_LITERAL } from "../_internal/node-name";
   | number
   | RegExp;
 
-export interface Literal {
-  readonly value: LiteralValueAcceptableType;
-  raw: string;
-}
-
 export class Literal extends ColiObject {
-  constructor(readonly value: LiteralValueAcceptableType) {
-    super(_NODE_LITERAL);
+  constructor(
+    kind: ColiLiteralType,
+    readonly value: LiteralValueAcceptableType
+  ) {
+    super(kind);
   }
 }

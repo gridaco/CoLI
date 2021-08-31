@@ -6,8 +6,12 @@ import {
   _ASSIGNMENT_EXPORT,
   _ASSIGNMENT_PROPERTY,
   _ASSIGNMENT_SPREAD,
+  _LITERAL_BIGINT,
+  _LITERAL_NUMERIC,
+  _LITERAL_STRING,
+  _LITERAL_TEMPLATE,
+  _LITERAL_TYPE,
   _NODE_IDENTIFIER,
-  _NODE_LITERAL,
   _NODE_PROGRAM,
   _SIGNATURE_PROPERTY,
   _TYPE_REFERENCE,
@@ -110,8 +114,15 @@ export type ColiJsxElementType =
   | typeof _ELEMENT_JSX_CLOSING
   | typeof _ELEMENT_JSX_SELF_CLOSING;
 
+export type ColiLiteralType =
+  | typeof _LITERAL_STRING
+  | typeof _LITERAL_TYPE
+  | typeof _LITERAL_BIGINT
+  | typeof _LITERAL_TEMPLATE
+  | typeof _LITERAL_NUMERIC;
+
 export type ColiBaseNodeType =
-  | typeof _NODE_LITERAL
+  | ColiLiteralType
   | typeof _NODE_IDENTIFIER
   | typeof _NODE_PROGRAM;
 

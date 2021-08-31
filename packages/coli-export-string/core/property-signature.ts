@@ -7,6 +7,8 @@ export function _strfy_property_signature(
 ) {
   const _opt = { language: l };
   const _questiontoken = c.questionToken ? "?" : "";
-  const _typedef = c.type; // TODO:
-  return `${stringfy(c.name, _opt)}${_questiontoken}: ${_typedef}`;
+  const _typedef = stringfy(c.type, _opt); // TODO:
+  return `${stringfy(c.name, _opt)}${_questiontoken}${
+    _typedef ? `: ${_typedef}` : ""
+  }`;
 }

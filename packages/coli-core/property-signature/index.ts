@@ -41,7 +41,7 @@ export class PropertySignature extends ColiObject {
 
   constructor(p: {
     name: Identifier | StringLiteral;
-    type: TypeLike;
+    type?: TypeLike;
     /** rather if this property is optional */
     optional?: boolean;
   }) {

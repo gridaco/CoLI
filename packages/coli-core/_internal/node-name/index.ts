@@ -7,9 +7,9 @@ export * from "./statements-name";
 export * from "./signature-name";
 export * from "./jsx-names";
 export * from "./typelike-name";
+export * from "./literal-name";
 
 export const _NODE_IDENTIFIER = "Identifier";
-export const _NODE_LITERAL = "Literal";
 export const _NODE_PROGRAM = "Program";
 
 // no family
