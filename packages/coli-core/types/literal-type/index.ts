@@ -10,8 +10,7 @@ import { _BaseType } from "../type.base";
  * ```
  */
 export class LiteralType extends _BaseType {
-  literal: Literal;
-  constructor() {
+  constructor(readonly literal: Literal) {
     super(_TYPE_LITERAL);
   }
 }

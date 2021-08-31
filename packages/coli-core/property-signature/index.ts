@@ -4,6 +4,7 @@ import { ColiObject } from "../_abstract";
 import { StringLiteral } from "../literal";
 import { _SIGNATURE_PROPERTY } from "../_internal";
 import { QuestionToken } from "../question-token";
+import { TypeLike } from "../types";
 
 /**
  * What is property signature?
@@ -23,10 +24,9 @@ export class PropertySignature extends ColiObject {
   readonly kind = SyntaxKind.PropertySignature;
 
   /**
-   * @deprecated not implemented
-   * @todo
+   * type fo the property
    */
-  type: any;
+  type: TypeLike;
 
   /**
    * rather question token is provided.
@@ -39,9 +39,15 @@ export class PropertySignature extends ColiObject {
    */
   questionToken?: QuestionToken;
 
-  constructor(p: { name: Identifier | StringLiteral }) {
+  constructor(p: {
+    name: Identifier | StringLiteral;
+    type: TypeLike;
+    /** rather if this property is optional */
+    optional?: boolean;
+  }) {
     super(_SIGNATURE_PROPERTY);
     this.name = p.name;
-    this.type = "any"; // TODO:
+    this.type = p.type;
+    this.questionToken = p.optional ? SyntaxKind.QuestionToken : undefined;
   }
 }
