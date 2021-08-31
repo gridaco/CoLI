@@ -25,7 +25,7 @@ interface ColiFormatterConfig {
 
 interface StringfyOptions {
   language: StringfyLanguage;
-  arrayDivison?: string;
+  joinWith?: string;
   formatter?: Formatter;
   formattingOptions?: ColiFormatterConfig;
 }
@@ -47,13 +47,13 @@ export function stringfy(
 
   // if depth not specified, set it to root - 0
   depth = depth ?? 0;
-  const { language, arrayDivison = "" } = stringfyOptions;
+  const { language, joinWith = "" } = stringfyOptions;
 
   let final: string;
   if (Array.isArray(coli)) {
     const stringfyCode = coli
       .map((c) => stringfy(c, { language }, depth + 1))
-      .join(arrayDivison);
+      .join(joinWith);
     final = stringfyCode;
     return final;
   }
@@ -208,8 +208,17 @@ export function createSourceCode(
     case _internal._TYPE_LITERAL:
       useStringfyFunction = CORE._strfy_literal_type;
       break;
+    case _internal._TYPE_UNION:
+      useStringfyFunction = CORE._strfy_union_type;
+      break;
     case SyntaxKind.BooleanKeyword:
       useStringfyFunction = CORE._strfy_boolean_keyword;
+      break;
+    case SyntaxKind.NumberKeyword:
+      useStringfyFunction = CORE._strfy_number_keyword;
+      break;
+    case SyntaxKind.StringKeyword:
+      useStringfyFunction = CORE._strfy_string_keyword;
       break;
   }
 

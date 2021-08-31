@@ -3,8 +3,10 @@ import {
   Identifier,
   InterfaceDeclaration,
   LiteralType,
+  NumberKeyword,
   PropertySignature,
   StringLiteral,
+  UnionType,
 } from "@coli.codes/core";
 import { stringfy } from "@coli.codes/export-string";
 
@@ -54,6 +56,17 @@ test("stringfy ts typed members interface", () => {
         name: new Identifier("disabled"),
         type: new BooleanKeyword(),
       }),
+      new PropertySignature({
+        name: new Identifier("variant"),
+        type: new UnionType({
+          types: [
+            new LiteralType(new StringLiteral("bold")),
+            new LiteralType(new StringLiteral("light")),
+            new LiteralType(new StringLiteral("regular")),
+            new NumberKeyword(),
+          ],
+        }),
+      }),
     ],
   });
   const src = stringfy(dec, {
@@ -64,7 +77,8 @@ test("stringfy ts typed members interface", () => {
     },
   });
   expect(src).toBe(`interface Test {
+a: "a"
 disabled: boolean
-
+variant: "bold" | "light" | "regular" | number
 }`);
 });

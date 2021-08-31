@@ -28,7 +28,7 @@ export function coliImportStringfy(
       code += ", ";
     }
     code += `{ `;
-    code += stringfy(c.imports, { language: l, arrayDivison: ", " });
+    code += stringfy(c.imports, { language: l, joinWith: ", " });
     code += " }";
   }
 

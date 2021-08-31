@@ -11,7 +11,7 @@ export function coliFunctionStringfy(
   let code = "";
   code += `${interpreter.FunctionKeyword} `;
   code += `${stringfy(id, { language: l })} `;
-  code += `(${stringfy(params, { language: l, arrayDivison: ", " })}) `;
+  code += `(${stringfy(params, { language: l, joinWith: ", " })}) `;
   if (returnType) {
     code += `: ${returnType.keyword} `;
   }

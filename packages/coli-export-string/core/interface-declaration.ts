@@ -7,7 +7,7 @@ export function _strfy_interface_declaration(
 ) {
   // c.members
   return `interface ${stringfy(c.name, { language: l })} {
-${stringfy(c.members, { language: l })}
+${stringfy(c.members, { language: l, joinWith: "\n" })}
 }`;
   //
 }
