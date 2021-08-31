@@ -16,7 +16,8 @@ export function coliVariableStringfy(
   const _opt = { language: l };
   let code = `${stringfyKind(kind)} ${stringfy(id, _opt)}`;
   if (type) {
-    code += `: ${stringfy(type, _opt)}`;
+    const _typeref = stringfy(type, _opt);
+    code += _typeref ? `: ${_typeref}` : "";
   }
   if (initializer) {
     code += ` = ${stringfy(initializer, _opt)}`;
