@@ -10,5 +10,5 @@ export function _strfy_property_signature(
   const _typedef = stringfy(c.type, _opt); // TODO:
   return `${stringfy(c.name, _opt)}${_questiontoken}${
     _typedef ? `: ${_typedef}` : ""
-  }`;
+  }\n`;
 }
