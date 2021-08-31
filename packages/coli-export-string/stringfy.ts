@@ -100,27 +100,16 @@ export function format(
   return source;
 }
 
-/*@internal*/
-export function createSourceCode(
-  coli: _abstract.ColiObject | any,
-  stringfyLanguage: StringfyLanguage,
-  depth: number
-) {
-  const { __type: colitype } = coli;
-
-  let useStringfyFunction: useStrinfyFunction = null;
-
+function _get_dedicated_strfier(colitype): useStrinfyFunction {
   switch (colitype) {
     /** Declarations */
     case _internal._DECLARATION_FUNCTION:
-      useStringfyFunction = CORE.coliFunctionStringfy;
-      break;
+      return CORE.coliFunctionStringfy;
+
     case _internal._DECLARATION_IMPORT:
-      useStringfyFunction = CORE.coliImportStringfy;
-      break;
+      return CORE.coliImportStringfy;
     case _internal._DECLARATION_VARIABLE:
-      useStringfyFunction = CORE.coliVariableStringfy;
-      break;
+      return CORE.coliVariableStringfy;
     case _internal._DECLARATION_TYPE_ALIAS:
       // TODO:
       break;
@@ -129,99 +118,87 @@ export function createSourceCode(
       // TODO:
       break;
     case _internal._STATEMENT_BLOCK:
-      useStringfyFunction = CORE.coliBlockStringfy;
-      break;
+      return CORE.coliBlockStringfy;
     case _internal._STATEMENT_RETURN:
-      useStringfyFunction = CORE.coliReturnStringfy;
-      break;
+      return CORE.coliReturnStringfy;
     /** Expressions */
     case _internal._EXPRESSION_COMMENT:
-      useStringfyFunction = CORE.coliCommentStringfy;
-      break;
+      return CORE.coliCommentStringfy;
     case _internal._EXPRESSION_TAGGED_TEMPLATE:
-      useStringfyFunction = CORE.coliTaggedTemplateStringfy;
-      break;
+      return CORE.coliTaggedTemplateStringfy;
     case _internal._EXPRESSION_PROPERTY_ACCESS:
-      useStringfyFunction = CORE.coliPropertyAccessStringfy;
-      break;
+      return CORE.coliPropertyAccessStringfy;
     case _internal._EXPRESSION_JSX:
-      useStringfyFunction = CORE.coliJSXExpressionStringfy;
-      break;
+      return CORE.coliJSXExpressionStringfy;
     /** Nodes */
     case _internal._NODE_IDENTIFIER:
-      useStringfyFunction = CORE.coliIdentifierStringfy;
-      break;
+      return CORE.coliIdentifierStringfy;
     /** LITERALS */
     case _internal._LITERAL_STRING:
     case _internal._LITERAL_NUMERIC:
     case _internal._LITERAL_BIGINT:
-      useStringfyFunction = CORE.coliLiteralStringfy;
-      break;
+      return CORE.coliLiteralStringfy;
 
     /** JSX */
     case _internal._ELEMENT_JSX:
-      useStringfyFunction = CORE.coliJSXElementStringfy;
-      break;
+      return CORE.coliJSXElementStringfy;
     case _internal._JSX_ATTRIBUTE:
-      useStringfyFunction = CORE.coliJSXAtrributeStringfy;
-      break;
+      return CORE.coliJSXAtrributeStringfy;
     case _internal._ELEMENT_JSX_CLOSING:
-      useStringfyFunction = CORE.coliJSXClosingElementStringfy;
-      break;
+      return CORE.coliJSXClosingElementStringfy;
     case _internal._ELEMENT_JSX_OPENING:
-      useStringfyFunction = CORE.coliJSXOpeningElementStringfy;
-      break;
+      return CORE.coliJSXOpeningElementStringfy;
     case _internal._ELEMENT_JSX_SELF_CLOSING:
-      useStringfyFunction = CORE.coliJSXSelfClosingElementStringfy;
-      break;
+      return CORE.coliJSXSelfClosingElementStringfy;
     case _internal._EXPRESSION_JSX:
-      useStringfyFunction = CORE.coliJSXExpressionStringfy;
-      break;
+      return CORE.coliJSXExpressionStringfy;
     case _internal._JSX_TEXT:
-      useStringfyFunction = CORE.coliJSXTextStringfy;
-      break;
+      return CORE.coliJSXTextStringfy;
     /** Specifiers */
     case _internal._SPECIFIER_IMPORT:
-      useStringfyFunction = CORE.coliSpecifierImportStringfy;
-      break;
+      return CORE.coliSpecifierImportStringfy;
     case _internal._SPECIFIER_DEFAULT_IMPORT:
-      useStringfyFunction = CORE.coliDefaultImportStringfy;
-      break;
+      return CORE.coliDefaultImportStringfy;
     case _internal._ASSIGNMENT_EXPORT:
-      useStringfyFunction = CORE.coliExportAssignmentStringfy;
-      break;
+      return CORE.coliExportAssignmentStringfy;
     case _internal._DECLARATION_INTERFACE:
-      useStringfyFunction = CORE._strfy_interface_declaration;
-      break;
+      return CORE._strfy_interface_declaration;
     case _internal._SIGNATURE_PROPERTY:
-      useStringfyFunction = CORE._strfy_property_signature;
-      break;
+      return CORE._strfy_property_signature;
     case _internal._EXPRESSION_LITERAL_OBJECT:
-      useStringfyFunction = CORE._strfy_object_literal_expression;
-      break;
+      return CORE._strfy_object_literal_expression;
     case _internal._ASSIGNMENT_PROPERTY:
-      useStringfyFunction = CORE._strfy_property_assignment;
-      break;
+      return CORE._strfy_property_assignment;
     case _internal._TYPE_REFERENCE:
-      useStringfyFunction = CORE._strfy_type_reference;
-      break;
+      return CORE._strfy_type_reference;
     case _internal._TYPE_LITERAL:
-      useStringfyFunction = CORE._strfy_literal_type;
-      break;
+      return CORE._strfy_literal_type;
     case _internal._TYPE_UNION:
-      useStringfyFunction = CORE._strfy_union_type;
-      break;
+      return CORE._strfy_union_type;
+    // region keywords
     case SyntaxKind.BooleanKeyword:
-      useStringfyFunction = CORE._strfy_boolean_keyword;
-      break;
+      return CORE._strfy_boolean_keyword;
     case SyntaxKind.NumberKeyword:
-      useStringfyFunction = CORE._strfy_number_keyword;
-      break;
+      return CORE._strfy_number_keyword;
     case SyntaxKind.StringKeyword:
-      useStringfyFunction = CORE._strfy_string_keyword;
-      break;
+      return CORE._strfy_string_keyword;
+    case SyntaxKind.TrueKeyword:
+      return CORE._strfy_string_keyword;
+    case SyntaxKind.FalseKeyword:
+      return CORE._strfy_string_keyword;
+    // endregion keywords
   }
+}
 
+/*@internal*/
+export function createSourceCode(
+  coli: _abstract.ColiObject | any,
+  stringfyLanguage: StringfyLanguage,
+  depth: number
+) {
+  const { __type: colitype } = coli;
+
+  const useStringfyFunction = _get_dedicated_strfier(colitype);
   if (useStringfyFunction) {
     try {
       return useStringfyFunction(coli, stringfyLanguage, depth);
