@@ -5,6 +5,7 @@ import { COLI_WILDCARD_KEY } from "../_wildcard";
 import {
   _ASSIGNMENT_EXPORT,
   _ASSIGNMENT_PROPERTY,
+  _ASSIGNMENT_SPREAD,
   _NODE_IDENTIFIER,
   _NODE_LITERAL,
   _NODE_PROGRAM,
@@ -15,6 +16,7 @@ import {
   _DECLARATION_FUNCTION,
   _DECLARATION_IMPORT,
   _DECLARATION_INTERFACE,
+  _DECLARATION_TYPE_ALIAS,
   _DECLARATION_VARIABLE,
 } from "../_internal/node-name/declarations-name";
 import {
@@ -32,6 +34,14 @@ import {
   _EXPRESSION_PROPERTY_ACCESS,
   _EXPRESSION_TAGGED_TEMPLATE,
 } from "../_internal/node-name/expressions-name";
+import {
+  _TYPE_FUNCTION,
+  _TYPE_ARRAY,
+  _TYPE_UNION,
+  _TYPE_TEMPLATE_LITERAL,
+  _TYPE_MAPPED,
+  _TYPE_LITERAL,
+} from "../_internal/node-name/typelike-name";
 import { _JSX_ATTRIBUTE, _JSX_TEXT } from "../_internal/node-name/jsx-names";
 import {
   _SPECIFIER_DEFAULT_IMPORT,
@@ -43,18 +53,30 @@ import {
   _STATEMENT_RETURN,
   _STATEMENT_VARIABLE,
 } from "../_internal/node-name/statements-name";
+import { SyntaxKind } from "../ast/syntax-kind";
 
 // assignments
 export type ColiAssignmentType =
   | typeof _ASSIGNMENT_EXPORT
-  | typeof _ASSIGNMENT_PROPERTY;
+  | typeof _ASSIGNMENT_PROPERTY
+  | typeof _ASSIGNMENT_SPREAD;
+
+// typelike
+export type ColiTypelikeType =
+  | typeof _TYPE_FUNCTION
+  | typeof _TYPE_ARRAY
+  | typeof _TYPE_UNION
+  | typeof _TYPE_TEMPLATE_LITERAL
+  | typeof _TYPE_MAPPED
+  | typeof _TYPE_LITERAL;
 
 // declrarations
 export type ColiDeclarationType =
   | typeof _DECLARATION_FUNCTION
   | typeof _DECLARATION_IMPORT
   | typeof _DECLARATION_VARIABLE
-  | typeof _DECLARATION_INTERFACE;
+  | typeof _DECLARATION_INTERFACE
+  | typeof _DECLARATION_TYPE_ALIAS;
 
 // signatures
 export type ColiSignatureType = typeof _SIGNATURE_PROPERTY;
@@ -99,6 +121,7 @@ export type ColiObjectType =
   | ColiBaseNodeType
   | typeof COLI_WILDCARD_KEY
   | ColiAssignmentType
+  | ColiTypelikeType
   | ColiDeclarationType
   | ColiExpressionType
   | ColiSignatureType
@@ -106,9 +129,10 @@ export type ColiObjectType =
   | ColiStatementType
   | ColiOtherJsxType
   | ColiJsxElementType
-  // region no familly
-  | typeof _TYPE_REFERENCE;
-// endregion
+  /* no familly */
+  | typeof _TYPE_REFERENCE
+  /* no familly */
+  | typeof SyntaxKind.Parameter;
 
 export type ColiObjectKind<T extends ColiObject> = T | ColiBuilder<T>;
 

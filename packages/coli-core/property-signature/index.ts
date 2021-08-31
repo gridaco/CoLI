@@ -3,6 +3,7 @@ import { SyntaxKind } from "../ast/syntax-kind";
 import { ColiObject } from "../_abstract";
 import { StringLiteral } from "../literal";
 import { _SIGNATURE_PROPERTY } from "../_internal";
+import { QuestionToken } from "../question-token";
 
 /**
  * What is property signature?
@@ -36,7 +37,7 @@ export class PropertySignature extends ColiObject {
    * }
    * ```
    */
-  questionToken?: undefined | SyntaxKind.QuestionToken;
+  questionToken?: QuestionToken;
 
   constructor(p: { name: Identifier | StringLiteral }) {
     super(_SIGNATURE_PROPERTY);

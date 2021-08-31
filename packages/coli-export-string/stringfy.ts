@@ -118,9 +118,14 @@ export function createSourceCode(
       useStringfyFunction = CORE.coliImportStringfy;
       break;
     case _internal._DECLARATION_VARIABLE:
+      useStringfyFunction = CORE.coliVariableStringfy;
+      break;
+    case _internal._DECLARATION_TYPE_ALIAS:
+      // TODO:
+      break;
     /** Statements */
     case _internal._STATEMENT_VARIABLE:
-      useStringfyFunction = CORE.coliVariableStringfy;
+      // TODO:
       break;
     case _internal._STATEMENT_BLOCK:
       useStringfyFunction = CORE.coliBlockStringfy;

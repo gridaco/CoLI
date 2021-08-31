@@ -6,6 +6,7 @@ export * from "./specifiers-name";
 export * from "./statements-name";
 export * from "./signature-name";
 export * from "./jsx-names";
+export * from "./typelike-name";
 
 export const _NODE_IDENTIFIER = "Identifier";
 export const _NODE_LITERAL = "Literal";
