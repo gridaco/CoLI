@@ -26,3 +26,4 @@ export * from "./type-reference";
 export * from "./object-literal-expression";
 export * from "./property-assignment";
 export * from "./literal-type";
+export * from "./boolean-keyword";

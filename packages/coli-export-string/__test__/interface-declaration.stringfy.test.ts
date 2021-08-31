@@ -1,4 +1,5 @@
 import {
+  BooleanKeyword,
   Identifier,
   InterfaceDeclaration,
   LiteralType,
@@ -37,6 +38,7 @@ test("stringfy ts members interface", () => {
   });
   expect(src).toBe(`interface Test {
 a
+
 }`);
 });
 
@@ -48,6 +50,10 @@ test("stringfy ts typed members interface", () => {
         name: new Identifier("a"),
         type: new LiteralType(new StringLiteral("a")),
       }),
+      new PropertySignature({
+        name: new Identifier("disabled"),
+        type: new BooleanKeyword(),
+      }),
     ],
   });
   const src = stringfy(dec, {
@@ -58,6 +64,7 @@ test("stringfy ts typed members interface", () => {
     },
   });
   expect(src).toBe(`interface Test {
-a: "a"
+disabled: boolean
+
 }`);
 });

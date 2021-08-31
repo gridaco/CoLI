@@ -10,6 +10,9 @@ export { Identifier } from "./ast";
 export * from "./type"; // legacy - will be removed
 export * from "./types";
 
+// keyword
+export * from "./keywords";
+
 // coli core objects
 export * from "./statements";
 export * from "./assignment";

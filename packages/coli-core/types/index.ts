@@ -7,5 +7,11 @@ import type { LiteralType } from "./literal-type";
 import type { FunctionType } from "./function-type";
 import type { Type } from "../type";
 import type { UnionType } from "./union-type";
-export type TypeLike = LiteralType | FunctionType | UnionType | Type;
+import type { _TypeKeyword } from "../keywords/_keyword";
+export type TypeLike =
+  | LiteralType
+  | FunctionType
+  | UnionType
+  | _TypeKeyword
+  | Type;
 // ------------------------------------------------------------

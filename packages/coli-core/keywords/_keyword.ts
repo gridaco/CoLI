@@ -1,18 +1,8 @@
 import { SyntaxKind } from "../ast/syntax-kind";
+import { ColiObject, ColiTypeKeyword } from "../_abstract";
 
-type TypeKeyword =
-  | SyntaxKind.ObjectKeyword
-  | SyntaxKind.NumberKeyword
-  | SyntaxKind.StringKeyword
-  | SyntaxKind.AnyKeyword
-  | SyntaxKind.BooleanKeyword
-  | SyntaxKind.VoidKeyword
-  | SyntaxKind.UndefinedKeyword
-  | SyntaxKind.NullKeyword
-  | SyntaxKind.NeverKeyword
-  | SyntaxKind.TrueKeyword
-  | SyntaxKind.FalseKeyword;
-
-export abstract class _TypeKeyword {
-  readonly kind: TypeKeyword;
+export abstract class _TypeKeyword extends ColiObject {
+  constructor(readonly kind: ColiTypeKeyword) {
+    super(kind);
+  }
 }

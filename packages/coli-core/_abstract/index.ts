@@ -128,6 +128,19 @@ export type ColiBaseNodeType =
 
 export type ColiOtherJsxType = typeof _JSX_ATTRIBUTE | typeof _JSX_TEXT;
 
+export type ColiTypeKeyword =
+  | SyntaxKind.ObjectKeyword
+  | SyntaxKind.NumberKeyword
+  | SyntaxKind.StringKeyword
+  | SyntaxKind.AnyKeyword
+  | SyntaxKind.BooleanKeyword
+  | SyntaxKind.VoidKeyword
+  | SyntaxKind.UndefinedKeyword
+  | SyntaxKind.NullKeyword
+  | SyntaxKind.NeverKeyword
+  | SyntaxKind.TrueKeyword
+  | SyntaxKind.FalseKeyword;
+
 export type ColiObjectType =
   | ColiBaseNodeType
   | typeof COLI_WILDCARD_KEY
@@ -140,6 +153,7 @@ export type ColiObjectType =
   | ColiStatementType
   | ColiOtherJsxType
   | ColiJsxElementType
+  | ColiTypeKeyword
   /* no familly */
   | typeof _TYPE_REFERENCE
   /* no familly */
