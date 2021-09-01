@@ -1,1 +1,1 @@
-export * from "./stringfy";
+export { stringfy, format, StringfyLanguage } from "./stringfy";

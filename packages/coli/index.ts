@@ -20,3 +20,6 @@ export * from "@coli.codes/jsx-core";
 // built in language supports
 export * as css from "@coli.codes/css";
 export * as schema from "@coli.codes/schema";
+
+// exporters
+export * from "@coli.codes/export-string";

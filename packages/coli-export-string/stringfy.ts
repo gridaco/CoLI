@@ -192,7 +192,7 @@ function _get_dedicated_strfier(colitype): useStrinfyFunction {
 }
 
 /*@internal*/
-export function createSourceCode(
+function createSourceCode(
   coli: _abstract.ColiObject | any,
   stringfyLanguage: StringfyLanguage,
   depth: number
