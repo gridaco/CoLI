@@ -8,10 +8,10 @@ import {
   JSXExpression,
   JSXIdentifier,
   JSXSelfClosingElement,
-  Literal,
   PropertyAccessExpression,
   VariableDeclaration,
   Identifier,
+  StringLiteral,
 } from "coli";
 
 const wrapperJsxIdentifier = new JSXIdentifier("Wrapper");
@@ -91,7 +91,10 @@ const customTagBuilder = JSX.tag("div", {
     }),
     JSX.image({
       attributes: [
-        new JSXAtrribute("src", new Literal("https://example.com/image.png")),
+        new JSXAtrribute(
+          "src",
+          new StringLiteral("https://example.com/image.png")
+        ),
       ],
     }),
   ],
