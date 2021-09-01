@@ -1,7 +1,10 @@
 import { AstBuildableTree } from "../buildable-tree";
-import { endsWithSemicolon, normalizeDuplicatedCommas } from "../../utils";
+import {
+  endsWithSemicolon,
+  normalizeDuplicatedCommas,
+} from "@coli.codes/sanitizer";
 import { AstBuildable } from "../buildable";
-import { Snippet } from "../../../snippet";
+import { Snippet } from "@coli.codes/builder";
 
 export class AstBuildingTree implements AstBuildable {
   readonly defaultArguments: Array<string> = Array<string>();

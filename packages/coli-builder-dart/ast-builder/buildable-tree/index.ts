@@ -1,12 +1,12 @@
-import { Buildable } from "../../buildable";
 import {
   ignore,
   paramMetadataKey,
   ignoreMetadataKey,
 } from "@coli.codes/builder-annotations";
+import { Snippet } from "@coli.codes/builder";
+import { Buildable } from "../../buildable";
 import { AstBuildingTree } from "../building-tree";
-import { Reflection as Reflect } from "@abraham/reflection";
-import { Snippet } from "../../../snippet";
+import { Reflection } from "@abraham/reflection";
 
 export class AstBuildableTree implements Buildable {
   constructor(private readonly _name?: string) {}
@@ -18,9 +18,9 @@ export class AstBuildableTree implements Buildable {
     // console.log("target", target)
 
     const defaultParamKeys: ReadonlyArray<string> =
-      Reflect.getMetadata(paramMetadataKey, target) ?? [];
+      Reflection.getMetadata(paramMetadataKey, target) ?? [];
     const ignoreFeildKeys: ReadonlyArray<string> =
-      Reflect.getMetadata(ignoreMetadataKey, target) ?? [];
+      Reflection.getMetadata(ignoreMetadataKey, target) ?? [];
 
     const result = new Map<any, PropertyDescriptor>();
     for (let key of Object.keys(target)) {
