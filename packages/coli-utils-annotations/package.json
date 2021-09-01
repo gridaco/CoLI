@@ -1,5 +1,5 @@
 {
-    "name": "@coli.codes/annotations",
+    "name": "@coli.codes/builder-annotations",
     "version": "0.0.0",
     "scripts": {
         "prepack": "tsc"

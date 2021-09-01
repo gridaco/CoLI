@@ -1,7 +1,5 @@
 import { _abstract } from "@coli.codes/core";
 import { COLI_WILDCARD_KEY } from "@coli.codes/core/_wildcard";
-
-// FIXME - extend coli object
 export class Snippet extends _abstract.ColiObject {
   _defaultSnippet: string;
   constructor(defaultSnippet?: string) {
@@ -13,7 +11,7 @@ export class Snippet extends _abstract.ColiObject {
     snippet: string
   ): Snippet | T {
     // dangerously cast type
-    return (new Snippet(snippet) as any) as T;
+    return new Snippet(snippet) as any as T;
   }
 
   lookup(): string {

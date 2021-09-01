@@ -3,7 +3,7 @@ import {
   ignore,
   paramMetadataKey,
   ignoreMetadataKey,
-} from "@coli.codes/annotations";
+} from "@coli.codes/builder-annotations";
 import { AstBuildingTree } from "../building-tree";
 import { Reflection as Reflect } from "@abraham/reflection";
 import { Snippet } from "../../../snippet";
