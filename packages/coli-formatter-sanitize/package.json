@@ -1,0 +1,26 @@
+{
+    "name": "@coli.codes/sanitizer",
+    "version": "0.0.0",
+    "private": false,
+    "main": "dist/index.js",
+    "scripts": {
+        "prepack": "tsc"
+    },
+    "files": [
+        "README.md",
+        "LICENSE",
+        "dist/index.js",
+        "dist/index.d.ts",
+        "dist/**/*.js",
+        "dist/**/*.d.ts"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "devDependencies": {
+        "@types/jest": "^27.0.1",
+        "jest": "^27.1.0",
+        "ts-jest": "^27.0.5",
+        "typescript": "^4.4.2"
+    }
+}
