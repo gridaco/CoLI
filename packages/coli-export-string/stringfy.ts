@@ -134,6 +134,7 @@ function _get_dedicated_strfier(colitype): useStrinfyFunction {
     case _internal._NODE_IDENTIFIER:
       return CORE.coliIdentifierStringfy;
     /** LITERALS */
+    case _internal._LITERAL_TEMPLATE:
     case _internal._LITERAL_STRING:
     case _internal._LITERAL_NUMERIC:
     case _internal._LITERAL_BIGINT:
