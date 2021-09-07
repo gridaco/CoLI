@@ -1,5 +1,5 @@
 import { _abstract, _internal } from "coli";
-import { SyntaxKind } from "../coli-core/_internal";
+import { SyntaxKind } from "@coli.codes/core/_internal";
 import * as CORE from "./core";
 
 /*@internal*/
