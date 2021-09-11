@@ -20,6 +20,7 @@ export const ReservedKeywordPlatformPresets = {
     ReservedKeywordPlatforms.react,
     ReservedKeywordPlatforms.html,
   ],
+  typescript: [ReservedKeywordPlatforms.typescript],
 };
 
 export function getReservedKeywords(
