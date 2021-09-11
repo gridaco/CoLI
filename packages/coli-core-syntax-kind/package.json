@@ -1,0 +1,9 @@
+{
+    "name": "@coli.codes/core-syntax-kind",
+    "version": "0.0.0",
+    "author": "Grida.co, Microsoft, Typescirpt Authors",
+    "private": false,
+    "scripts": {
+        "prepack": "tsc"
+    }
+}
