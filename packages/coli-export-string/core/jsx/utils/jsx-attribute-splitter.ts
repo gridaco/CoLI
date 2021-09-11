@@ -1,9 +1,9 @@
-import { JSXAtrributes } from "coli";
+import { JSXAttributes } from "coli";
 
 export function get_jsx_attribute_join_with_by_attributes(
-  atrributes: JSXAtrributes
+  attributes: JSXAttributes
 ) {
-  return _get_jsx_attribute_join_with_by_attribute_count(atrributes.length);
+  return _get_jsx_attribute_join_with_by_attribute_count(attributes.length);
 }
 function _get_jsx_attribute_join_with_by_attribute_count(
   count: number

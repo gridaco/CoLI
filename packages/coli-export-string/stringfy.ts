@@ -144,7 +144,7 @@ function _get_dedicated_strfier(colitype): useStrinfyFunction {
     case _internal._ELEMENT_JSX:
       return CORE.coliJSXElementStringfy;
     case _internal._JSX_ATTRIBUTE:
-      return CORE.coliJSXAtrributeStringfy;
+      return CORE.coliJSXAttributeStringfy;
     case _internal._ELEMENT_JSX_CLOSING:
       return CORE.coliJSXClosingElementStringfy;
     case _internal._ELEMENT_JSX_OPENING:

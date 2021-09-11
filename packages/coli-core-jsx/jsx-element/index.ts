@@ -44,7 +44,7 @@ export class JSXElement extends JsxBaseElement {
   changeTag(newTag: JSXIdentifier): this {
     const existingAttributes = this.openingElement.attributes;
     this.openingElement = new JSXOpeningElement(newTag, {
-      atrributes: existingAttributes,
+      attributes: existingAttributes,
     });
 
     this.closingElement = new JSXClosingElement(newTag);

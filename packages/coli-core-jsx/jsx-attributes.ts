@@ -1,3 +1,3 @@
-import { JSXAtrribute } from "./jsx-attribute";
+import { JSXAttribute } from "./jsx-attribute";
 
-export type JSXAtrributes = Array<JSXAtrribute>;
+export type JSXAttributes = Array<JSXAttribute>;

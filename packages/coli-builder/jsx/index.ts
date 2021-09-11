@@ -8,7 +8,7 @@ import {
   JSXClosingElement,
   JSXSelfClosingElement,
   JSXOpeningElement,
-  JSXAtrributes,
+  JSXAttributes,
   JSXText,
   JSXIdentifierAcceptedInputType,
 } from "@coli.codes/jsx-core";
@@ -16,12 +16,12 @@ import { ColiObjectLike } from "../dynamic-builder-handler";
 
 export class JSX extends ColiBuilder<JSXElementLike> {
   children: Array<HandyJSXChildLike>;
-  attributes: JSXAtrributes;
+  attributes: JSXAttributes;
 
   constructor(
     readonly identifer: _HandyJsxIdentifier,
     params?: {
-      attributes?: JSXAtrributes;
+      attributes?: JSXAttributes;
       children?: Array<HandyJSXChildLike>;
     }
   ) {
@@ -34,7 +34,7 @@ export class JSX extends ColiBuilder<JSXElementLike> {
   static tag(
     identifer: _HandyJsxIdentifier,
     params?: {
-      attributes?: JSXAtrributes;
+      attributes?: JSXAttributes;
       selfClosing?: boolean;
       children?: Array<HandyJSXChildLike>;
     }
@@ -48,7 +48,7 @@ export class JSX extends ColiBuilder<JSXElementLike> {
   copyWith(p: {
     identifier?: _HandyJsxIdentifier;
     params?: {
-      attributes?: JSXAtrributes;
+      attributes?: JSXAttributes;
       children?: Array<HandyJSXChildLike>;
     };
   }): JSX {
@@ -141,7 +141,7 @@ export class JSX extends ColiBuilder<JSXElementLike> {
     if (this.children?.length > 0) {
       return new JSXElement({
         openingElement: new JSXOpeningElement(_id, {
-          atrributes: this.attributes,
+          attributes: this.attributes,
         }),
         closingElement: new JSXClosingElement(_id),
         children: this.children.map((i) => handyJSXChildLikeToJSXChildLike(i)),
@@ -150,7 +150,7 @@ export class JSX extends ColiBuilder<JSXElementLike> {
 
     // if (options?.selfClosing) {
     return new JSXSelfClosingElement(_id, {
-      atrributes: this.attributes,
+      attributes: this.attributes,
     });
     // }
   }
@@ -195,12 +195,12 @@ function makeNativeTagMaker(tag: string): (p?: NativeConstructor) => JSX {
 
 type NativeMultiChildConstructor = {
   children?: Array<HandyJSXChildLike>;
-  attributes?: JSXAtrributes;
+  attributes?: JSXAttributes;
 };
 
 type NativeSingleChildConstructor = {
   child: HandyJSXChildLike;
-  attributes?: JSXAtrributes;
+  attributes?: JSXAttributes;
 };
 
 type NativeConstructor =

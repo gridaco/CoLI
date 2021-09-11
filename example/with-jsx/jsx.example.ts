@@ -3,7 +3,7 @@ import {
   JSX,
   JSXOpeningElement,
   JSXClosingElement,
-  JSXAtrribute,
+  JSXAttribute,
   JSXElement,
   JSXExpression,
   JSXIdentifier,
@@ -53,8 +53,8 @@ const jsx = new JSXElement({
         }),
         // Avatar
         new JSXSelfClosingElement(avatarJsxIdentifier, {
-          atrributes: [
-            new JSXAtrribute(
+          attributes: [
+            new JSXAttribute(
               "src",
               new JSXExpression(
                 new PropertyAccessExpression(new Identifier("props"), "avatar")
@@ -91,7 +91,7 @@ const customTagBuilder = JSX.tag("div", {
     }),
     JSX.image({
       attributes: [
-        new JSXAtrribute(
+        new JSXAttribute(
           "src",
           new StringLiteral("https://example.com/image.png")
         ),

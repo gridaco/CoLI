@@ -1,8 +1,8 @@
-import { JSXAtrribute } from "coli";
+import { JSXAttribute } from "coli";
 import { stringfy, StringfyLanguage } from "../..";
 
-export function coliJSXAtrributeStringfy(
-  atrribute: JSXAtrribute,
+export function coliJSXAttributeStringfy(
+  atrribute: JSXAttribute,
   l: StringfyLanguage
 ) {
   const { name, value } = atrribute;

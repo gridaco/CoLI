@@ -1,7 +1,7 @@
-import { Identifier, JSXAtrributes, stringfy } from "coli";
+import { Identifier, JSXAttributes, stringfy } from "coli";
 import { get_jsx_attribute_join_with_by_attributes } from "./jsx-attribute-splitter";
 
-export function strfy_jsx_with_atrributes({
+export function strfy_jsx_with_attributes({
   name,
   open_token,
   close_token,
@@ -10,7 +10,7 @@ export function strfy_jsx_with_atrributes({
   name: Identifier;
   open_token: "<";
   close_token: ">" | "/>";
-  attributes: JSXAtrributes;
+  attributes: JSXAttributes;
 }) {
   const join_attributes_with = get_jsx_attribute_join_with_by_attributes(
     attributes

@@ -9,7 +9,7 @@ import {
   Identifier,
   TemplateLiteral,
   VariableDeclaration,
-  JSXAtrribute,
+  JSXAttribute,
   JSXExpression,
   PropertyAccessExpression,
   TaggedTemplateExpression,
@@ -133,7 +133,7 @@ const AppbarBody = new Block().add(
             // Avatar
             JSX.tag("Avatar", {
               attributes: [
-                new JSXAtrribute(
+                new JSXAttribute(
                   "src",
                   new JSXExpression(
                     new PropertyAccessExpression(

@@ -1,20 +1,20 @@
 import { _ELEMENT_JSX_OPENING } from "@coli.codes/core/_internal/node-name";
-import { JSXAtrributes } from "../jsx-attributes";
+import { JSXAttributes } from "../jsx-attributes";
 import { JSXIdentifier } from "../jsx-identifier";
 import { JsxBaseElement } from "../elements/element.base";
 
 export class JSXOpeningElement extends JsxBaseElement {
   name: JSXIdentifier;
-  readonly attributes: JSXAtrributes = [];
+  readonly attributes: JSXAttributes = [];
 
   constructor(
     name: JSXIdentifier,
     params?: {
-      atrributes: JSXAtrributes;
+      attributes: JSXAttributes;
     }
   ) {
     super(_ELEMENT_JSX_OPENING);
     this.name = name;
-    this.attributes = params?.atrributes;
+    this.attributes = params?.attributes;
   }
 }
