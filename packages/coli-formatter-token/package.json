@@ -1,0 +1,8 @@
+{
+    "name": "@coli.codes/ast-formatter",
+    "description": "Format the ast with extra ast without stringfy.",
+    "version": "0.0.0",
+    "private": false,
+    "author": "Grida.co",
+    "license": "Apache 2.0"
+}
