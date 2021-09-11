@@ -5,7 +5,7 @@ import { JsxBaseElement } from "../elements/element.base";
 
 export class JSXOpeningElement extends JsxBaseElement {
   name: JSXIdentifier;
-  readonly atrributes: JSXAtrributes = [];
+  readonly attributes: JSXAtrributes = [];
 
   constructor(
     name: JSXIdentifier,
@@ -15,6 +15,6 @@ export class JSXOpeningElement extends JsxBaseElement {
   ) {
     super(_ELEMENT_JSX_OPENING);
     this.name = name;
-    this.atrributes = params?.atrributes;
+    this.attributes = params?.atrributes;
   }
 }

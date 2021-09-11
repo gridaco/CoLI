@@ -7,6 +7,6 @@ export function _strfy_object_literal_expression(
   l: StringfyLanguage
 ) {
   return `{
-${indent.onEachLine(stringfy(c.properties, { language: l }))}
+${indent.onEachLine(stringfy(c.properties, { language: l, joinWith: ",\n" }))}
 }`;
 }

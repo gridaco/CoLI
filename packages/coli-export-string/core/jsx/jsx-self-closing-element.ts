@@ -1,15 +1,16 @@
 import { JSXSelfClosingElement } from "coli";
-import { stringfy, StringfyLanguage } from "../..";
+import { StringfyLanguage } from "../..";
+import { strfy_jsx_with_atrributes } from "./utils/jsx-with-attributes";
 
 export function coliJSXSelfClosingElementStringfy(
   c: JSXSelfClosingElement,
   l: StringfyLanguage
 ): string {
   const { name, atrributes } = c;
-
-  let code = "";
-  code += `<${stringfy(name, { language: l })} ${stringfy(atrributes, {
-    language: l,
-  })}/>`;
-  return code;
+  return strfy_jsx_with_atrributes({
+    name: name,
+    open_token: "<",
+    close_token: "/>",
+    attributes: atrributes,
+  });
 }
