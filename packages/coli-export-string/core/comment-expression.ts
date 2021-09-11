@@ -20,7 +20,7 @@ export function coliCommentStringfy(
     const [leading, line, traling] = MultiCommentKeyword.toString().split(" ");
     code += `${leading}\n`;
     code += splitContent.map((i) => `${line} ${i}`).join("\n");
-    code += `\n${traling}`;
+    code += `\n${traling}\n`;
   }
 
   return code;

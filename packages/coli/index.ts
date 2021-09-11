@@ -23,3 +23,6 @@ export * as schema from "@coli.codes/schema";
 
 // exporters
 export * from "@coli.codes/export-string";
+
+// naming
+export * from "@coli.codes/naming";
