@@ -1,5 +1,5 @@
 import { JSXAtrribute } from "coli";
-import { stringfy, StringfyLanguage } from "..";
+import { stringfy, StringfyLanguage } from "../..";
 
 export function coliJSXAtrributeStringfy(
   atrribute: JSXAtrribute,

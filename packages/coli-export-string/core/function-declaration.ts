@@ -18,5 +18,6 @@ export function coliFunctionStringfy(
 
   // add body block
   code += `${stringfy(body, { language: l })}`;
+  code += "\n";
   return code;
 }

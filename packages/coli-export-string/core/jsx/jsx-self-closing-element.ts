@@ -1,5 +1,5 @@
 import { JSXSelfClosingElement } from "coli";
-import { stringfy, StringfyLanguage } from "..";
+import { stringfy, StringfyLanguage } from "../..";
 
 export function coliJSXSelfClosingElementStringfy(
   c: JSXSelfClosingElement,

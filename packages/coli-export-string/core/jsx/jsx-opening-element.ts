@@ -1,5 +1,5 @@
 import { JSXOpeningElement } from "coli";
-import { stringfy, StringfyLanguage } from "..";
+import { stringfy, StringfyLanguage } from "../..";
 
 export function coliJSXOpeningElementStringfy(
   c: JSXOpeningElement,

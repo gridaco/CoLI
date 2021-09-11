@@ -11,13 +11,13 @@ export * from "./tagged-template-expression";
 export * from "./property-access-expression";
 export * from "./export-assignment";
 // region jsx
-export * from "./jsx-element";
-export * from "./jsx-closing-element";
-export * from "./jsx-opening-element";
-export * from "./jsx-self-closing-element";
-export * from "./jsx-expression";
-export * from "./jsx-text";
-export * from "./jsx-atrribute";
+export * from "./jsx/jsx-element";
+export * from "./jsx/jsx-closing-element";
+export * from "./jsx/jsx-opening-element";
+export * from "./jsx/jsx-self-closing-element";
+export * from "./jsx/jsx-expression";
+export * from "./jsx/jsx-text";
+export * from "./jsx/jsx-atrribute";
 // endregion jsx
 export * from "./return-statement";
 export * from "./interface-declaration";

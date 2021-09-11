@@ -1,5 +1,5 @@
 import { JSXClosingElement } from "coli";
-import { stringfy, StringfyLanguage } from "..";
+import { stringfy, StringfyLanguage } from "../..";
 
 export function coliJSXClosingElementStringfy(
   c: JSXClosingElement,

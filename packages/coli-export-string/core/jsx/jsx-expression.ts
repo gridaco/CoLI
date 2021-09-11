@@ -1,5 +1,5 @@
 import { JSXExpression } from "coli";
-import { stringfy, StringfyLanguage } from "..";
+import { stringfy, StringfyLanguage } from "../..";
 
 export function coliJSXExpressionStringfy(
   c: JSXExpression,
