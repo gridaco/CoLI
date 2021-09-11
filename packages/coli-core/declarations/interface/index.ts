@@ -1,5 +1,5 @@
 import { Identifier } from "../../ast/identifier";
-import { SyntaxKind } from "../../ast/syntax-kind";
+import { SyntaxKind } from "@coli.codes/core-syntax-kind";
 import { PropertySignature } from "../../property-signature";
 import { _DECLARATION_INTERFACE } from "../../_internal/node-name";
 import { Declaration } from "../declaration.base";

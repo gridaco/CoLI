@@ -1,4 +1,4 @@
-import { SyntaxKind } from "../_internal";
+import { SyntaxKind } from "@coli.codes/core-syntax-kind";
 import { Literal } from "./literal";
 
 export class NumericLiteral extends Literal {

@@ -1,5 +1,5 @@
 import { PropertyAssignment } from "../../assignment";
-import { SyntaxKind } from "../../_internal";
+import { SyntaxKind } from "@coli.codes/core-syntax-kind";
 import { _EXPRESSION_LITERAL_OBJECT } from "../../_internal/node-name";
 import { Expression } from "../expression.base";
 

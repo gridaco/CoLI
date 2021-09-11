@@ -1,5 +1,5 @@
 import { Identifier } from "../ast";
-import { SyntaxKind } from "../ast/syntax-kind";
+import { SyntaxKind } from "@coli.codes/core-syntax-kind";
 import { ColiObject } from "../_abstract";
 import { _TYPE_REFERENCE } from "../_internal";
 

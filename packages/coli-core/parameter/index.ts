@@ -3,7 +3,7 @@ import { DotDotDotToken } from "../dotdotdot-token";
 import { QuestionToken } from "../question-token";
 import { TypeLike } from "../types";
 import { ColiObject } from "../_abstract";
-import { SyntaxKind } from "../_internal";
+import { SyntaxKind } from "@coli.codes/core-syntax-kind";
 
 /**
  *

@@ -1,4 +1,4 @@
-import { SyntaxKind } from "../../ast/syntax-kind";
+import { SyntaxKind } from "@coli.codes/core-syntax-kind";
 
 export const _DECLARATION_IMPORT = SyntaxKind.ImportDeclaration;
 export const _DECLARATION_FUNCTION = SyntaxKind.FunctionDeclaration;

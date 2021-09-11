@@ -57,7 +57,7 @@ import {
   _STATEMENT_RETURN,
   _STATEMENT_VARIABLE,
 } from "../_internal/node-name/statements-name";
-import { SyntaxKind } from "../ast/syntax-kind";
+import { SyntaxKind } from "@coli.codes/core-syntax-kind";
 
 // assignments
 export type ColiAssignmentType =

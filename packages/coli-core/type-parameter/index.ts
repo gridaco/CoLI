@@ -1,5 +1,5 @@
 import { Identifier } from "../ast";
-import { SyntaxKind } from "../ast/syntax-kind";
+import { SyntaxKind } from "@coli.codes/core-syntax-kind";
 
 /**
  * Based on the example below, `P` and `P2` of T is a type parameter. `P` of T2 is a [Type reference ]({@link ./type-reference/index.ts#TypeReference})

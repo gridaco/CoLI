@@ -1,4 +1,4 @@
-import { SyntaxKind } from "../../ast/syntax-kind";
+import { SyntaxKind } from "@coli.codes/core-syntax-kind";
 
 export const _EXPRESSION_CALL = SyntaxKind.CallExpression;
 export const _EXPRESSION_COMMENT = "CommentExpression";

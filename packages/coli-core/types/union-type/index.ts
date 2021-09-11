@@ -1,5 +1,5 @@
 import { TypeLike } from "..";
-import { SyntaxKind } from "../../ast/syntax-kind";
+import { SyntaxKind } from "@coli.codes/core-syntax-kind";
 import { _TYPE_UNION } from "../../_internal";
 import { _BaseType } from "../type.base";
 

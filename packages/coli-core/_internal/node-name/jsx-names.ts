@@ -1,4 +1,4 @@
-import { SyntaxKind } from "../../ast/syntax-kind";
+import { SyntaxKind } from "@coli.codes/core-syntax-kind";
 
 export const _JSX_ATTRIBUTE = SyntaxKind.JsxAttribute;
 export const _JSX_ATTRIBUTES = SyntaxKind.JsxAttributes;

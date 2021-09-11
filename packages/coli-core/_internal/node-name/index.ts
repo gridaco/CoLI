@@ -13,5 +13,5 @@ export const _NODE_IDENTIFIER = "Identifier";
 export const _NODE_PROGRAM = "Program";
 
 // no family
-import { SyntaxKind } from "../../ast/syntax-kind";
+import { SyntaxKind } from "@coli.codes/core-syntax-kind";
 export const _TYPE_REFERENCE = SyntaxKind.TypeReference;

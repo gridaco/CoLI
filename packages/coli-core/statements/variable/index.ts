@@ -3,7 +3,7 @@ import { VariableDeclaration } from "../../declarations/variable";
 import { VariableKind } from "../../_internal/kinds/variable-kind";
 import { _STATEMENT_VARIABLE } from "../../_internal/node-name/statements-name";
 import { Statement } from "../statement.base";
-import { SyntaxKind } from "../../_internal";
+import { SyntaxKind } from "@coli.codes/core-syntax-kind";
 import { TypeLike } from "../../types";
 
 /**

@@ -1,4 +1,4 @@
-import { SyntaxKind } from "../_internal";
+import { SyntaxKind } from "@coli.codes/core-syntax-kind";
 
 /**
  * rather question token is provided.
