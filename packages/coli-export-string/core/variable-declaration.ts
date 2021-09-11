@@ -1,4 +1,4 @@
-import { SyntaxKind } from "@coli.codes/core/ast/syntax-kind";
+import { SyntaxKind } from "@coli.codes/core-syntax-kind";
 import { VariableKind } from "@coli.codes/core/_internal";
 import { VariableDeclaration } from "coli";
 import { stringfy, StringfyLanguage } from "..";
