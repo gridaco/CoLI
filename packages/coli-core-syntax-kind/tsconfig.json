@@ -12,5 +12,5 @@
     "experimentalDecorators": false,
     "noUnusedLocals": false
   },
-  "exclude": ["node_modules", "dist", "example", "tests", "__test__"]
+  "exclude": ["node_modules", "dist", "example", "__test__", "test"]
 }

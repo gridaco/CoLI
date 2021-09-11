@@ -3,7 +3,19 @@
     "version": "0.0.0",
     "author": "Grida.co, Microsoft, Typescirpt Authors",
     "private": false,
+    "main": "dist/index.js",
     "scripts": {
         "prepack": "tsc"
+    },
+    "files": [
+        "README.md",
+        "LICENSE",
+        "dist/index.js",
+        "dist/index.d.ts",
+        "dist/**/*.d.ts",
+        "dist/**/*.js"
+    ],
+    "devDependencies": {
+        "typescript": "^4.4.3"
     }
 }
