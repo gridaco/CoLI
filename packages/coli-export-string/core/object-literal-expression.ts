@@ -1,12 +1,17 @@
 import { ObjectLiteralExpression } from "coli";
 import { StringfyLanguage, stringfy } from "..";
-import { indent } from "@coli.codes/export-string-core";
+import { indent, KeywordAndTokenStatic } from "@coli.codes/export-string-core";
 
 export function _strfy_object_literal_expression(
   c: ObjectLiteralExpression,
   l: StringfyLanguage
 ) {
-  return `{
-${indent.onEachLine(stringfy(c.properties, { language: l, joinWith: ",\n" }))}
-}`;
+  return `${KeywordAndTokenStatic.OpenBraceToken}
+${indent.onEachLine(
+  stringfy(c.properties, {
+    language: l,
+    joinWith: `${KeywordAndTokenStatic.CommaToken}${KeywordAndTokenStatic.BreakLineToken}`,
+  })
+)}
+${KeywordAndTokenStatic.CloseBraceToken}`;
 }

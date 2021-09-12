@@ -1,3 +1,4 @@
+import { KeywordAndTokenStatic } from "@coli.codes/export-string-core";
 import { Identifier, JSXAttributes, stringfy } from "coli";
 import { get_jsx_attribute_join_with_by_attributes } from "./jsx-attribute-splitter";
 
@@ -8,8 +9,10 @@ export function strfy_jsx_with_attributes({
   attributes,
 }: {
   name: Identifier;
-  open_token: "<";
-  close_token: ">" | "/>";
+  open_token: KeywordAndTokenStatic.LessThanToken;
+  close_token:
+    | KeywordAndTokenStatic.GreaterThanToken
+    | KeywordAndTokenStatic.SlashGreaterThanToken;
   attributes: JSXAttributes;
 }) {
   const join_attributes_with = get_jsx_attribute_join_with_by_attributes(
@@ -17,7 +20,7 @@ export function strfy_jsx_with_attributes({
   );
   let closing_after_new_line = "";
   if (join_attributes_with == "\n  ") {
-    closing_after_new_line = "\n";
+    closing_after_new_line = KeywordAndTokenStatic.BreakLineToken;
   }
   return `${open_token}${stringfy(name, { language: "tsx" })} ${stringfy(
     attributes,

@@ -1,3 +1,4 @@
+import { KeywordAndTokenStatic } from "@coli.codes/export-string-core";
 import { JSXClosingElement } from "coli";
 import { stringfy, StringfyLanguage } from "../..";
 
@@ -6,7 +7,7 @@ export function coliJSXClosingElementStringfy(
   l: StringfyLanguage
 ): string {
   const { name } = c;
-  let code = "";
-  code += `</${stringfy(name, { language: l })}>`;
-  return code;
+  return `${KeywordAndTokenStatic.LessThanSlashToken}${stringfy(name, {
+    language: l,
+  })}${KeywordAndTokenStatic.GreaterThanToken}`;
 }

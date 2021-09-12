@@ -1,3 +1,4 @@
+import { KeywordAndTokenStatic } from "@coli.codes/export-string-core";
 import { FunctionDeclaration } from "coli";
 import { stringfy, StringfyLanguage } from "..";
 import { languageInterpreter } from "../interperters/main-interpreter";
@@ -18,6 +19,6 @@ export function coliFunctionStringfy(
 
   // add body block
   code += `${stringfy(body, { language: l })}`;
-  code += "\n";
+  code += KeywordAndTokenStatic.BreakLineToken;
   return code;
 }

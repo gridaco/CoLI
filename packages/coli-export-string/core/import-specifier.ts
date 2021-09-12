@@ -1,3 +1,4 @@
+import { KeywordAndTokenStatic } from "@coli.codes/export-string-core";
 import { ImportSpecifier } from "coli";
 import { StringfyLanguage } from "..";
 /**
@@ -12,7 +13,7 @@ export function coliSpecifierImportStringfy(
   const importedName = c?.imported?.name;
   let code = "";
   if (localName !== importedName) {
-    code += `${localName} as ${importedName}`;
+    code += `${localName}${KeywordAndTokenStatic.BreakSpaceToken}${KeywordAndTokenStatic.AsKeyword}${KeywordAndTokenStatic.BreakSpaceToken}${importedName}`;
   } else {
     code += `${localName}`;
   }

@@ -1,3 +1,4 @@
+import { KeywordAndTokenStatic } from "@coli.codes/export-string-core";
 import { Identifier } from "coli";
 import { StringfyLanguage } from "..";
 
@@ -21,9 +22,14 @@ export function coliIdentifierStringfy(
   if (typeAnnotation) {
     if (isJson(typeAnnotation.keyword)) {
       // If type is defined as object, delete "
-      code += ` : ${typeAnnotation.keyword.replace(/"/gi, "")}`;
+      code += `${KeywordAndTokenStatic.BreakSpaceToken}${
+        KeywordAndTokenStatic.ColonToken
+      }${KeywordAndTokenStatic.BreakSpaceToken}${typeAnnotation.keyword.replace(
+        /"/gi,
+        ""
+      )}`;
     } else {
-      code += ` : ${typeAnnotation.keyword}`;
+      code += `${KeywordAndTokenStatic.BreakSpaceToken}${KeywordAndTokenStatic.ColonToken}${KeywordAndTokenStatic.BreakSpaceToken}${typeAnnotation.keyword}`;
     }
   }
 

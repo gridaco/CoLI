@@ -1,3 +1,4 @@
+import { KeywordAndTokenStatic } from "@coli.codes/export-string-core";
 import { NumberKeyword } from "coli";
 import { StringfyLanguage } from "..";
 
@@ -5,5 +6,5 @@ export function _strfy_number_keyword(
   c: NumberKeyword,
   l: StringfyLanguage
 ): string {
-  return "number";
+  return KeywordAndTokenStatic.NumberKeyword;
 }

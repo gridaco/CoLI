@@ -1,6 +1,6 @@
 import { ImportDeclaration } from "coli";
 import { stringfy, StringfyLanguage } from "..";
-import { eo } from "@coli.codes/export-string-core";
+import { eo, KeywordAndTokenStatic } from "@coli.codes/export-string-core";
 import { convertValue } from "../utils/convert-value";
 
 /// _import string builder is dirty. this is because import declaratation definition does not follows. ts, but es typings.
@@ -14,7 +14,7 @@ export function coliImportStringfy(
   c: ImportDeclaration,
   l: StringfyLanguage
 ): string {
-  let code = "import ";
+  let code = `${KeywordAndTokenStatic.ImportKeyword}${KeywordAndTokenStatic.BreakSpaceToken}`;
 
   // optional default import if default import provided.
   if (c.defaultImport) {
@@ -25,15 +25,20 @@ export function coliImportStringfy(
   if (c.imports.length > 0) {
     //
     if (c.defaultImport) {
-      code += ", ";
+      code += `${KeywordAndTokenStatic.CommaToken}${KeywordAndTokenStatic.BreakSpaceToken}`;
     }
-    code += `{ `;
-    code += stringfy(c.imports, { language: l, joinWith: ", " });
-    code += " }";
+    code += `${KeywordAndTokenStatic.OpenBraceToken}${KeywordAndTokenStatic.BreakSpaceToken}`;
+    code += stringfy(c.imports, {
+      language: l,
+      joinWith: `${KeywordAndTokenStatic.CommaToken}${KeywordAndTokenStatic.BreakSpaceToken}`,
+    });
+    code += `${KeywordAndTokenStatic.BreakSpaceToken}${KeywordAndTokenStatic.CloseBraceToken}`;
   }
 
   // make source
-  code += ` from ${convertValue(c.source, l)}`;
+  code += `${KeywordAndTokenStatic.BreakSpaceToken}${
+    KeywordAndTokenStatic.FromKeyword
+  }${KeywordAndTokenStatic.BreakSpaceToken}${convertValue(c.source, l)}`;
 
   code += eo.FILALIZED_END_OF_LINE_TOKEN_VALUE;
 

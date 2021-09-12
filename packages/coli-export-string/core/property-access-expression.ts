@@ -1,3 +1,4 @@
+import { KeywordAndTokenStatic } from "@coli.codes/export-string-core";
 import { PropertyAccessExpression } from "coli";
 import { stringfy, StringfyLanguage } from "..";
 
@@ -8,7 +9,7 @@ export function coliPropertyAccessStringfy(
   const { expression, name } = c;
   let code = `${stringfy(expression, { language: l })}`;
 
-  code += `.${name}`;
+  code += `${KeywordAndTokenStatic.DotToken}${name}`;
 
   return code;
 }

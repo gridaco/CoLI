@@ -1,3 +1,4 @@
+import { KeywordAndTokenStatic } from "@coli.codes/export-string-core";
 import { CommentExpression } from "coli";
 import { StringfyLanguage } from "..";
 import { languageInterpreter } from "../interperters/main-interpreter";
@@ -7,21 +8,25 @@ export function coliCommentStringfy(
   l: StringfyLanguage
 ): string {
   const { style, content } = c;
-  const splitContent = content.split("\n");
+  const splitContent = content.split(KeywordAndTokenStatic.BreakLineToken);
   const { MultiCommentKeyword, SingleCommentKeyword } = languageInterpreter(l);
 
-  let code = "";
-
   if (style === "single-line") {
-    code += splitContent.map((i) => `${SingleCommentKeyword} ${i}`).join("\n");
+    return splitContent
+      .map((i) => `${SingleCommentKeyword} ${i}`)
+      .join(KeywordAndTokenStatic.BreakLineToken);
   }
 
   if (style === "multi-line") {
-    const [leading, line, traling] = MultiCommentKeyword.toString().split(" ");
-    code += `${leading}\n`;
-    code += splitContent.map((i) => `${line} ${i}`).join("\n");
-    code += `\n${traling}\n`;
+    let code = "";
+    const [leading, line, traling] = MultiCommentKeyword.toString().split(
+      KeywordAndTokenStatic.BreakSpaceToken
+    );
+    code += `${leading}${KeywordAndTokenStatic.BreakLineToken}`;
+    code += splitContent
+      .map((i) => `${line}${KeywordAndTokenStatic.BreakSpaceToken}${i}`)
+      .join(KeywordAndTokenStatic.BreakLineToken);
+    code += `${KeywordAndTokenStatic.BreakLineToken}${traling}${KeywordAndTokenStatic.BreakLineToken}`;
+    return code;
   }
-
-  return code;
 }

@@ -1,11 +1,22 @@
 import { Block } from "coli";
 import { stringfy, StringfyLanguage } from "..";
-import { eo, indent } from "@coli.codes/export-string-core";
+import {
+  eo,
+  indent,
+  KeywordAndTokenStatic,
+} from "@coli.codes/export-string-core";
 export function coliBlockStringfy(c: Block, l: StringfyLanguage): string {
   const { body } = c;
-  let code = `{\n${indent.onEachLine(
-    stringfy(body, { language: l, joinWith: "\n" })
-  )}\n}`;
+  let code = `${KeywordAndTokenStatic.OpenBraceToken}${
+    KeywordAndTokenStatic.BreakLineToken
+  }${indent.onEachLine(
+    stringfy(body, {
+      language: l,
+      joinWith: KeywordAndTokenStatic.BreakLineToken,
+    })
+  )}${KeywordAndTokenStatic.BreakLineToken}${
+    KeywordAndTokenStatic.CloseBraceToken
+  }`;
   code += eo.FILALIZED_END_OF_BLOCK_TOKEN_VALUE;
   return code;
 }
