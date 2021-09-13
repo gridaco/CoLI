@@ -1,15 +1,13 @@
-import { KeywordAndTokenStatic } from "@coli.codes/export-string-core";
+import { SyntaxKind } from "@coli.codes/core-syntax-kind";
 import { JSXSelfClosingElement } from "coli";
-import { strfy_jsx_with_attributes } from "./utils/jsx-with-attributes";
+import { astfmt_jsx_with_attributes } from "./utils/jsx-with-attributes";
 
-export function coliJSXSelfClosingElementStringfy(
-  c: JSXSelfClosingElement
-): string {
+export function astfmt_jsx_self_closing_element(c: JSXSelfClosingElement) {
   const { name, attributes } = c;
-  return strfy_jsx_with_attributes({
+  return astfmt_jsx_with_attributes({
     name: name,
-    open_token: KeywordAndTokenStatic.LessThanToken,
-    close_token: KeywordAndTokenStatic.SlashGreaterThanToken,
+    open_token: SyntaxKind.LessThanToken,
+    close_token: "/>",
     attributes: attributes,
   });
 }

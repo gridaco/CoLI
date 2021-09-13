@@ -1,1 +1,1 @@
-export * as indent from "./utils";
+export * as inject from "./utils";

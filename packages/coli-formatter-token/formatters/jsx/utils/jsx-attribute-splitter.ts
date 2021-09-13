@@ -1,4 +1,5 @@
 import { JSXAttributes } from "coli";
+import { FormatterTokenLike } from "../../../tokens";
 
 export function get_jsx_attribute_join_with_by_attributes(
   attributes?: JSXAttributes
@@ -9,13 +10,12 @@ export function get_jsx_attribute_join_with_by_attributes(
 }
 function _get_jsx_attribute_join_with_by_attribute_count(
   count: number
-): "" | " " | "\n  " {
-  const indent = "  ";
+): FormatterTokenLike {
   if (count == 0) {
     return "";
   } else if (count > 0 && count < 3) {
     return " ";
   } else {
-    return `\n${indent}`;
+    return ["\n", "\t"];
   }
 }

@@ -1,16 +1,11 @@
 import { ImportDeclaration } from "coli";
 import f from "../tokens";
 import { SyntaxKind } from "@coli.codes/core-syntax-kind";
-import { indent } from "..";
+import { inject } from "..";
 
 /// _import string builder is dirty. this is because import declaratation definition does not follows. ts, but es typings.
 /// this is an exception allowed by authors.
-
-/**
- * @todo transpile lauganage
- * @todo value stringfy
- */
-export function coliImportStringfy(c: ImportDeclaration) {
+export function astfmt_import_declaration(c: ImportDeclaration) {
   let fmt: any[] = [f(SyntaxKind.ImportKeyword), f(" ")];
 
   // optional default import if default import provided.
@@ -25,9 +20,11 @@ export function coliImportStringfy(c: ImportDeclaration) {
       fmt = [...fmt, f(SyntaxKind.CommaToken), f(" ")];
     }
     fmt = [...fmt, f(SyntaxKind.OpenBraceToken), f(" ")];
-    fmt = [...fmt, c.imports];
-    // TODO: ->> ", " between import elements
-    fmt = [...fmt, f(" "), f(SyntaxKind.CloseBraceToken)];
+    fmt = [
+      ...fmt,
+      // ", " between import elements
+      inject.insertBetween(c.imports, [f(" "), f(SyntaxKind.CloseBraceToken)]),
+    ];
   }
 
   // make source

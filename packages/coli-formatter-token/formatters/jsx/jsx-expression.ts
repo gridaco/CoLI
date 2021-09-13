@@ -1,4 +1,4 @@
-import { SyntaxKind } from "@coli.codes/core/_internal";
+import { SyntaxKind } from "@coli.codes/core-syntax-kind";
 import { JSXExpression } from "coli";
 import f from "../../tokens";
 

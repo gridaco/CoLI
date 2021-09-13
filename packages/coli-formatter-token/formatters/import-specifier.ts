@@ -1,7 +1,7 @@
 import { ImportSpecifier } from "coli";
 import f from "../tokens";
 import { SyntaxKind } from "@coli.codes/core-syntax-kind";
-import { indent } from "..";
+import { inject } from "..";
 
 export function coliSpecifierImportStringfy(c: ImportSpecifier) {
   const localName = c?.local?.name;

@@ -1,14 +1,15 @@
 import { ObjectLiteralExpression } from "coli";
 import f from "../tokens";
 import { SyntaxKind } from "@coli.codes/core-syntax-kind";
-import { indent } from "..";
+import { inject } from "..";
 
 export function astfmt_object_literal_expression(c: ObjectLiteralExpression) {
   return [
     f(SyntaxKind.OpenBraceToken),
-    indent.onEachLine(
-      // TODO: on each line ", "
-      c.properties
+    inject.onEachLine(
+      // on each line ", "
+      c.properties,
+      [SyntaxKind.CommaToken, " "]
     ),
     f(SyntaxKind.CloseBraceToken),
   ];

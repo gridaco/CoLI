@@ -1,6 +1,16 @@
 import { SyntaxKind } from "@coli.codes/core-syntax-kind";
 
-type FormatterTokenLike = SyntaxKind | " " | "\n" | "\t" | "";
+export type FormatterTokenLike =
+  | SyntaxKind
+  | " "
+  | "\n"
+  | "\t"
+  | "//"
+  | "/**" // docstring start
+  | " *" // docstring mid
+  | "*/" // docstring end
+  | ""
+  | FormatterTokenLike[];
 
 export class FormattingToken {
   constructor(readonly kind: FormatterTokenLike) {}
