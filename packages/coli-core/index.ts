@@ -4,8 +4,8 @@ export * as _internal from "./_internal";
 export * as ast from "./ast";
 
 // coli object
-export { ColiObject, ColiObjectKind } from "./_abstract";
-export type { ColiObjectType } from "./_abstract";
+export { ColiObject } from "./_abstract";
+export type { ColiObjectType, ColiObjectKind } from "./_abstract";
 
 // ast exposure
 export { Identifier } from "./ast";
