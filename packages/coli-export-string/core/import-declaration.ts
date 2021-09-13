@@ -10,7 +10,7 @@ import { convertValue } from "../utils/convert-value";
  * @todo transpile lauganage
  * @todo value stringfy
  */
-export function coliImportStringfy(
+export function strfy_import_declaration(
   c: ImportDeclaration,
   l: StringfyLanguage
 ): string {

@@ -3,7 +3,7 @@ import { JSXOpeningElement } from "coli";
 import { StringfyLanguage } from "../..";
 import { strfy_jsx_with_attributes } from "./utils/jsx-with-attributes";
 
-export function coliJSXOpeningElementStringfy(
+export function strfy_jsx_opening_element(
   c: JSXOpeningElement,
   l: StringfyLanguage
 ): string {

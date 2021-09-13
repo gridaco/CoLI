@@ -2,7 +2,7 @@ import { KeywordAndTokenStatic } from "@coli.codes/export-string-core";
 import { JSXAttribute } from "coli";
 import { stringfy, StringfyLanguage } from "../..";
 
-export function coliJSXAttributeStringfy(
+export function strfy_jsx_attribute(
   atrribute: JSXAttribute,
   l: StringfyLanguage
 ) {

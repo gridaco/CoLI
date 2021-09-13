@@ -1,10 +1,7 @@
 import { JSXElement } from "coli";
 import { stringfy, StringfyLanguage } from "../..";
 import { indent, KeywordAndTokenStatic } from "@coli.codes/export-string-core";
-export function coliJSXElementStringfy(
-  c: JSXElement,
-  l: StringfyLanguage
-): string {
+export function strfy_jsx_element(c: JSXElement, l: StringfyLanguage): string {
   const { openingElement, closingElement, children } = c;
 
   const _open = stringfy(openingElement, { language: l });

@@ -12,10 +12,7 @@ function isJson(str) {
   return true;
 }
 
-export function coliIdentifierStringfy(
-  c: Identifier,
-  l: StringfyLanguage
-): string {
+export function strfy_identifier(c: Identifier, l: StringfyLanguage): string {
   const { name, typeAnnotation } = c;
   let code = `${name}`;
 

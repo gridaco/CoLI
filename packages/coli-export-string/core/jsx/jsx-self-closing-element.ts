@@ -3,7 +3,7 @@ import { JSXSelfClosingElement } from "coli";
 import { StringfyLanguage } from "../..";
 import { strfy_jsx_with_attributes } from "./utils/jsx-with-attributes";
 
-export function coliJSXSelfClosingElementStringfy(
+export function strfy_jsx_self_closing_element(
   c: JSXSelfClosingElement,
   l: StringfyLanguage
 ): string {

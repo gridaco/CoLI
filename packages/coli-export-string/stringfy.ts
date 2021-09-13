@@ -1,6 +1,8 @@
-import { _abstract, _internal } from "coli";
+import { ColiObject, _internal, _abstract } from "coli";
 import { SyntaxKind } from "@coli.codes/core/_internal";
-import * as CORE from "./core";
+import * as strfy from "./core";
+import { FormattingToken, FormatterTokenLike } from "@coli.codes/ast-formatter";
+import { KeywordAndTokenStatic } from "@coli.codes/export-string-core";
 
 /*@internal*/
 export type StringfyLanguage =
@@ -30,8 +32,8 @@ interface StringfyOptions {
   formattingOptions?: ColiFormatterConfig;
 }
 
-type useStrinfyFunction = (
-  c: _abstract.ColiObject | any,
+type Stringfyer = (
+  c: ColiObject | any,
   l: StringfyOptions["language"],
   d?: number
 ) => string;
@@ -83,6 +85,33 @@ export function stringfy(
   return final;
 }
 
+export function stringfy_tokenformatted(
+  tokens: FormatterTokenLike | any
+): string {
+  if (Array.isArray(tokens)) {
+    return tokens.map((t) => stringfy_tokenformatted(t)).join("");
+  }
+
+  if (typeof tokens == "string") {
+    return tokens;
+  }
+  if (tokens instanceof FormattingToken) {
+    const _maybe_static_token =
+      KeywordAndTokenStatic[tokens.kind as KeywordAndTokenStatic];
+    if (_maybe_static_token) {
+      return _maybe_static_token;
+    } else {
+      if (typeof tokens.kind == "string") {
+        return tokens.kind;
+      }
+    }
+  }
+  if (tokens instanceof ColiObject) {
+    return stringfy(tokens, { language: "typescript" });
+  }
+  return "";
+}
+
 type Formatter = (source: string) => string;
 export function format(
   source: string,
@@ -100,16 +129,16 @@ export function format(
   return source;
 }
 
-function _get_dedicated_strfier(colitype): useStrinfyFunction {
+function _get_dedicated_strfier(colitype): Stringfyer {
   switch (colitype) {
     /** Declarations */
     case _internal._DECLARATION_FUNCTION:
-      return CORE.coliFunctionStringfy;
+      return strfy.strfy_function_declaration;
 
     case _internal._DECLARATION_IMPORT:
-      return CORE.coliImportStringfy;
+      return strfy.strfy_import_declaration;
     case _internal._DECLARATION_VARIABLE:
-      return CORE.coliVariableStringfy;
+      return strfy.strfy_variable_declaration;
     case _internal._DECLARATION_TYPE_ALIAS:
       // TODO:
       break;
@@ -118,82 +147,78 @@ function _get_dedicated_strfier(colitype): useStrinfyFunction {
       // TODO:
       break;
     case _internal._STATEMENT_BLOCK:
-      return CORE.coliBlockStringfy;
+      return strfy.strfy_block;
     case _internal._STATEMENT_RETURN:
-      return CORE.coliReturnStringfy;
+      return strfy.strfy_return_statement;
     /** Expressions */
     case _internal._EXPRESSION_COMMENT:
-      return CORE.coliCommentStringfy;
+      return strfy.strfy_comment_expression;
     case _internal._EXPRESSION_TAGGED_TEMPLATE:
-      return CORE.coliTaggedTemplateStringfy;
+      return strfy.strfy_tagged_template_expression;
     case _internal._EXPRESSION_PROPERTY_ACCESS:
-      return CORE.coliPropertyAccessStringfy;
+      return strfy.strfy_property_access_expression;
     case _internal._EXPRESSION_JSX:
-      return CORE.coliJSXExpressionStringfy;
+      return strfy.strfy_jsx_expression;
     /** Nodes */
     case _internal._NODE_IDENTIFIER:
-      return CORE.coliIdentifierStringfy;
+      return strfy.strfy_identifier;
     /** LITERALS */
     case _internal._LITERAL_TEMPLATE:
     case _internal._LITERAL_STRING:
     case _internal._LITERAL_NUMERIC:
     case _internal._LITERAL_BIGINT:
-      return CORE.coliLiteralStringfy;
+      return strfy.strfy_literal;
 
     /** JSX */
     case _internal._ELEMENT_JSX:
-      return CORE.coliJSXElementStringfy;
+      return strfy.strfy_jsx_element;
     case _internal._JSX_ATTRIBUTE:
-      return CORE.coliJSXAttributeStringfy;
+      return strfy.strfy_jsx_attribute;
     case _internal._ELEMENT_JSX_CLOSING:
-      return CORE.coliJSXClosingElementStringfy;
+      return strfy.strfy_jsx_closing_element;
     case _internal._ELEMENT_JSX_OPENING:
-      return CORE.coliJSXOpeningElementStringfy;
+      return strfy.strfy_jsx_opening_element;
     case _internal._ELEMENT_JSX_SELF_CLOSING:
-      return CORE.coliJSXSelfClosingElementStringfy;
+      return strfy.strfy_jsx_self_closing_element;
     case _internal._EXPRESSION_JSX:
-      return CORE.coliJSXExpressionStringfy;
+      return strfy.strfy_jsx_expression;
     case _internal._JSX_TEXT:
-      return CORE.coliJSXTextStringfy;
+      return strfy.strfy_jsx_text;
     /** Specifiers */
     case _internal._SPECIFIER_IMPORT:
-      return CORE.coliSpecifierImportStringfy;
+      return strfy.strfy_import_specifier;
     case _internal._SPECIFIER_DEFAULT_IMPORT:
-      return CORE.coliDefaultImportStringfy;
+      return strfy.strfy_import_default_specifier;
     case _internal._ASSIGNMENT_EXPORT:
-      return CORE.coliExportAssignmentStringfy;
+      return strfy.strfy_export_assignment;
     case _internal._DECLARATION_INTERFACE:
-      return CORE._strfy_interface_declaration;
+      return strfy.strfy_interface_declaration;
     case _internal._SIGNATURE_PROPERTY:
-      return CORE._strfy_property_signature;
+      return strfy.strfy_property_signature;
     case _internal._EXPRESSION_LITERAL_OBJECT:
-      return CORE._strfy_object_literal_expression;
+      return strfy.strfy_object_literal_expression;
     case _internal._ASSIGNMENT_PROPERTY:
-      return CORE._strfy_property_assignment;
+      return strfy.strfy_property_assignment;
     case _internal._TYPE_REFERENCE:
-      return CORE._strfy_type_reference;
+      return strfy.strfy_type_reference;
     case _internal._TYPE_LITERAL:
-      return CORE._strfy_literal_type;
+      return strfy.strfy_literal_type;
     case _internal._TYPE_UNION:
-      return CORE._strfy_union_type;
+      return strfy.strfy_union_type;
     // region keywords
     case SyntaxKind.BooleanKeyword:
-      return CORE._strfy_boolean_keyword;
     case SyntaxKind.NumberKeyword:
-      return CORE._strfy_number_keyword;
     case SyntaxKind.StringKeyword:
-      return CORE._strfy_string_keyword;
     case SyntaxKind.TrueKeyword:
-      return CORE._strfy_string_keyword;
     case SyntaxKind.FalseKeyword:
-      return CORE._strfy_string_keyword;
+      return KeywordAndTokenStatic[colitype] ?? "";
     // endregion keywords
   }
 }
 
 /*@internal*/
 function createSourceCode(
-  coli: _abstract.ColiObject | any,
+  coli: ColiObject | any,
   stringfyLanguage: StringfyLanguage,
   depth: number
 ) {

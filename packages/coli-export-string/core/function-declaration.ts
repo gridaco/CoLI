@@ -3,7 +3,7 @@ import { FunctionDeclaration } from "coli";
 import { stringfy, StringfyLanguage } from "..";
 import { languageInterpreter } from "../interperters/main-interpreter";
 
-export function coliFunctionStringfy(
+export function strfy_function_declaration(
   c: FunctionDeclaration,
   l: StringfyLanguage
 ): string {

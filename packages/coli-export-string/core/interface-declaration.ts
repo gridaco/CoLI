@@ -1,7 +1,7 @@
 import { InterfaceDeclaration } from "coli";
 import { StringfyLanguage, stringfy } from "..";
 import { indent, KeywordAndTokenStatic } from "@coli.codes/export-string-core";
-export function _strfy_interface_declaration(
+export function strfy_interface_declaration(
   c: InterfaceDeclaration,
   l: StringfyLanguage
 ) {

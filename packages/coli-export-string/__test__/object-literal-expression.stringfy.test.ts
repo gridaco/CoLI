@@ -24,6 +24,6 @@ test("object literal expression with properties", () => {
   });
 
   expect(src).toBe(`{
-data: "data value"
+  data: "data value"
 }`);
 });

@@ -3,7 +3,7 @@ import { CommentExpression } from "coli";
 import { StringfyLanguage } from "..";
 import { languageInterpreter } from "../interperters/main-interpreter";
 
-export function coliCommentStringfy(
+export function strfy_comment_expression(
   c: CommentExpression,
   l: StringfyLanguage
 ): string {

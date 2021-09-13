@@ -5,7 +5,7 @@ import {
   indent,
   KeywordAndTokenStatic,
 } from "@coli.codes/export-string-core";
-export function coliBlockStringfy(c: Block, l: StringfyLanguage): string {
+export function strfy_block(c: Block, l: StringfyLanguage): string {
   const { body } = c;
   let code = `${KeywordAndTokenStatic.OpenBraceToken}${
     KeywordAndTokenStatic.BreakLineToken

@@ -2,7 +2,7 @@ import { KeywordAndTokenStatic } from "@coli.codes/export-string-core";
 import { PropertySignature } from "coli";
 import { StringfyLanguage, stringfy } from "..";
 
-export function _strfy_property_signature(
+export function strfy_property_signature(
   c: PropertySignature,
   l: StringfyLanguage
 ) {

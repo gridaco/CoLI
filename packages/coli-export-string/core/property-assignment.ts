@@ -2,7 +2,7 @@ import { KeywordAndTokenStatic } from "@coli.codes/export-string-core";
 import { PropertyAssignment } from "coli";
 import { StringfyLanguage, stringfy } from "..";
 
-export function _strfy_property_assignment(
+export function strfy_property_assignment(
   c: PropertyAssignment,
   l: StringfyLanguage
 ) {

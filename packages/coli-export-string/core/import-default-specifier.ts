@@ -5,7 +5,7 @@ import { StringfyLanguage } from "..";
  * @todo transpile lauganage
  * @todo value stringfy
  */
-export function coliDefaultImportStringfy(
+export function strfy_import_default_specifier(
   c: ImportDefaultSpecifier,
   l: StringfyLanguage
 ): string {

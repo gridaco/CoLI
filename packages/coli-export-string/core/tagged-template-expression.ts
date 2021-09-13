@@ -1,7 +1,7 @@
 import { TaggedTemplateExpression } from "coli";
 import { stringfy, StringfyLanguage } from "..";
 
-export function coliTaggedTemplateStringfy(
+export function strfy_tagged_template_expression(
   c: TaggedTemplateExpression,
   l: StringfyLanguage
 ): string {

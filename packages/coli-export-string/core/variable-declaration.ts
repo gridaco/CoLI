@@ -8,7 +8,7 @@ import { eo, KeywordAndTokenStatic } from "@coli.codes/export-string-core";
  * @todo transpile lauganage
  * @todo value stringfy
  */
-export function coliVariableStringfy(
+export function strfy_variable_declaration(
   c: VariableDeclaration,
   l: StringfyLanguage
 ): string {

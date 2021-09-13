@@ -18,7 +18,7 @@ test("stringfy ts empty interface", () => {
     language: "typescript",
   });
   expect(src).toBe(`interface Test {
-
+  
 }`);
 });
 
@@ -39,8 +39,7 @@ test("stringfy ts members interface", () => {
     },
   });
   expect(src).toBe(`interface Test {
-a
-
+  a
 }`);
 });
 
@@ -77,8 +76,8 @@ test("stringfy ts typed members interface", () => {
     },
   });
   expect(src).toBe(`interface Test {
-a: "a"
-disabled: boolean
-variant: "bold" | "light" | "regular" | number
+  a: "a"
+  disabled: boolean
+  variant: "bold" | "light" | "regular" | number
 }`);
 });

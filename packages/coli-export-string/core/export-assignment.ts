@@ -2,7 +2,7 @@ import { ExportAssignment } from "@coli.codes/core/assignment/export-assignment"
 import { stringfy, StringfyLanguage } from "..";
 import { eo, KeywordAndTokenStatic } from "@coli.codes/export-string-core";
 
-export function coliExportAssignmentStringfy(
+export function strfy_export_assignment(
   c: ExportAssignment,
   l: StringfyLanguage
 ) {
