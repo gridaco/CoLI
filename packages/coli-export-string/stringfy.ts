@@ -28,7 +28,7 @@ interface ColiFormatterConfig {
 interface StringfyOptions {
   language: StringfyLanguage;
   joinWith?: string;
-  formatter?: Formatter;
+  formatter?: StringFormatter;
   formattingOptions?: ColiFormatterConfig;
 }
 
@@ -112,10 +112,10 @@ export function stringfy_tokenformatted(
   return "";
 }
 
-type Formatter = (source: string) => string;
+export type StringFormatter = (source: string) => string;
 export function format(
   source: string,
-  formatter: Formatter,
+  formatter: StringFormatter,
   opt?: ColiFormatterConfig
 ): string {
   try {

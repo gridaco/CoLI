@@ -1,6 +1,21 @@
 import { ColiObject, _internal } from "@coli.codes/core";
 import * as fmts from "./formatters";
 
+export function format(coli) {
+  if (coli === undefined) {
+    return;
+  }
+
+  if (Array.isArray(coli)) {
+    return coli.map((c) => format(c));
+  }
+
+  if (coli instanceof ColiObject) {
+    const formatter = _get_dedicated_formatter(coli.__type);
+    return formatter(coli);
+  }
+}
+
 type FormatterFunc = (c) => any[] | string | any;
 function _get_dedicated_formatter(colitype): FormatterFunc {
   switch (colitype) {
