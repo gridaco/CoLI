@@ -17,8 +17,8 @@ test("function-declaration", () => {
     stringfy(sum, {
       language: "tsx",
     })
-  ).toBe(`function sum (a : number, b : number) {
-  
+  ).toBe(`function sum (a: number, b: number) {
+
 }
 
 `);
