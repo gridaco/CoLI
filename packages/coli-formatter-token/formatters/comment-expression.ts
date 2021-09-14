@@ -14,7 +14,7 @@ export function astfmt_comment_expression(c: CommentExpression) {
   /// // d
   if (style === "single-line") {
     return inject.insertBetween(
-      splitContent.map((i) => [f("//"), i]),
+      splitContent.map((i) => [f("//"), f(" "), i]),
       "\n"
     );
   }

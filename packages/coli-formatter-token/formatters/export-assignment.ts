@@ -12,6 +12,6 @@ export function astfmt_export_assignment(c: ExportAssignment) {
     f(SyntaxKind.DefaultKeyword),
     f(" "),
     identifier,
-    f("\n"),
+    f(SyntaxKind.SemicolonToken),
   ];
 }

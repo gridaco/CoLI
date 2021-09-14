@@ -10,7 +10,6 @@ export function astfmt_block(c: Block) {
     inject.onEachLine(body, "\t"),
     f("\n"),
     f(SyntaxKind.CloseBraceToken),
-    f(SyntaxKind.SemicolonToken),
     f("\n"),
   ];
 }
