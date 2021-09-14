@@ -1,11 +1,11 @@
-import { Type, Types } from "../type";
+import type { TypeLike } from "..";
 import { ColiObject } from "../_abstract";
 import { _NODE_IDENTIFIER } from "../_internal/node-name";
 
 export interface Identifier {
   name: string;
   optional?: boolean;
-  typeAnnotation?: Type;
+  typeAnnotation?: TypeLike;
 }
 
 export class Identifier extends ColiObject {
@@ -14,7 +14,7 @@ export class Identifier extends ColiObject {
     name: string,
     args?: {
       optional?: boolean;
-      typeAnnotation?: Type;
+      typeAnnotation?: TypeLike;
     }
   ) {
     super(_NODE_IDENTIFIER);
