@@ -6,7 +6,6 @@ import { inject } from "..";
 
 export function astfmt_return_statement(c: ReturnStatement) {
   const { argument } = c;
-  console.log("argument", argument);
   if (argument instanceof JsxBaseElement) {
     // if jsx is the returning element, than wrap with "(" and ")"
     return [
