@@ -1,7 +1,7 @@
 import { Identifier, JSXAttributes } from "coli";
 import { SyntaxKind } from "@coli.codes/core-syntax-kind";
 import { get_jsx_attribute_join_with_by_attributes } from "./jsx-attribute-splitter";
-import { inject } from "../../..";
+import { format, inject } from "../../..";
 import f from "../../../tokens";
 
 export function astfmt_jsx_with_attributes({
@@ -24,7 +24,7 @@ export function astfmt_jsx_with_attributes({
     open_token,
     name,
     f(" "),
-    inject.insertBetween(attributes, join_attributes_with),
+    inject.insertBetween(format(attributes), join_attributes_with),
     closing_after_new_line,
     close_token,
   ];

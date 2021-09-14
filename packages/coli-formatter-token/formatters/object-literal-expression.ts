@@ -9,10 +9,7 @@ export function astfmt_object_literal_expression(c: ObjectLiteralExpression) {
     f("\n"),
     inject.insertBetween(
       // on each line ", "
-      inject.onEachLine(
-        c.properties, //format(),
-        "\t"
-      ),
+      inject.onEachLine(format(c.properties), "\t"),
       [f(SyntaxKind.CommaToken), f("\n")]
     ),
     f("\n"),
