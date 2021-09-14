@@ -1,6 +1,10 @@
 import { TypeReference } from "coli";
-import { StringfyLanguage, stringfy } from "..";
+import { stringfy_tokenformatted, StringfyLanguage } from "..";
+import { formatters } from "@coli.codes/ast-formatter";
 
 export function strfy_type_reference(c: TypeReference, l: StringfyLanguage) {
-  return `${stringfy(c.typeName, { language: l })}`;
+  const ast = formatters.astfmt_type_reference(c);
+  return stringfy_tokenformatted(ast);
+
+  // return `${stringfy(c.typeName, { language: l })}`;
 }

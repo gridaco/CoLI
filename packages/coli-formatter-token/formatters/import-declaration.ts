@@ -19,16 +19,30 @@ export function astfmt_import_declaration(c: ImportDeclaration) {
     if (c.defaultImport) {
       fmt = [...fmt, f(SyntaxKind.CommaToken), f(" ")];
     }
-    fmt = [...fmt, f(SyntaxKind.OpenBraceToken), f(" ")];
     fmt = [
       ...fmt,
-      // ", " between import elements
-      inject.insertBetween(c.imports, [f(" "), f(SyntaxKind.CloseBraceToken)]),
+      f(SyntaxKind.OpenBraceToken),
+      f(" "),
+      inject.insertBetween(
+        c.imports,
+        // ", " between import elements
+        [f(SyntaxKind.CommaToken), f(" ")]
+      ),
+      f(" "),
+      f(SyntaxKind.CloseBraceToken),
     ];
   }
 
   // make source
-  fmt = [...fmt, f(" "), f(SyntaxKind.FromKeyword), f(" "), c.source, f("\n")];
+  fmt = [
+    ...fmt,
+    f(" "),
+    f(SyntaxKind.FromKeyword),
+    f(" "),
+    inject.wrapWithDoubleQuote(c.source),
+    f(SyntaxKind.SemicolonToken),
+    f("\n"),
+  ];
 
   return fmt;
 }

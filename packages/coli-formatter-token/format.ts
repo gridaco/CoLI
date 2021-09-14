@@ -75,7 +75,7 @@ function _get_dedicated_formatter(colitype): FormatterFunc {
     case _internal._SPECIFIER_IMPORT:
       return fmts.astfmt_import_specifier;
     case _internal._SPECIFIER_DEFAULT_IMPORT:
-      return fmts.astfmt_default_import;
+      return fmts.astfmt_import_default_specifier;
     case _internal._ASSIGNMENT_EXPORT:
       return fmts.astfmt_export_assignment;
     case _internal._DECLARATION_INTERFACE:

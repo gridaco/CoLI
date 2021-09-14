@@ -22,7 +22,7 @@ function _to_varkind(i: VariableKindInput): VariableKind {
 
 export class VariableDeclaration extends Declaration {
   readonly kind: VariableKind = SyntaxKind.LetKeyword;
-  readonly type: Type | TypeReference = Types.none;
+  readonly type: Type | TypeReference;
   readonly id: Identifier;
 
   // TODO: this should be refactored as variable decl

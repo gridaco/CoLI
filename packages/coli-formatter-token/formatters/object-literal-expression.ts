@@ -1,16 +1,22 @@
 import { ObjectLiteralExpression } from "coli";
 import f from "../tokens";
 import { SyntaxKind } from "@coli.codes/core-syntax-kind";
-import { inject } from "..";
+import { inject, format } from "..";
 
 export function astfmt_object_literal_expression(c: ObjectLiteralExpression) {
-  return [
+  const fmt = [
     f(SyntaxKind.OpenBraceToken),
-    inject.onEachLine(
+    f("\n"),
+    inject.insertBetween(
       // on each line ", "
-      c.properties,
-      [SyntaxKind.CommaToken, " "]
+      inject.onEachLine(
+        c.properties, //format(),
+        "\t"
+      ),
+      [f(SyntaxKind.CommaToken), f("\n")]
     ),
+    f("\n"),
     f(SyntaxKind.CloseBraceToken),
   ];
+  return fmt;
 }

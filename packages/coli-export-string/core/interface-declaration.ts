@@ -1,18 +1,22 @@
 import { InterfaceDeclaration } from "coli";
-import { StringfyLanguage, stringfy } from "..";
-import { indent, KeywordAndTokenStatic } from "@coli.codes/export-string-core";
+import { stringfy_tokenformatted, StringfyLanguage } from "..";
+import { formatters } from "@coli.codes/ast-formatter";
+
 export function strfy_interface_declaration(
   c: InterfaceDeclaration,
   l: StringfyLanguage
 ) {
-  return `${KeywordAndTokenStatic.InterfaceKeyword} ${stringfy(c.name, {
-    language: l,
-  })} ${KeywordAndTokenStatic.OpenBraceToken}
-${indent.onEachLine(
-  stringfy(c.members, {
-    language: l,
-    joinWith: KeywordAndTokenStatic.BreakLineToken,
-  })
-)}
-${KeywordAndTokenStatic.CloseBraceToken}`;
+  const ast = formatters.astfmt_interface_declaration(c);
+  return stringfy_tokenformatted(ast);
+
+  //   return `${KeywordAndTokenStatic.InterfaceKeyword} ${stringfy(c.name, {
+  //     language: l,
+  //   })} ${KeywordAndTokenStatic.OpenBraceToken}
+  // ${indent.onEachLine(
+  //   stringfy(c.members, {
+  //     language: l,
+  //     joinWith: KeywordAndTokenStatic.BreakLineToken,
+  //   })
+  // )}
+  // ${KeywordAndTokenStatic.CloseBraceToken}`;
 }

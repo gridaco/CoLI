@@ -1,7 +1,11 @@
 import { ColiObject, _internal, _abstract } from "coli";
 import { SyntaxKind } from "@coli.codes/core/_internal";
 import * as strfy from "./core";
-import { FormattingToken, FormatterTokenLike } from "@coli.codes/ast-formatter";
+import {
+  FormattingToken,
+  FormatterTokenLike,
+  format as _astfmt,
+} from "@coli.codes/ast-formatter";
 import { KeywordAndTokenStatic } from "@coli.codes/export-string-core";
 
 /*@internal*/
@@ -14,9 +18,25 @@ export type StringfyLanguage =
   | "python"
   | "dart";
 
+export type FormatterIndent =
+  /**
+   * use \t tab - "\t"
+   */
+  | "\t"
+  /**
+   * use 2 spaces - "  "
+   * @default
+   */
+  | 2
+  /**
+   * use 4 spaces - "    "
+   */
+  | 4;
+
 interface ColiFormatterConfig {
   use: "pritter";
   parser: "typescript";
+  indent?: FormatterIndent;
 
   /**
    * configures weather if throws error that occured while formatting.
@@ -40,7 +60,7 @@ type Stringfyer = (
 
 export function stringfy(
   coli: _abstract.ColiInterpretable,
-  stringfyOptions: StringfyOptions,
+  stringfyOptions?: StringfyOptions,
   depth?: number
 ): string {
   if (coli === undefined) {
@@ -49,7 +69,10 @@ export function stringfy(
 
   // if depth not specified, set it to root - 0
   depth = depth ?? 0;
-  const { language, joinWith = "" } = stringfyOptions;
+  const { language, joinWith = "" } = stringfyOptions ?? {
+    language: "typescript",
+    joinWith: "",
+  };
 
   let final: string;
   if (Array.isArray(coli)) {
@@ -66,7 +89,7 @@ export function stringfy(
 
   // finally finalize the "final" string with formatter if requested.
   if (depth == 0) {
-    if (stringfyOptions.formatter) {
+    if (stringfyOptions?.formatter) {
       final = format(
         final,
         stringfyOptions.formatter,
@@ -102,6 +125,10 @@ export function stringfy_tokenformatted(
       return _maybe_static_token;
     } else {
       if (typeof tokens.kind == "string") {
+        switch (tokens.kind) {
+          case "\t":
+            return "\t"; // customize tab
+        }
         return tokens.kind;
       }
     }
@@ -211,7 +238,8 @@ function _get_dedicated_strfier(colitype): Stringfyer {
     case SyntaxKind.StringKeyword:
     case SyntaxKind.TrueKeyword:
     case SyntaxKind.FalseKeyword:
-      return KeywordAndTokenStatic[colitype] ?? "";
+    default:
+      return () => KeywordAndTokenStatic[colitype] ?? "";
     // endregion keywords
   }
 }

@@ -1,15 +1,19 @@
 import { KeywordAndTokenStatic } from "@coli.codes/export-string-core";
 import { PropertyAccessExpression } from "coli";
-import { stringfy, StringfyLanguage } from "..";
+import { stringfy_tokenformatted, StringfyLanguage } from "..";
+import { formatters } from "@coli.codes/ast-formatter";
 
 export function strfy_property_access_expression(
   c: PropertyAccessExpression,
   l: StringfyLanguage
 ): string {
-  const { expression, name } = c;
-  let code = `${stringfy(expression, { language: l })}`;
+  const ast = formatters.astfmt_property_access_expression(c);
+  return stringfy_tokenformatted(ast);
 
-  code += `${KeywordAndTokenStatic.DotToken}${name}`;
+  // const { expression, name } = c;
+  // let code = `${stringfy(expression, { language: l })}`;
 
-  return code;
+  // code += `${KeywordAndTokenStatic.DotToken}${name}`;
+
+  // return code;
 }

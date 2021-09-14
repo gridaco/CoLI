@@ -1,18 +1,19 @@
 import { ExportAssignment } from "@coli.codes/core/assignment/export-assignment";
-import { stringfy, StringfyLanguage } from "..";
-import { eo, KeywordAndTokenStatic } from "@coli.codes/export-string-core";
+import { stringfy_tokenformatted, StringfyLanguage } from "..";
+import { formatters } from "@coli.codes/ast-formatter";
 
 export function strfy_export_assignment(
   c: ExportAssignment,
   l: StringfyLanguage
 ) {
-  const identifier = c.identifier;
-  const _identifier = stringfy(identifier, {
-    language: l,
-  });
+  const ast = formatters.astfmt_export_assignment(c);
+  return stringfy_tokenformatted(ast);
+  // const _identifier = stringfy(identifier, {
+  //   language: l,
+  // });
 
-  let line = `${KeywordAndTokenStatic.ExportKeyword} ${KeywordAndTokenStatic.DefaultKeyword} ${_identifier}`;
-  line += eo.FILALIZED_END_OF_LINE_TOKEN_VALUE;
+  // let line = `${KeywordAndTokenStatic.ExportKeyword} ${KeywordAndTokenStatic.DefaultKeyword} ${_identifier}`;
+  // line += eo.FILALIZED_END_OF_LINE_TOKEN_VALUE;
 
-  return line;
+  // return line;
 }

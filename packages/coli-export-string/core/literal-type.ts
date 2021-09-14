@@ -1,6 +1,10 @@
 import { LiteralType } from "coli";
-import { StringfyLanguage, stringfy } from "..";
+import { stringfy_tokenformatted, StringfyLanguage } from "..";
+import { formatters } from "@coli.codes/ast-formatter";
 
 export function strfy_literal_type(c: LiteralType, l: StringfyLanguage) {
-  return `${stringfy(c.literal, { language: l })}`;
+  const ast = formatters.astfmt_literal_type(c);
+  return stringfy_tokenformatted(ast);
+
+  // return `${stringfy(c.literal, { language: l })}`;
 }

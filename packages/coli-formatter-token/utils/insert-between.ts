@@ -1,8 +1,3 @@
 export function insertBetween(arr: any[], insert: any) {
-  for (let i = 0; i <= arr.length; i++) {
-    if (i !== 0 && i !== arr.length - 1) {
-      arr.splice(i, 0, insert);
-    }
-  }
-  return arr;
+  return [].concat(...arr.map((n) => [n, insert])).slice(0, -1);
 }

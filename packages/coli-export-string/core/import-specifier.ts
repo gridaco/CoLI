@@ -1,22 +1,22 @@
-import { KeywordAndTokenStatic } from "@coli.codes/export-string-core";
 import { ImportSpecifier } from "coli";
-import { StringfyLanguage } from "..";
-/**
- * @todo transpile lauganage
- * @todo value stringfy
- */
+import { stringfy_tokenformatted, StringfyLanguage } from "..";
+import { formatters } from "@coli.codes/ast-formatter";
+
 export function strfy_import_specifier(
   c: ImportSpecifier,
   l: StringfyLanguage
 ): string {
-  const localName = c?.local?.name;
-  const importedName = c?.imported?.name;
-  let code = "";
-  if (localName !== importedName) {
-    code += `${localName}${KeywordAndTokenStatic.BreakSpaceToken}${KeywordAndTokenStatic.AsKeyword}${KeywordAndTokenStatic.BreakSpaceToken}${importedName}`;
-  } else {
-    code += `${localName}`;
-  }
+  const ast = formatters.astfmt_import_specifier(c);
+  return stringfy_tokenformatted(ast);
 
-  return code;
+  // const localName = c?.local?.name;
+  // const importedName = c?.imported?.name;
+  // let code = "";
+  // if (localName !== importedName) {
+  //   code += `${localName}${KeywordAndTokenStatic.BreakSpaceToken}${KeywordAndTokenStatic.AsKeyword}${KeywordAndTokenStatic.BreakSpaceToken}${importedName}`;
+  // } else {
+  //   code += `${localName}`;
+  // }
+
+  // return code;
 }

@@ -4,7 +4,7 @@ import { SyntaxKind } from "@coli.codes/core-syntax-kind";
 
 export function astfmt_variable_declaration(c: VariableDeclaration) {
   const { kind, type, id, initializer } = c;
-  let fmt: any[] = [kind, f(" "), id];
+  let fmt: any[] = [f(kind), f(" "), id];
 
   if (type) {
     fmt = [...fmt, f(SyntaxKind.ColonToken), f(" "), type];

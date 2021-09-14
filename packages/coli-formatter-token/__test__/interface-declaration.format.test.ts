@@ -14,10 +14,8 @@ test("format ts empty interface", () => {
   const dec = new InterfaceDeclaration({
     name: "Test",
   });
-  const src = format(dec);
-  expect(src).toBe(`interface Test {
-  
-}`);
+  const ast = format(dec);
+  expect(ast).toBe([]);
 });
 
 test("format ts members interface", () => {

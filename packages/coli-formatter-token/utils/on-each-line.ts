@@ -17,5 +17,5 @@ export function onEachLine(
   token: FormatterTokenLike
 ) {
   const lines = Array.isArray(obj) ? obj : [obj];
-  return lines.map((l) => [f(token), l]);
+  return lines.map((l) => [token, l]);
 }

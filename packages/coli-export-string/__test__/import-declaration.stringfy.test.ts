@@ -17,12 +17,16 @@ const importDec = new ImportDeclaration({
       import: "utils",
       local: "u",
     }),
+    new ImportSpecifier({
+      import: "a",
+      local: "b",
+    }),
   ],
   source: "@emotion/styled",
 });
 
 test("import declaration", () => {
   expect(stringfy(importDec)).toBe(
-    `import styled, { u as utils } from "@emotion/styled";\n`
+    `import styled, { u as utils, b as a } from "@emotion/styled";\n`
   );
 });
