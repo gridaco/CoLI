@@ -5,7 +5,6 @@ import f from "../../tokens";
 
 export function astfmt_jsx_element(c: JSXElement) {
   const { openingElement, closingElement, children } = c;
-
   const _children =
     children &&
     Array.isArray(children) &&

@@ -11,13 +11,14 @@ export function astfmt_function_declaration(c: FunctionDeclaration) {
   ]);
 
   return [
+    f("\n"),
     f(SyntaxKind.FunctionKeyword),
     f(" "),
     id,
     f(" "),
     [f(SyntaxKind.OpenParenToken), parameters, f(SyntaxKind.CloseParenToken)],
     returnType ? [f(SyntaxKind.ColonToken), f(" "), returnType] : "",
-    // add body block
+    f(" "),
     body,
     f("\n"),
   ];

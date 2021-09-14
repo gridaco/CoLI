@@ -1,5 +1,7 @@
 import { ColiObject } from "coli";
-import f, { FormatterTokenLike } from "../tokens";
+import f, { FormatterTokenLike, FormattingToken } from "../tokens";
+
+type Acceptable = ColiObject | FormattingToken | FormatterTokenLike;
 /**
  * make indents on each line.
  *
@@ -13,8 +15,8 @@ import f, { FormatterTokenLike } from "../tokens";
  * @returns
  */
 export function onEachLine(
-  obj: ColiObject | ColiObject[],
-  token: FormatterTokenLike
+  obj: Acceptable | Acceptable[],
+  token: Acceptable | Acceptable[]
 ) {
   const lines = Array.isArray(obj) ? obj : [obj];
   return lines.map((l) => [token, l]);

@@ -20,12 +20,14 @@ export function astfmt_jsx_with_attributes({
   );
   let closing_after_new_line =
     join_attributes_with == ["\n", "\t"] ? f("\n") : f("");
+
+  const openning = f(open_token);
+  const closing = close_token == "/>" ? "/>" : f(close_token);
   return [
-    open_token,
+    openning,
     name,
-    f(" "),
     inject.insertBetween(format(attributes), join_attributes_with),
     closing_after_new_line,
-    close_token,
+    closing,
   ];
 }

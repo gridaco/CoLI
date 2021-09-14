@@ -8,6 +8,7 @@ export function get_jsx_attribute_join_with_by_attributes(
     attributes?.length ?? 0
   );
 }
+
 function _get_jsx_attribute_join_with_by_attribute_count(
   count: number
 ): FormatterTokenLike {
