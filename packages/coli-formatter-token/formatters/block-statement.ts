@@ -7,7 +7,7 @@ export function astfmt_block(c: Block) {
   return [
     f(SyntaxKind.OpenBraceToken),
     f("\n"),
-    inject.onEachLine(format(body), "\t"),
+    inject.onEach(format(body), "\t"),
     f("\n"),
     f(SyntaxKind.CloseBraceToken),
     f("\n"),

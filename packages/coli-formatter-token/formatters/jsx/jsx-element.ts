@@ -8,7 +8,7 @@ export function astfmt_jsx_element(c: JSXElement) {
   const _children =
     children &&
     Array.isArray(children) &&
-    inject.onEachLine(insertBetween(format(children), f("\n")), "\t");
+    inject.onEach(insertBetween(format(children), f("\n")), "\t");
   if (_children) {
     return [openingElement, ..._children, closingElement];
   } else {

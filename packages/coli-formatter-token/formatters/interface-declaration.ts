@@ -11,7 +11,7 @@ export function astfmt_interface_declaration(c: InterfaceDeclaration) {
     c.name,
     f(" "),
     f(SyntaxKind.OpenBraceToken),
-    inject.onEachLine(c.members, "\t"),
+    inject.onEach(c.members, "\t"),
     f(SyntaxKind.CloseBraceToken),
   ];
 }

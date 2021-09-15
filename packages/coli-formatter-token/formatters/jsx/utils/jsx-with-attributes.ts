@@ -25,7 +25,7 @@ export function astfmt_jsx_with_attributes({
   const closing = close_token == "/>" ? "/>" : f(close_token);
   return [
     openning,
-    name,
+    format(name),
     inject.insertBetween(format(attributes), join_attributes_with),
     closing_after_new_line,
     closing,

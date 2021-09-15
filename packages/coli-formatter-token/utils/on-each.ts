@@ -14,10 +14,13 @@ type Acceptable = ColiObject | FormattingToken | FormatterTokenLike;
  * @param indent
  * @returns
  */
-export function onEachLine(
+export function onEach(
   obj: Acceptable | Acceptable[],
   token: Acceptable | Acceptable[]
-) {
+): any[] {
+  if (!obj) {
+    return;
+  }
   const lines = Array.isArray(obj) ? obj : [obj];
   return lines.map((l) => [token, l]);
 }

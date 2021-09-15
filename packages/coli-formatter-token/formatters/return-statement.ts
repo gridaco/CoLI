@@ -12,7 +12,7 @@ export function astfmt_return_statement(c: ReturnStatement) {
       f(SyntaxKind.ReturnKeyword),
       f(" "),
       f(SyntaxKind.OpenParenToken),
-      inject.onEachLine([f("\n"), argument, f("\n")], f("\t")),
+      inject.onEach([f("\n"), argument, f("\n")], f("\t")),
       f(SyntaxKind.CloseParenToken),
     ];
   }
