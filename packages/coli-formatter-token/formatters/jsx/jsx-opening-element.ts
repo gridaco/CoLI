@@ -1,6 +1,5 @@
 import { SyntaxKind } from "@coli.codes/core-syntax-kind";
 import { JSXOpeningElement } from "coli";
-import { format } from "../..";
 import { astfmt_jsx_with_attributes } from "./utils/jsx-with-attributes";
 
 export function astfmt_jsx_opening_element(c: JSXOpeningElement) {
@@ -9,6 +8,6 @@ export function astfmt_jsx_opening_element(c: JSXOpeningElement) {
     name: name,
     open_token: SyntaxKind.LessThanToken,
     close_token: SyntaxKind.GreaterThanToken,
-    attributes: format(attributes),
+    attributes: attributes,
   });
 }

@@ -1,13 +1,16 @@
-import { KeywordAndTokenStatic } from "@coli.codes/export-string-core";
+import { formatters } from "@coli.codes/ast-formatter";
 import { JSXAttribute } from "coli";
-import { stringfy, StringfyLanguage } from "../..";
+import { stringfy_tokenformatted, StringfyLanguage } from "../..";
 
 export function strfy_jsx_attribute(
   atrribute: JSXAttribute,
   l: StringfyLanguage
 ) {
-  const { name, value } = atrribute;
-  const atrributeName = stringfy(name, { language: l });
-  const atrributeValue = stringfy(value, { language: l });
-  return `${atrributeName}${KeywordAndTokenStatic.EqualsToken}${atrributeValue}`;
+  const ast = formatters.astfmt_jsx_attribute(atrribute);
+  return stringfy_tokenformatted(ast);
+
+  // const { name, value } = atrribute;
+  // const atrributeName = stringfy(name, { language: l });
+  // const atrributeValue = stringfy(value, { language: l });
+  // return `${atrributeName}${KeywordAndTokenStatic.EqualsToken}${atrributeValue}`;
 }
