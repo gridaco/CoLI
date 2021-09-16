@@ -59,9 +59,9 @@ export class ScopedVariableNamer {
     } else {
       const firstCandidate = candidates[0];
       const safe = this.extendWithIncremental(firstCandidate);
-      console.warn(
-        `all of the scoped naming candidates are used. using pure random name instead - "${safe}". the candidates were ${candidates}`
-      );
+      // console.warn(
+      //   `all of the scoped naming candidates are used. using pure random name instead - "${safe}". the candidates were ${candidates}`
+      // );
       return safe;
     }
   }
