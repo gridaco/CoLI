@@ -1,6 +1,7 @@
-import { Properties, PropertiesHyphen } from "csstype";
+import { Properties, PropertiesHyphen, Property } from "csstype";
 
 export type { PropertiesHyphen as CSSProperties } from "csstype";
+export type { Property as CSSProperty } from "csstype";
 
 export function buildCssJsx(css: Properties) {
   const propertyStrs = [];
