@@ -16,7 +16,11 @@ export function buildCssJsx(css: Properties) {
 }`;
 }
 
-export function buildCssStandard(css: PropertiesHyphen) {
+export function buildCssStandard(css: PropertiesHyphen): string {
+  if (!css) {
+    return "";
+  }
+
   const propertyStrs = [];
   for (const k of Object.keys(css)) {
     const value = css[k];
