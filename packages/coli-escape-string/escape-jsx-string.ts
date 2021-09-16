@@ -4,6 +4,7 @@ const _JSX_SPECIALS = ["{", "}", "<", ">"];
  * @param text
  */
 export function escapeJsxString(text: string): string {
+  console.log("text", `.${text}.`);
   // 0. handle special characters
   const containsSpecial = _JSX_SPECIALS.some((char) => {
     return text.includes(char);
@@ -22,11 +23,17 @@ export function escapeJsxString(text: string): string {
   return text;
 }
 
+/**
+ * adds {"\n"} to each line break (replace `\n` with `{"\\n"}`)
+ * @param lines
+ * @returns
+ */
 function formatLines(lines: string) {
-  return lines
-    .split("\n")
-    .map((line) => {
-      return `${line}{"\\n"}`;
-    })
-    .join("\n");
+  return (
+    lines
+      //
+      .split("\n")
+      //
+      .join(`{"\\n"}\n`)
+  );
 }
