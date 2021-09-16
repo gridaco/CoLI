@@ -4,7 +4,6 @@ const _JSX_SPECIALS = ["{", "}", "<", ">"];
  * @param text
  */
 export function escapeJsxString(text: string): string {
-  console.log("text", `.${text}.`);
   // 0. handle special characters
   const containsSpecial = _JSX_SPECIALS.some((char) => {
     return text.includes(char);
