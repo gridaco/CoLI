@@ -23,16 +23,19 @@ export function escapeJsxString(text: string): string {
 }
 
 /**
- * adds {"\n"} to each line break (replace `\n` with `{"\\n"}`)
+ * adds {"\n"} or <br/> to each line break
+ *
+ * - (replace `\n` with `{"\\n"}`)
+ * - (replace `\n` with `<br/>`)
  * @param lines
  * @returns
  */
-function formatLines(lines: string) {
+function formatLines(lines: string, use: "<br/>" | "{\\n}" = "<br/>") {
   return (
     lines
       //
       .split("\n")
       //
-      .join(`{"\\n"}\n`)
+      .join(`${use}\n`)
   );
 }
