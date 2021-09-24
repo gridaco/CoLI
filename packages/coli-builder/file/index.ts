@@ -109,6 +109,25 @@ export class SourceFile extends ColiBuilder implements ISourceFile {
     return this;
   }
 
+  /**
+   * dynamically write any content to file. (write lines - this will add new lines to existing)
+   * @param lines
+   * @returns
+   */
+  writeLines(...lines): this {
+    this.blocks.push(lines);
+    return this;
+  }
+
+  /**
+   * ⚠️ write to file. - this will overwrite all content
+   */
+  write(content): this {
+    this.blocks.length = 0;
+    this.blocks[0] = [content];
+    return this;
+  }
+
   __finalize() {
     // file is not a ast node. returning this.
     return this;
