@@ -15,6 +15,6 @@ export class JSXOpeningElement extends JsxBaseElement {
   ) {
     super(_ELEMENT_JSX_OPENING);
     this.name = name;
-    this.attributes = params?.attributes;
+    this.attributes = params?.attributes || [];
   }
 }
