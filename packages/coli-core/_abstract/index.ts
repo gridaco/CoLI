@@ -154,9 +154,9 @@ export type ColiObjectType =
   | ColiOtherJsxType
   | ColiJsxElementType
   | ColiTypeKeyword
-  /* no familly */
+  /* no family */
   | typeof _TYPE_REFERENCE
-  /* no familly */
+  /* no family */
   | typeof SyntaxKind.Parameter;
 
 export type ColiObjectKind<T extends ColiObject> = T | ColiBuilder<T>;
