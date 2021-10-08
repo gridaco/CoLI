@@ -4,6 +4,19 @@ import { BlockStatement } from "../../statements";
 import { _DECLARATION_FUNCTION } from "../../_internal/node-name/declarations-name";
 import { Declaration } from "../declaration.base";
 import assert from "assert";
+import { SyntaxKind } from "@coli.codes/core-syntax-kind";
+
+/**
+ * @exceptional
+ * the default structure of modifiers is in array form.
+ * but here, we use object form so we can prevent duplicated modifer on ast token level.
+ */
+type FunctionModifiers = {
+  export?: SyntaxKind.ExportKeyword;
+  default?: SyntaxKind.DefaultKeyword;
+  async?: SyntaxKind.AsyncKeyword;
+  declare?: SyntaxKind.DeclareKeyword;
+};
 
 export class FunctionDeclaration extends Declaration {
   id: Identifier;
@@ -11,12 +24,19 @@ export class FunctionDeclaration extends Declaration {
   body: BlockStatement;
   returnType: Type;
 
+  /**
+   * the modifiers of function declaration.
+   * e.g. `export`, `default`, `async`, `declare`
+   */
+  modifiers?: FunctionModifiers = {};
+
   constructor(
     name: string,
     args?: {
       params?: Identifier[];
       returnType?: Type;
       body?: BlockStatement;
+      modifiers?: FunctionModifiers;
     }
   ) {
     super(_DECLARATION_FUNCTION);
@@ -33,6 +53,9 @@ export class FunctionDeclaration extends Declaration {
     }
     if (args?.params) {
       this.params = args.params;
+    }
+    if (args?.modifiers) {
+      this.modifiers = args.modifiers;
     }
   }
 }
