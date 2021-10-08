@@ -21,6 +21,16 @@ function _to_varkind(i: VariableKindInput): VariableKind {
 }
 
 export class VariableDeclaration extends Declaration {
+  /**
+   * @exceptional
+   * The kind data does not exists on VariableDeclaration, but in VariableStatement.
+   *
+   * but for the sake of ease-of-use, we will add it here on the ast token level.
+   *
+   * This is highly exceptional.
+   *
+   * @deprecated - this may be removed in the future.
+   */
   readonly kind: VariableKind = SyntaxKind.LetKeyword;
   readonly type: Type | TypeReference;
   readonly id: Identifier;
