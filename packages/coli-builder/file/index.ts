@@ -44,7 +44,11 @@ export class SourceFile extends ColiBuilder implements ISourceFile {
   ext: string;
 
   readonly blocks: ColiBlock[] = [];
-  constructor(params: {
+  constructor({
+    path,
+    name,
+    ext,
+  }: {
     readonly path: string;
     readonly name: string;
     /**
@@ -56,19 +60,19 @@ export class SourceFile extends ColiBuilder implements ISourceFile {
 
     // EXECUTION ORDER MATTERS
     // 0.
-    this.name = params.name;
+    this.name = name;
     // 1.
     // region handle ext
-    if (params.ext) {
-      this.ext = params.ext;
+    if (ext) {
+      this.ext = ext;
     } else {
       try {
-        const __splited = params.name.split(".");
+        const __splited = name.split(".");
         const __ext = __splited[__splited.length - 1];
         this.ext = __ext;
 
         // if name like hello.py givven, extract py as extension, set hello as file name
-        this.name = params.name.replace("." + __ext, "");
+        this.name = name.replace("." + __ext, "");
       } catch (_) {
         throw "you must provide approporate file extension in name or with ext field.";
       }

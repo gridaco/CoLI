@@ -4,7 +4,7 @@ import { SyntaxKind } from "@coli.codes/core-syntax-kind";
 import { inject } from "..";
 
 export function astfmt_function_declaration(c: FunctionDeclaration) {
-  const { id, params, body, returnType } = c;
+  const { id, params, body, returnType, modifiers } = c;
   const parameters = inject.insertBetween(params, [
     f(SyntaxKind.CommaToken),
     f(" "),
@@ -12,6 +12,10 @@ export function astfmt_function_declaration(c: FunctionDeclaration) {
 
   return [
     f("\n"),
+    inject.insertBetween(
+      [f(modifiers.export), f(modifiers.default), f(modifiers.async)],
+      f(" ")
+    ),
     f(SyntaxKind.FunctionKeyword),
     f(" "),
     id,

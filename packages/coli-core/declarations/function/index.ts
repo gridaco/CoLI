@@ -19,7 +19,10 @@ type FunctionModifiers = {
 };
 
 export class FunctionDeclaration extends Declaration {
-  id: Identifier;
+  /**
+   * optional function identifier. if falsy, it means this function is anonymous.
+   */
+  id?: Identifier;
   params: Identifier[];
   body: BlockStatement;
   returnType: Type;
@@ -31,7 +34,7 @@ export class FunctionDeclaration extends Declaration {
   modifiers?: FunctionModifiers = {};
 
   constructor(
-    name: string,
+    name?: string,
     args?: {
       params?: Identifier[];
       returnType?: Type;
@@ -42,8 +45,14 @@ export class FunctionDeclaration extends Declaration {
     super(_DECLARATION_FUNCTION);
     // validate function name
     // ref: https://stackoverflow.com/questions/2008279/validate-a-javascript-function-name
-    assert(/^[$A-Z_][0-9A-Z_$]*$/i.test(name), "invalid function name");
-    this.id = new Identifier(name);
+    assert(
+      name ? /^[$A-Z_][0-9A-Z_$]*$/i.test(name) : true,
+      "invalid function name"
+    );
+
+    // identifier is optional
+    this.id = name ? new Identifier(name) : undefined;
+
     // set return type. default value is provided.
     if (args?.returnType) {
       this.returnType = args.returnType;
