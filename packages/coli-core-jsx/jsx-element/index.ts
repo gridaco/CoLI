@@ -19,7 +19,7 @@ export type JSXChildLike =
 /**
  * Types that can be a root Jsx Syntax
  */
-export type JSXElementLike = JsxBaseElement | JSXSelfClosingElement;
+export type JSXElementLike = JsxBaseElement | JSXSelfClosingElement | JSXText;
 
 export class JSXElement extends JsxBaseElement {
   openingElement: JSXOpeningElement;
