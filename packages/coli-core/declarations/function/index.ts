@@ -47,7 +47,7 @@ export class FunctionDeclaration extends Declaration {
     // ref: https://stackoverflow.com/questions/2008279/validate-a-javascript-function-name
     assert(
       name ? /^[$A-Z_][0-9A-Z_$]*$/i.test(name) : true,
-      "invalid function name"
+      "invalid function name" + `"${name}"`
     );
 
     // identifier is optional
