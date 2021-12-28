@@ -18,18 +18,25 @@ export class ScopedVariableNamer {
   }
 
   constructor(
+    /**
+     * the identifier of this namer.
+     */
     readonly identifier: string,
-    readonly platform: ReservedKeywordPlatformSelection
+    readonly platform: ReservedKeywordPlatformSelection = []
   ) {}
+
   nameit(
     seed: NamingSeedLike,
     preferences: {
       case: NameCase;
-    },
-    options?: {
       register?: boolean;
     }
-  ): NamingResult {
+  ): NamingResult & {
+    /**
+     * call this to register explicitly
+     */
+    register: () => void;
+  } {
     const name = nameit(seed, preferences);
     const safename = this.nonconflicingname([
       name.name,
@@ -37,13 +44,14 @@ export class ScopedVariableNamer {
     ]);
 
     // if not explicitly set to false, register it.
-    if (options?.register !== false) {
+    if (preferences?.register !== false) {
       this.register(safename);
     }
 
     return {
       ...name,
       name: safename,
+      register: () => this.register(safename),
     };
   }
 

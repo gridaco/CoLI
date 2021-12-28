@@ -22,6 +22,17 @@ export const ReservedKeywordPlatformPresets = {
   ],
   html: [ReservedKeywordPlatforms.html],
   typescript: [ReservedKeywordPlatforms.typescript],
+  universal: [
+    ReservedKeywordPlatforms.typescript,
+    ReservedKeywordPlatforms.react,
+    ReservedKeywordPlatforms.html,
+    ReservedKeywordPlatforms.cpp,
+    ReservedKeywordPlatforms.csharp,
+    ReservedKeywordPlatforms.php,
+    ReservedKeywordPlatforms.python,
+    ReservedKeywordPlatforms.java,
+    // TODO: add dart
+  ],
 };
 
 export function getReservedKeywords(
