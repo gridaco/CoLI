@@ -1,4 +1,10 @@
-import { ColiBuilder, FunctionDeclaration, _abstract } from "@coli.codes/core";
+import {
+  ColiBuilder,
+  FunctionDeclaration,
+  StringLiteral,
+  TemplateLiteral,
+  _abstract,
+} from "@coli.codes/core";
 import {
   JSXChildLike,
   JSXElement,
@@ -58,8 +64,30 @@ export class JSX extends ColiBuilder<JSXElementLike> {
     });
   }
 
-  static text(text: string): JSXText {
-    return new JSXText(text);
+  static text(
+    text: string,
+    mode?: "literal" | "plain" | "exp" | "template-literal"
+  ): _abstract.ColiObject {
+    switch (mode) {
+      case "literal":
+        return new StringLiteral(text);
+      case "plain":
+        return new JSXText(text);
+      case "exp":
+        return JSX.exp(new StringLiteral(text));
+      case "template-literal":
+        const t = new TemplateLiteral(text);
+        return JSX.exp(t);
+
+      case null:
+      case undefined:
+      default:
+        return new JSXText(text);
+    }
+  }
+
+  static number(n: number): JSXExpression {
+    return new JSXExpression(n as any);
   }
 
   static exp(expression: _abstract.ColiObject): JSXExpression {
