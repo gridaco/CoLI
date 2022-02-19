@@ -22,7 +22,10 @@ export class Literal extends ColiObject {
   ): Literal | ObjectLiteralExpression {
     switch (typeof value) {
       case "string":
-        return new Literal(SyntaxKind.StringLiteral, value);
+        return new Literal(
+          SyntaxKind.StringLiteral,
+          value.replace(/"/g, '\\"')
+        );
       case "number":
         return new Literal(SyntaxKind.NumericLiteral, value);
       case "boolean":
