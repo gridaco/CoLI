@@ -13,9 +13,12 @@ export function astfmt_function_declaration(c: FunctionDeclaration) {
   return [
     f("\n"),
     inject.insertBetween(
-      [f(modifiers.export), f(modifiers.default), f(modifiers.async)],
+      [f(modifiers.export), f(modifiers.default), f(modifiers.async)].filter(
+        Boolean
+      ),
       f(" ")
     ),
+    f(" "),
     f(SyntaxKind.FunctionKeyword),
     f(" "),
     id,
