@@ -23,14 +23,17 @@ export class ObjectLiteralExpression extends Expression {
         this.properties = p.properties;
       } else {
         for (const key in p.properties) {
-          this.properties.push(
-            new PropertyAssignment({
-              name: /[a-zA-Z_$][0-9a-zA-Z_$]*/.test(key) // a short hand validator for valid variable name
-                ? new Identifier(key)
-                : new StringLiteral(key),
-              initializer: p.properties[key],
-            })
-          );
+          const v = p.properties[key];
+          if (v !== undefined) {
+            this.properties.push(
+              new PropertyAssignment({
+                name: /[a-zA-Z_$][0-9a-zA-Z_$]*/.test(key) // a short hand validator for valid variable name
+                  ? new Identifier(key)
+                  : new StringLiteral(key),
+                initializer: Literal.from(v),
+              })
+            );
+          }
         }
       }
     }

@@ -115,8 +115,11 @@ export function stringfy_tokenformatted(
     return tokens.map((t) => stringfy_tokenformatted(t)).join("");
   }
 
-  if (typeof tokens == "string") {
-    return tokens;
+  switch (typeof tokens) {
+    case "string":
+      return tokens;
+    case "number":
+      return tokens.toString();
   }
   if (tokens instanceof FormattingToken) {
     const _maybe_static_token =

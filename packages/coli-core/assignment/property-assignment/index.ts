@@ -1,3 +1,4 @@
+import { ObjectLiteralExpression } from "../..";
 import { Identifier } from "../../ast";
 import { Literal, StringLiteral } from "../../literal";
 import { ColiObject } from "../../_abstract";
@@ -20,7 +21,7 @@ export class PropertyAssignment extends Assignment {
 
   constructor(p: {
     name: Identifier | StringLiteral;
-    initializer: Identifier | Literal;
+    initializer: Identifier | Literal | ObjectLiteralExpression;
   }) {
     super(_ASSIGNMENT_PROPERTY);
     this.name = p.name;
