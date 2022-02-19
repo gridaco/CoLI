@@ -25,10 +25,21 @@ export function buildCssStandard(css: PropertiesHyphen): string {
   for (const k of Object.keys(css)) {
     const value = css[k];
     if (value !== undefined && value !== null) {
-      const propertyStr = `${k}: ${value};`;
+      const propertyStr = `${kebabize(k)}: ${value};`;
       propertyStrs.push(propertyStr);
     }
   }
   const bodyStr = propertyStrs.join("\n");
   return `\n${bodyStr}\n`;
 }
+
+/**
+ * converts camelCase to kebab-case
+ * @param str
+ * @returns
+ */
+const kebabize = (str) =>
+  str.replace(
+    /[A-Z]+(?![a-z])|[A-Z]/g,
+    ($, ofs) => (ofs ? "-" : "") + $.toLowerCase()
+  );
