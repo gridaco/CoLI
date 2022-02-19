@@ -28,5 +28,6 @@ export function astfmt_function_declaration(c: FunctionDeclaration) {
     f(" "),
     body,
     f("\n"),
+    f("\n"),
   ];
 }

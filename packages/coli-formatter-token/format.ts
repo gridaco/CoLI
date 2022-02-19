@@ -27,12 +27,17 @@ function _get_dedicated_formatter(colitype): FormatterFunc {
     case _internal._DECLARATION_VARIABLE:
       return fmts.astfmt_variable_declaration;
     case _internal._DECLARATION_TYPE_ALIAS:
-      // TODO:
+      throw new Error("DeclarationTypeAlias not implemented");
       break;
     /** Statements */
     case _internal._STATEMENT_VARIABLE:
-      // TODO:
+      throw new Error("VariableStatement not implemented");
       break;
+    case _internal._STATEMENT_EXPRESSION:
+      throw new Error(
+        "ExpressionStatement does not have a dedicated formatter"
+      );
+    // return fmts.astfmt_expression_statement;
     case _internal._STATEMENT_BLOCK:
       return fmts.astfmt_block;
     case _internal._STATEMENT_RETURN:
@@ -46,6 +51,8 @@ function _get_dedicated_formatter(colitype): FormatterFunc {
       return fmts.astfmt_property_access_expression;
     case _internal._EXPRESSION_JSX:
       return fmts.astfmt_jsx_expression;
+    case _internal._EXPRESSION_CALL:
+      return fmts.astfmt_call_expression;
     /** Nodes */
     case _internal._NODE_IDENTIFIER:
       return fmts.astfmt_identifier;
@@ -92,5 +99,7 @@ function _get_dedicated_formatter(colitype): FormatterFunc {
       return fmts.astfmt_literal_type;
     case _internal._TYPE_UNION:
       return fmts.astfmt_union_type;
+    default:
+      throw new Error("cannot find ast formatter for " + colitype);
   }
 }

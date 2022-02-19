@@ -161,18 +161,19 @@ function _get_dedicated_strfier(colitype): Stringfyer {
     /** Declarations */
     case _internal._DECLARATION_FUNCTION:
       return strfy.strfy_function_declaration;
-
     case _internal._DECLARATION_IMPORT:
       return strfy.strfy_import_declaration;
     case _internal._DECLARATION_VARIABLE:
       return strfy.strfy_variable_declaration;
     case _internal._DECLARATION_TYPE_ALIAS:
-      // TODO:
+      throw new Error("DeclarationTypeAlias not implemented");
       break;
     /** Statements */
     case _internal._STATEMENT_VARIABLE:
-      // TODO:
+      throw new Error("VariableStatement not implemented");
       break;
+    case _internal._STATEMENT_EXPRESSION:
+      return strfy.strfy_expression_statement;
     case _internal._STATEMENT_BLOCK:
       return strfy.strfy_block;
     case _internal._STATEMENT_RETURN:
@@ -186,6 +187,8 @@ function _get_dedicated_strfier(colitype): Stringfyer {
       return strfy.strfy_property_access_expression;
     case _internal._EXPRESSION_JSX:
       return strfy.strfy_jsx_expression;
+    case _internal._EXPRESSION_CALL:
+      return strfy.strfy_call_expression;
     /** Nodes */
     case _internal._NODE_IDENTIFIER:
       return strfy.strfy_identifier;
@@ -260,8 +263,8 @@ function createSourceCode(
       const message = `givven object cannot be stringfied. with ${
         useStringfyFunction.name
       }:: ${JSON.stringify(coli)}`;
-      console.error(message, _);
-      return "error";
+      console.error({ message, _, d: { useStringfyFunction } });
+      return "// error";
       throw new Error(message);
     }
   }

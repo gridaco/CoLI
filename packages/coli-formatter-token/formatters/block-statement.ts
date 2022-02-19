@@ -10,6 +10,5 @@ export function astfmt_block(c: Block) {
     inject.onEach(format(body), "\t"),
     f("\n"),
     f(SyntaxKind.CloseBraceToken),
-    f("\n"),
   ];
 }

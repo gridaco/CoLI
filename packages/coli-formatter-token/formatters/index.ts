@@ -2,6 +2,7 @@ export * from "./function-declaration";
 export * from "./variable-declaration";
 export * from "./import-declaration";
 export * from "./block-statement";
+export * from "./call-expression";
 export * from "./import-default-specifier";
 export * from "./import-specifier";
 export * from "./identifier-ast";

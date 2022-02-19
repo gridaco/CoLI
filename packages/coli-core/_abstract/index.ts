@@ -169,7 +169,7 @@ export class ColiObject {
    * call_expression()
    * ```
    */
-  leadingComments: CommentExpression[] = [];
+  leadingComments: CommentExpression[];
 
   /**
    * e.g.
@@ -177,7 +177,7 @@ export class ColiObject {
    * let tralingComments; // this comment is traling comment of previous variable declaration.
    * ```
    */
-  tralingComments: CommentExpression[] = [];
+  tralingComments: CommentExpression[];
 
   addComment(params: { message: string; position: "above" | "below" }): this {
     switch (params.position) {
