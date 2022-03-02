@@ -5,6 +5,7 @@ export type FormatterTokenLike =
   | SyntaxKind
   | " "
   | "\n"
+  | "\n\n"
   | "\t"
   | "//"
   | "/**" // docstring start
