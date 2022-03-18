@@ -8,10 +8,10 @@ import { JSXIdentifier } from "../jsx-identifier";
  */
 export class JSXAttribute extends ColiObject {
   name: JSXIdentifier;
-  value: ColiObject;
-  constructor(name: string, value: ColiObject) {
+  initializer?: ColiObject;
+  constructor(name: string, initializer?: ColiObject) {
     super(_JSX_ATTRIBUTE);
     this.name = new JSXIdentifier(name);
-    this.value = value;
+    this.initializer = initializer;
   }
 }
