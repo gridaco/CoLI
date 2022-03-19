@@ -3,7 +3,11 @@ const _JSX_SPECIALS = ["{", "}", "<", ">"];
  * handling cases
  * @param text
  */
-export function escapeJsxString(text: string): string {
+export function escapeJsxString(text?: string): string {
+  if (!text) {
+    return "";
+  }
+
   // 0. handle special characters
   const containsSpecial = _JSX_SPECIALS.some((char) => {
     return text.includes(char);
