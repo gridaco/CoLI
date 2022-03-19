@@ -1,29 +1,66 @@
-import { Properties, PropertiesHyphen, Property } from "csstype";
+import { PropertiesHyphen } from "csstype";
+import type { ElementCssStyleData } from "./css-style-declaration";
+import { isSimplePseudos } from "./simple-pseudos";
 
-export type { PropertiesHyphen as CSSProperties } from "csstype";
-export type { Property as CSSProperty } from "csstype";
+type CSSBodyStr = string;
 
-export function buildCssJsx(css: Properties) {
-  const propertyStrs = [];
-  for (const k of Object.keys(css)) {
-    const value = css[k];
-    const propertyStr = `${k}: "${value}"`;
-    propertyStrs.push(propertyStr);
-  }
-  const bodyStr = propertyStrs.join(",\n\t");
-  return `{
-\t${bodyStr}
-}`;
+/**
+ *
+ * @param css
+ */
+export function buildCSSStyleData(css: ElementCssStyleData): {
+  main: CSSBodyStr;
+  pseudo: {
+    [key: string]: CSSBodyStr;
+  };
+} {
+  // extract the SimplePseudos from css object.
+  const simplePseudos: string[] = Object.keys(css).filter(isSimplePseudos);
+
+  // remove the SimplePseudos from css object.
+  const cssWithoutSimplePseudos = Object.keys(css).reduce((acc, key) => {
+    // if key included in simplePseudos, skip it.
+    if (!simplePseudos.includes(key)) {
+      return {
+        ...acc,
+        [key]: css[key],
+      };
+    }
+    return acc;
+  }, {} as PropertiesHyphen);
+
+  // make non-simple pseudo css object.
+  const nonpseudo = buildCSSBody(cssWithoutSimplePseudos);
+
+  // make a pseudo objects
+  const pseudo: {
+    [key: string]: CSSBodyStr;
+  } = simplePseudos.reduce((acc, key) => {
+    return {
+      ...acc,
+      [key]: buildCSSBody(css[key]),
+    };
+  }, {});
+
+  return {
+    main: nonpseudo,
+    pseudo: pseudo,
+  };
 }
 
-export function buildCssStandard(css: PropertiesHyphen): string {
-  if (!css) {
+/**
+ * {key: value} => key: value
+ * @param properties
+ * @returns
+ */
+export function buildCSSBody(properties: PropertiesHyphen): CSSBodyStr {
+  if (!properties) {
     return "";
   }
 
   const propertyStrs = [];
-  for (const k of Object.keys(css)) {
-    const value = css[k];
+  for (const k of Object.keys(properties)) {
+    const value = properties[k];
     if (value !== undefined && value !== null) {
       const propertyStr = `${kebabize(k)}: ${value};`;
       propertyStrs.push(propertyStr);

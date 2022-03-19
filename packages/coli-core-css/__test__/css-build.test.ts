@@ -1,5 +1,5 @@
 import { Properties, PropertiesHyphen } from "csstype";
-import { buildCssStandard } from "..";
+import { buildCSSBody } from "..";
 
 const hypencss: PropertiesHyphen = {
   color: "white",
@@ -12,7 +12,7 @@ const csstest: Properties = {
 };
 
 test("build hypen css", () => {
-  expect(buildCssStandard(hypencss)).toBe(
+  expect(buildCSSBody(hypencss)).toBe(
     `"color": "white",\n"-webkit-align-content": "baseline"`
   );
 });
