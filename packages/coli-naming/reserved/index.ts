@@ -8,6 +8,7 @@ export enum ReservedKeywordPlatforms {
   java = "java",
   php = "php",
   react = "react",
+  solidjs = "solidjs",
   html = "html",
   typescript = "typescript",
 }
@@ -18,6 +19,11 @@ export const ReservedKeywordPlatformPresets = {
   react: [
     ReservedKeywordPlatforms.typescript,
     ReservedKeywordPlatforms.react,
+    ReservedKeywordPlatforms.html,
+  ],
+  solidjs: [
+    ReservedKeywordPlatforms.typescript,
+    ReservedKeywordPlatforms.solidjs,
     ReservedKeywordPlatforms.html,
   ],
   html: [ReservedKeywordPlatforms.html],
