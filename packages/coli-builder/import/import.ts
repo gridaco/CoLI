@@ -27,7 +27,6 @@ import {
 export class Import extends ColiBuilder<ImportDeclaration> {
   private source: string;
   private default: ImportDefaultSpecifier;
-  private m_import: ImportSpecifier;
   private m_imports: ImportSpecifier[] = [];
   static declare(source: string): ImportDeclaration {
     return new ImportDeclaration({
@@ -61,11 +60,11 @@ export class Import extends ColiBuilder<ImportDeclaration> {
    *
    * 1. _import `{ a }` from "a"
    * 2. ~~import a from "a"~~ **(NOT THIS)**
-   * @param _import
+   * @param _imports
    * @returns
    */
-  imports(_import: HandyImport): this {
-    this.m_import = handyImportToImportSpecifier(_import);
+  imports(..._imports: HandyImport[]): this {
+    this.m_imports.concat(_imports.map(handyImportToImportSpecifier));
     return this;
   }
 
@@ -85,7 +84,6 @@ export class Import extends ColiBuilder<ImportDeclaration> {
   private get specifiers(): BaseImportSpecifier[] {
     const final = [];
     this.default && final.push(this.default);
-    this.m_import && final.push(this.m_import);
     final.push(...this.m_imports);
     return final;
   }
