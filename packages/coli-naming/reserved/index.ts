@@ -8,7 +8,7 @@ export enum ReservedKeywordPlatforms {
   java = "java",
   php = "php",
   react = "react",
-  solidjs = "solidjs",
+  solidjs = "solid-js",
   html = "html",
   typescript = "typescript",
 }
