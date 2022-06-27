@@ -64,7 +64,7 @@ export class Import extends ColiBuilder<ImportDeclaration> {
    * @returns
    */
   imports(..._imports: HandyImport[]): this {
-    this.m_imports.concat(_imports.map(handyImportToImportSpecifier));
+    this.m_imports = _imports.map(handyImportToImportSpecifier);
     return this;
   }
 
