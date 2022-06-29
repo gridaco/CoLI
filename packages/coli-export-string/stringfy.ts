@@ -1,4 +1,4 @@
-import { ColiObject, _internal, _abstract } from "coli";
+import { ColiObject, _internal, _abstract, Snippet } from "coli";
 import { SyntaxKind } from "@coli.codes/core/_internal";
 import * as strfy from "./core";
 import {
@@ -7,6 +7,7 @@ import {
   format as _astfmt,
 } from "@coli.codes/ast-formatter";
 import { KeywordAndTokenStatic } from "@coli.codes/export-string-core";
+import { COLI_WILDCARD_KEY } from "@coli.codes/core/_wildcard";
 
 /*@internal*/
 export type StringfyLanguage =
@@ -161,6 +162,8 @@ export function format(
 
 function _get_dedicated_strfier(colitype): Stringfyer {
   switch (colitype) {
+    case COLI_WILDCARD_KEY:
+      return (c: Snippet, ...args) => c._defaultSnippet;
     /** Declarations */
     case _internal._DECLARATION_FUNCTION:
       return strfy.strfy_function_declaration;

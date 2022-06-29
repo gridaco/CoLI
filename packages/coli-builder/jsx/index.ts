@@ -96,6 +96,18 @@ export class JSX extends ColiBuilder<JSXElementLike> {
 
   // region native tags
   // https://developer.mozilla.org/en-US/docs/Web/HTML/Element
+  static html(any?: NativeConstructor): JSX {
+    return makeNativeTagMaker("html")(any);
+  }
+  static head(any?: NativeConstructor): JSX {
+    return makeNativeTagMaker("head")(any);
+  }
+  static style(any?: NativeConstructor): JSX {
+    return makeNativeTagMaker("style")(any);
+  }
+  static body(any?: NativeConstructor): JSX {
+    return makeNativeTagMaker("body")(any);
+  }
   static h1(any?: NativeConstructor): JSX {
     return makeNativeTagMaker("h1")(any);
   }
