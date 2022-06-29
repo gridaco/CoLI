@@ -710,6 +710,10 @@ const solidjs = [
   "Portal",
 ];
 
+/**
+ * lang reserved keywords mappings
+ * Note: changing the key name will cause side effects.
+ */
 export const RESERVED_KEYWORDS = {
   general: general,
   csharp: csharp,
@@ -720,7 +724,7 @@ export const RESERVED_KEYWORDS = {
   php: php,
   react: react,
   html: html,
-  solidjs: solidjs,
+  "solid-js": solidjs,
 };
 
 export const ALL_RESERVED_KEYWORDS_PRESET = [
