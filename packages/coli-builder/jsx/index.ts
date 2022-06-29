@@ -1,5 +1,6 @@
 import {
   ColiBuilder,
+  ColiObject,
   FunctionDeclaration,
   StringLiteral,
   TemplateLiteral,
@@ -97,76 +98,76 @@ export class JSX extends ColiBuilder<JSXElementLike> {
   // region native tags
   // https://developer.mozilla.org/en-US/docs/Web/HTML/Element
   static html(any?: NativeConstructor): JSX {
-    return makeNativeTagMaker("html")(any);
+    return _native_tag_maker_func("html")(any);
   }
   static head(any?: NativeConstructor): JSX {
-    return makeNativeTagMaker("head")(any);
+    return _native_tag_maker_func("head")(any);
   }
   static style(any?: NativeConstructor): JSX {
-    return makeNativeTagMaker("style")(any);
+    return _native_tag_maker_func("style")(any);
   }
   static body(any?: NativeConstructor): JSX {
-    return makeNativeTagMaker("body")(any);
+    return _native_tag_maker_func("body")(any);
   }
   static h1(any?: NativeConstructor): JSX {
-    return makeNativeTagMaker("h1")(any);
+    return _native_tag_maker_func("h1")(any);
   }
   static h2(any?: NativeConstructor): JSX {
-    return makeNativeTagMaker("h2")(any);
+    return _native_tag_maker_func("h2")(any);
   }
   static h3(any?: NativeConstructor): JSX {
-    return makeNativeTagMaker("h3")(any);
+    return _native_tag_maker_func("h3")(any);
   }
   static h4(any?: NativeConstructor): JSX {
-    return makeNativeTagMaker("h4")(any);
+    return _native_tag_maker_func("h4")(any);
   }
   static h5(any?: NativeConstructor): JSX {
-    return makeNativeTagMaker("h5")(any);
+    return _native_tag_maker_func("h5")(any);
   }
   static h6(any?: NativeConstructor): JSX {
-    return makeNativeTagMaker("h6")(any);
+    return _native_tag_maker_func("h6")(any);
   }
   static p(any?: NativeConstructor): JSX {
-    return makeNativeTagMaker("p")(any);
+    return _native_tag_maker_func("p")(any);
   }
   static div(any?: NativeConstructor): JSX {
-    return makeNativeTagMaker("div")(any);
+    return _native_tag_maker_func("div")(any);
   }
   static span(any?: NativeConstructor): JSX {
-    return makeNativeTagMaker("span")(any);
+    return _native_tag_maker_func("span")(any);
   }
   static a(any?: NativeConstructor): JSX {
-    return makeNativeTagMaker("a")(any);
+    return _native_tag_maker_func("a")(any);
   }
   static li(any?: NativeConstructor): JSX {
-    return makeNativeTagMaker("li")(any);
+    return _native_tag_maker_func("li")(any);
   }
   static ol(any?: NativeConstructor): JSX {
-    return makeNativeTagMaker("ol")(any);
+    return _native_tag_maker_func("ol")(any);
   }
   static ul(any?: NativeConstructor): JSX {
-    return makeNativeTagMaker("ul")(any);
+    return _native_tag_maker_func("ul")(any);
   }
   static i(any?: NativeConstructor): JSX {
-    return makeNativeTagMaker("i")(any);
+    return _native_tag_maker_func("i")(any);
   }
   static iframe(any?: NativeConstructor): JSX {
-    return makeNativeTagMaker("iframe")(any);
+    return _native_tag_maker_func("iframe")(any);
   }
   static button(any?: NativeConstructor): JSX {
-    return makeNativeTagMaker("button")(any);
+    return _native_tag_maker_func("button")(any);
   }
   static form(any?: NativeConstructor): JSX {
-    return makeNativeTagMaker("form")(any);
+    return _native_tag_maker_func("form")(any);
   }
   static input(any?: NativeConstructor): JSX {
-    return makeNativeTagMaker("input")(any);
+    return _native_tag_maker_func("input")(any);
   }
   static select(any?: NativeConstructor): JSX {
-    return makeNativeTagMaker("select")(any);
+    return _native_tag_maker_func("select")(any);
   }
   static image(any?: NativeConstructor): JSX {
-    return makeNativeTagMaker("image")(any);
+    return _native_tag_maker_func("image")(any);
   }
   // endregion native tags
 
@@ -215,21 +216,29 @@ function _handyJsxIdentifierToJSXIdentifier(
   }
 }
 
-function makeNativeTagMaker(tag: string): (p?: NativeConstructor) => JSX {
+function _native_tag_maker_func(tag: string): (p?: NativeConstructor) => JSX {
   return (p: NativeConstructor) => {
-    let altChildren: HandyJSXChildLike[];
-    if (p) {
-      if ("child" in p) {
-        altChildren = [p.child];
-      } else if ("children" in p) {
-        altChildren = p.children;
+    if (p instanceof ColiObject || p instanceof JSX) {
+      return new JSX(tag, {
+        children: [p as any],
+      });
+    } else if ("child" in p || "children" in p) {
+      let _children: HandyJSXChildLike[];
+      if (p) {
+        if ("child" in p) {
+          _children = [p.child];
+        } else if ("children" in p) {
+          _children = p.children;
+        }
       }
-    }
 
-    return new JSX(tag, {
-      attributes: p?.attributes,
-      children: altChildren,
-    });
+      return new JSX(tag, {
+        attributes: (
+          p as NativeMultiChildConstructor | NativeSingleChildConstructor
+        )?.attributes,
+        children: _children,
+      });
+    }
   };
 }
 
@@ -245,15 +254,16 @@ type NativeSingleChildConstructor = {
 
 type NativeConstructor =
   | NativeSingleChildConstructor
-  | NativeMultiChildConstructor;
+  | NativeMultiChildConstructor
+  | HandyJSXChildLike;
 
 type HandyJSXChildLike = ColiObjectLike<JSXChildLike>; //
 
 function handyJSXChildLikeToJSXChildLike(
   like: HandyJSXChildLike
 ): JSXChildLike {
-  if (like instanceof JSX) {
-    return like.__finalize();
+  if (like instanceof ColiBuilder) {
+    return like.make();
   }
   return like as JSXChildLike;
 }

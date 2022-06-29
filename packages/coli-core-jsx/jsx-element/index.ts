@@ -26,6 +26,11 @@ export class JSXElement extends JsxBaseElement {
   closingElement: JSXClosingElement;
   children: Array<JSXChildLike> | JSXChildLike;
 
+  /**
+   * tag for developers. (assigning this for better readability) (for console log)
+   */
+  private readonly __tag: string;
+
   constructor(params: {
     openingElement: JSXOpeningElement;
     closingElement: JSXClosingElement;
@@ -34,6 +39,7 @@ export class JSXElement extends JsxBaseElement {
     super(_ELEMENT_JSX);
     this.openingElement = params.openingElement;
     this.closingElement = params.closingElement;
+    this.__tag = this.openingElement?.name?.name;
     this.children = params.children;
   }
 
