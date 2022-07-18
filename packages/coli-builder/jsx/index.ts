@@ -91,7 +91,7 @@ export class JSX extends ColiBuilder<JSXElementLike> {
     return new JSXExpression(n as any);
   }
 
-  static exp(expression: _abstract.ColiObject): JSXExpression {
+  static exp(expression?: _abstract.ColiObject): JSXExpression {
     return new JSXExpression(expression);
   }
 
