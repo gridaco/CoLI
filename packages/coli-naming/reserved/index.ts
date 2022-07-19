@@ -43,7 +43,7 @@ export const ReservedKeywordPlatformPresets = {
 
 export function getReservedKeywords(
   platform: ReservedKeywordPlatformSelection
-) {
+): string[] {
   const keywords = [];
   platform.map((p) => {
     const platformKeywords = RESERVED_KEYWORDS[p];

@@ -3,79 +3,30 @@ import {
   getReservedKeywords,
   ReservedKeywordPlatformSelection,
 } from "../reserved";
-import { NameCase, NamingResult, NamingSeedLike } from "../types";
+import { Namer } from "./namer";
 
 /**
  * Namer with scoped reference. used for preventing duplication.
  */
-export class ScopedVariableNamer {
-  /**
-   * used name
-   */
-  private readonly _table = [];
-  get table() {
-    return this.table;
-  }
-
+export class ScopedVariableNamer extends Namer {
   constructor(
     /**
      * the identifier of this namer.
      */
     readonly identifier: string,
     readonly platform: ReservedKeywordPlatformSelection = []
-  ) {}
-
-  nameit(
-    seed: NamingSeedLike,
-    preferences: {
-      case: NameCase;
-      register?: boolean;
-    }
-  ): NamingResult & {
-    /**
-     * call this to register explicitly
-     */
-    register: () => void;
-  } {
-    const name = nameit(seed, preferences);
-    const safename = this.nonconflicingname([
-      name.name,
-      ...(name.candidates ?? []),
-    ]);
-
-    // if not explicitly set to false, register it.
-    if (preferences?.register !== false) {
-      this.register(safename);
-    }
-
-    return {
-      ...name,
-      name: safename,
-      register: () => this.register(safename),
-    };
-  }
-
-  private nonconflicingname(candidates: string[]): string {
-    const safe = candidates.find((c) => {
-      const notintable = !this._table.includes(c);
-      const notinreserved = !getReservedKeywords(this.platform).includes(c);
-      return notintable && notinreserved;
+  ) {
+    super(identifier, {
+      exclude: getReservedKeywords(platform),
     });
-
-    if (safe) {
-      return safe;
-    } else {
-      const firstCandidate = candidates[0];
-      const safe = this.extendWithIncremental(firstCandidate);
-      // console.warn(
-      //   `all of the scoped naming candidates are used. using pure random name instead - "${safe}". the candidates were ${candidates}`
-      // );
-      return safe;
-    }
   }
 
   private extendWithRandom(nonsafeName: string): string {
     return nonsafeName + `_` + randomHash(4);
+  }
+
+  protected makeunique(name: string): string {
+    return this.extendWithIncremental(name);
   }
 
   private extendWithIncremental(nonsafeName: string) {
@@ -93,15 +44,5 @@ export class ScopedVariableNamer {
       safeName = `${nonsafeName}_${formattedNum(i)}`;
     }
     return safeName;
-  }
-
-  register(name: string) {
-    if (!this._table.includes(name)) {
-      this._table.push(name);
-    }
-  }
-
-  clear() {
-    this._table.length = 0;
   }
 }
