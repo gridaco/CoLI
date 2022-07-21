@@ -14,6 +14,7 @@ import {
 } from "@coli.codes/ast-formatter";
 import { KeywordAndTokenStatic } from "@coli.codes/export-string-core";
 import { COLI_WILDCARD_KEY } from "@coli.codes/core/_wildcard";
+import { NoTokenInterpreterFoundError } from "./errors";
 
 /*@internal*/
 export type StringfyLanguage =
@@ -247,7 +248,7 @@ function _get_dedicated_strfier(colitype: ColiObjectType): Stringfyer {
       return strfy.strfy_union_type;
     case SyntaxKind.SingleLineCommentTrivia:
     case SyntaxKind.MultiLineCommentTrivia:
-      return strfy.strfy_comment_expression;
+      return strfy.strfy_comment_trivia;
 
     // region literal keywords
     case SyntaxKind.BooleanKeyword:
@@ -263,29 +264,37 @@ function _get_dedicated_strfier(colitype: ColiObjectType): Stringfyer {
 
 /*@internal*/
 function createSourceCode(
-  coli: ColiObject | any,
-  stringfyLanguage: StringfyLanguage,
+  coli: ColiObject,
+  lang: StringfyLanguage,
   depth: number
 ) {
-  const { __type: colitype } = coli;
+  const { __type: colitype, leadingComments, tralingComments } = coli;
 
-  // TODO: add leading / trailing comment support
+  const str_leadingcomment =
+    leadingComments?.map((c) => strfy.strfy_comment_trivia(c)) ?? "";
+  const str_trailingcomment =
+    tralingComments?.map((c) => strfy.strfy_comment_trivia(c)) ?? "";
 
-  const useStringfyFunction = _get_dedicated_strfier(colitype);
-  if (useStringfyFunction) {
+  const stringfier = _get_dedicated_strfier(colitype);
+  if (stringfier) {
     try {
-      return useStringfyFunction(coli, stringfyLanguage, depth);
+      const str = stringfier(coli, lang, depth);
+
+      // add comments
+      const str_with_comments = `${str_leadingcomment}${str}${str_trailingcomment}`;
+      return str_with_comments;
     } catch (_) {
       const message = `givven object cannot be stringfied. with ${
-        useStringfyFunction.name
+        stringfier.name
       }:: ${JSON.stringify(coli)}`;
-      console.error({ message, _, d: { useStringfyFunction } });
+      console.error({ message, _, d: { useStringfyFunction: stringfier } });
       return "// error";
       throw new Error(message);
     }
   }
 
+  throw new NoTokenInterpreterFoundError(colitype, coli);
+
   /** @TEST */
-  return JSON.stringify(coli);
-  // throw new NoTokenInterpreterFoundError(nodeName, coli);
+  // return JSON.stringify(coli);
 }

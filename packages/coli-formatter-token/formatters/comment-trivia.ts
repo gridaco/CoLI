@@ -17,7 +17,7 @@ export function astfmt_comment_trivia(c: CommentTrivia) {
           lines.map((i) => [f(docstring_starter_tokens[1] as " *"), i]),
           "\n"
         ),
-        ["\n", docstring_starter_tokens[2] as "*/", "\n"],
+        ["\n", docstring_starter_tokens[2] as "*/"],
       ];
     }
     case SyntaxKind.SingleLineCommentTrivia: {
