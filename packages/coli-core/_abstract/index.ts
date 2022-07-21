@@ -183,11 +183,13 @@ export class ColiObject {
   withComments(at: "leading" | "trailing", ...comments: CommentTrivia[]): this {
     switch (at) {
       case "leading": {
-        this.tralingComments.push(...comments);
+        if (!this.leadingComments) this.leadingComments = [];
+        this.leadingComments.push(...comments);
         break;
       }
 
       case "trailing": {
+        if (!this.tralingComments) this.tralingComments = [];
         this.tralingComments.push(...comments);
         break;
       }

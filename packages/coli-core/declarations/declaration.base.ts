@@ -1,3 +1,4 @@
+import type { CommentTrivia } from "../comments";
 import { ColiDeclarationType, ColiObject } from "../_abstract";
 
 export abstract class Declaration extends ColiObject {
@@ -11,7 +12,8 @@ export abstract class Declaration extends ColiObject {
    *
    * @alpha :TODO:
    */
-  withDocument() {
+  withDocument(document: CommentTrivia) {
+    this.withComments("leading", document);
     return this;
   }
 }
