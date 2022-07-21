@@ -1,3 +1,6 @@
+// syntax kind
+export { SyntaxKind } from "@coli.codes/core-syntax-kind";
+
 // internal objects
 export * as _abstract from "./_abstract";
 export * as _internal from "./_internal";
@@ -23,6 +26,7 @@ export * from "./assignment";
 export * from "./declarations";
 export * from "./expressions";
 export * from "./literal";
+export * from "./comments";
 
 // level1 entries
 export * from "./property-signature";

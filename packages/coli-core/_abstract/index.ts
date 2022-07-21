@@ -1,6 +1,6 @@
 import { ColiBlock } from "../builder/block";
 import { ColiBuilder } from "../builder/builder";
-import { CommentExpression } from "../expressions/comment";
+import { CommentTrivia } from "../comments";
 import { COLI_WILDCARD_KEY } from "../_wildcard";
 import {
   _ASSIGNMENT_EXPORT,
@@ -32,7 +32,6 @@ import {
 import {
   _EXPRESSION_AWAIT,
   _EXPRESSION_CALL,
-  _EXPRESSION_COMMENT,
   _EXPRESSION_JSX,
   _EXPRESSION_LITERAL_OBJECT,
   _EXPRESSION_PROPERTY_ACCESS,
@@ -88,7 +87,6 @@ export type ColiSignatureType = typeof _SIGNATURE_PROPERTY;
 // expressions
 export type ColiExpressionType =
   | typeof _EXPRESSION_CALL
-  | typeof _EXPRESSION_COMMENT
   | typeof _EXPRESSION_AWAIT
   | typeof _EXPRESSION_PROPERTY_ACCESS
   | typeof _EXPRESSION_LITERAL_OBJECT
@@ -157,7 +155,10 @@ export type ColiObjectType =
   /* no family */
   | typeof _TYPE_REFERENCE
   /* no family */
-  | typeof SyntaxKind.Parameter;
+  | typeof SyntaxKind.Parameter
+  /* comment trivia */
+  | typeof SyntaxKind.SingleLineCommentTrivia
+  | typeof SyntaxKind.MultiLineCommentTrivia;
 
 export type ColiObjectKind<T extends ColiObject> = T | ColiBuilder<T>;
 
@@ -169,7 +170,7 @@ export class ColiObject {
    * call_expression()
    * ```
    */
-  leadingComments: CommentExpression[];
+  leadingComments: CommentTrivia[];
 
   /**
    * e.g.
@@ -177,15 +178,19 @@ export class ColiObject {
    * let tralingComments; // this comment is traling comment of previous variable declaration.
    * ```
    */
-  tralingComments: CommentExpression[];
+  tralingComments: CommentTrivia[];
 
-  addComment(params: { message: string; position: "above" | "below" }): this {
-    switch (params.position) {
-      case "above":
-      // this.tralingComments.push(new CommentExpression());
+  withComments(at: "leading" | "trailing", ...comments: CommentTrivia[]): this {
+    switch (at) {
+      case "leading": {
+        this.tralingComments.push(...comments);
+        break;
+      }
 
-      case "below":
-      // this.tralingComments.push(new CommentExpression());
+      case "trailing": {
+        this.tralingComments.push(...comments);
+        break;
+      }
     }
     return this;
   }

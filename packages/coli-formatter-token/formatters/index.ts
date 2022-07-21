@@ -7,7 +7,7 @@ export * from "./import-default-specifier";
 export * from "./import-specifier";
 export * from "./identifier-ast";
 export * from "./literal-ast";
-export * from "./comment-expression";
+export * from "./comment-trivia";
 export * from "./tagged-template-expression";
 export * from "./property-access-expression";
 export * from "./export-assignment";

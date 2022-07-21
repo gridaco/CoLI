@@ -1,4 +1,10 @@
-import { ColiObject, _internal, _abstract, Snippet } from "coli";
+import {
+  ColiObject,
+  _internal,
+  _abstract,
+  Snippet,
+  ColiObjectType,
+} from "coli";
 import { SyntaxKind } from "@coli.codes/core/_internal";
 import * as strfy from "./core";
 import {
@@ -160,7 +166,7 @@ export function format(
   return source;
 }
 
-function _get_dedicated_strfier(colitype): Stringfyer {
+function _get_dedicated_strfier(colitype: ColiObjectType): Stringfyer {
   switch (colitype) {
     case COLI_WILDCARD_KEY:
       return (c: Snippet, ...args) => c._defaultSnippet;
@@ -185,8 +191,6 @@ function _get_dedicated_strfier(colitype): Stringfyer {
     case _internal._STATEMENT_RETURN:
       return strfy.strfy_return_statement;
     /** Expressions */
-    case _internal._EXPRESSION_COMMENT:
-      return strfy.strfy_comment_expression;
     case _internal._EXPRESSION_TAGGED_TEMPLATE:
       return strfy.strfy_tagged_template_expression;
     case _internal._EXPRESSION_PROPERTY_ACCESS:
@@ -241,7 +245,11 @@ function _get_dedicated_strfier(colitype): Stringfyer {
       return strfy.strfy_literal_type;
     case _internal._TYPE_UNION:
       return strfy.strfy_union_type;
-    // region keywords
+    case SyntaxKind.SingleLineCommentTrivia:
+    case SyntaxKind.MultiLineCommentTrivia:
+      return strfy.strfy_comment_expression;
+
+    // region literal keywords
     case SyntaxKind.BooleanKeyword:
     case SyntaxKind.NumberKeyword:
     case SyntaxKind.StringKeyword:
@@ -260,6 +268,8 @@ function createSourceCode(
   depth: number
 ) {
   const { __type: colitype } = coli;
+
+  // TODO: add leading / trailing comment support
 
   const useStringfyFunction = _get_dedicated_strfier(colitype);
   if (useStringfyFunction) {

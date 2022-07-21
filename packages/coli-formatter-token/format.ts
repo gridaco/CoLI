@@ -1,4 +1,9 @@
-import { ColiObject, _internal } from "@coli.codes/core";
+import {
+  ColiObject,
+  ColiObjectType,
+  _internal,
+  SyntaxKind,
+} from "@coli.codes/core";
 import * as fmts from "./formatters";
 
 export function format(coli) {
@@ -17,7 +22,7 @@ export function format(coli) {
 }
 
 type FormatterFunc = (c) => any[] | string | any;
-function _get_dedicated_formatter(colitype): FormatterFunc {
+function _get_dedicated_formatter(colitype: ColiObjectType): FormatterFunc {
   switch (colitype) {
     /** Declarations */
     case _internal._DECLARATION_FUNCTION:
@@ -43,8 +48,6 @@ function _get_dedicated_formatter(colitype): FormatterFunc {
     case _internal._STATEMENT_RETURN:
       return fmts.astfmt_return_statement;
     /** Expressions */
-    case _internal._EXPRESSION_COMMENT:
-      return fmts.astfmt_comment_expression;
     case _internal._EXPRESSION_TAGGED_TEMPLATE:
       return fmts.astfmt_tagged_template_expression;
     case _internal._EXPRESSION_PROPERTY_ACCESS:
@@ -99,6 +102,9 @@ function _get_dedicated_formatter(colitype): FormatterFunc {
       return fmts.astfmt_literal_type;
     case _internal._TYPE_UNION:
       return fmts.astfmt_union_type;
+    case SyntaxKind.MultiLineCommentTrivia:
+    case SyntaxKind.SingleLineCommentTrivia:
+      return fmts.astfmt_comment_trivia;
     default:
       throw new Error("cannot find ast formatter for " + colitype);
   }
