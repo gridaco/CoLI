@@ -4,6 +4,7 @@ import {
   _abstract,
   Snippet,
   ColiObjectType,
+  SourceFile,
 } from "coli";
 import { SyntaxKind } from "@coli.codes/core/_internal";
 import * as strfy from "./core";
@@ -67,10 +68,14 @@ type Stringfyer = (
 ) => string;
 
 export function stringfy(
-  coli: _abstract.ColiInterpretable,
+  coli: _abstract.ColiInterpretable | SourceFile,
   stringfyOptions?: StringfyOptions,
   depth?: number
 ): string {
+  if (coli instanceof SourceFile) {
+    return stringfy(coli.blocks, stringfyOptions, depth);
+  }
+
   if (coli === undefined) {
     return "";
   }
@@ -268,6 +273,11 @@ function createSourceCode(
   lang: StringfyLanguage,
   depth: number
 ) {
+  // todo: accept coli builder instances as well. (below code does not work somehow)
+  // if (coli instanceof ColiBuilder) {
+  //   return createSourceCode(coli.make(), lang, depth);
+  // }
+
   const { __type: colitype, leadingComments, tralingComments } = coli;
 
   const str_leadingcomment =

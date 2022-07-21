@@ -68,17 +68,17 @@ export class JSX extends ColiBuilder<JSXElementLike> {
   static text(
     text: string,
     mode?: "literal" | "plain" | "exp" | "template-literal"
-  ): _abstract.ColiObject {
+  ): JSXText {
     switch (mode) {
       case "literal":
-        return new StringLiteral(text);
+        return new StringLiteral(text) as any as JSXText;
       case "plain":
         return new JSXText(text);
       case "exp":
-        return JSX.exp(new StringLiteral(text));
+        return JSX.exp(new StringLiteral(text)) as any as JSXText;
       case "template-literal":
         const t = new TemplateLiteral(text);
-        return JSX.exp(t);
+        return JSX.exp(t) as any as JSXText;
 
       case null:
       case undefined:
@@ -175,7 +175,9 @@ export class JSX extends ColiBuilder<JSXElementLike> {
 
   static fromClass<C>() {}
 
-  static fragment() {}
+  static fragment(any?: NativeConstructor) {
+    return _native_tag_maker_func("")(any);
+  }
 
   __finalize() {
     const _id = _handyJsxIdentifierToJSXIdentifier(this.identifer);
@@ -207,6 +209,8 @@ function _handyJsxIdentifierToJSXIdentifier(
 ): JSXIdentifier {
   if (typeof identifier === "string") {
     return new JSXIdentifier(identifier);
+  } else if (typeof identifier === "undefined") {
+    return new JSXIdentifier(""); // fragment <></>
   } else if (identifier instanceof JSXIdentifier) {
     return identifier;
   } else {
