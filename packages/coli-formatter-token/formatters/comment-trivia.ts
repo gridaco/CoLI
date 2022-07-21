@@ -3,6 +3,7 @@ import f from "../tokens";
 import { SyntaxKind } from "@coli.codes/core-syntax-kind";
 import { inject } from "..";
 
+const docstring_starter_tokens = ["/**", " * ", "*/"] as const;
 export function astfmt_comment_trivia(c: CommentTrivia) {
   const { __type, text } = c;
 
@@ -10,14 +11,13 @@ export function astfmt_comment_trivia(c: CommentTrivia) {
 
   switch (__type) {
     case SyntaxKind.MultiLineCommentTrivia: {
-      const docstring_starter_tokens = ["/**", " *", "*/"];
       return [
         [docstring_starter_tokens[0], "\n"],
         inject.insertBetween(
-          lines.map((i) => [f(docstring_starter_tokens[1] as " *"), i]),
+          lines.map((i) => [f(docstring_starter_tokens[1]), i]),
           "\n"
         ),
-        ["\n", docstring_starter_tokens[2] as "*/"],
+        ["\n", docstring_starter_tokens[2]],
       ];
     }
     case SyntaxKind.SingleLineCommentTrivia: {

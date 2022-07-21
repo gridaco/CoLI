@@ -9,6 +9,7 @@ export type FormatterTokenLike =
   | "//"
   | "/**" // docstring start
   | " *" // docstring mid
+  | " * " // docstring mid with extra spacing
   | "*/" // docstring end
   | ""
   | FormatterTokenLike[];
