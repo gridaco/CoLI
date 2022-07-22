@@ -2,6 +2,9 @@
   "name": "coli-plugin-postprocessing",
   "version": "0.0.0",
   "private": false,
+  "license": "MIT",
+  "homepage": "https://github.com/gridaco/coli",
+  "repository": "https://github.com/gridaco/coli",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
