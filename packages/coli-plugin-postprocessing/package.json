@@ -5,6 +5,14 @@
   "license": "MIT",
   "homepage": "https://github.com/gridaco/coli",
   "repository": "https://github.com/gridaco/coli",
+  "keywords": [
+    "coli",
+    "coli-plugin",
+    "text-replacer",
+    "ast",
+    "async",
+    "plugin"
+  ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
