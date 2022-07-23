@@ -40,7 +40,11 @@ export type FormatterIndent =
   /**
    * use 4 spaces - "    "
    */
-  | 4;
+  | 4
+  /**
+   * use 4 spaces - "        "
+   */
+  | 8;
 
 interface ColiFormatterConfig {
   use: "pritter";
@@ -316,6 +320,7 @@ function indent(_: FormatterIndent): string {
       return "\t";
     case 2:
     case 4:
+    case 8:
       return " ".repeat(_);
     case undefined:
     default:

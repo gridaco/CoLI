@@ -23,7 +23,6 @@ export function astfmt_function_declaration(c: FunctionDeclaration) {
     f(SyntaxKind.FunctionKeyword),
     f(" "),
     id,
-    f(" "),
     [f(SyntaxKind.OpenParenToken), parameters, f(SyntaxKind.CloseParenToken)],
     returnType ? [f(SyntaxKind.ColonToken), f(" "), returnType] : "",
     f(" "),
