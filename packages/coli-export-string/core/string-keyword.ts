@@ -1,10 +1,10 @@
 import { KeywordAndTokenStatic } from "@coli.codes/export-string-core";
 import { StringKeyword } from "coli";
-import { StringfyLanguage } from "..";
+import type { StringfyOptions } from "..";
 
 export function strfy_string_keyword(
   c: StringKeyword,
-  l: StringfyLanguage
+  l: StringfyOptions
 ): string {
   return KeywordAndTokenStatic.StringKeyword;
 }

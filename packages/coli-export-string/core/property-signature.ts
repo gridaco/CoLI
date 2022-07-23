@@ -1,14 +1,13 @@
-import { KeywordAndTokenStatic } from "@coli.codes/export-string-core";
 import { PropertySignature } from "coli";
-import { stringfy_tokenformatted, StringfyLanguage } from "..";
+import { stringfy_tokenformatted, StringfyOptions } from "..";
 import { formatters } from "@coli.codes/ast-formatter";
 
 export function strfy_property_signature(
   c: PropertySignature,
-  l: StringfyLanguage
+  l: StringfyOptions
 ) {
   const ast = formatters.astfmt_property_signature(c);
-  return stringfy_tokenformatted(ast);
+  return stringfy_tokenformatted(ast, l);
 
   // const _opt = { language: l };
   // const _questiontoken = c.questionToken

@@ -1,7 +1,6 @@
-import { SyntaxKind } from "@coli.codes/core-syntax-kind";
 import { VariableKind } from "@coli.codes/core/_internal";
 import { VariableDeclaration } from "coli";
-import { stringfy_tokenformatted, StringfyLanguage } from "..";
+import { stringfy_tokenformatted, StringfyOptions } from "..";
 import { formatters } from "@coli.codes/ast-formatter";
 
 /**
@@ -10,10 +9,10 @@ import { formatters } from "@coli.codes/ast-formatter";
  */
 export function strfy_variable_declaration(
   c: VariableDeclaration,
-  l: StringfyLanguage
+  l: StringfyOptions
 ): string {
   const ast = formatters.astfmt_variable_declaration(c);
-  return stringfy_tokenformatted(ast);
+  return stringfy_tokenformatted(ast, l);
 
   // const { kind, type, id, initializer } = c;
   // const _opt = { language: l };

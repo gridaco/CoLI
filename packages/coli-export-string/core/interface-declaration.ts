@@ -1,13 +1,13 @@
 import { InterfaceDeclaration } from "coli";
-import { stringfy_tokenformatted, StringfyLanguage } from "..";
+import { stringfy_tokenformatted, StringfyOptions } from "..";
 import { formatters } from "@coli.codes/ast-formatter";
 
 export function strfy_interface_declaration(
   c: InterfaceDeclaration,
-  l: StringfyLanguage
+  l: StringfyOptions
 ) {
   const ast = formatters.astfmt_interface_declaration(c);
-  return stringfy_tokenformatted(ast);
+  return stringfy_tokenformatted(ast, l);
 
   //   return `${KeywordAndTokenStatic.InterfaceKeyword} ${stringfy(c.name, {
   //     language: l,

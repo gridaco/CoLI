@@ -1,13 +1,13 @@
 import { ObjectLiteralExpression } from "coli";
-import { stringfy_tokenformatted, StringfyLanguage } from "..";
+import { stringfy_tokenformatted, StringfyOptions } from "..";
 import { formatters } from "@coli.codes/ast-formatter";
 
 export function strfy_object_literal_expression(
   c: ObjectLiteralExpression,
-  l?: StringfyLanguage
+  l?: StringfyOptions
 ) {
   const ast = formatters.astfmt_object_literal_expression(c);
-  return stringfy_tokenformatted(ast);
+  return stringfy_tokenformatted(ast, l);
 
   //   return `${KeywordAndTokenStatic.OpenBraceToken}
   // ${indent.onEachLine(

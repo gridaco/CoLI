@@ -45,7 +45,6 @@ export type FormatterIndent =
 interface ColiFormatterConfig {
   use: "pritter";
   parser: "typescript";
-  indent?: FormatterIndent;
 
   /**
    * configures weather if throws error that occured while formatting.
@@ -54,26 +53,27 @@ interface ColiFormatterConfig {
   throw?: boolean;
 }
 
-interface StringfyOptions {
+export interface StringfyOptions {
   language: StringfyLanguage;
   joinWith?: string;
   formatter?: StringFormatter;
   formattingOptions?: ColiFormatterConfig;
+  indentation?: FormatterIndent;
 }
 
 type Stringfyer = (
   c: ColiObject | any,
-  l: StringfyOptions["language"],
+  l: StringfyOptions,
   d?: number
 ) => string;
 
 export function stringfy(
   coli: _abstract.ColiInterpretable | SourceFile,
-  stringfyOptions?: StringfyOptions,
+  options?: StringfyOptions,
   depth?: number
 ): string {
   if (coli instanceof SourceFile) {
-    return stringfy(coli.blocks, stringfyOptions, depth);
+    return stringfy(coli.blocks, options, depth);
   }
 
   if (coli === undefined) {
@@ -82,7 +82,7 @@ export function stringfy(
 
   // if depth not specified, set it to root - 0
   depth = depth ?? 0;
-  const { language, joinWith = "" } = stringfyOptions ?? {
+  const { language, joinWith = "" } = options ?? {
     language: "typescript",
     joinWith: "",
   };
@@ -90,24 +90,20 @@ export function stringfy(
   let final: string;
   if (Array.isArray(coli)) {
     const stringfyCode = coli
-      .map((c) => stringfy(c, { language }, depth + 1))
+      .map((c) => stringfy(c, options, depth + 1))
       .join(joinWith);
     final = stringfyCode;
     return final;
   }
 
   if (coli instanceof _abstract.ColiObject) {
-    final = createSourceCode(coli, language, depth + 1);
+    final = createSourceCode(coli, options, depth + 1);
   }
 
   // finally finalize the "final" string with formatter if requested.
   if (depth == 0) {
-    if (stringfyOptions?.formatter) {
-      final = format(
-        final,
-        stringfyOptions.formatter,
-        stringfyOptions.formattingOptions
-      );
+    if (options?.formatter) {
+      final = format(final, options.formatter, options.formattingOptions);
     }
   }
 
@@ -122,10 +118,14 @@ export function stringfy(
 }
 
 export function stringfy_tokenformatted(
-  tokens: FormatterTokenLike | any
+  tokens: FormatterTokenLike | any,
+  options?: {
+    language: StringfyLanguage;
+    indentation?: FormatterIndent;
+  }
 ): string {
   if (Array.isArray(tokens)) {
-    return tokens.map((t) => stringfy_tokenformatted(t)).join("");
+    return tokens.map((t) => stringfy_tokenformatted(t, options)).join("");
   }
 
   switch (typeof tokens) {
@@ -143,14 +143,15 @@ export function stringfy_tokenformatted(
       if (typeof tokens.kind == "string") {
         switch (tokens.kind) {
           case "\t":
-            return "\t"; // customize tab
+            // customize tab
+            return indent(options?.indentation);
         }
         return tokens.kind;
       }
     }
   }
   if (tokens instanceof ColiObject) {
-    return stringfy(tokens, { language: "typescript" });
+    return stringfy(tokens, options);
   }
   return "";
 }
@@ -270,7 +271,7 @@ function _get_dedicated_strfier(colitype: ColiObjectType): Stringfyer {
 /*@internal*/
 function createSourceCode(
   coli: ColiObject,
-  lang: StringfyLanguage,
+  options: StringfyOptions,
   depth: number
 ) {
   // todo: accept coli builder instances as well. (below code does not work somehow)
@@ -288,7 +289,7 @@ function createSourceCode(
   const stringfier = _get_dedicated_strfier(colitype);
   if (stringfier) {
     try {
-      const str = stringfier(coli, lang, depth);
+      const str = stringfier(coli, options, depth);
 
       // add comments
       const str_with_comments = `${str_leadingcomment}${str}${str_trailingcomment}`;
@@ -307,4 +308,17 @@ function createSourceCode(
 
   /** @TEST */
   // return JSON.stringify(coli);
+}
+
+function indent(_: FormatterIndent): string {
+  switch (_) {
+    case "\t":
+      return "\t";
+    case 2:
+    case 4:
+      return " ".repeat(_);
+    case undefined:
+    default:
+      return "\t";
+  }
 }

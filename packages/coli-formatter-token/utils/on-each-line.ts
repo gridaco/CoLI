@@ -15,12 +15,18 @@ import { FormatterTokenLike, FormattingToken } from "../tokens";
  * // >> {\n\treturn (\n\t</div>\n\t)}
  * ```
  */
-export function onEachLine(tokens: any[], token: FormatterTokenLike): any[] {
+export function onEachLine(
+  tokens: any[],
+  token: FormatterTokenLike | FormattingToken
+): any[] {
   // recursive function to add token to each line
   // example.
   // in: ["return", " ", "\n", ["(", "\n", ["\t", "</div>"], "\n",  ")"]]
   // out: ["return", " ", "\n", token, ["(", "\n", token, ["\t", "</div>"], "\n", token, ")"]]
-  const addToken = (tokens: any[], token: FormatterTokenLike): any[] => {
+  const addToken = (
+    tokens: any[],
+    token: FormatterTokenLike | FormattingToken
+  ): any[] => {
     if (!tokens || !tokens.length) {
       return;
     }
