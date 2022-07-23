@@ -5,14 +5,15 @@ import f from "../../tokens";
 
 export function astfmt_jsx_element(c: JSXElement) {
   const { openingElement, closingElement, children } = c;
-  if (children) {
+  const _children = children && Array.isArray(children) ? children : [children];
+  if (_children) {
     return [
       //
       openingElement,
       inject.indents([
         //
         "\n",
-        insertBetween(format(children), f("\n")),
+        insertBetween(format(_children), f("\n")),
       ]),
       "\n",
       closingElement,
