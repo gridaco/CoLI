@@ -19,9 +19,8 @@ export function astfmt_jsx_with_attributes({
   const closing = close_token == "/>" ? "/>" : f(close_token);
 
   if (attributes?.length > 0) {
-    const join_attributes_with = get_jsx_attribute_join_with_by_attributes(
-      attributes
-    );
+    const join_attributes_with =
+      get_jsx_attribute_join_with_by_attributes(attributes);
     let closing_after_new_line =
       join_attributes_with == ["\n", "\t"] ? f("\n") : f("");
 

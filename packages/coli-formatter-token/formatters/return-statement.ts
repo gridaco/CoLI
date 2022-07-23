@@ -12,7 +12,9 @@ export function astfmt_return_statement(c: ReturnStatement) {
       f(SyntaxKind.ReturnKeyword),
       f(" "),
       f(SyntaxKind.OpenParenToken),
-      inject.onEach([f("\n"), argument, f("\n")], f("\t")),
+      // FIXME: do -> inject.indent after formatting (argument)
+      // currently the jsx is not using ast-formatter, so we can't do this the right way. fix the jsx formatter first.
+      inject.indent([f("\n"), argument, f("\n")]),
       f(SyntaxKind.CloseParenToken),
     ];
   }
