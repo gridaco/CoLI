@@ -10,15 +10,16 @@ export function astfmt_function_declaration(c: FunctionDeclaration) {
     f(" "),
   ]);
 
+  const _modifiers = [
+    f(modifiers.export),
+    f(modifiers.default),
+    f(modifiers.async),
+  ].filter(Boolean);
+
   return [
     f("\n"),
-    inject.insertBetween(
-      [f(modifiers.export), f(modifiers.default), f(modifiers.async)].filter(
-        Boolean
-      ),
-      f(" ")
-    ),
-    f(" "),
+    inject.insertBetween(_modifiers, f(" ")),
+    _modifiers.length > 0 ? f(" ") : f(""),
     f(SyntaxKind.FunctionKeyword),
     f(" "),
     id,

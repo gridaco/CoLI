@@ -1,10 +1,6 @@
 import { Block, FunctionDeclaration, Identifier, Snippet, Types } from "coli";
 import { stringfy } from "../";
 
-describe("pass", () => {
-  test.todo("please pass");
-});
-
 test("function-declaration", () => {
   const sum = new FunctionDeclaration("sum", {
     body: new Block(),
@@ -17,8 +13,9 @@ test("function-declaration", () => {
       }),
     ],
   });
-  expect(stringfy(sum)).toBe(`function sum (a: number, b: number){
-
+  expect(stringfy(sum)).toBe(`
+function sum (a: number, b: number) {
+\t
 }
 
 `);

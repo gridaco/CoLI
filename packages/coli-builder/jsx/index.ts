@@ -71,14 +71,14 @@ export class JSX extends ColiBuilder<JSXElementLike> {
   ): JSXText {
     switch (mode) {
       case "literal":
-        return new StringLiteral(text) as any as JSXText;
+        return (new StringLiteral(text) as any) as JSXText;
       case "plain":
         return new JSXText(text);
       case "exp":
-        return JSX.exp(new StringLiteral(text)) as any as JSXText;
+        return (JSX.exp(new StringLiteral(text)) as any) as JSXText;
       case "template-literal":
         const t = new TemplateLiteral(text);
-        return JSX.exp(t) as any as JSXText;
+        return (JSX.exp(t) as any) as JSXText;
 
       case null:
       case undefined:
@@ -226,23 +226,24 @@ function _native_tag_maker_func(tag: string): (p?: NativeConstructor) => JSX {
       return new JSX(tag, {
         children: [p as any],
       });
-    } else if ("child" in p || "children" in p) {
-      let _children: HandyJSXChildLike[];
-      if (p) {
+    }
+
+    let _children: HandyJSXChildLike[];
+    if (p) {
+      if ("child" in p || "children" in p) {
         if ("child" in p) {
           _children = [p.child];
         } else if ("children" in p) {
           _children = p.children;
         }
       }
-
-      return new JSX(tag, {
-        attributes: (
-          p as NativeMultiChildConstructor | NativeSingleChildConstructor
-        )?.attributes,
-        children: _children,
-      });
     }
+    return new JSX(tag, {
+      attributes: (p as
+        | NativeMultiChildConstructor
+        | NativeSingleChildConstructor)?.attributes,
+      children: _children,
+    });
   };
 }
 

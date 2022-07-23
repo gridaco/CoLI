@@ -3,7 +3,7 @@ import f from "../tokens";
 import { SyntaxKind } from "@coli.codes/core-syntax-kind";
 import { inject } from "..";
 
-const docstring_starter_tokens = ["/**", " * ", "*/"] as const;
+const docstring_starter_tokens = ["/**", " * ", " */"] as const;
 export function astfmt_comment_trivia(c: CommentTrivia) {
   const { __type, text } = c;
 
