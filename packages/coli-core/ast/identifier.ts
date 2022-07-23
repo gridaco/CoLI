@@ -31,4 +31,8 @@ export class Identifier extends ColiObject {
     this.name = name;
     return this;
   }
+
+  toString(): string {
+    return this.name;
+  }
 }
