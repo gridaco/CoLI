@@ -18,6 +18,7 @@ const instances: Map<string, Postprocessing> = new Map();
 export class Postprocessing {
   readonly id: string;
   private readonly _configure = new Configure();
+  private readonly kvmap: { [key: string]: string } = {};
 
   constructor(id?: string) {
     this.id = id ?? random();
@@ -25,7 +26,7 @@ export class Postprocessing {
   }
 
   static create(id?: string) {
-    return new Postprocessing();
+    return new Postprocessing(id);
   }
 
   static use(id: string): Postprocessing {
@@ -41,15 +42,44 @@ export class Postprocessing {
     return this.configure;
   }
 
-  reserve(key: string, defaultValue?: string) {}
+  reserve(key: string, defaultValue?: string) {
+    const value = defaultValue ?? key;
+    this.kvmap[key] = value;
+    return Postprocessing.hash(key);
+  }
 
-  resolve(key: string, value: string) {}
+  resolve(key: string, value: string) {
+    this.kvmap[key] = value;
+  }
 
-  replace(content: string) {}
+  replace(input: string) {
+    let _ = input;
+    const keys = Object.keys(this.kvmap);
+    for (const key of keys) {
+      const value = this.kvmap[key];
+      _ = Postprocessing.replace(_, key, value);
+    }
+    return _;
+  }
 
-  static replace() {}
+  static replace(input: string, key: string, value: string) {
+    const hash = this.hash(key);
+    const re = RegExp(hash, "g");
+    return input.replace(re, value);
+  }
+
+  static hash(key: string) {
+    return hash(key);
+  }
 }
 
 function random(): string {
   return Math.random().toString(36).substring(2);
+}
+
+/**
+ * create unique hash string from input string. this will be used as a key to replace values later on.
+ */
+function hash(key: string): string {
+  return `<key>${key}</key>`;
 }
