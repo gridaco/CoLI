@@ -5,6 +5,7 @@ import { format } from "../../format";
 
 export function astfmt_jsx_closing_element(c: JSXClosingElement) {
   const { name } = c;
+  // </name>
   return [
     f(SyntaxKind.LessThanSlashToken),
     format(name),

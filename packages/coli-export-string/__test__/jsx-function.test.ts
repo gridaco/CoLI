@@ -8,9 +8,11 @@ import {
 } from "coli";
 import { stringfy } from "../";
 
-const jsxbody = JSX.div().make();
+const jsxbody = JSX.fragment({
+  children: [JSX.text("This is a JSX element"), JSX.div()],
+}).make();
 test("jsx-body", () => {
-  expect(stringfy(jsxbody)).toBe("<div/>");
+  expect(stringfy(jsxbody)).toBe("<>\n\tThis is a JSX element\n\t<div/>\n</>");
 });
 
 const _return = new Return(jsxbody);
@@ -19,7 +21,10 @@ test("with-return", () => {
   const _ = stringfy(_return);
   expect(_).toBe(
     `return (
-\t<div/>
+\t<>
+\t\tThis is a JSX element
+\t\t<div/>
+\t</>
 )`
   );
 });
@@ -30,7 +35,10 @@ test("with-block", () => {
   expect(str).toBe(
     `{
 \treturn (
-\t\t<div/>
+\t\t<>
+\t\t\tThis is a JSX element
+\t\t\t<div/>
+\t\t</>
 \t)
 }`
   );
@@ -52,7 +60,10 @@ test("jsx-function-declaration-with-return", () => {
   expect(stringfy(_func)).toBe(`
 function sum (a: number, b: number) {
 \treturn (
-\t\t<div/>
+\t\t<>
+\t\t\tThis is a JSX element
+\t\t\t<div/>
+\t\t</>
 \t)
 }
 

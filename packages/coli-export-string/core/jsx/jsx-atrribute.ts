@@ -8,9 +8,4 @@ export function strfy_jsx_attribute(
 ) {
   const ast = formatters.astfmt_jsx_attribute(atrribute);
   return stringfy_tokenformatted(ast);
-
-  // const { name, value } = atrribute;
-  // const atrributeName = stringfy(name, { language: l });
-  // const atrributeValue = stringfy(value, { language: l });
-  // return `${atrributeName}${KeywordAndTokenStatic.EqualsToken}${atrributeValue}`;
 }
