@@ -1,5 +1,7 @@
 {
+  "extends": "../../tsconfig.build.json",
   "compilerOptions": {
-    "downlevelIteration": true
-  }
+    "outDir": "dist"
+  },
+  "exclude": ["node_modules", "dist", "__test__"]
 }

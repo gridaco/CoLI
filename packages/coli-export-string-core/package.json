@@ -1,5 +1,8 @@
 {
     "name": "@coli.codes/export-string-core",
     "version": "0.0.0",
-    "private": false
+    "private": false,
+    "scripts": {
+        "build": "tsc"
+    }
 }

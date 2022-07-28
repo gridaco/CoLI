@@ -1,5 +1,9 @@
 {
     "name": "@coli.codes/escape-string",
     "version": "0.0.0",
-    "main": "index.ts"
+    "main": "index.ts",
+    "scripts": {
+        "build": "tsc"
+    },
+    "private": false
 }

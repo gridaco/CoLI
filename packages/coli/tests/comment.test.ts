@@ -1,17 +1,15 @@
 import { stringfy } from "@coli.codes/export-string";
-import { CommentExpression } from "coli";
+import { SingleLineCommentTrivia, MultilineCommentTrivia } from "coli";
 
-const singleComment = new CommentExpression({
-  style: "single-line",
-  content: "single line comment",
+const singleComment = new SingleLineCommentTrivia({
+  text: "single line comment",
 });
 
 // single line comment
 console.log(stringfy(singleComment, { language: "typescript" }));
 
-const multiComment = new CommentExpression({
-  style: "multi-line",
-  content: "multiline\ncontents",
+const multiComment = new MultilineCommentTrivia({
+  text: "multiline\ncontents",
 });
 
 /**

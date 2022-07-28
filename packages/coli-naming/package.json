@@ -1,10 +1,12 @@
 {
     "name": "@coli.codes/naming",
     "version": "0.0.0",
+    "private": false,
     "keywords": [
         "variable name builder"
     ],
     "scripts": {
+        "build": "tsc",
         "test": "jest"
     },
     "devDependencies": {

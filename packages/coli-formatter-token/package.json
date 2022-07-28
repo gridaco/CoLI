@@ -6,6 +6,7 @@
     "author": "Grida.co",
     "license": "Apache 2.0",
     "scripts": {
+        "build": "tsc",
         "test": "jest"
     },
     "devDependencies": {

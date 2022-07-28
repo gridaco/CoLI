@@ -14,7 +14,7 @@ console.log(stringfy(notInitValue, { language: "typescript" }));
 
 const initValue = new VariableDeclaration("initValue", {
   kind: _internal.SyntaxKind.ConstKeyword,
-  initializer: new Literal(1),
+  initializer: Literal.from(1),
 });
 
 // const initValue : any = 1;

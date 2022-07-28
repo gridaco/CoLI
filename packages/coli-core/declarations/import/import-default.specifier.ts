@@ -2,10 +2,6 @@ import { _SPECIFIER_DEFAULT_IMPORT } from "../../_internal/node-name/specifiers-
 import { BaseImportSpecifier } from "./import-specifier.base";
 
 export class ImportDefaultSpecifier extends BaseImportSpecifier {
-  local: {
-    name: string;
-  };
-
   /**
    * ImportDefault does only requires the name of the import, which is named "local"
    * @param params

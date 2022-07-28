@@ -2,7 +2,7 @@
     "name": "@coli.codes/core",
     "version": "0.0.0",
     "scripts": {
-        "prepack": "tsc"
+        "build": "tsc"
     },
     "dependencies": {
         "@coli.codes/export-string": "0.0.0",

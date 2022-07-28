@@ -1,11 +1,12 @@
 {
     "name": "@coli.codes/format-prettier",
     "version": "0.0.0",
+    "private": false,
+    "scripts": {
+        "build": "tsc"
+    },
     "dependencies": {
         "prettier": "^2.2.1"
-    },
-    "scripts": {
-        "prepack": "tsc"
     },
     "devDependencies": {
         "typescript": "^4.3.2"
