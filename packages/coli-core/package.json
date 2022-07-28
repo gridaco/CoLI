@@ -1,13 +1,13 @@
 {
     "name": "@coli.codes/core",
-    "version": "0.0.9",
+    "version": "0.0.10",
     "private": false,
     "scripts": {
         "build": "tsc"
     },
     "dependencies": {
-        "@coli.codes/export-string": "^0.0.9",
-        "coli": "^0.0.9"
+        "@coli.codes/export-string": "^0.0.10",
+        "coli": "^0.0.10"
     },
     "devDependencies": {
         "typescript": "^4.2.4"
