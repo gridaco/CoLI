@@ -1,11 +1,10 @@
 {
-    "name": "example",
+    "name": "@coli.codes/example",
     "version": "0.0.8",
     "description": "example usage of coli via code api",
-    "private": true,
+    "private": false,
     "dependencies": {
         "@coli.codes/export-string": "^0.0.8",
         "coli": "^0.0.8"
-    },
-    "gitHead": "8f25ba9afc06c5863cdd686451e5af7551608d78"
+    }
 }

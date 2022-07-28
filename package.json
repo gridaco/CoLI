@@ -1,8 +1,8 @@
 {
     "name": "coli-workspace",
-    "version": "0.1.0",
+    "version": "0.0.0",
     "license": "MIT",
-    "private": false,
+    "private": true,
     "workspaces": [
         "packages/*",
         "editor",
@@ -11,8 +11,7 @@
     "scripts": {
         "lerna": "lerna",
         "build": "lerna run build",
-        "lerna:version": "lerna version --no-private",
-        "publish:all": "yarn lerna:version && lerna publish",
+        "publish:all": "lerna publish",
         "bootstrap": "lerna bootstrap",
         "editor": "yarn workspace editor run dev",
         "build:editor": "yarn workspace editor run build"
