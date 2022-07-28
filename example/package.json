@@ -1,6 +1,6 @@
 {
     "name": "@coli.codes/example",
-    "version": "0.0.11",
+    "version": "0.0.12",
     "description": "example usage of coli via code api",
     "private": false,
     "dependencies": {
