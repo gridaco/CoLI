@@ -1,9 +1,10 @@
 {
     "name": "@coli.codes/escape-string",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "main": "index.ts",
     "scripts": {
         "build": "tsc"
     },
-    "private": false
+    "private": false,
+    "gitHead": "8f25ba9afc06c5863cdd686451e5af7551608d78"
 }

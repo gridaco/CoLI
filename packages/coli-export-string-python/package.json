@@ -1,5 +1,6 @@
 {
     "name": "@coli.codes/export-string-py",
     "description": "stringfy for python3",
-    "version": "0.0.6"
+    "version": "0.0.7",
+    "gitHead": "8f25ba9afc06c5863cdd686451e5af7551608d78"
 }

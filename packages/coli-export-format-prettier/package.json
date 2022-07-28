@@ -1,6 +1,6 @@
 {
     "name": "@coli.codes/format-prettier",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "private": false,
     "scripts": {
         "build": "tsc"
@@ -10,5 +10,6 @@
     },
     "devDependencies": {
         "typescript": "^4.3.2"
-    }
+    },
+    "gitHead": "8f25ba9afc06c5863cdd686451e5af7551608d78"
 }

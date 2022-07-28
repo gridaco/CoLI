@@ -1,6 +1,6 @@
 {
     "name": "@coli.codes/builder-annotations",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "scripts": {
         "prepack": "tsc"
     },
@@ -9,5 +9,6 @@
     },
     "devDependencies": {
         "typescript": "^4.2.4"
-    }
+    },
+    "gitHead": "8f25ba9afc06c5863cdd686451e5af7551608d78"
 }

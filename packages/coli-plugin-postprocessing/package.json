@@ -1,6 +1,6 @@
 {
   "name": "coli-plugin-postprocessing",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "private": false,
   "license": "MIT",
   "homepage": "https://github.com/gridaco/coli",
@@ -39,5 +39,6 @@
     "jest": "^28.1.3",
     "ts-jest": "^28.0.7",
     "typescript": "^4.7.4"
-  }
+  },
+  "gitHead": "8f25ba9afc06c5863cdd686451e5af7551608d78"
 }

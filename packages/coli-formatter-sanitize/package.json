@@ -1,6 +1,6 @@
 {
     "name": "@coli.codes/sanitizer",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "private": false,
     "main": "dist/index.js",
     "scripts": {
@@ -23,5 +23,6 @@
         "jest": "^27.1.0",
         "ts-jest": "^27.0.5",
         "typescript": "^4.4.2"
-    }
+    },
+    "gitHead": "8f25ba9afc06c5863cdd686451e5af7551608d78"
 }
