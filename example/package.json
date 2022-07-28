@@ -1,9 +1,9 @@
 {
     "name": "example",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "example usage of coli via code api",
     "dependencies": {
-        "@coli.codes/export-string": "^0.0.5",
-        "coli": "^0.0.5"
+        "@coli.codes/export-string": "^0.0.6",
+        "coli": "^0.0.6"
     }
 }
