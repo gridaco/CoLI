@@ -2,7 +2,7 @@
     "name": "editor",
     "description": "coli editor web app",
     "version": "0.0.7",
-    "private": false,
+    "private": true,
     "scripts": {
         "dev": "next dev",
         "build": "next build",
