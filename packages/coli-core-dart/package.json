@@ -2,6 +2,6 @@
     "name": "@coli.codes/dart-core",
     "description": "Dart core AST definitions",
     "authors": "Grida.co",
-    "version": "0.0.12",
+    "version": "0.0.13",
     "private": false
 }

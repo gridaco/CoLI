@@ -1,6 +1,6 @@
 {
     "name": "coli",
-    "version": "0.0.12",
+    "version": "0.0.13",
     "license": "MIT",
     "homepage": "https://coli.codes",
     "repository": "https://github.com/bridgedxyz/coli",
@@ -17,7 +17,7 @@
         "LICENSE"
     ],
     "dependencies": {
-        "@coli.codes/naming": "^0.0.12"
+        "@coli.codes/naming": "^0.0.13"
     },
     "devDependencies": {
         "ts-node": "^9.1.1",
