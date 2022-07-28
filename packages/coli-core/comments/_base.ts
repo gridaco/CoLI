@@ -1,14 +1,15 @@
 import { ColiObject } from "../_abstract";
-import { SyntaxKind } from "../_internal";
+import type { SyntaxKind } from "../_internal";
 
+export type CommentTriviaType =
+  | SyntaxKind.SingleLineCommentTrivia
+  | SyntaxKind.MultiLineCommentTrivia;
 export class CommentTrivia extends ColiObject {
   readonly hasTrailingNewLine: boolean;
   readonly text: string;
 
   constructor(
-    type:
-      | SyntaxKind.SingleLineCommentTrivia
-      | SyntaxKind.MultiLineCommentTrivia,
+    type: CommentTriviaType,
     hasTrailingNewLine: boolean = false,
     text: string
   ) {
