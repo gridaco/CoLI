@@ -9,7 +9,7 @@ import DeclartionTitle from "./common/title";
 import CodeBlock from "../code-block";
 import { stringfy, StringfyLanguage } from "@coli.codes/export-string";
 import { CodePreview } from "../code-preview";
-import { CommentExpression } from "coli";
+import { MultilineCommentTrivia } from "coli";
 import Selector from "../selector";
 import AutoGrowInput from "../auto-grow-input";
 
@@ -31,7 +31,9 @@ const returnExampleVariableCode = (args: {
   const { name, args: values } = value;
   let code = "";
   code += `new ${variableClass.name}(\n"${name}", ${JSON.stringify(values)}\n)`;
-  const comment = new CommentExpression({ style: "multi-line", content: code });
+  const comment = new MultilineCommentTrivia({
+    text: code,
+  });
   return stringfy(comment, { language });
 };
 
@@ -116,8 +118,7 @@ function FunctionDeclaration(props: {
             <Selector
               onChange={(v) => onChangeValue(Types[v], k, true)}
               value={
-                declarationValue.args.params[ix]?.typeAnnotation.keyword ||
-                Types.any
+                declarationValue.args.params[ix]?.typeAnnotation || Types.any
               }
               options={variableTypeSelector}
             />

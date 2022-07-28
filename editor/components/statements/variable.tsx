@@ -4,7 +4,7 @@ import {
   Type,
   Types,
   VariableDeclaration as VariableClass,
-  CommentExpression,
+  MultilineCommentTrivia,
   _internal,
 } from "coli";
 import { stringfy, StringfyLanguage } from "@coli.codes/export-string";
@@ -36,7 +36,9 @@ const returnExampleVariableCode = (args: {
   const { name, args: values } = value;
   let code = "";
   code += `new ${variableClass.name}(\n"${name}", ${JSON.stringify(values)}\n)`;
-  const comment = new CommentExpression({ style: "multi-line", content: code });
+  const comment = new MultilineCommentTrivia({
+    text: code,
+  });
   return stringfy(comment, { language });
 };
 

@@ -12,7 +12,7 @@ import {
   ImportDeclaration as ImportClass,
   ImportDefaultSpecifier,
   ImportSpecifier,
-  CommentExpression,
+  MultilineCommentTrivia,
 } from "coli";
 import { CodePreview } from "../code-preview";
 import { stringfy, StringfyLanguage } from "@coli.codes/export-string";
@@ -46,7 +46,9 @@ const returnExampleImportCode = (args: {
   const { class: variableClass, value, language } = args;
   let code = "";
   code += `new ${variableClass.name}(\n"${JSON.stringify(value)}\n)`;
-  const comment = new CommentExpression({ style: "multi-line", content: code });
+  const comment = new MultilineCommentTrivia({
+    text: code,
+  });
   return stringfy(comment, { language });
 };
 

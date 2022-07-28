@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
-import { CommentExpression as CommentClass, CommentStyleEnum } from "coli";
+import {
+  CommentTrivia as CommentClass,
+  CommentTriviaType,
+  MultilineCommentTrivia,
+  SyntaxKind,
+} from "coli";
 import { stringfy, StringfyLanguage } from "@coli.codes/export-string";
 import CodeBlock from "../code-block";
 import DeclartionTitle from "../declarations/common/title";
@@ -11,7 +16,7 @@ import Selector from "../selector";
 import { CodePreview } from "../code-preview";
 import { commentExpressionAtom } from "../../states/expression.state";
 export interface CommentExpression {
-  style: CommentStyleEnum;
+  style: CommentTriviaType;
   content: string;
 }
 
@@ -35,7 +40,7 @@ const returnExampleCommentCode = (args: {
   const { class: commentClass, value, language } = args;
   let code = "";
   code += `new ${commentClass.name}(\n${JSON.stringify(value)}\n)`;
-  const comment = new CommentClass({ style: "multi-line", content: code });
+  const comment = new MultilineCommentTrivia({ text: code });
   return stringfy(comment, { language });
 };
 
@@ -46,7 +51,7 @@ export default function CommentExpression(props: { data: CommentExpression }) {
   );
   const { language } = useRecoilValue(currentColiEditorOption);
   const [expressionValue, setExpressionValue] = useState<CommentExpression>({
-    style: "single-line",
+    style: SyntaxKind.SingleLineCommentTrivia,
     content: "",
   });
 
@@ -75,9 +80,16 @@ export default function CommentExpression(props: { data: CommentExpression }) {
       <Wrapper>
         <DeclartionTitle lable="COMMENT EXPRESSION" />
         <CodeBlock>
-          {stringfy(new CommentClass(expressionValue), {
-            language,
-          })}
+          {stringfy(
+            new CommentClass(
+              expressionValue.style,
+              false,
+              expressionValue.content
+            ),
+            {
+              language,
+            }
+          )}
         </CodeBlock>
         <Body>
           {Object.keys(data).map((i, idx) => (

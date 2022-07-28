@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import CommentExpression, {
   CommentExpression as CommentExpressionInterface,
 } from "../../../components/expressions/comment";
+import { SyntaxKind } from "coli";
 
 const importDefaultData: {
   example: string;
@@ -11,11 +12,11 @@ const importDefaultData: {
   example: `// hello coli editor`,
   declarations: [
     {
-      style: "single-line",
+      style: SyntaxKind.SingleLineCommentTrivia,
       content: "single-line comment demo",
     },
     {
-      style: "multi-line",
+      style: SyntaxKind.MultiLineCommentTrivia,
       content: "multi-line comment demo\n_markdown_ **also** `supported`",
     },
   ],
