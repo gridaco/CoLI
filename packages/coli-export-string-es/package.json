@@ -1,5 +1,9 @@
 {
     "name": "@coli.codes/export-string-es",
     "description": "stringfy for es - js / ts",
-    "version": "0.0.13"
+    "version": "0.0.13",
+    "private": false,
+    "publishConfig": {
+        "access": "public"
+    }
 }

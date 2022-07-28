@@ -1,6 +1,7 @@
 {
     "name": "@coli.codes/builder-annotations",
     "version": "0.0.13",
+    "private": false,
     "scripts": {
         "prepack": "tsc"
     },
@@ -9,5 +10,8 @@
     },
     "devDependencies": {
         "typescript": "^4.2.4"
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }

@@ -2,5 +2,9 @@
     "name": "@coli.codes/git",
     "description": "GIT support for coli objects",
     "version": "0.0.13",
-    "homepage": "https://coli.codes"
+    "homepage": "https://coli.codes",
+    "private": false,
+    "publishConfig": {
+        "access": "public"
+    }
 }

@@ -3,5 +3,8 @@
     "description": "Dart core AST definitions",
     "authors": "Grida.co",
     "version": "0.0.13",
-    "private": false
+    "private": false,
+    "publishConfig": {
+        "access": "public"
+    }
 }

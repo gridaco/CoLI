@@ -1,4 +1,8 @@
 {
     "name": "@coli.codes/export-vanilla",
-    "version": "0.0.13"
+    "version": "0.0.13",
+    "private": false,
+    "publishConfig": {
+        "access": "public"
+    }
 }
