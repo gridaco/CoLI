@@ -1,6 +1,6 @@
 {
     "name": "@coli.codes/export-string",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "private": false,
     "scripts": {
         "build": "tsc",

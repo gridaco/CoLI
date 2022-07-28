@@ -1,6 +1,6 @@
 {
     "name": "@coli.codes/naming",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "private": false,
     "keywords": [
         "variable name builder"

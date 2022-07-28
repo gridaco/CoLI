@@ -1,7 +1,7 @@
 {
     "name": "editor",
     "description": "coli editor web app",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "private": true,
     "scripts": {
         "dev": "next dev",
