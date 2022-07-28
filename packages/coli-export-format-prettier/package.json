@@ -1,6 +1,6 @@
 {
     "name": "@coli.codes/format-prettier",
-    "version": "0.0.4-alpha.0",
+    "version": "0.0.5",
     "private": false,
     "scripts": {
         "build": "tsc"
