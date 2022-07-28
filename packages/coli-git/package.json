@@ -1,6 +1,6 @@
 {
     "name": "@coli.codes/git",
     "description": "GIT support for coli objects",
-    "version": "0.0.10",
+    "version": "0.0.11",
     "homepage": "https://coli.codes"
 }
