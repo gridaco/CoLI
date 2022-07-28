@@ -3,6 +3,5 @@
     "version": "0.0.8",
     "dependencies": {
         "jszip": "^3.6.0"
-    },
-    "gitHead": "8f25ba9afc06c5863cdd686451e5af7551608d78"
+    }
 }

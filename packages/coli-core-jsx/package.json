@@ -7,6 +7,5 @@
     },
     "devDependencies": {
         "turbo": "^1.3.4"
-    },
-    "gitHead": "8f25ba9afc06c5863cdd686451e5af7551608d78"
+    }
 }
