@@ -1,6 +1,7 @@
 {
     "name": "@coli.codes/builder",
     "version": "0.0.5",
+    "private": false,
     "scripts": {
         "build": "tsc",
         "prepack": "tsc"
