@@ -11,7 +11,7 @@
     "scripts": {
         "lerna": "lerna",
         "build": "lerna run build",
-        "publish:all": "lerna publish",
+        "publish:all": "lerna publish --no-private",
         "bootstrap": "lerna bootstrap",
         "editor": "yarn workspace editor run dev",
         "build:editor": "yarn workspace editor run build"
