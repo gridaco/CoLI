@@ -2,7 +2,7 @@
     "name": "@coli.codes/example",
     "version": "0.0.10",
     "description": "example usage of coli via code api",
-    "private": false,
+    "private": true,
     "dependencies": {
         "@coli.codes/export-string": "^0.0.8",
         "coli": "^0.0.8"

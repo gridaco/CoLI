@@ -4,5 +4,8 @@
     "private": false,
     "scripts": {
         "build": "tsc"
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }

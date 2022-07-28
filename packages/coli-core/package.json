@@ -11,5 +11,8 @@
     },
     "devDependencies": {
         "typescript": "^4.2.4"
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }
