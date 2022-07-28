@@ -2,7 +2,7 @@
     "name": "@coli.codes/editor",
     "description": "coli editor web app",
     "version": "0.0.11",
-    "private": true,
+    "private": false,
     "scripts": {
         "dev": "next dev",
         "build": "next build",
@@ -36,5 +36,8 @@
         "ts-loader": "^8.0.18",
         "typescript": "^4.1.3",
         "url-loader": "^4.1.1"
+    },
+    "publishConfig": {
+        "access": "public"
     }
 }
