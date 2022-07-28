@@ -1,6 +1,6 @@
 {
     "name": "@coli.codes/core",
-    "version": "0.0.12",
+    "version": "0.0.12-1",
     "private": false,
     "scripts": {
         "build": "tsc"
