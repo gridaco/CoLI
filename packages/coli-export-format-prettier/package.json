@@ -2,8 +2,11 @@
     "name": "@coli.codes/format-prettier",
     "version": "0.0.14",
     "private": false,
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "scripts": {
-        "build": "tsc"
+        "build": "tsc",
+        "test": "jest"
     },
     "dependencies": {
         "prettier": "^2.2.1"
@@ -11,6 +14,11 @@
     "devDependencies": {
         "typescript": "^4.3.2"
     },
+    "files": [
+        "dist",
+        "README.md",
+        "LICENSE"
+    ],
     "publishConfig": {
         "access": "public"
     }

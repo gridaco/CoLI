@@ -2,6 +2,8 @@
     "name": "@coli.codes/css",
     "version": "0.0.14",
     "private": false,
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "scripts": {
         "build": "tsc",
         "test": "jest"
@@ -14,6 +16,11 @@
     "dependencies": {
         "csstype": "^3.0.8"
     },
+    "files": [
+        "dist",
+        "README.md",
+        "LICENSE"
+    ],
     "publishConfig": {
         "access": "public"
     }

@@ -5,17 +5,13 @@
     "homepage": "https://coli.codes",
     "repository": "https://github.com/bridgedxyz/coli",
     "private": false,
-    "main": "index",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "scripts": {
         "build": "tsc",
         "prepack": "tsc",
         "test": "tsc"
     },
-    "files": [
-        "README.md",
-        "dist",
-        "LICENSE"
-    ],
     "dependencies": {
         "@coli.codes/naming": "^0.0.14"
     },
@@ -23,6 +19,11 @@
         "ts-node": "^9.1.1",
         "typescript": "^4.2.4"
     },
+    "files": [
+        "dist",
+        "README.md",
+        "LICENSE"
+    ],
     "publishConfig": {
         "access": "public"
     }

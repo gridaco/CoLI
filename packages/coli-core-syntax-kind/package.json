@@ -4,6 +4,7 @@
     "author": "Grida.co, Microsoft, Typescirpt Authors",
     "private": false,
     "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "scripts": {
         "build": "tsc"
     },

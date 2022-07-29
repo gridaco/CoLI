@@ -1,11 +1,17 @@
 {
     "name": "@coli.codes/escape-string",
     "version": "0.0.14",
-    "main": "index.ts",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "private": false,
     "scripts": {
         "build": "tsc"
     },
-    "private": false,
+    "files": [
+        "dist",
+        "README.md",
+        "LICENSE"
+    ],
     "publishConfig": {
         "access": "public"
     }

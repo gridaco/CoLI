@@ -2,6 +2,8 @@
     "name": "@coli.codes/core",
     "version": "0.0.14",
     "private": false,
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "scripts": {
         "build": "tsc"
     },
@@ -12,6 +14,11 @@
     "devDependencies": {
         "typescript": "^4.2.4"
     },
+    "files": [
+        "dist",
+        "README.md",
+        "LIECNSE"
+    ],
     "publishConfig": {
         "access": "public"
     }
