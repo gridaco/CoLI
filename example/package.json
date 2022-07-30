@@ -1,10 +1,10 @@
 {
     "name": "@coli.codes/example",
-    "version": "0.0.23",
+    "version": "0.0.24",
     "description": "example usage of coli via code api",
     "private": false,
     "dependencies": {
-        "@coli.codes/export-string": "^0.0.23",
+        "@coli.codes/export-string": "^0.0.24",
         "coli": "^0.0.18"
     },
     "publishConfig": {
