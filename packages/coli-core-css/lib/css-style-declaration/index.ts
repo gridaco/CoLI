@@ -1,4 +1,4 @@
-import type { CSSProperties, CSSSimplePseudos } from "..";
+import type { CSSProperties, CSSSimplePseudos } from "../index";
 
 export type ElementCssStyleData = ElementCssProperties &
   ElementSimplePseudoStyleData;

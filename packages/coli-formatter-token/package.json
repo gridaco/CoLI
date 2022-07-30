@@ -13,16 +13,12 @@
         "test": "jest"
     },
     "peerDependencies": {
-        "@coli.codes/builder": "0.0.18",
-        "@coli.codes/core": "0.0.18",
-        "@coli.codes/core-syntax-kind": "^0.0.20",
-        "@coli.codes/jsx-core": "0.0.20"
+        "@coli.codes/core-syntax-kind": "^0.0.23",
+        "@coli.codes/jsx-core": "0.0.23"
     },
     "devDependencies": {
-        "@coli.codes/builder": "^0.0.23",
         "@coli.codes/core": "^0.0.23",
-        "@coli.codes/core-syntax-kind": "^0.0.20",
-        "@coli.codes/jsx-core": "0.0.20",
+        "@coli.codes/builder": "^0.0.23",
         "@types/jest": "^27.0.1",
         "jest": "^27.2.0",
         "ts-jest": "^27.0.5",
