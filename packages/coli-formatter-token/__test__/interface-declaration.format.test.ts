@@ -8,7 +8,7 @@ import {
   StringLiteral,
   UnionType,
 } from "@coli.codes/core";
-import { format } from "../format";
+import { format } from "../lib/format";
 
 test("format ts empty interface", () => {
   const dec = new InterfaceDeclaration({

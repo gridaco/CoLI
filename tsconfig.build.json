@@ -8,6 +8,5 @@
     "declaration": true,
     "sourceMap": false,
     "lib": ["ESNext", "dom"]
-  },
-  "exclude": ["node_modules", "dist", "__test__"]
+  }
 }

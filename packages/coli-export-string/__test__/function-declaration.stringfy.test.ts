@@ -1,5 +1,5 @@
 import { Block, FunctionDeclaration, Identifier, Snippet, Types } from "coli";
-import { stringfy } from "../";
+import { stringfy } from "../lib";
 
 test("function-declaration", () => {
   const sum = new FunctionDeclaration("sum", {

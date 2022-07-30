@@ -2,7 +2,7 @@ import {
   SingleLineCommentTrivia,
   MultilineCommentTrivia,
 } from "@coli.codes/core";
-import { stringfy } from "..";
+import { stringfy } from "../lib";
 
 test("single line comment trivia", () => {
   const single_line_comment = new SingleLineCommentTrivia({

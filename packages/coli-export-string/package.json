@@ -8,8 +8,15 @@
         "build": "tsc",
         "test": "jest"
     },
+    "dependencies": {
+        "@coli.codes/ast-formatter": "^0.0.14",
+        "@coli.codes/export-string-core": "^0.0.14",
+        "@coli.codes/escape-string": "^0.0.14"
+    },
     "peerDependencies": {
-        "@coli.codes/escape-string": "0.0.0"
+        "@coli.codes/core": "^0.0.14",
+        "@coli.codes/jsx-core": "^0.0.14",
+        "@coli.codes/builder": "^0.0.14"
     },
     "devDependencies": {
         "@types/jest": "^27.0.1",

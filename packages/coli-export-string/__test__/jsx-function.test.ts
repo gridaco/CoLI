@@ -6,7 +6,7 @@ import {
   Return,
   Types,
 } from "coli";
-import { stringfy } from "../";
+import { stringfy } from "../lib";
 
 const jsxbody = JSX.fragment({
   children: [JSX.text("This is a JSX element"), JSX.div()],

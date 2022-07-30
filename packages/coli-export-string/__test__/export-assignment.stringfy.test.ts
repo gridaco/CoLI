@@ -1,5 +1,5 @@
 import { ExportAssignment, Identifier } from "@coli.codes/core";
-import { stringfy } from "..";
+import { stringfy } from "../lib";
 
 const export_function = new ExportAssignment(new Identifier("add_values"));
 

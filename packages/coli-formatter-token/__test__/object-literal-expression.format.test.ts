@@ -4,9 +4,9 @@ import {
   TypeReference,
   StringLiteral,
   PropertyAssignment,
-} from "coli";
-import { format } from "../format";
-import { astfmt_object_literal_expression } from "../formatters";
+} from "@coli.codes/core";
+import { format } from "../lib/format";
+import { astfmt_object_literal_expression } from "../lib/formatters";
 
 test("object literal expression with many properties", () => {
   const properties = [0, 1].map((d) => {

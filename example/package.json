@@ -4,8 +4,8 @@
     "description": "example usage of coli via code api",
     "private": false,
     "dependencies": {
-        "@coli.codes/export-string": "^0.0.8",
-        "coli": "^0.0.8"
+        "@coli.codes/export-string": "^0.0.14",
+        "coli": "^0.0.14"
     },
     "publishConfig": {
         "access": "public"

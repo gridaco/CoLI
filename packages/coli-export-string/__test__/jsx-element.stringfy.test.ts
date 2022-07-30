@@ -1,5 +1,5 @@
-import { JSX } from "coli";
-import { stringfy } from "../";
+import { JSX } from "@coli.codes/builder";
+import { stringfy } from "../lib";
 
 test("jsx-body-with-children", () => {
   expect(

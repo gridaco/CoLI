@@ -3,8 +3,8 @@ import {
   JSXOpeningElement,
   JSXClosingElement,
   JSXIdentifier,
-} from "coli";
-import { astfmt_jsx_element } from "../formatters";
+} from "@coli.codes/jsx-core";
+import { astfmt_jsx_element } from "../lib/formatters";
 
 test("jsx element ast format", () => {
   const children = (n) =>

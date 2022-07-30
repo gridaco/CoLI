@@ -4,7 +4,7 @@ import {
   TypeReference,
   StringLiteral,
 } from "coli";
-import { stringfy } from "../stringfy";
+import { stringfy } from "../lib";
 
 test("variable declaration without type reference", () => {
   const vardec = new VariableDeclaration("data", {

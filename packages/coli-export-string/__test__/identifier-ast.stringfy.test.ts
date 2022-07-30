@@ -1,5 +1,5 @@
 import { BooleanKeyword, Identifier } from "@coli.codes/core";
-import { stringfy } from "..";
+import { stringfy } from "../lib";
 
 const id = new Identifier("add_values");
 

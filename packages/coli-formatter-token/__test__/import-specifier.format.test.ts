@@ -1,5 +1,5 @@
-import { astfmt_import_specifier } from "../formatters/import-specifier";
-import { FormattingToken, SyntaxKind } from "../tokens";
+import { astfmt_import_specifier } from "../lib/formatters/import-specifier";
+import { FormattingToken, SyntaxKind } from "../lib/tokens";
 import { ImportSpecifier } from "@coli.codes/core";
 test("import specifier", () => {
   const c = new ImportSpecifier({

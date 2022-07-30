@@ -1,3 +1,4 @@
+export { JsxBaseElement } from "./elements";
 export * from "./jsx-attribute";
 export * from "./jsx-attributes";
 export * from "./jsx-closing-element";

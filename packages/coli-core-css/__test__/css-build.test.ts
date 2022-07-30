@@ -1,5 +1,5 @@
 import { Properties, PropertiesHyphen } from "csstype";
-import { buildCSSBody } from "..";
+import { buildCSSBody } from "../lib";
 
 const hypencss: PropertiesHyphen = {
   color: "white",

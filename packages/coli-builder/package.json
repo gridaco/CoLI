@@ -10,7 +10,7 @@
     },
     "dependencies": {
         "@coli.codes/builder-annotations": "^0.0.14",
-        "@coli.codes/core": "^0.0.12",
+        "@coli.codes/core": "^0.0.14",
         "@coli.codes/export-string": "^0.0.14"
     },
     "devDependencies": {
