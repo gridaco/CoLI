@@ -1,6 +1,6 @@
 {
     "name": "@coli.codes/core",
-    "version": "0.0.16",
+    "version": "0.0.18",
     "private": false,
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -9,8 +9,8 @@
         "build": "yarn clean && tsc"
     },
     "dependencies": {
-        "@coli.codes/export-string": "^0.0.16",
-        "coli": "^0.0.16"
+        "@coli.codes/export-string": "^0.0.18",
+        "coli": "^0.0.18"
     },
     "devDependencies": {
         "typescript": "^4.2.4"

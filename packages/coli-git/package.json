@@ -1,7 +1,7 @@
 {
     "name": "@coli.codes/git",
     "description": "GIT support for coli objects",
-    "version": "0.0.17",
+    "version": "0.0.18",
     "homepage": "https://coli.codes",
     "private": false,
     "publishConfig": {
