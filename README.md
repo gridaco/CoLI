@@ -103,6 +103,12 @@ yarn
 yarn editor
 ```
 
+Building - coli use lerna to build packages. running `yarn build` will build individual packages.
+
+```sh
+yarn build
+```
+
 ## References
 
 - https://astexplorer.net/

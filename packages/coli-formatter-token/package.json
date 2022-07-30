@@ -1,7 +1,7 @@
 {
     "name": "@coli.codes/ast-formatter",
     "description": "Format the ast with extra ast without stringfy.",
-    "version": "0.0.14",
+    "version": "0.0.15",
     "private": false,
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -13,14 +13,14 @@
         "test": "jest"
     },
     "peerDependencies": {
-        "@coli.codes/jsx-core": "0.0.14",
-        "@coli.codes/core": "0.0.14",
-        "@coli.codes/core-syntax-kind": "0.0.14"
+        "@coli.codes/jsx-core": "0.0.15",
+        "@coli.codes/core": "0.0.15",
+        "@coli.codes/core-syntax-kind": "0.0.15"
     },
     "devDependencies": {
-        "@coli.codes/jsx-core": "0.0.14",
-        "@coli.codes/core": "0.0.14",
-        "@coli.codes/core-syntax-kind": "0.0.14",
+        "@coli.codes/jsx-core": "0.0.15",
+        "@coli.codes/core": "0.0.15",
+        "@coli.codes/core-syntax-kind": "0.0.15",
         "@types/jest": "^27.0.1",
         "jest": "^27.2.0",
         "ts-jest": "^27.0.5",

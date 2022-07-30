@@ -1,17 +1,16 @@
 {
     "name": "@coli.codes/builder",
-    "version": "0.0.14",
+    "version": "0.0.15",
     "private": false,
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "scripts": {
-        "build": "tsc",
-        "prepack": "tsc"
+        "build": "tsc"
     },
     "dependencies": {
-        "@coli.codes/builder-annotations": "^0.0.14",
-        "@coli.codes/core": "^0.0.14",
-        "@coli.codes/export-string": "^0.0.14"
+        "@coli.codes/builder-annotations": "^0.0.15",
+        "@coli.codes/core": "^0.0.15",
+        "@coli.codes/export-string": "^0.0.15"
     },
     "devDependencies": {
         "typescript": "^4.2.4"
