@@ -10,12 +10,12 @@
     },
     "dependencies": {
         "@coli.codes/ast-formatter": "^0.0.18",
-        "@coli.codes/export-string-core": "^0.0.18",
-        "@coli.codes/escape-string": "^0.0.18"
+        "@coli.codes/export-string-core": "^0.0.20",
+        "@coli.codes/escape-string": "^0.0.20"
     },
     "peerDependencies": {
         "@coli.codes/core": "^0.0.18",
-        "@coli.codes/jsx-core": "^0.0.18",
+        "@coli.codes/jsx-core": "^0.0.20",
         "@coli.codes/builder": "^0.0.18"
     },
     "devDependencies": {

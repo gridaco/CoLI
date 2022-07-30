@@ -15,9 +15,9 @@
     "dependencies": {
         "@coli.codes/css": "^0.0.18",
         "@coli.codes/core": "^0.0.18",
-        "@coli.codes/jsx-core": "^0.0.18",
+        "@coli.codes/jsx-core": "^0.0.20",
         "@coli.codes/builder": "^0.0.18",
-        "@coli.codes/naming": "^0.0.18",
+        "@coli.codes/naming": "^0.0.20",
         "@coli.codes/export-string": "^0.0.18"
     },
     "devDependencies": {

@@ -8,7 +8,7 @@
         "build": "tsc"
     },
     "dependencies": {
-        "@coli.codes/builder-annotations": "^0.0.18",
+        "@coli.codes/builder-annotations": "^0.0.20",
         "@coli.codes/core": "^0.0.18",
         "@coli.codes/export-string": "^0.0.18"
     },
