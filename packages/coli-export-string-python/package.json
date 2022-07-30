@@ -1,7 +1,7 @@
 {
     "name": "@coli.codes/export-string-py",
     "description": "stringfy for python3",
-    "version": "0.0.20",
+    "version": "0.0.21",
     "private": false,
     "publishConfig": {
         "access": "public"
