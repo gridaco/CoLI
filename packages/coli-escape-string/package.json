@@ -1,6 +1,6 @@
 {
     "name": "@coli.codes/escape-string",
-    "version": "0.0.16",
+    "version": "0.0.17",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "private": false,

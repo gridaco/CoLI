@@ -1,6 +1,6 @@
 {
     "name": "@coli.codes/export-fs",
-    "version": "0.0.16",
+    "version": "0.0.17",
     "dependencies": {
         "jszip": "^3.6.0"
     },
