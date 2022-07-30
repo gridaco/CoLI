@@ -1,6 +1,6 @@
-import { Identifier } from "@coli.codes/core/ast";
 import {
   ColiBuilder,
+  Identifier,
   FunctionDeclaration,
   BlockStatement,
   CallExpression,

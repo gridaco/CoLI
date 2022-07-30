@@ -1,5 +1,4 @@
-import { ColiBuilder } from "@coli.codes/core";
-import { ColiBlock } from "@coli.codes/core/builder/block";
+import { ColiBlock, ColiBuilder, ExportAssignment } from "@coli.codes/core";
 import {
   Declaration,
   ImportDeclaration,
@@ -7,7 +6,6 @@ import {
 } from "@coli.codes/core";
 import { Class } from "../class";
 import { Function } from "../function";
-import { ExportAssignment } from "@coli.codes/core/assignment/export-assignment";
 
 /**
  * interface of general in-project contained file

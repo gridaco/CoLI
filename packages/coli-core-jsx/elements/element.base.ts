@@ -1,7 +1,7 @@
-import { ColiJsxElementType, ColiObject } from "@coli.codes/core/_abstract";
+import { ColiObject, _abstract } from "@coli.codes/core";
 
 export class JsxBaseElement extends ColiObject {
-  constructor(readonly __type: ColiJsxElementType) {
+  constructor(readonly __type: _abstract.ColiJsxElementType) {
     super(__type);
   }
 }

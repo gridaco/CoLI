@@ -1,5 +1,4 @@
-import { ColiBuilder } from "@coli.codes/core";
-import { ColiObject } from "@coli.codes/core/_abstract";
+import { ColiBuilder, ColiObject } from "@coli.codes/core";
 
 export type ColiObjectLike<T extends ColiObject> = ColiBuilder<T> | T;
 export function handle<T extends ColiObject = any>(o: ColiObjectLike<T>): T {

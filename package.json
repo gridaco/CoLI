@@ -9,6 +9,7 @@
         "example"
     ],
     "scripts": {
+        "clean": "rimraf packages/*/dist",
         "lerna": "lerna",
         "build": "lerna run build",
         "publish:all": "lerna publish",

@@ -14,10 +14,12 @@
     },
     "peerDependencies": {
         "@coli.codes/jsx-core": "0.0.20",
+        "@coli.codes/builder": "0.0.18",
         "@coli.codes/core": "0.0.18",
         "@coli.codes/core-syntax-kind": "^0.0.20"
     },
     "devDependencies": {
+        "@coli.codes/builder": "0.0.18",
         "@coli.codes/jsx-core": "0.0.20",
         "@coli.codes/core": "0.0.18",
         "@coli.codes/core-syntax-kind": "^0.0.20",

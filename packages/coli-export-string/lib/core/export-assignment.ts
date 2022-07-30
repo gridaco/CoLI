@@ -1,4 +1,4 @@
-import { ExportAssignment } from "@coli.codes/core/assignment/export-assignment";
+import type { ExportAssignment } from "@coli.codes/core";
 import { stringfy_tokenformatted, StringfyOptions } from "..";
 import { formatters } from "@coli.codes/ast-formatter";
 

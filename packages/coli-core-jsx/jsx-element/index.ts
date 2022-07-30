@@ -1,5 +1,5 @@
+import { _internal } from "@coli.codes/core";
 import { JsxBaseElement } from "../elements/element.base";
-import { _ELEMENT_JSX } from "@coli.codes/core/_internal/node-name/elements-name";
 import { JSXClosingElement } from "../jsx-closing-element";
 import { JSXExpression } from "../jsx-expression";
 import { JSXIdentifier } from "../jsx-identifier";
@@ -36,7 +36,7 @@ export class JSXElement extends JsxBaseElement {
     closingElement: JSXClosingElement;
     children?: Array<JSXChildLike> | JSXChildLike;
   }) {
-    super(_ELEMENT_JSX);
+    super(_internal._ELEMENT_JSX);
     this.openingElement = params.openingElement;
     this.closingElement = params.closingElement;
     this.__tag = this.openingElement?.name?.name;

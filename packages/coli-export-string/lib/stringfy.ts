@@ -1,11 +1,11 @@
 import {
+  SyntaxKind,
   ColiObject,
+  ColiObjectType,
   _internal,
   _abstract,
-  ColiObjectType,
 } from "@coli.codes/core";
 import { Snippet, SourceFile } from "@coli.codes/builder";
-import { SyntaxKind } from "@coli.codes/core/_internal";
 import * as strfy from "./core";
 import {
   FormattingToken,
@@ -13,7 +13,6 @@ import {
   format as _astfmt,
 } from "@coli.codes/ast-formatter";
 import { KeywordAndTokenStatic } from "@coli.codes/export-string-core";
-import { COLI_WILDCARD_KEY } from "@coli.codes/core/_wildcard";
 import { NoTokenInterpreterFoundError } from "./errors";
 
 /*@internal*/
@@ -178,7 +177,7 @@ export function format(
 
 function _get_dedicated_strfier(colitype: ColiObjectType): Stringfyer {
   switch (colitype) {
-    case COLI_WILDCARD_KEY:
+    case _internal.COLI_WILDCARD_KEY:
       return (c: Snippet, ...args) => c._defaultSnippet;
     /** Declarations */
     case _internal._DECLARATION_FUNCTION:

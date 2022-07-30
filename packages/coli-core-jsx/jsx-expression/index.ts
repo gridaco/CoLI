@@ -1,6 +1,4 @@
-import { _EXPRESSION_JSX } from "@coli.codes/core/_internal/node-name/expressions-name";
-import { Expression } from "@coli.codes/core/expressions/expression.base";
-import { ColiObject } from "@coli.codes/core/_abstract";
+import { _internal, ColiObject, Expression } from "@coli.codes/core";
 
 /**
  * <Text>{ "this is the jsx expression container area" }</Text>
@@ -8,6 +6,6 @@ import { ColiObject } from "@coli.codes/core/_abstract";
  */
 export class JSXExpression extends Expression {
   constructor(readonly expression: ColiObject) {
-    super(_EXPRESSION_JSX);
+    super(_internal._EXPRESSION_JSX);
   }
 }

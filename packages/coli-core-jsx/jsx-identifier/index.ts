@@ -1,4 +1,4 @@
-import { Identifier } from "@coli.codes/core/ast/identifier";
+import { Identifier } from "@coli.codes/core";
 
 export type JSXIdentifierAcceptedInputType = Html5IdentifierNames | string;
 

@@ -1,9 +1,8 @@
-import { _abstract } from "@coli.codes/core";
-import { COLI_WILDCARD_KEY } from "@coli.codes/core/_wildcard";
+import { _abstract, _internal } from "@coli.codes/core";
 export class Snippet extends _abstract.ColiObject {
   _defaultSnippet: string;
   constructor(defaultSnippet?: string) {
-    super(COLI_WILDCARD_KEY);
+    super(_internal.COLI_WILDCARD_KEY);
     this._defaultSnippet = defaultSnippet;
   }
 
@@ -11,7 +10,7 @@ export class Snippet extends _abstract.ColiObject {
     snippet: string
   ): Snippet | T {
     // dangerously cast type
-    return new Snippet(snippet) as any as T;
+    return (new Snippet(snippet) as any) as T;
   }
 
   lookup(): string {

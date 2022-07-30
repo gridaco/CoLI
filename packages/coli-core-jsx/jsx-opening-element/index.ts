@@ -1,4 +1,4 @@
-import { _ELEMENT_JSX_OPENING } from "@coli.codes/core/_internal/node-name";
+import { _internal } from "@coli.codes/core";
 import { JSXAttributes } from "../jsx-attributes";
 import { JSXIdentifier } from "../jsx-identifier";
 import { JsxBaseElement } from "../elements/element.base";
@@ -13,7 +13,7 @@ export class JSXOpeningElement extends JsxBaseElement {
       attributes: JSXAttributes;
     }
   ) {
-    super(_ELEMENT_JSX_OPENING);
+    super(_internal._ELEMENT_JSX_OPENING);
     this.name = name;
     this.attributes = params?.attributes || [];
   }

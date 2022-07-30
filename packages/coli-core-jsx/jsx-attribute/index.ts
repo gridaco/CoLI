@@ -1,5 +1,4 @@
-import { ColiObject } from "@coli.codes/core/_abstract";
-import { _JSX_ATTRIBUTE } from "@coli.codes/core/_internal/node-name/jsx-names";
+import { ColiObject, _internal } from "@coli.codes/core";
 import { JSXIdentifier } from "../jsx-identifier";
 
 /**
@@ -10,7 +9,7 @@ export class JSXAttribute extends ColiObject {
   name: JSXIdentifier;
   initializer?: ColiObject;
   constructor(name: string, initializer?: ColiObject) {
-    super(_JSX_ATTRIBUTE);
+    super(_internal._JSX_ATTRIBUTE);
     this.name = new JSXIdentifier(name);
     this.initializer = initializer;
   }
