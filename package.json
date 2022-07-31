@@ -11,8 +11,8 @@
     "scripts": {
         "clean": "rimraf packages/*/dist",
         "lerna": "lerna",
-        "build": "lerna run build",
-        "publish:all": "lerna publish",
+        "build": "yarn clean && lerna run build",
+        "publish:all": "lerna publish --force-publish coli",
         "bootstrap": "lerna bootstrap",
         "editor": "yarn workspace editor run dev",
         "build:editor": "yarn workspace editor run build"
