@@ -1,6 +1,6 @@
 {
     "name": "@coli.codes/core-syntax-kind",
-    "version": "0.0.25",
+    "version": "0.0.26",
     "author": "Grida.co, Microsoft, Typescirpt Authors",
     "private": false,
     "main": "dist/index.js",
