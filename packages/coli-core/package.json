@@ -9,7 +9,7 @@
         "build": "yarn clean && tsc"
     },
     "dependencies": {
-        "@coli.codes/core-syntax-kinds": "^0.0.24"
+        "@coli.codes/core-syntax-kind": "^0.0.25"
     },
     "devDependencies": {
         "typescript": "^4.2.4"
