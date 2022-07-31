@@ -11,5 +11,6 @@ export type {
 } from "./css-style-declaration";
 
 export { buildCSSBody as buildCssStandard } from "./builder";
+export * from "./css-color";
 export * from "./css-style-declaration";
 export * from "./builder";
