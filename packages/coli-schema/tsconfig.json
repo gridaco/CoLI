@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig.build.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "allowJs": false
+  },
+  "exclude": ["node_modules", "dist", "__test__"],
+  "include": ["lib/**/*"]
+}

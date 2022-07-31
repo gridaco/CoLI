@@ -8,6 +8,9 @@
         "clean": "rimraf dist",
         "build": "yarn clean && tsc"
     },
+    "dependencies": {
+        "@coli.codes/core-syntax-kinds": "^0.0.24"
+    },
     "devDependencies": {
         "typescript": "^4.2.4"
     },
