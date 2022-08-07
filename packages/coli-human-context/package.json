@@ -1,6 +1,6 @@
 {
     "name": "@coli.codes/human-context",
-    "version": "0.0.27",
+    "version": "0.0.28",
     "private": false,
     "publishConfig": {
         "access": "public"
