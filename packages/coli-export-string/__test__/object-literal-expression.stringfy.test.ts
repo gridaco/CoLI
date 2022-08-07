@@ -5,7 +5,7 @@ import {
   StringLiteral,
   PropertyAssignment,
 } from "coli";
-import { strfy_object_literal_expression } from "../core";
+import { strfy_object_literal_expression } from "../lib/core";
 
 test("object literal expression with one properties", () => {
   const datafieldid = new Identifier("data");

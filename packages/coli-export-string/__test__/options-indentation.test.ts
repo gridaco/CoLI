@@ -30,7 +30,7 @@ const _func = new FunctionDeclaration("sum", {
 
 test("default indent", () => {
   expect(stringfy(_func)).toBe(`
-function sum (a: number, b: number) {
+function sum(a: number, b: number) {
 \treturn (
 \t\t<>
 \t\t\tThis is a JSX element
@@ -49,7 +49,7 @@ test("indent 2", () => {
       indentation: 2,
     })
   ).toBe(`
-function sum (a: number, b: number) {
+function sum(a: number, b: number) {
   return (
     <>
       This is a JSX element
@@ -68,7 +68,7 @@ test("indent 4", () => {
       indentation: 4,
     })
   ).toBe(`
-function sum (a: number, b: number) {
+function sum(a: number, b: number) {
     return (
         <>
             This is a JSX element

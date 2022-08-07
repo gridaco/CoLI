@@ -58,7 +58,7 @@ const _func = new FunctionDeclaration("sum", {
 
 test("jsx-function-declaration-with-return", () => {
   expect(stringfy(_func)).toBe(`
-function sum (a: number, b: number) {
+function sum(a: number, b: number) {
 \treturn (
 \t\t<>
 \t\t\tThis is a JSX element

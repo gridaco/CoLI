@@ -14,7 +14,7 @@ test("function-declaration", () => {
     ],
   });
   expect(stringfy(sum)).toBe(`
-function sum (a: number, b: number) {
+function sum(a: number, b: number) {
 \t
 }
 
