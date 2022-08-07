@@ -1084,7 +1084,7 @@
   integrity sha512-oy8rTfYl+lh1ZNCb3f8lSzKVAarFs2S6+znb2zd9E5ixn79MQd05wJ9eqp05xisQppY8Y3DKFIRtPm1gYmJ7tQ==
 
 "@coli.codes/builder-annotations@^0.0.18":
-  version "0.0.23"
+  version "0.0.27"
   dependencies:
     "@abraham/reflection" "^0.7.0"
 
@@ -1120,10 +1120,10 @@
     csstype "^3.0.8"
 
 "@coli.codes/escape-string@^0.0.18":
-  version "0.0.23"
+  version "0.0.27"
 
 "@coli.codes/export-string-core@^0.0.18":
-  version "0.0.23"
+  version "0.0.27"
 
 "@coli.codes/export-string@^0.0.18":
   version "0.0.18"
@@ -1135,10 +1135,10 @@
     "@coli.codes/export-string-core" "^0.0.18"
 
 "@coli.codes/jsx-core@^0.0.18":
-  version "0.0.23"
+  version "0.0.27"
 
 "@coli.codes/naming@^0.0.18":
-  version "0.0.23"
+  version "0.0.27"
 
 "@emotion/babel-plugin-jsx-pragmatic@^0.1.5":
   version "0.1.5"

@@ -4,7 +4,6 @@
     "esModuleInterop": true,
     "downlevelIteration": true,
     "module": "commonjs",
-    "outDir": "dist",
     "declaration": true,
     "sourceMap": false,
     "lib": ["ESNext", "dom"]
