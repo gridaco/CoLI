@@ -5,6 +5,7 @@
     "types": "dist/index.d.ts",
     "private": false,
     "scripts": {
+        "test": "jest",
         "build": "tsc"
     },
     "files": [
@@ -14,5 +15,10 @@
     ],
     "publishConfig": {
         "access": "public"
+    },
+    "devDependencies": {
+        "@types/jest": "^28.1.6",
+        "jest": "^28.1.3",
+        "ts-jest": "^28.0.7"
     }
 }
