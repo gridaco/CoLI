@@ -1,11 +1,14 @@
-import type { JSXElement } from "@coli.codes/jsx-core";
+import type { JSXChildLike, JSXElement } from "@coli.codes/jsx-core";
 import { format, inject } from "../..";
 import { insertBetween } from "../../utils";
 import f from "../../tokens";
 
 export function astfmt_jsx_element(c: JSXElement) {
   const { openingElement, closingElement, children } = c;
-  const _children = children && Array.isArray(children) ? children : [children];
+  const _children: JSXChildLike[] =
+    children && Array.isArray(children)
+      ? children
+      : ([children] as JSXChildLike[]);
   if (_children) {
     return [
       //

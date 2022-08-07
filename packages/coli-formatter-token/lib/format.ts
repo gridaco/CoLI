@@ -18,6 +18,9 @@ export function format(coli) {
   if (coli instanceof ColiObject) {
     const formatter = _get_dedicated_formatter(coli.__type);
     return formatter(coli);
+  } else {
+    process.env.NODE_ENV !== "production" &&
+      console.warn("cannot format", coli);
   }
 }
 
@@ -52,8 +55,6 @@ function _get_dedicated_formatter(colitype: ColiObjectType): FormatterFunc {
       return fmts.astfmt_tagged_template_expression;
     case _internal._EXPRESSION_PROPERTY_ACCESS:
       return fmts.astfmt_property_access_expression;
-    case _internal._EXPRESSION_JSX:
-      return fmts.astfmt_jsx_expression;
     case _internal._EXPRESSION_CALL:
       return fmts.astfmt_call_expression;
     /** Nodes */
@@ -67,6 +68,8 @@ function _get_dedicated_formatter(colitype: ColiObjectType): FormatterFunc {
       return fmts.astfmt_literal;
 
     /** JSX */
+    case _internal._EXPRESSION_JSX:
+      return fmts.astfmt_jsx_expression;
     case _internal._ELEMENT_JSX:
       return fmts.astfmt_jsx_element;
     case _internal._JSX_ATTRIBUTE:
