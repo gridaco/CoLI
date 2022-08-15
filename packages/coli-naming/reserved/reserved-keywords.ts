@@ -104,7 +104,17 @@ const typescript = [
   "type",
   "from",
   "of",
-];
+  // literals
+  "NaN",
+  "Infinity",
+  "String",
+  "string",
+  "number",
+  "boolean",
+  "Boolean",
+] as const;
+
+const jsx = ["JSX"] as const;
 
 const python = [
   "and",
@@ -164,7 +174,7 @@ const python = [
   "sin",
   "sqrt",
   "tan",
-];
+] as const;
 
 const php = [
   "__halt_compiler",
@@ -234,7 +244,7 @@ const php = [
   "while",
   "xor",
   "yield",
-];
+] as const;
 
 const java = [
   "abstract",
@@ -290,7 +300,7 @@ const java = [
   "false",
   "null",
   "true",
-];
+] as const;
 
 const csharp = [
   "abstract",
@@ -394,7 +404,7 @@ const csharp = [
   "var",
   "where",
   "yield",
-];
+] as const;
 
 const cpp = [
   "auto",
@@ -483,7 +493,7 @@ const cpp = [
   "NULL",
   "std",
   "string",
-];
+] as const;
 
 const react = [
   "React",
@@ -723,9 +733,10 @@ export const RESERVED_KEYWORDS = {
   java: java,
   php: php,
   react: react,
+  jsx: jsx,
   html: html,
   "solid-js": solidjs,
-};
+} as const;
 
 export const ALL_RESERVED_KEYWORDS_PRESET = [
   ...general,

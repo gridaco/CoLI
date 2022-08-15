@@ -10,6 +10,7 @@ export enum ReservedKeywordPlatforms {
   react = "react",
   solidjs = "solid-js",
   html = "html",
+  jsx = "jsx",
   typescript = "typescript",
 }
 
@@ -18,12 +19,14 @@ export type ReservedKeywordPlatformSelection = ReservedKeywordPlatforms[];
 export const ReservedKeywordPlatformPresets = {
   react: [
     ReservedKeywordPlatforms.typescript,
+    ReservedKeywordPlatforms.jsx,
     ReservedKeywordPlatforms.react,
     ReservedKeywordPlatforms.html,
   ],
   solidjs: [
     ReservedKeywordPlatforms.typescript,
     ReservedKeywordPlatforms.solidjs,
+    ReservedKeywordPlatforms.jsx,
     ReservedKeywordPlatforms.html,
   ],
   html: [ReservedKeywordPlatforms.html],
@@ -32,6 +35,7 @@ export const ReservedKeywordPlatformPresets = {
     ReservedKeywordPlatforms.typescript,
     ReservedKeywordPlatforms.react,
     ReservedKeywordPlatforms.html,
+    ReservedKeywordPlatforms.jsx,
     ReservedKeywordPlatforms.cpp,
     ReservedKeywordPlatforms.csharp,
     ReservedKeywordPlatforms.php,
