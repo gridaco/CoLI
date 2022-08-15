@@ -1,4 +1,4 @@
-import { NameCases, nameVariable } from "..";
+import { NameCases, nameVariable } from "../index";
 
 test("component variable name -- pascal", () => {
   expect(
