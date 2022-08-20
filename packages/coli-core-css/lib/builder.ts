@@ -21,10 +21,21 @@ export function buildCSSStyleData(css: ElementCssStyleData): {
   const cssWithoutSimplePseudos = Object.keys(css).reduce((acc, key) => {
     // if key included in simplePseudos, skip it.
     if (!simplePseudos.includes(key)) {
-      return {
-        ...acc,
-        [key]: css[key],
-      };
+      const _val = css[key];
+      if (
+        _val === false ||
+        _val === undefined ||
+        _val === null ||
+        _val === ""
+      ) {
+        return acc;
+      } else {
+        // 0 is a valid value for css.
+        return {
+          ...acc,
+          [key]: _val,
+        };
+      }
     }
     return acc;
   }, {} as PropertiesHyphen);
