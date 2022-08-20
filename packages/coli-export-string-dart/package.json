@@ -1,7 +1,7 @@
 {
     "name": "@coli.codes/export-string-dart",
     "description": "stringfy for dart",
-    "version": "0.0.29",
+    "version": "0.0.30",
     "private": false,
     "publishConfig": {
         "access": "public"

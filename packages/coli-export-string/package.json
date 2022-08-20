@@ -1,6 +1,6 @@
 {
     "name": "@coli.codes/export-string",
-    "version": "0.0.29",
+    "version": "0.0.30",
     "private": false,
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -9,9 +9,9 @@
         "test": "jest"
     },
     "dependencies": {
-        "@coli.codes/ast-formatter": "^0.0.29",
-        "@coli.codes/escape-string": "^0.0.29",
-        "@coli.codes/export-string-core": "^0.0.29"
+        "@coli.codes/ast-formatter": "^0.0.30",
+        "@coli.codes/escape-string": "^0.0.30",
+        "@coli.codes/export-string-core": "^0.0.30"
     },
     "peerDependencies": {
         "@coli.codes/builder": "^0.0.23",

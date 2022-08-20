@@ -1,6 +1,6 @@
 {
     "name": "@coli.codes/builder",
-    "version": "0.0.29",
+    "version": "0.0.30",
     "private": false,
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -9,7 +9,7 @@
     },
     "dependencies": {
         "@coli.codes/builder-annotations": "^0.0.20",
-        "@coli.codes/core": "^0.0.29"
+        "@coli.codes/core": "^0.0.30"
     },
     "devDependencies": {
         "typescript": "^4.2.4"

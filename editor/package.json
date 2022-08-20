@@ -1,7 +1,7 @@
 {
     "name": "@coli.codes/editor",
     "description": "coli editor web app",
-    "version": "0.0.29",
+    "version": "0.0.30",
     "private": false,
     "scripts": {
         "dev": "next dev",
@@ -17,7 +17,7 @@
         "axios": "^0.21.1",
         "babel-plugin-emotion": "^11.0.0",
         "codesandbox": "^2.2.1",
-        "coli": "^0.0.29",
+        "coli": "^0.0.30",
         "next": "10.0.5",
         "next-transpile-modules": "^6.4.0",
         "react": "^17.0.2",
