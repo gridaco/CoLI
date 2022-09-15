@@ -1,9 +1,9 @@
 {
     "name": "coli",
-    "version": "0.0.31",
+    "version": "0.0.32",
     "license": "MIT",
     "homepage": "https://coli.codes",
-    "repository": "https://github.com/bridgedxyz/coli",
+    "repository": "https://github.com/gridaco/coli",
     "private": false,
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -13,12 +13,12 @@
         "test": "tsc"
     },
     "dependencies": {
-        "@coli.codes/builder": "^0.0.31",
-        "@coli.codes/core": "^0.0.31",
-        "@coli.codes/css": "^0.0.31",
-        "@coli.codes/export-string": "^0.0.31",
-        "@coli.codes/jsx-core": "^0.0.31",
-        "@coli.codes/naming": "^0.0.31"
+        "@coli.codes/builder": "^0.0.32",
+        "@coli.codes/core": "^0.0.32",
+        "@coli.codes/css": "^0.0.32",
+        "@coli.codes/export-string": "^0.0.32",
+        "@coli.codes/jsx-core": "^0.0.32",
+        "@coli.codes/naming": "^0.0.32"
     },
     "devDependencies": {
         "ts-node": "^9.1.1",
