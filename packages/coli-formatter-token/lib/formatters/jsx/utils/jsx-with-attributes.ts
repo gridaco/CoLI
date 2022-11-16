@@ -5,6 +5,8 @@ import { get_jsx_attribute_join_with_by_attributes } from "./jsx-attribute-split
 import { format, inject } from "../../..";
 import f from "../../../tokens";
 
+const __indent_after_newline__symbol = JSON.stringify(["\n", "\t"]);
+
 export function astfmt_jsx_with_attributes({
   name,
   open_token,
@@ -20,11 +22,13 @@ export function astfmt_jsx_with_attributes({
   const closing = close_token == "/>" ? "/>" : f(close_token);
 
   if (attributes?.length > 0) {
-    const join_attributes_with = get_jsx_attribute_join_with_by_attributes(
-      attributes
-    );
+    const join_attributes_with =
+      get_jsx_attribute_join_with_by_attributes(attributes);
+
     let closing_after_new_line =
-      join_attributes_with == ["\n", "\t"] ? f("\n") : f("");
+      JSON.stringify(join_attributes_with) == __indent_after_newline__symbol
+        ? f("\n")
+        : f("");
 
     return [
       openning,
