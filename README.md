@@ -58,7 +58,7 @@ file.add(Variable.const("someVariable", "hi there!", CoLITypes.String))
 >>> final String someVariable = "hi there!";
 ```
 
-> to check work around for generating flutter code - checkout [flutter-builder](https://github.com/bridgedxyz/flutter-builder)
+> to check work around for generating flutter code - checkout [@flutter-builder](https://github.com/gridaco/flutter/tree/main/flutter-builder)
 
 ## Function
 
