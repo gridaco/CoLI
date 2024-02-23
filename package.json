@@ -1,24 +1,27 @@
 {
-    "name": "coli-workspace",
-    "version": "0.0.0",
-    "license": "MIT",
-    "private": true,
-    "workspaces": [
-        "packages/*",
-        "editor",
-        "example"
-    ],
-    "scripts": {
-        "clean": "rimraf packages/*/dist",
-        "lerna": "lerna",
-        "build": "yarn clean && lerna run build",
-        "publish:all": "yarn build && lerna publish --force-publish coli",
-        "lerna:version": "yarn lerna version --no-private",
-        "bootstrap": "lerna bootstrap",
-        "editor": "yarn workspace editor run dev",
-        "build:editor": "yarn workspace editor run build"
-    },
-    "devDependencies": {
-        "lerna": "^5.3.0"
-    }
+  "name": "coli-workspace",
+  "version": "0.0.0",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "editor",
+    "example"
+  ],
+  "scripts": {
+    "clean": "rimraf packages/*/dist",
+    "lerna": "lerna",
+    "build": "yarn clean && lerna run build",
+    "publish:all": "yarn build && lerna publish --force-publish coli",
+    "lerna:version": "yarn lerna version --no-private",
+    "bootstrap": "lerna bootstrap",
+    "editor": "yarn workspace editor run dev",
+    "build:editor": "yarn workspace editor run build"
+  },
+  "devDependencies": {
+    "lerna": "^5.3.0"
+  },
+  "resolutions": {
+    "sharp": "^0.29.0"
+  }
 }

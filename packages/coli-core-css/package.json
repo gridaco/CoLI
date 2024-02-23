@@ -1,31 +1,31 @@
 {
-    "name": "@coli.codes/css",
-    "version": "0.0.32",
-    "private": false,
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
-    "scripts": {
-        "build": "tsc",
-        "test": "jest"
-    },
-    "peerDependencies": {
-        "@coli.codes/core": "^0.0.23"
-    },
-    "devDependencies": {
-        "@coli.codes/core": "^0.0.32",
-        "@types/jest": "^26.0.23",
-        "jest": "^27.0.4",
-        "typescript": "^4.3.2"
-    },
-    "dependencies": {
-        "csstype": "^3.0.8"
-    },
-    "files": [
-        "dist",
-        "README.md",
-        "LICENSE"
-    ],
-    "publishConfig": {
-        "access": "public"
-    }
+  "name": "@coli.codes/css",
+  "version": "0.0.32",
+  "private": false,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "peerDependencies": {
+    "@coli.codes/core": "^0.0.32"
+  },
+  "devDependencies": {
+    "@coli.codes/core": "^0.0.32",
+    "@types/jest": "^26.0.23",
+    "jest": "^27.0.4",
+    "typescript": "^4.3.2"
+  },
+  "dependencies": {
+    "csstype": "^3.0.8"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }

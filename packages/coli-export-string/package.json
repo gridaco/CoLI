@@ -1,35 +1,35 @@
 {
-    "name": "@coli.codes/export-string",
-    "version": "0.0.32",
-    "private": false,
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
-    "scripts": {
-        "build": "tsc",
-        "test": "jest"
-    },
-    "dependencies": {
-        "@coli.codes/ast-formatter": "^0.0.32",
-        "@coli.codes/escape-string": "^0.0.32",
-        "@coli.codes/export-string-core": "^0.0.32"
-    },
-    "peerDependencies": {
-        "@coli.codes/builder": "^0.0.23",
-        "@coli.codes/core": "^0.0.23",
-        "@coli.codes/jsx-core": "^0.0.23"
-    },
-    "devDependencies": {
-        "@types/jest": "^27.0.1",
-        "jest": "^27.1.0",
-        "ts-jest": "^27.0.5",
-        "typescript": "^4.4.2"
-    },
-    "files": [
-        "dist",
-        "README.md",
-        "LICENSE"
-    ],
-    "publishConfig": {
-        "access": "public"
-    }
+  "name": "@coli.codes/export-string",
+  "version": "0.0.32",
+  "private": false,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@coli.codes/ast-formatter": "^0.0.32",
+    "@coli.codes/escape-string": "^0.0.32",
+    "@coli.codes/export-string-core": "^0.0.32"
+  },
+  "peerDependencies": {
+    "@coli.codes/builder": "^0.0.32",
+    "@coli.codes/core": "^0.0.32",
+    "@coli.codes/jsx-core": "^0.0.32"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.1",
+    "jest": "^27.1.0",
+    "ts-jest": "^27.0.5",
+    "typescript": "^4.4.2"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }
