@@ -1,6 +1,6 @@
 {
   "name": "@coli.codes/css",
-  "version": "0.0.33",
+  "version": "0.0.34",
   "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -12,7 +12,7 @@
     "@coli.codes/core": "^0.0.32"
   },
   "devDependencies": {
-    "@coli.codes/core": "^0.0.33",
+    "@coli.codes/core": "^0.0.34",
     "@types/jest": "^26.0.23",
     "jest": "^27.0.4",
     "typescript": "^4.3.2"
